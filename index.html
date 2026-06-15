@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hanuman</title>
+<style>
+  :root { --teal:#1f8a8a; --teal-d:#136b6b; --ink:#173a3a; --bg:#f4fbfb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--ink); }
+  #hanuman-card { display:flex; flex-direction:column; height:520px; max-width:380px;
+    border:1px solid #d6ecec; border-radius:16px; overflow:hidden; background:var(--bg); }
+  #hz-head { background:var(--teal); color:#fff; padding:12px 16px; font-weight:600; display:flex; align-items:center; gap:8px; }
+  #hz-log { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+  .hz-msg { padding:10px 13px; border-radius:14px; max-width:85%; line-height:1.4; font-size:15px; white-space:pre-wrap; }
+  .hz-bot { background:#fff; border:1px solid #d6ecec; align-self:flex-start; }
+  .hz-user { background:var(--teal); color:#fff; align-self:flex-end; }
+  #hz-foot { padding:10px; border-top:1px solid #d6ecec; background:#fff; }
+  #hz-row { display:flex; gap:8px; }
+  #hz-input { flex:1; padding:10px 12px; border:1px solid #cfe6e6; border-radius:10px; font-size:15px; }
+  #hz-send { background:var(--teal); color:#fff; border:none; border-radius:10px; padding:0 16px; font-weight:600; cursor:pointer; }
+  #hz-send:disabled { opacity:.5; cursor:default; }
+  .hz-gate { background:#fff; border:1px dashed var(--teal); border-radius:12px; padding:12px; font-size:14px; }
+  .hz-gate input { width:100%; padding:9px; border:1px solid #cfe6e6; border-radius:8px; margin:8px 0; }
+  .hz-mute { font-size:12px; color:var(--teal-d); background:none; border:none; cursor:pointer; }
+</style>
+</head>
+<body>
+<div id="hanuman-card">
+  <div id="hz-head">🐒 Hanuman <span style="font-weight:400;font-size:12px;opacity:.85;">· a 2-minute reset</span>
+    <button id="hz-mute" class="hz-mute" style="margin-left:auto;color:#fff;">🔊 voice on</button>
+  </div>
+  <div id="hz-log"></div>
+  <div id="hz-foot">
+    <div id="hz-row">
+      <input id="hz-input" placeholder="Ask for a calm-down or a wake-up..." autocomplete="off" />
+      <button id="hz-send">Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // ---- Config ----
+  var API = (window.HANUMAN_API || "") + "/api/hanuman"; // set window.HANUMAN_API to the Railway URL
+  var FREE_BEFORE_EMAIL = 999;   // demo: talk freely, no email wall
+  var FREE_AFTER_EMAIL  = 4;   // through Q5 (Q2 gated, Q3-5 free)
+
+  // ---- Stateless session id (client side, no PII) ----
+  function uuid() { return (crypto.randomUUID && crypto.randomUUID()) ||
+    ("hz-" + Date.now() + "-" + Math.random().toString(16).slice(2)); }
+  var sessionId = localStorage.getItem("hz_sid") || uuid();
+  localStorage.setItem("hz_sid", sessionId);
+  var qCount = parseInt(localStorage.getItem("hz_q") || "0", 10);
+  var hasEmail = localStorage.getItem("hz_email_ok") === "1";
+
+  var history = [];           // in-memory only, cleared on reload (stateless)
+  var voiceOn = true;
+  var audioUnlocked = false;  // browsers block speech until a user gesture
+
+  var log = document.getElementById("hz-log");
+  var input = document.getElementById("hz-input");
+  var send = document.getElementById("hz-send");
+  var muteBtn = document.getElementById("hz-mute");
+
+  function bubble(text, who) {
+    var d = document.createElement("div");
+    d.className = "hz-msg " + (who === "user" ? "hz-user" : "hz-bot");
+    d.textContent = text;
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+    return d;
+  }
+
+  // ---- Client-side TTS (Web Speech API). No voice data leaves the browser. ----
+  function speak(text) {
+    if (!voiceOn || !audioUnlocked || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.92; u.pitch = 1.0;
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
+  muteBtn.onclick = function () {
+    voiceOn = !voiceOn;
+    muteBtn.textContent = voiceOn ? "🔊 voice on" : "🔇 voice off";
+    if (!voiceOn && window.speechSynthesis) window.speechSynthesis.cancel();
+  };
+
+  function showEmailGate() {
+    var g = document.createElement("div");
+    g.className = "hz-gate";
+    g.innerHTML = "Loved that? Drop an email and Hanuman keeps going — a few more resets, free." +
+      "<input id='hz-email' type='email' placeholder='you@school.org' />" +
+      "<button id='hz-email-go' style='width:100%;padding:9px;border:none;border-radius:8px;background:#1f8a8a;color:#fff;font-weight:600;cursor:pointer;'>Keep going</button>";
+    log.appendChild(g); log.scrollTop = log.scrollHeight;
+    document.getElementById("hz-email-go").onclick = function () {
+      var v = (document.getElementById("hz-email").value || "").trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { alert("That email looks off — mind checking it?"); return; }
+      hasEmail = true; localStorage.setItem("hz_email_ok", "1");
+      // NOTE: email is NOT sent to the chat API. Wire to your CRM/Make webhook here.
+      if (window.HANUMAN_ON_EMAIL) try { window.HANUMAN_ON_EMAIL(v); } catch (e) {}
+      g.remove();
+      bubble("You're in. Let's keep breathing. What does your class need?", "bot");
+    };
+  }
+
+  function showSignupPrompt() {
+    var g = document.createElement("div");
+    g.className = "hz-gate";
+    g.innerHTML = "That's our free reset for today. To bring Hanuman to your whole class, create an account or enter your teacher code." +
+      "<input id='hz-code' placeholder='Teacher code (optional)' />" +
+      "<button id='hz-signup' style='width:100%;padding:9px;border:none;border-radius:8px;background:#1f8a8a;color:#fff;font-weight:600;cursor:pointer;'>Get Hanuman for my class</button>";
+    log.appendChild(g); log.scrollTop = log.scrollHeight;
+    document.getElementById("hz-signup").onclick = function () {
+      var code = (document.getElementById("hz-code").value || "").trim();
+      if (window.HANUMAN_ON_SIGNUP) try { window.HANUMAN_ON_SIGNUP(code); } catch (e) {}
+      else window.location.href = "/signup";
+    };
+    input.disabled = true; send.disabled = true;
+  }
+
+  // ---- Offline mode: scripted flows from Modules 3 & 5, so the widget works with no key.
+  // Safety wall runs here too: distress goes to a trusted adult, never a breath script. ----
+  var CRISIS = /\b(hurt me|hurting me|hit me|hits me|abuse|unsafe|kill|suicide|hurt myself|kill myself|want to die|disappear|touch(ed)? me)\b/i;
+  var CRISIS_REPLY = "That sounds really important, and I'm so glad you told someone. This is something to share right now with a grown-up you trust: your teacher, a school counselor, or someone at home who keeps you safe. Telling a safe grown-up is one of the bravest, strongest things a person can do. I'll be right here for a breath whenever you're ready.";
+
+  var FLOWS = {
+    calm: "Let's settle the room together. Sit however feels good. You can close your eyes, or just rest your gaze on one soft spot. Put a hand on your belly. Breathe in slow through your nose, and let your belly fill up like a balloon. Now let it out slow through your mouth, all the way empty. That slow breath out is the part that helps you feel calm. Two more, in your own time. In... and out. Nice. That quiet is yours, anytime you want it.",
+    wake: "Whoa, big energy. I feel it too, my tail is twitching! Let's use it. Stand up if you can. Shake out your hands for three seconds: one, two, three. Now drop them into your lap like heavy stones. One big breath in, reach up tall like a mountain... and a long breath out as your arms float down. One more. Tall... and down. There you go. Ready and steady.",
+    ground: "I hear you. Let's find some solid ground together. Feel your feet flat on the floor, or your seat in the chair. That's the ground holding you up, and it isn't going anywhere. Breathe in slow... and a long breath out. Let your shoulders drop. You're safe right here, right now. One more slow breath out. Strong work.",
+    close: "Beautiful practice. Let's close together, say it with me if you'd like: I am happy. I am safe. I am brave. I am strong. I am love. Come find me whenever your class needs a reset."
+  };
+
+  function localHanuman(text) {
+    var t = (text || "").toLowerCase();
+    if (CRISIS.test(t)) return CRISIS_REPLY;
+    if (/\b(close|finish|end|goodbye|done)\b/.test(t)) return FLOWS.close;
+    if (/\b(wild|crazy|loud|hyper|bouncing|wound up|too much energy|tired|sleepy|bored|low)\b/.test(t)) return FLOWS.wake;
+    if (/\b(scared|nervous|anxious|worried|tight|sad|upset|mad|angry|stressed)\b/.test(t)) return FLOWS.ground;
+    return FLOWS.calm; // default: the Balloon Breath reset
+  }
+
+  async function getReply(text) {
+    // No backend wired yet -> offline scripted flow. Backend present -> use it, fall back on error.
+    if (!window.HANUMAN_API) return localHanuman(text);
+    try {
+      var resp = await fetch(API, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ sessionId: sessionId, messages: history }),
+      });
+      var data = await resp.json();
+      return data.reply || localHanuman(text);
+    } catch (e) {
+      return localHanuman(text); // graceful fallback, never dead
+    }
+  }
+
+  async function ask(text) {
+    bubble(text, "user");
+    history.push({ role: "user", content: text });
+    send.disabled = true; input.value = "";
+    var thinking = bubble("…", "bot");
+
+    var reply = await getReply(text);
+    thinking.textContent = reply;
+    history.push({ role: "assistant", content: reply });
+    speak(reply);
+
+    qCount += 1; localStorage.setItem("hz_q", String(qCount));
+    if (!hasEmail && qCount >= FREE_BEFORE_EMAIL) { showEmailGate(); }
+    else if (hasEmail && qCount >= (FREE_BEFORE_EMAIL + FREE_AFTER_EMAIL)) { showSignupPrompt(); }
+
+    send.disabled = false; input.focus();
+  }
+
+  function submit() {
+    var t = (input.value || "").trim();
+    if (!t) return;
+    audioUnlocked = true; // first tap unlocks browser speech
+    ask(t);
+  }
+  send.onclick = submit;
+  input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
+
+  // Greeting
+  bubble("Hey, I'm Hanuman. Big energy after recess? Same — my tail's still twitching. Tell me what your class needs and we'll take a breath together.", "bot");
+})();
+</script>
+</body>
+</html>
