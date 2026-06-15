@@ -103,7 +103,7 @@
       var u = new SpeechSynthesisUtterance(text);
       if (chosenVoice) u.voice = chosenVoice;
       u.rate = 0.85;   // slower, calmer
-      u.pitch = 0.8;   // lower, warmer — away from robot lady
+      u.pitch = 0.8;   // lower, warmer away from robot lady
       window.speechSynthesis.speak(u);
     } catch (e) {}
   }
@@ -117,13 +117,13 @@
   function showEmailGate() {
     var g = document.createElement("div");
     g.className = "hz-gate";
-    g.innerHTML = "Loved that? Drop an email and Hanuman keeps going — a few more resets, free." +
+    g.innerHTML = "Loved that? Drop an email and Hanuman keeps going a few more resets, free." +
       "<input id='hz-email' type='email' placeholder='you@school.org' />" +
       "<button id='hz-email-go' style='width:100%;padding:9px;border:none;border-radius:8px;background:#1f8a8a;color:#fff;font-weight:600;cursor:pointer;'>Keep going</button>";
     log.appendChild(g); log.scrollTop = log.scrollHeight;
     document.getElementById("hz-email-go").onclick = function () {
       var v = (document.getElementById("hz-email").value || "").trim();
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { alert("That email looks off — mind checking it?"); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { alert("That email looks off mind checking it?"); return; }
       hasEmail = true; localStorage.setItem("hz_email_ok", "1");
       // NOTE: email is NOT sent to the chat API. Wire to your CRM/Make webhook here.
       if (window.HANUMAN_ON_EMAIL) try { window.HANUMAN_ON_EMAIL(v); } catch (e) {}
@@ -205,14 +205,22 @@
   function submit() {
     var t = (input.value || "").trim();
     if (!t) return;
-    audioUnlocked = true; // first tap unlocks browser speech
+    unlockAudio();
     ask(t);
   }
   send.onclick = submit;
   input.addEventListener("keydown", function (e) { if (e.key === "Enter") submit(); });
 
-  // Greeting
-  bubble("Hey, I'm Hanuman. Big energy after recess? Same — my tail's still twitching. Tell me what your class needs and we'll take a breath together.", "bot");
+  // Greeting. Voice cannot play before a user gesture (browser rule), so the
+  // first tap/click unlocks audio AND speaks the greeting so nothing is skipped.
+  var greetingText = "Hey, I'm Hanuman. Big energy after recess? Same here, my tail's still twitching. Tell me what your class needs and we'll take a breath together.";
+  var greeted = false;
+  function unlockAudio() {
+    audioUnlocked = true;
+    if (!greeted) { greeted = true; speak(greetingText); }
+  }
+  document.getElementById("hanuman-card").addEventListener("click", unlockAudio, { once: false });
+  bubble(greetingText, "bot");
 })();
 </script>
 </body>
