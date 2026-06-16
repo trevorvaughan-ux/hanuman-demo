@@ -5,207 +5,222 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hanuman · Whiteboard</title>
 <style>
-  :root{
-    --teal:#1f8a8a; --teal-d:#136b6b; --cream:#FDF8F0; --charcoal:#3A3A3A; --gold:#D99A4E;
-  }
+  :root{--teal:#1f8a8a;--teal-d:#136b6b;--cream:#FDF8F0;--charcoal:#3A3A3A;--gold:#D99A4E;}
   *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
   html,body{height:100%;}
   body{background:var(--cream);color:var(--charcoal);overflow:hidden;}
   #stage{height:100vh;display:flex;flex-direction:column;}
-  #topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;}
+  #topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 26px;}
   #brand{font-weight:800;color:var(--teal-d);font-size:20px;letter-spacing:-.5px;}
   #brand b{color:var(--gold);}
-  #timer{font-variant-numeric:tabular-nums;font-size:34px;font-weight:800;color:var(--teal-d);}
+  #right{display:flex;gap:16px;align-items:center;}
+  #voiceToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
+  #timer{font-variant-numeric:tabular-nums;font-size:32px;font-weight:800;color:var(--teal-d);}
+  #menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:0 6vw;}
+  #menuTitle{font-size:clamp(26px,4vw,46px);font-weight:800;color:var(--teal-d);text-align:center;}
+  #menuSub{font-size:clamp(15px,1.8vw,20px);color:var(--charcoal);text-align:center;margin-top:-14px;}
+  #cards{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:1100px;}
+  .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.15s;text-align:left;}
+  .card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08);}
+  .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
+  .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+  .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
+  .card .src{font-size:11px;color:#9bb;margin-top:10px;}
+  #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
-  #monkeyWrap{flex:0 0 30%;max-width:340px;}
-  #ballWrap{flex:0 0 42%;display:flex;align-items:center;justify-content:center;height:60vh;position:relative;}
-  #ball{width:34vh;height:34vh;border-radius:50%;will-change:transform;
-        box-shadow:0 0 60px rgba(143,227,255,.5);}
-  #cuebar{text-align:center;padding:0 6vw 4vh;}
-  #cue{font-size:clamp(26px,4.4vw,52px);font-weight:800;color:var(--charcoal);min-height:1.4em;line-height:1.25;}
-  #sub{font-size:clamp(15px,1.8vw,22px);color:var(--teal-d);margin-top:10px;font-weight:600;}
-  #controls{display:flex;justify-content:center;gap:14px;padding-bottom:5vh;}
-  .btn{border:none;border-radius:12px;padding:16px 30px;font-size:19px;font-weight:700;cursor:pointer;display:inline-flex;gap:10px;align-items:center;}
-  .primary{background:var(--teal);color:#fff;}
-  .primary:hover{background:var(--teal-d);}
+  #monkeyWrap{flex:0 0 28%;max-width:320px;}
+  #ballWrap{flex:0 0 40%;display:flex;align-items:center;justify-content:center;height:58vh;}
+  #ball{width:32vh;height:32vh;border-radius:50%;will-change:transform;}
+  #cuebar{text-align:center;padding:0 6vw 2vh;}
+  #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
+  #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
+  #controls{display:flex;justify-content:center;gap:14px;padding-bottom:4vh;}
+  .btn{border:none;border-radius:12px;padding:14px 28px;font-size:18px;font-weight:700;cursor:pointer;}
+  .primary{background:var(--teal);color:#fff;}.primary:hover{background:var(--teal-d);}
   .ghost{background:transparent;color:var(--teal-d);border:2px solid var(--teal);}
   .hide{display:none !important;}
-  #voiceToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="topbar">
     <div id="brand">HudsonSeed · <b>Hanuman</b></div>
-    <div style="display:flex;gap:18px;align-items:center;">
-      <button id="voiceToggle">🔊 voice on</button>
-      <div id="timer">02:00</div>
-    </div>
+    <div id="right"><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
 
-  <div id="scene">
-    <div id="monkeyWrap">
-      <!-- Full-body monkey. Pupils (#pL #pR) and ball are moved by JS to track the breath. -->
-      <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hanuman the monkey">
-        <!-- tail -->
-        <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#136b6b" stroke-width="14" stroke-linecap="round"/>
-        <!-- legs -->
-        <ellipse cx="100" cy="300" rx="22" ry="16" fill="#136b6b"/>
-        <ellipse cx="160" cy="300" rx="22" ry="16" fill="#136b6b"/>
-        <!-- body -->
-        <ellipse cx="130" cy="235" rx="68" ry="62" fill="#1f8a8a"/>
-        <!-- belly -->
-        <ellipse cx="130" cy="245" rx="42" ry="44" fill="#FDF8F0"/>
-        <!-- arms (right arm raised, presenting the breath) -->
-        <path d="M70 215 q-34 -6 -40 24 q-4 18 16 20" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
-        <path d="M192 210 q40 -20 46 -58" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
-        <!-- head -->
-        <circle cx="130" cy="120" r="80" fill="#1f8a8a"/>
-        <!-- ears -->
-        <circle cx="58" cy="110" r="26" fill="#1f8a8a"/><circle cx="58" cy="110" r="13" fill="#D99A4E"/>
-        <circle cx="202" cy="110" r="26" fill="#1f8a8a"/><circle cx="202" cy="110" r="13" fill="#D99A4E"/>
-        <!-- face patch -->
-        <ellipse cx="130" cy="135" rx="58" ry="56" fill="#FDF8F0"/>
-        <!-- gold crown mark (brand, secular) -->
-        <path d="M108 70 l10 16 l12 -20 l12 20 l10 -16" fill="none" stroke="#D99A4E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- eyes: white wondrous, green pupils that track the ball -->
-        <ellipse cx="106" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
-        <ellipse cx="154" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
-        <g id="pL"><circle cx="106" cy="128" r="9" fill="#3fa34d"/><circle cx="109" cy="124" r="3" fill="#fff"/></g>
-        <g id="pR"><circle cx="154" cy="128" r="9" fill="#3fa34d"/><circle cx="157" cy="124" r="3" fill="#fff"/></g>
-        <!-- muzzle -->
-        <ellipse cx="130" cy="165" rx="30" ry="22" fill="#FDF8F0"/>
-        <path d="M122 160 q8 8 16 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
-        <ellipse cx="130" cy="154" rx="6" ry="4" fill="#3A3A3A"/>
-        <path d="M114 176 q16 14 32 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
-      </svg>
+  <div id="menu">
+    <div>
+      <div id="menuTitle">Pick a reset for your class</div>
+      <div id="menuSub">Tap one. Hanuman runs it on the board while you catch your breath.</div>
     </div>
-
-    <div id="ballWrap">
-      <div id="ball"></div>
-    </div>
+    <div id="cards"></div>
   </div>
 
-  <div id="cuebar">
-    <div id="cue">Tap start. Hanuman will show you your breath.</div>
-    <div id="sub">A two minute reset for the whole class</div>
-  </div>
-
-  <div id="controls">
-    <button class="btn primary" id="startBtn">▶ Start the reset</button>
-    <button class="btn ghost hide" id="againBtn">↺ Again</button>
+  <div id="player">
+    <div id="scene">
+      <div id="monkeyWrap">
+        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hanuman the monkey">
+          <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#136b6b" stroke-width="14" stroke-linecap="round"/>
+          <ellipse cx="100" cy="300" rx="22" ry="16" fill="#136b6b"/>
+          <ellipse cx="160" cy="300" rx="22" ry="16" fill="#136b6b"/>
+          <ellipse cx="130" cy="235" rx="68" ry="62" fill="#1f8a8a"/>
+          <ellipse cx="130" cy="245" rx="42" ry="44" fill="#FDF8F0"/>
+          <path d="M70 215 q-34 -6 -40 24 q-4 18 16 20" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
+          <path d="M192 210 q40 -20 46 -58" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
+          <circle cx="130" cy="120" r="80" fill="#1f8a8a"/>
+          <circle cx="58" cy="110" r="26" fill="#1f8a8a"/><circle cx="58" cy="110" r="13" fill="#D99A4E"/>
+          <circle cx="202" cy="110" r="26" fill="#1f8a8a"/><circle cx="202" cy="110" r="13" fill="#D99A4E"/>
+          <ellipse cx="130" cy="135" rx="58" ry="56" fill="#FDF8F0"/>
+          <path d="M108 70 l10 16 l12 -20 l12 20 l10 -16" fill="none" stroke="#D99A4E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="106" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
+          <ellipse cx="154" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
+          <g id="pL"><circle cx="106" cy="128" r="9" fill="#3fa34d"/><circle cx="109" cy="124" r="3" fill="#fff"/></g>
+          <g id="pR"><circle cx="154" cy="128" r="9" fill="#3fa34d"/><circle cx="157" cy="124" r="3" fill="#fff"/></g>
+          <ellipse cx="130" cy="165" rx="30" ry="22" fill="#FDF8F0"/>
+          <ellipse cx="130" cy="154" rx="6" ry="4" fill="#3A3A3A"/>
+          <path d="M114 176 q16 14 32 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div id="ballWrap"><div id="ball"></div></div>
+    </div>
+    <div id="cuebar"><div id="cue"></div><div id="sub"></div></div>
+    <div id="controls">
+      <button class="btn ghost" id="backBtn">‹ Pick another</button>
+      <button class="btn primary hide" id="againBtn">↺ Again</button>
+    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var ball=document.getElementById("ball");
-  var pL=document.getElementById("pL"), pR=document.getElementById("pR");
-  var cue=document.getElementById("cue"), sub=document.getElementById("sub");
-  var timerEl=document.getElementById("timer");
-  var startBtn=document.getElementById("startBtn"), againBtn=document.getElementById("againBtn");
+  // ===== THE CEMENT: breath registry. Each breath = one block. =====
+  // pattern seconds {in,hold,out,rest}; duration total seconds.
+  // inhale/exhale = rotating [main,sub] lines. holdCue/restCue optional.
+  // The 10 video breaths get added here one at a time.
+  var FLOWS = [
+    {
+      id:"balloon", name:"Balloon Breath", tag:"Calm down", audience:"All ages", src:"Module 3",
+      blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
+      pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
+      intro:"Hey, I'm Hanuman. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
+      inhale:[["Breathe in. Fill the ball up like a balloon.","Watch it grow and turn bright."],
+              ["Big slow breath in. Grow the ball.","My eyes are following it up with you."],
+              ["In through your nose. Fill all the way up.","See how big and bright it gets."]],
+      exhale:[["Let it go, slow. The balloon gets small.","The slow way out is what calms you down."],
+              ["Long breath out. Send the ball back down.","Let your shoulders sink with it."],
+              ["Breathe out easy. Watch it shrink and warm.","Nice. You are doing it."]],
+      holdCue:["Hold it gently at the top.",""]
+    },
+    {
+      id:"longout", name:"Long Breath Out", tag:"Calm down", audience:"All ages", src:"Module 5",
+      blurb:"The breath out is twice as long as the breath in. Deepest calm.",
+      pattern:{in:4,hold:0,out:8,rest:1}, duration:120,
+      intro:"Let's slow everything down. The secret is making the breath out longer than the breath in. Watch the ball with me.",
+      inhale:[["A smooth breath in. The ball grows.","Not too big. Just easy."],
+              ["Breathe in.","Fill up halfway and relax."]],
+      exhale:[["Now a long, long breath out. Twice as slow.","Watch the ball drift all the way down."],
+              ["Let the air out slowly.","Longer out means calmer you."]]
+    },
+    {
+      id:"box", name:"Box Breath", tag:"Focus", audience:"Older kids and teens", src:"Module 5",
+      blurb:"Four counts in, hold, out, hold. Steady and even. Good before a test.",
+      pattern:{in:4,hold:4,out:4,rest:4}, duration:120,
+      intro:"This one is a box. Four counts on each side. In, hold, out, hold. Steady and even. Follow the ball.",
+      inhale:[["Breathe in. Two, three, four.","The ball grows on every count."]],
+      exhale:[["Breathe out. Two, three, four.","The ball shrinks, slow and steady."]],
+      holdCue:["Hold. Two, three, four.","Stay easy at the top."],
+      restCue:["Hold empty. Two, three, four.","Calm and still at the bottom."]
+    },
+    {
+      id:"ground", name:"Grounding Breath", tag:"Feeling anxious", audience:"All ages", src:"Module 3 and 5",
+      blurb:"Breath plus feeling the floor. For when the room feels too big or too much.",
+      pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
+      intro:"Let's find some solid ground. Feel your feet on the floor, or your seat in the chair. That ground is holding you up, and it is not going anywhere.",
+      inhale:[["Breathe in slow.","Feel how steady the ground is under you."],
+              ["A calm breath in.","You are right here. You are okay."]],
+      exhale:[["Long breath out. Let your shoulders drop.","Safe right here, right now."],
+              ["Breathe out and soften.","Nothing to do but breathe."]],
+      holdCue:["Rest a moment.",""]
+    }
+  ];
+
+  var menu=document.getElementById("menu"), cards=document.getElementById("cards");
+  var player=document.getElementById("player");
+  var ball=document.getElementById("ball"), pL=document.getElementById("pL"), pR=document.getElementById("pR");
+  var cue=document.getElementById("cue"), sub=document.getElementById("sub"), timerEl=document.getElementById("timer");
+  var backBtn=document.getElementById("backBtn"), againBtn=document.getElementById("againBtn");
   var voiceToggle=document.getElementById("voiceToggle");
 
-  // ---- brand-free ball colors: cool+bright when big (inhale), warm when small (exhale) ----
-  var BIG=[143,227,255];   // aqua glow
-  var SMALL=[255,158,122]; // warm coral
+  var BIG=[143,227,255], SMALL=[255,158,122];
   function lerp(a,b,t){return Math.round(a+(b-a)*t);}
-  function ballColor(p){ // p: 0 small/exhaled -> 1 big/inhaled
-    var r=lerp(SMALL[0],BIG[0],p),g=lerp(SMALL[1],BIG[1],p),b=lerp(SMALL[2],BIG[2],p);
-    return "rgb("+r+","+g+","+b+")";
-  }
-
-  // ---- voice (warm, low, slow; picks a male EN voice if present) ----
-  var voiceOn=true, audioUnlocked=false, chosenVoice=null;
-  var PREF=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
-  function pickVoice(){ if(!("speechSynthesis"in window))return;
-    var vs=speechSynthesis.getVoices()||[]; if(!vs.length)return;
-    for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];}); if(h){chosenVoice=h;return;}}
-    chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})
-      ||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];
-  }
-  if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
-  function say(t){ if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
-    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);
-      if(chosenVoice)u.voice=chosenVoice; u.rate=.82; u.pitch=.8; speechSynthesis.speak(u);}catch(e){}
-  }
-  voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"🔊 voice on":"🔇 voice off";
-    if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
-
-  // ---- breath clock: inhale 4s -> hold 1s -> exhale 6s -> rest 1s = 12s/cycle ----
-  var IN=4, HOLD=1, OUT=6, REST=1, CYCLE=IN+HOLD+OUT+REST;
-  var TOTAL=120, running=false, startT=0, raf=null, lastPhase="";
-
-  var INHALE_CUES=[
-    ["Breathe in. Fill the ball up.","Watch it grow. That is your breath."],
-    ["In through your nose. The ball gets big.","See how bright it turns? That is you, filling up."],
-    ["Big slow breath in. Grow the ball.","My eyes are watching it rise with you."]
-  ];
-  var EXHALE_CUES=[
-    ["And let it go. The ball shrinks small.","The slow way out is the part that calms you down."],
-    ["Breathe out slow. Watch it get warm and small.","Let your shoulders drop with it."],
-    ["Long breath out. Send the ball back down.","Nice and easy. You are doing it."]
-  ];
-  var ci=0;
-
+  function ballColor(p){return "rgb("+lerp(SMALL[0],BIG[0],p)+","+lerp(SMALL[1],BIG[1],p)+","+lerp(SMALL[2],BIG[2],p)+")";}
   function setBall(p){
-    var scale=0.45+0.55*p;                 // small -> big
-    var rise=(0.5-p)*0.16;                 // rises on inhale, sinks on exhale (translate as % of wrap)
-    ball.style.transform="translateY("+(rise*40)+"vh) scale("+scale+")";
+    ball.style.transform="translateY("+((0.5-p)*40*0.4)+"vh) scale("+(0.45+0.55*p)+")";
     ball.style.background=ballColor(p);
     ball.style.boxShadow="0 0 "+(30+p*70)+"px "+ballColor(p);
-    // pupils track the ball up/down
-    var dy=(0.5-p)*7;                      // up when big, down when small
-    pL.setAttribute("transform","translate(0,"+dy+")");
-    pR.setAttribute("transform","translate(0,"+dy+")");
+    var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");
   }
 
-  function phaseAt(t){ // returns {name, p}
-    var x=t%CYCLE;
-    if(x<IN) return {name:"in", p:x/IN};
-    if(x<IN+HOLD) return {name:"hold", p:1};
-    if(x<IN+HOLD+OUT) return {name:"out", p:1-(x-IN-HOLD)/OUT};
-    return {name:"rest", p:0};
-  }
+  var voiceOn=true, audioUnlocked=false, chosenVoice=null;
+  var PREF=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
+  function pickVoice(){if(!("speechSynthesis"in window))return;var vs=speechSynthesis.getVoices()||[];if(!vs.length)return;
+    for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];});if(h){chosenVoice=h;return;}}
+    chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];}
+  if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+  function say(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
+    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
+  voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"🔊 voice on":"🔇 voice off";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
+
+  var FLOW=null, running=false, startT=0, raf=null, lastPhase="", ci=0, TOTAL=120;
+  function phaseAt(t,pat){var c=pat.in+pat.hold+pat.out+pat.rest,x=t%c;
+    if(x<pat.in)return{name:"in",p:x/pat.in};
+    if(x<pat.in+pat.hold)return{name:"hold",p:1};
+    if(x<pat.in+pat.hold+pat.out)return{name:"out",p:1-(x-pat.in-pat.hold)/pat.out};
+    return{name:"rest",p:0};}
+  function pair(arr){return arr&&arr.length?arr[ci%arr.length]:null;}
 
   function loop(now){
-    var t=(now-startT)/1000;
-    var remain=Math.max(0,Math.ceil(TOTAL-t));
+    var t=(now-startT)/1000, remain=Math.max(0,Math.ceil(TOTAL-t));
     timerEl.textContent="0"+Math.floor(remain/60)+":"+String(remain%60).padStart(2,"0");
-    if(t>=TOTAL){ return finish(); }
-    var ph=phaseAt(t);
-    setBall(ph.p);
+    if(t>=TOTAL)return finish();
+    var ph=phaseAt(t,FLOW.pattern); setBall(ph.p);
     if(ph.name!==lastPhase){
       lastPhase=ph.name;
-      if(ph.name==="in"){ var a=INHALE_CUES[ci%INHALE_CUES.length]; cue.textContent=a[0]; sub.textContent=a[1]; say(a[0]+" "+a[1]); }
-      else if(ph.name==="out"){ var b=EXHALE_CUES[ci%EXHALE_CUES.length]; cue.textContent=b[0]; sub.textContent=b[1]; say(b[0]+" "+b[1]); ci++; }
-      else if(ph.name==="hold"){ cue.textContent="Hold it gently at the top."; sub.textContent=""; }
+      if(ph.name==="in"){var a=pair(FLOW.inhale);if(a){cue.textContent=a[0];sub.textContent=a[1];say(a[0]+" "+a[1]);}}
+      else if(ph.name==="out"){var b=pair(FLOW.exhale);if(b){cue.textContent=b[0];sub.textContent=b[1];say(b[0]+" "+b[1]);}ci++;}
+      else if(ph.name==="hold"&&FLOW.holdCue){cue.textContent=FLOW.holdCue[0];sub.textContent=FLOW.holdCue[1]||"";if(FLOW.holdCue[0])say(FLOW.holdCue[0]);}
+      else if(ph.name==="rest"&&FLOW.restCue){cue.textContent=FLOW.restCue[0];sub.textContent=FLOW.restCue[1]||"";if(FLOW.restCue[0])say(FLOW.restCue[0]);}
     }
     raf=requestAnimationFrame(loop);
   }
-
-  function finish(){
-    running=false; cancelAnimationFrame(raf);
-    setBall(0); timerEl.textContent="00:00";
+  function finish(){running=false;cancelAnimationFrame(raf);setBall(0);timerEl.textContent="00:00";
     cue.textContent="Beautiful. The room is calm and ready.";
     sub.textContent="Say it with me: I am happy. I am safe. I am brave. I am strong. I am love.";
     say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");
-    startBtn.classList.add("hide"); againBtn.classList.remove("hide");
-  }
+    againBtn.classList.remove("hide");}
 
-  function start(){
-    if(running)return; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
+  function run(flow){
+    FLOW=flow; TOTAL=flow.duration; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     ci=0; lastPhase=""; startT=performance.now();
-    startBtn.classList.add("hide"); againBtn.classList.add("hide");
-    say("Hey, I'm Hanuman. See that ball? That is your breath. When you breathe in, it grows. When you breathe out, it shrinks. Let's breathe together. Watch it with me.");
-    setTimeout(function(){ raf=requestAnimationFrame(loop); }, 6500); // let the intro land first
+    menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
+    cue.textContent=""; sub.textContent=""; setBall(0);
+    say(flow.intro);
+    var delay=Math.min(7000, Math.max(3500, flow.intro.length*55));
+    setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
-  function again(){ running=false; cancelAnimationFrame(raf); TOTAL=120; setBall(0);
-    cue.textContent="Tap start. Hanuman will show you your breath."; sub.textContent="A two minute reset for the whole class";
-    timerEl.textContent="02:00"; startBtn.classList.remove("hide"); againBtn.classList.add("hide"); }
+  function toMenu(){running=false;cancelAnimationFrame(raf);if(window.speechSynthesis)speechSynthesis.cancel();
+    player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
-  startBtn.onclick=start; againBtn.onclick=again;
-  setBall(0); // initial small ball
+  backBtn.onclick=toMenu;
+  againBtn.onclick=function(){run(FLOW);};
+
+  FLOWS.forEach(function(f){
+    var c=document.createElement("div");c.className="card";
+    c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
+    c.onclick=function(){run(f);};
+    cards.appendChild(c);
+  });
+  setBall(0);
 })();
 </script>
 </body>
