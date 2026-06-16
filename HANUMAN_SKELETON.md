@@ -62,6 +62,8 @@ from Trevor (he made them); they can't be scraped from the documents.
 ## WHAT STANDS TODAY (real, tested)
 - Chat widget with offline answers + funnel.
 - Whiteboard with a breath menu + 4 breaths: Balloon, Long Breath Out, Box, Grounding.
+- Whiteboard SEQUENCES: breaths chained into a longer reset (Module 4). "Full Reset" (4 min:
+  Ground -> Balloon -> Long Breath Out) is live. Scheduler unit-tested (correct breath at every boundary).
 - The monkey: full body, brand colors, white eyes / green pupils that track the ball.
 - The breathing ball: grows + cools on inhale, shrinks + warms on exhale.
 - Hanuman's brain (the system prompt): voice locked, secular (no gods), trauma-informed,
@@ -103,3 +105,29 @@ from Trevor (he made them); they can't be scraped from the documents.
 3. **Trevor → Builder:** name the 10 video breaths; each becomes one new block. Then poses, then sequences.
 
 OSAAT. The frame is up. The bones go in one at a time.
+
+---
+
+## HOW TO ADD A BREATH (plain English, for the next builder or Trevor)
+In `whiteboard.html`, find the list called `FLOWS`. Each breath is one block like this:
+
+    { id:"shortname", name:"What kids see", tag:"Calm down", audience:"All ages", src:"Module X",
+      blurb:"One line shown on the menu card.",
+      pattern:{in:4, hold:1, out:6, rest:1},   // seconds for each part of the breath
+      duration:120,                            // total seconds it runs
+      intro:"What Hanuman says once at the start.",
+      inhale:[["Big line for breathing in","smaller line under it"]],   // add more pairs; they rotate
+      exhale:[["Big line for breathing out","smaller line under it"]] }
+
+Add a new block to the list, save, done. It shows up on the menu automatically.
+That is the whole job for each of Trevor's 10 video breaths: one block each.
+
+## HOW TO ADD A SEQUENCE
+In the list called `SEQUENCES`, each one chains breaths you already have:
+
+    { id:"name", name:"Full Reset", tag:"Sequence", audience:"All ages", src:"Module 4",
+      blurb:"Menu line.", intro:"What Hanuman says at the very start.",
+      steps:[{breathId:"ground",seconds:80},{breathId:"balloon",seconds:80}] }
+
+`breathId` must match an `id` from the FLOWS list. The engine runs them in order and
+speaks a short bridge line between each (see the `BRIDGES` list to edit those).

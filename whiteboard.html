@@ -179,11 +179,42 @@
     return{name:"rest",p:0};}
   function pair(arr){return arr&&arr.length?arr[ci%arr.length]:null;}
 
+  // ---- bridges spoken when a sequence moves to a new breath ----
+  var BRIDGES={
+    balloon:"Now, balloon breath. A hand on your belly.",
+    longout:"Now, longer breaths out. Twice as slow.",
+    box:"Now, box breath. Even and steady.",
+    ground:"Now, let's ground. Feel your feet on the floor."
+  };
+  function breathById(id){return FLOWS.filter(function(f){return f.id===id;})[0];}
+
+  // ---- SEQUENCES: ordered breaths chained into a longer reset (Module 4) ----
+  var SEQUENCES=[
+    { id:"fullreset", name:"Full Reset", tag:"Sequence · 4 min", audience:"All ages", src:"Module 4",
+      blurb:"Ground, then balloon breath, then long slow exhales. A complete settle.",
+      intro:"Let's take a few minutes together. We'll ground first, then breathe, then finish calm. Watch the ball with me.",
+      steps:[{breathId:"ground",seconds:80},{breathId:"balloon",seconds:80},{breathId:"longout",seconds:80}] }
+  ];
+
+  // ---- step-aware engine: a single breath = a 1-step run; a sequence = many steps ----
+  var STEPS=[], stepStarts=[], stepIdx=-1, CURRENT=null;
+  function buildSteps(item){
+    STEPS=[]; stepStarts=[];
+    if(item.steps){ var acc=0;
+      item.steps.forEach(function(s){var b=breathById(s.breathId); if(b){STEPS.push({breath:b,dur:s.seconds});stepStarts.push(acc);acc+=s.seconds;}});
+    } else { STEPS=[{breath:item,dur:item.duration}]; stepStarts=[0]; }
+    return STEPS.reduce(function(a,s){return a+s.dur;},0);
+  }
+  function stepAt(t){var i=0;for(;i<STEPS.length;i++){if(t<stepStarts[i]+STEPS[i].dur)return i;}return STEPS.length-1;}
+
   function loop(now){
     var t=(now-startT)/1000, remain=Math.max(0,Math.ceil(TOTAL-t));
     timerEl.textContent="0"+Math.floor(remain/60)+":"+String(remain%60).padStart(2,"0");
     if(t>=TOTAL)return finish();
-    var ph=phaseAt(t,FLOW.pattern); setBall(ph.p);
+    var si=stepAt(t);
+    if(si!==stepIdx){ stepIdx=si; ci=0; lastPhase=""; if(si>0){var br=BRIDGES[STEPS[si].breath.id]; if(br)say(br);} }
+    var FLOW=STEPS[si].breath, localT=t-stepStarts[si];
+    var ph=phaseAt(localT,FLOW.pattern); setBall(ph.p);
     if(ph.name!==lastPhase){
       lastPhase=ph.name;
       if(ph.name==="in"){var a=pair(FLOW.inhale);if(a){cue.textContent=a[0];sub.textContent=a[1];say(a[0]+" "+a[1]);}}
@@ -199,27 +230,29 @@
     say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");
     againBtn.classList.remove("hide");}
 
-  function run(flow){
-    FLOW=flow; TOTAL=flow.duration; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
-    ci=0; lastPhase=""; startT=performance.now();
+  function run(item){
+    CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
+    TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent=""; setBall(0);
-    say(flow.intro);
-    var delay=Math.min(7000, Math.max(3500, flow.intro.length*55));
+    say(item.intro);
+    var delay=Math.min(7000, Math.max(3500, item.intro.length*55));
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
   function toMenu(){running=false;cancelAnimationFrame(raf);if(window.speechSynthesis)speechSynthesis.cancel();
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
   backBtn.onclick=toMenu;
-  againBtn.onclick=function(){run(FLOW);};
+  againBtn.onclick=function(){run(CURRENT);};
 
-  FLOWS.forEach(function(f){
+  function addCard(f){
     var c=document.createElement("div");c.className="card";
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
     c.onclick=function(){run(f);};
     cards.appendChild(c);
-  });
+  }
+  FLOWS.forEach(addCard);
+  SEQUENCES.forEach(addCard);
   setBall(0);
 })();
 </script>
