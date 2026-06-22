@@ -29,8 +29,14 @@
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 28%;max-width:320px;}
-  #ballWrap{flex:0 0 40%;display:flex;align-items:center;justify-content:center;height:58vh;}
+  #ballWrap{flex:0 0 40%;display:flex;align-items:center;justify-content:center;height:58vh;position:relative;overflow:visible;}
   #ball{width:32vh;height:32vh;border-radius:50%;will-change:transform;}
+  /* meditation: warm glow that spreads outward in rings */
+  #ball.glow{background:radial-gradient(circle at 50% 50%,rgba(217,154,78,.95),rgba(217,154,78,.38) 45%,rgba(31,138,138,.14) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(217,154,78,.55);animation:glowPulse 6s ease-in-out infinite;}
+  @keyframes glowPulse{0%,100%{transform:scale(.9);}50%{transform:scale(1.08);}}
+  .ripple{position:absolute;left:50%;top:50%;width:30vh;height:30vh;border-radius:50%;border:3px solid rgba(217,154,78,.45);transform:translate(-50%,-50%) scale(.35);animation:rippleOut 4s ease-out forwards;pointer-events:none;}
+  @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(.35);opacity:.7;}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0;}}
+  .card.med{border-left-color:var(--gold);}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -212,6 +218,29 @@
       steps:[{breathId:"ground",seconds:80},{breathId:"balloon",seconds:80},{breathId:"longout",seconds:80}] }
   ];
 
+  // ===== MEDITATIONS: guided narration, not breath-paced. Warm glow spreads in rings. =====
+  // Each line: {cue (on board), sub, say (spoken), hold (seconds to rest after it).}
+  // Trevor leads the words. Add a meditation = drop a new block here, same as a breath.
+  var MEDITATIONS=[
+    { id:"lovingkindness", kind:"meditation", name:"Loving-Kindness", tag:"Kindness · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Send kind wishes outward, from yourself to your class to the whole world. A warm close.",
+      intro:"Hey, I'm Hanuman. This one is quiet. We are going to send out kindness, like a warm light, starting with you. You can let your eyes close, or look soft at the glow.",
+      lines:[
+        {cue:"Hand on your heart.",sub:"One slow breath.",say:"Put a hand on your heart. Feel it there, warm and steady. Take one slow breath in, and let it go.",hold:11},
+        {cue:"May I be happy.",sub:"",say:"Let's start with you. Quietly, in your head or out loud with me, say: may I be happy.",hold:7},
+        {cue:"May I be safe.",sub:"",say:"May I be safe.",hold:6},
+        {cue:"May I be loved.",sub:"",say:"May I be loved.",hold:8},
+        {cue:"Someone you love.",sub:"See their face.",say:"Now picture someone you love. A grown up at home, a friend, a pet. See their face.",hold:10},
+        {cue:"May you be happy, safe, and loved.",sub:"",say:"Send them the warm light. May you be happy. May you be safe. May you be loved.",hold:11},
+        {cue:"Our whole class.",sub:"Everyone in this room.",say:"Now our whole class. Everyone in this room, together.",hold:8},
+        {cue:"May you be happy, safe, and loved.",sub:"",say:"May you be happy. May you be safe. May you be loved.",hold:10},
+        {cue:"Everyone, everywhere.",sub:"Even people we have never met.",say:"And now everyone. Even people we have never met, all around the world.",hold:9},
+        {cue:"May you be happy, safe, and loved.",sub:"",say:"May you be happy. May you be safe. May you be loved.",hold:10},
+        {cue:"You made that light.",sub:"You can send it any time.",say:"Feel that warm light. You made that. You can send it any time.",hold:10}
+      ],
+      close:"Take one more slow breath. When you are ready, bring your eyes back. Beautiful work." }
+  ];
+
   // ---- step-aware engine: a single breath = a 1-step run; a sequence = many steps ----
   var STEPS=[], stepStarts=[], stepIdx=-1, CURRENT=null;
   function buildSteps(item){
@@ -247,6 +276,7 @@
     againBtn.classList.remove("hide");}
 
   function run(item){
+    stopMed();
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
@@ -255,19 +285,55 @@
     var delay=Math.min(7000, Math.max(3500, item.intro.length*55));
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
-  function toMenu(){running=false;cancelAnimationFrame(raf);if(window.speechSynthesis)speechSynthesis.cancel();
+  function toMenu(){running=false;cancelAnimationFrame(raf);stopMed();if(window.speechSynthesis)speechSynthesis.cancel();
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
   backBtn.onclick=toMenu;
-  againBtn.onclick=function(){run(CURRENT);};
+  againBtn.onclick=function(){ if(CURRENT&&CURRENT.kind==="meditation") runMeditation(CURRENT); else run(CURRENT); };
+
+  // ---- meditation engine: warm glow + ring ripples, line-by-line narration ----
+  var medActive=false, medTimeouts=[], medTick=null, medRipple=null, medRemain=0, CURRENTMED=null;
+  function fmt(s){return "0"+Math.floor(s/60)+":"+String(s%60).padStart(2,"0");}
+  function spawnRipple(){var w=document.getElementById("ballWrap");var r=document.createElement("div");r.className="ripple";w.appendChild(r);setTimeout(function(){if(r.parentNode)r.parentNode.removeChild(r);},4100);}
+  function startGlow(){ball.style.transform="";ball.style.background="";ball.style.boxShadow="";ball.classList.add("glow");spawnRipple();medRipple=setInterval(spawnRipple,2200);}
+  function stopGlow(){if(medRipple){clearInterval(medRipple);medRipple=null;}ball.classList.remove("glow");var w=document.getElementById("ballWrap");var rs=w.querySelectorAll(".ripple");for(var i=0;i<rs.length;i++)rs[i].remove();}
+  function clearMedTimers(){for(var i=0;i<medTimeouts.length;i++)clearTimeout(medTimeouts[i]);medTimeouts=[];if(medTick){clearInterval(medTick);medTick=null;}}
+  function stopMed(){medActive=false;clearMedTimers();stopGlow();}
+  function playLine(item,i){
+    if(!medActive)return;
+    var L=item.lines[i];
+    cue.textContent=L.cue; sub.textContent=L.sub||""; say(L.say);
+    var next=(i+1<item.lines.length)?function(){playLine(item,i+1);}:function(){finishMed(item);};
+    medTimeouts.push(setTimeout(next, L.hold*1000));
+  }
+  function finishMed(item){
+    medActive=false; clearMedTimers(); if(medRipple){clearInterval(medRipple);medRipple=null;}
+    timerEl.textContent="00:00";
+    cue.textContent="Beautiful work."; sub.textContent="The room is calm and ready.";
+    say(item.close||"Beautiful work.");
+    againBtn.classList.remove("hide");
+  }
+  function runMeditation(item){
+    running=false; cancelAnimationFrame(raf); stopMed();
+    CURRENT=item; CURRENTMED=item; medActive=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
+    menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
+    cue.textContent=""; sub.textContent=""; startGlow();
+    var delay=Math.min(8000,Math.max(3500,item.intro.length*55));
+    medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
+    timerEl.textContent=fmt(medRemain);
+    say(item.intro);
+    medTick=setInterval(function(){medRemain=Math.max(0,medRemain-1);timerEl.textContent=fmt(medRemain);},1000);
+    medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
+  }
 
   function addCard(f){
-    var c=document.createElement("div");c.className="card";
+    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"");
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
-    c.onclick=function(){run(f);};
+    c.onclick=function(){ if(f.kind==="meditation") runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
   FLOWS.forEach(addCard);
+  MEDITATIONS.forEach(addCard);
   SEQUENCES.forEach(addCard);
   setBall(0);
 })();
