@@ -37,6 +37,7 @@
   .ripple{position:absolute;left:50%;top:50%;width:30vh;height:30vh;border-radius:50%;border:3px solid rgba(217,154,78,.45);transform:translate(-50%,-50%) scale(.35);animation:rippleOut 4s ease-out forwards;pointer-events:none;}
   @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(.35);opacity:.7;}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0;}}
   .card.med{border-left-color:var(--gold);}
+  .card.chair{border-left-color:#3fa34d;}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -241,6 +242,99 @@
       close:"Take one more slow breath. When you are ready, bring your eyes back. Beautiful work." }
   ];
 
+  // ===== CHAIR YOGA: seated poses, narrated line-by-line like meditations. =====
+  // No mats, no floor, no standing. Every pose works at a desk. Add a pose = drop a block here.
+  var CHAIR=[
+    { id:"seatedmountain", kind:"chair", name:"Seated Mountain", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Sit tall and strong like a mountain, right in your chair. The home base for everything.",
+      intro:"Hey, I'm Hanuman. You don't need a mat for this one. Your chair is your mountain. Let's build it together.",
+      lines:[
+        {cue:"Feet flat on the floor.",sub:"Both of them, side by side.",say:"Put both feet flat on the floor, side by side. Feel them press down, like roots.",hold:9},
+        {cue:"Sit up tall.",sub:"Grow from your seat to the top of your head.",say:"Now sit up tall. Imagine growing, from your seat all the way to the top of your head.",hold:9},
+        {cue:"Shoulders back and down.",sub:"Like a slow shrug that melts.",say:"Roll your shoulders up to your ears... and let them melt back and down.",hold:9},
+        {cue:"Hands rest on your legs.",sub:"Palms down, easy.",say:"Rest your hands on your legs, palms down, nice and easy.",hold:8},
+        {cue:"Chin level. Eyes soft.",sub:"A mountain doesn't rush.",say:"Keep your chin level and let your eyes go soft. A mountain doesn't rush anywhere.",hold:9},
+        {cue:"Breathe in. Grow taller.",sub:"",say:"Breathe in, and grow one inch taller.",hold:7},
+        {cue:"Breathe out. Stay tall.",sub:"Strong and still.",say:"Breathe out, and stay tall. Strong and still.",hold:8},
+        {cue:"You are a mountain.",sub:"Steady, no matter the weather.",say:"You are a mountain. Steady, no matter what the weather does around you.",hold:10},
+        {cue:"One more breath, tall and easy.",sub:"",say:"One more slow breath, tall and easy.",hold:9}
+      ],
+      close:"That's Seated Mountain. Any time your body feels wiggly or your brain feels loud, come back to your mountain." },
+    { id:"catcow", kind:"chair", name:"Seated Cat-Cow", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Round and arch your back like a slow wave. Wakes up a sleepy spine after sitting.",
+      intro:"Time to wake up your back. We're going to move like a slow wave, right in your chair. Hands on your knees.",
+      lines:[
+        {cue:"Hands on your knees.",sub:"Feet flat. Sit tall.",say:"Put your hands on your knees. Feet flat on the floor. Sit up tall to start.",hold:8},
+        {cue:"Breathe in. Lift your chest.",sub:"Look up a little. Back arches.",say:"Breathe in, and lift your chest up and forward. Look up a little. Your back makes a gentle arch.",hold:8},
+        {cue:"Breathe out. Round your back.",sub:"Chin to chest, like a curled-up cat.",say:"Breathe out, and round your back the other way. Tuck your chin toward your chest, like a curled-up cat.",hold:8},
+        {cue:"In. Chest up.",sub:"",say:"Breathe in. Chest up.",hold:7},
+        {cue:"Out. Round it.",sub:"",say:"Breathe out. Round it.",hold:7},
+        {cue:"In. Chest up.",sub:"Slow wave.",say:"In. Chest up. Nice slow wave.",hold:7},
+        {cue:"Out. Round it.",sub:"",say:"Out. Round it. Last one.",hold:7},
+        {cue:"Come back to the middle.",sub:"Sit tall and easy.",say:"Now come back to the middle. Sit tall and easy.",hold:8},
+        {cue:"Notice your back.",sub:"Warmer? More awake?",say:"Notice your back. Does it feel warmer? More awake? That's you taking care of you.",hold:9}
+      ],
+      close:"That's Cat-Cow. A slow wave for a sleepy spine." },
+    { id:"seatedtwist", kind:"chair", name:"Gentle Seated Twist", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Turn slowly to each side like an owl looking around. Squeezes out the fidgets.",
+      intro:"Let's twist, nice and gentle, like an owl looking around the room. Stay slow. No rushing an owl.",
+      lines:[
+        {cue:"Sit tall. Feet flat.",sub:"Start in your mountain.",say:"Sit up tall, feet flat on the floor. Start in your mountain.",hold:8},
+        {cue:"Breathe in. Grow taller.",sub:"",say:"Breathe in and grow a little taller.",hold:6},
+        {cue:"Breathe out. Turn to the right, slow.",sub:"One hand on your knee, one behind you.",say:"Breathe out and turn slowly to the right. One hand can rest on your knee, one behind you on the chair.",hold:9},
+        {cue:"Look softly over your shoulder.",sub:"What does the owl see?",say:"Look softly over your right shoulder. What does the owl see back there?",hold:9},
+        {cue:"Breathe in. Come back to the middle.",sub:"",say:"Breathe in, and come slowly back to the middle.",hold:7},
+        {cue:"Breathe out. Turn to the left, slow.",sub:"Switch hands.",say:"Breathe out, and turn slowly to the left. Switch your hands.",hold:9},
+        {cue:"Look softly over your shoulder.",sub:"Slow owl. No rushing.",say:"Look softly over your left shoulder. Slow owl. No rushing.",hold:9},
+        {cue:"Come back to the middle.",sub:"Sit tall.",say:"Come back to the middle and sit tall.",hold:8},
+        {cue:"One easy breath.",sub:"The fidgets got squeezed out.",say:"One easy breath. The wiggles and fidgets just got squeezed right out.",hold:9}
+      ],
+      close:"That's the seated twist. Kind to your back, tough on the fidgets." },
+    { id:"eaglearms", kind:"chair", name:"Eagle Arms", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Wrap your arms like eagle wings, then open wide. Great for tight shoulders and focus.",
+      intro:"This one is called eagle arms. We wrap our arms up like wings, then spread them wide. It looks a little silly and feels really good.",
+      lines:[
+        {cue:"Reach both arms out wide.",sub:"Big wings.",say:"Reach both arms out wide to your sides. Big wings.",hold:8},
+        {cue:"Swing them in and cross.",sub:"Right arm under left. Give yourself a hug.",say:"Now swing them in and cross, right arm under left. It's okay if it turns into a hug. A hug counts.",hold:9},
+        {cue:"Lift your elbows a little.",sub:"Feel the stretch between your shoulders.",say:"Lift your elbows up a little. Feel that stretch across your upper back, right where backpacks make us tight.",hold:10},
+        {cue:"Breathe in. Breathe out.",sub:"Stay wrapped.",say:"Breathe in. And breathe out. Stay wrapped.",hold:8},
+        {cue:"Unwrap. Wings out wide.",sub:"",say:"Now unwrap, and stretch your wings out wide.",hold:8},
+        {cue:"Cross the other way.",sub:"Left arm under right this time.",say:"Cross the other way, left arm under right this time.",hold:9},
+        {cue:"Elbows lift. Breathe.",sub:"",say:"Lift your elbows and breathe, nice and slow.",hold:9},
+        {cue:"Unwrap. Wings wide. Then hands down.",sub:"",say:"Unwrap. Wings out wide one more time. And let your hands float down to your legs.",hold:9},
+        {cue:"Shoulders feel different?",sub:"Lighter is the goal.",say:"Do your shoulders feel different? Lighter is the goal.",hold:8}
+      ],
+      close:"That's eagle arms. Your shoulders will thank you." },
+    { id:"forwardfold", kind:"chair", name:"Seated Forward Fold", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Fold forward over your legs like a rag doll. The big let-it-all-go move.",
+      intro:"This is the rag doll. We fold forward and let everything hang. It's the big let-it-go move. Nothing to hold up, nothing to do.",
+      lines:[
+        {cue:"Scoot toward the edge of your chair.",sub:"Feet flat and wide.",say:"Scoot a little toward the edge of your chair. Feet flat on the floor, a bit wide.",hold:9},
+        {cue:"Breathe in. Sit tall.",sub:"",say:"Breathe in and sit tall.",hold:6},
+        {cue:"Breathe out. Fold forward, slow.",sub:"Belly toward your legs. Hands hang down.",say:"Breathe out, and fold forward slowly. Let your belly come toward your legs, and let your hands hang down toward the floor.",hold:10},
+        {cue:"Let your head hang.",sub:"Heavy like a rag doll.",say:"Let your head hang, heavy like a rag doll. Nothing to hold up.",hold:10},
+        {cue:"Breathe into your back.",sub:"Slow and easy.",say:"Take a slow breath and feel it in your back. Easy.",hold:9},
+        {cue:"Let your shoulders go.",sub:"Anything you're carrying can drip right off.",say:"Let your shoulders go. Anything heavy you've been carrying today can just drip right off your back onto the floor.",hold:11},
+        {cue:"Roll up slowly. One bone at a time.",sub:"Head comes up last.",say:"Now roll up slowly, one bone at a time. Your head comes up last.",hold:10},
+        {cue:"Sit tall. Eyes soft.",sub:"Notice the quiet.",say:"Sit tall, eyes soft. Notice how quiet your body feels.",hold:9}
+      ],
+      close:"That's the forward fold. The let-it-go button, right there in your chair." },
+    { id:"neckrolls", kind:"chair", name:"Slow Neck Circles", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Draw slow circles with your nose. Melts the tension where we hold it most.",
+      intro:"Necks work hard all day holding up our heads. Let's give yours a break. We're going to draw slow circles with our noses. Slow is the whole game.",
+      lines:[
+        {cue:"Sit tall. Shoulders down.",sub:"",say:"Sit tall and let your shoulders slide down away from your ears.",hold:8},
+        {cue:"Drop your right ear toward your right shoulder.",sub:"Just let it hang there.",say:"Gently drop your right ear toward your right shoulder. Don't push. Just let it hang there.",hold:10},
+        {cue:"Roll your chin down to your chest.",sub:"Slow, like honey.",say:"Now roll your chin slowly down toward your chest. Slow, like honey.",hold:9},
+        {cue:"Keep rolling to the left side.",sub:"Left ear toward left shoulder.",say:"Keep rolling until your left ear is toward your left shoulder.",hold:10},
+        {cue:"And back down through the middle.",sub:"Draw a slow smile with your chin.",say:"And roll back down through the middle, like your chin is drawing a slow smile.",hold:9},
+        {cue:"One more time, extra slow.",sub:"Side... middle... side.",say:"One more time, extra slow. Side... through the middle... to the other side.",hold:12},
+        {cue:"Come back to the middle. Chin level.",sub:"",say:"Come back to the middle, chin level.",hold:7},
+        {cue:"Notice your neck.",sub:"A little softer?",say:"Notice your neck. A little softer? That's the good stuff.",hold:8}
+      ],
+      close:"Those are neck circles. Your neck carries a lot. Be kind to it." }
+  ];
+
   // ---- step-aware engine: a single breath = a 1-step run; a sequence = many steps ----
   var STEPS=[], stepStarts=[], stepIdx=-1, CURRENT=null;
   function buildSteps(item){
@@ -289,7 +383,7 @@
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
   backBtn.onclick=toMenu;
-  againBtn.onclick=function(){ if(CURRENT&&CURRENT.kind==="meditation") runMeditation(CURRENT); else run(CURRENT); };
+  againBtn.onclick=function(){ if(CURRENT&&CURRENT.lines) runMeditation(CURRENT); else run(CURRENT); };
 
   // ---- meditation engine: warm glow + ring ripples, line-by-line narration ----
   var medActive=false, medTimeouts=[], medTick=null, medRipple=null, medRemain=0, CURRENTMED=null;
@@ -327,13 +421,14 @@
   }
 
   function addCard(f){
-    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"");
+    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"");
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
-    c.onclick=function(){ if(f.kind==="meditation") runMeditation(f); else run(f); };
+    c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
   FLOWS.forEach(addCard);
   MEDITATIONS.forEach(addCard);
+  CHAIR.forEach(addCard);
   SEQUENCES.forEach(addCard);
   setBall(0);
 })();
