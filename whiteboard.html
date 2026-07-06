@@ -91,6 +91,11 @@
   #deskSvg[data-pose="rollup"] #dmUpper{transform:translateY(-4px);transition-duration:4.5s;}
   #deskSvg[data-pose="rollup"] #dmHead{transform:none;transition-duration:5.5s;}
   #deskSvg[data-pose="rollup"] .armL,#deskSvg[data-pose="rollup"] .armR{transform:none;transition-duration:4.5s;}
+  #deskSvg[data-pose="earR"] #dmHead{transform:rotate(15deg);transition-duration:2.4s;}
+  #deskSvg[data-pose="earL"] #dmHead{transform:rotate(-15deg);transition-duration:2.4s;}
+  #deskSvg[data-pose="chinDown"] #dmHead{transform:translateY(9px) rotate(0deg);transition-duration:2.4s;}
+  #deskSvg[data-pose="circle"] #dmHead{animation:neckCircle 11s ease-in-out 1 forwards;}
+  @keyframes neckCircle{0%{transform:rotate(15deg);}25%{transform:rotate(6deg) translateY(8px);}45%{transform:rotate(-15deg);}65%{transform:rotate(-6deg) translateY(8px);}90%{transform:rotate(15deg);}100%{transform:rotate(0deg);}}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -419,18 +424,18 @@
         {cue:"Sit tall. Eyes soft.",sub:"Notice the quiet.",say:"Sit tall, eyes soft. Notice how quiet your body feels.",hold:9,pose:"soft"}
       ],
       close:"That's the forward fold. The let-it-go button, right there at your desk." },
-    { id:"neckrolls", kind:"chair", name:"Slow Neck Circles", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+    { id:"neckrolls", kind:"chair", demo:"desk", name:"Slow Neck Circles", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Draw slow circles with your nose. Melts the tension where we hold it most.",
-      intro:"Necks work hard all day holding up our heads. Let's give yours a break. We're going to draw slow circles with our noses. Slow is the whole game.",
+      intro:"Necks work hard all day holding up our heads. Let's give yours a break, right at your desk. We're going to draw slow circles with our noses. Slow is the whole game.",
       lines:[
-        {cue:"Sit tall. Shoulders down.",sub:"",say:"Sit tall and let your shoulders slide down away from your ears.",hold:8},
-        {cue:"Drop your right ear toward your right shoulder.",sub:"Just let it hang there.",say:"Gently drop your right ear toward your right shoulder. Don't push. Just let it hang there.",hold:10},
-        {cue:"Roll your chin down to your chest.",sub:"Slow, like honey.",say:"Now roll your chin slowly down toward your chest. Slow, like honey.",hold:9},
-        {cue:"Keep rolling to the left side.",sub:"Left ear toward left shoulder.",say:"Keep rolling until your left ear is toward your left shoulder.",hold:10},
-        {cue:"And back down through the middle.",sub:"Draw a slow smile with your chin.",say:"And roll back down through the middle, like your chin is drawing a slow smile.",hold:9},
-        {cue:"One more time, extra slow.",sub:"Side... middle... side.",say:"One more time, extra slow. Side... through the middle... to the other side.",hold:12},
-        {cue:"Come back to the middle. Chin level.",sub:"",say:"Come back to the middle, chin level.",hold:7},
-        {cue:"Notice your neck.",sub:"A little softer?",say:"Notice your neck. A little softer? That's the good stuff.",hold:8}
+        {cue:"Sit tall. Shoulders down.",sub:"",say:"Sit tall and let your shoulders slide down away from your ears.",hold:8,pose:"tall"},
+        {cue:"Drop your right ear toward your right shoulder.",sub:"Just let it hang there.",say:"Gently drop your right ear toward your right shoulder. Don't push. Just let it hang there.",hold:10,pose:"earR"},
+        {cue:"Roll your chin down to your chest.",sub:"Slow, like honey.",say:"Now roll your chin slowly down toward your chest. Slow, like honey.",hold:9,pose:"chinDown"},
+        {cue:"Keep rolling to the left side.",sub:"Left ear toward left shoulder.",say:"Keep rolling until your left ear is toward your left shoulder.",hold:10,pose:"earL"},
+        {cue:"And back down through the middle.",sub:"Draw a slow smile with your chin.",say:"And roll back down through the middle, like your chin is drawing a slow smile.",hold:9,pose:"chinDown"},
+        {cue:"One more time, extra slow.",sub:"Side... middle... side.",say:"One more time, extra slow. Side... through the middle... to the other side.",hold:12,pose:"circle"},
+        {cue:"Come back to the middle. Chin level.",sub:"",say:"Come back to the middle, chin level.",hold:7,pose:"center"},
+        {cue:"Notice your neck.",sub:"A little softer?",say:"Notice your neck. A little softer? That's the good stuff.",hold:8,pose:"breathe"}
       ],
       close:"Those are neck circles. Your neck carries a lot. Be kind to it." }
   ];
