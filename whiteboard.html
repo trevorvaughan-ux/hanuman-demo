@@ -71,17 +71,21 @@
   #deskSvg[data-pose="center"] #dmUpper{transform:translateY(-4px);}
   #deskSvg .pup{transition:transform 1.2s ease-in-out;transform-box:fill-box;}
   #deskSvg #dmFace{transition:transform 1.8s ease-in-out;transform-box:fill-box;}
+  #deskSvg #dmReachR,#deskSvg #dmReachL{opacity:0;transition:opacity 1.6s ease-in-out;}
+  #deskSvg .armL,#deskSvg .armR{transition:transform 1.4s ease-in-out,opacity 1.6s ease-in-out;}
   #deskSvg[data-pose="twistR"] #dmUpper{transform:scaleX(.86) rotate(3deg);transition-duration:2.2s;}
   #deskSvg[data-pose="twistR"] #dmHead{transform:translateX(11px) scaleX(.93);transition-duration:2.2s;}
   #deskSvg[data-pose="twistR"] #dmFace{transform:translateX(10px);transition-duration:2.2s;}
   #deskSvg[data-pose="twistR"] .pup{transform:translateX(5px);}
-  #deskSvg[data-pose="twistR"] .armL{transform:rotate(32deg) translate(18px,-6px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistR"] .armL{opacity:0;}
+  #deskSvg[data-pose="twistR"] #dmReachR{opacity:1;}
   #deskSvg[data-pose="twistR"] .armR{transform:rotate(-42deg) translate(-6px,-4px);transition-duration:2.2s;}
   #deskSvg[data-pose="twistL"] #dmUpper{transform:scaleX(.86) rotate(-3deg);transition-duration:2.2s;}
   #deskSvg[data-pose="twistL"] #dmHead{transform:translateX(-11px) scaleX(.93);transition-duration:2.2s;}
   #deskSvg[data-pose="twistL"] #dmFace{transform:translateX(-10px);transition-duration:2.2s;}
   #deskSvg[data-pose="twistL"] .pup{transform:translateX(-5px);}
-  #deskSvg[data-pose="twistL"] .armR{transform:rotate(-32deg) translate(-18px,-6px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] .armR{opacity:0;}
+  #deskSvg[data-pose="twistL"] #dmReachL{opacity:1;}
   #deskSvg[data-pose="twistL"] .armL{transform:rotate(42deg) translate(6px,-4px);transition-duration:2.2s;}
   #deskSvg[data-pose="wings"] .armL{transform:rotate(-78deg) translateY(-4px);}
   #deskSvg[data-pose="wings"] .armR{transform:rotate(78deg) translateY(-4px);}
@@ -217,6 +221,14 @@
             <path d="M0 -8 q16 16 9 32" fill="none" stroke="#1f8a8a" stroke-width="17" stroke-linecap="round"/>
             <circle cx="6" cy="30" r="11" fill="#FDF8F0" stroke="#1f8a8a" stroke-width="2.5"/>
           </g></g>
+          <g id="dmReachR">
+            <path d="M114 186 q58 14 94 32" fill="none" stroke="#1f8a8a" stroke-width="17" stroke-linecap="round"/>
+            <circle cx="212" cy="221" r="11" fill="#FDF8F0" stroke="#1f8a8a" stroke-width="2.5"/>
+          </g>
+          <g id="dmReachL">
+            <path d="M206 186 q-58 14 -94 32" fill="none" stroke="#1f8a8a" stroke-width="17" stroke-linecap="round"/>
+            <circle cx="108" cy="221" r="11" fill="#FDF8F0" stroke="#1f8a8a" stroke-width="2.5"/>
+          </g>
         </svg>
       </div>
     </div>
