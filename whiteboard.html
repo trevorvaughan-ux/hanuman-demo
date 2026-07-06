@@ -70,12 +70,19 @@
   #deskSvg[data-pose="round"] #dmHead{transform:rotate(6deg) translateY(8px);}
   #deskSvg[data-pose="center"] #dmUpper{transform:translateY(-4px);}
   #deskSvg .pup{transition:transform 1.2s ease-in-out;transform-box:fill-box;}
-  #deskSvg[data-pose="twistR"] #dmUpper{transform:rotate(5deg) translateX(7px);}
-  #deskSvg[data-pose="twistR"] #dmHead{transform:rotate(11deg) translateX(5px);}
-  #deskSvg[data-pose="twistR"] .pup{transform:translateX(6px);}
-  #deskSvg[data-pose="twistL"] #dmUpper{transform:rotate(-5deg) translateX(-7px);}
-  #deskSvg[data-pose="twistL"] #dmHead{transform:rotate(-11deg) translateX(-5px);}
-  #deskSvg[data-pose="twistL"] .pup{transform:translateX(-6px);}
+  #deskSvg #dmFace{transition:transform 1.8s ease-in-out;transform-box:fill-box;}
+  #deskSvg[data-pose="twistR"] #dmUpper{transform:scaleX(.86) rotate(3deg);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistR"] #dmHead{transform:translateX(11px) scaleX(.93);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistR"] #dmFace{transform:translateX(10px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistR"] .pup{transform:translateX(5px);}
+  #deskSvg[data-pose="twistR"] .armL{transform:rotate(32deg) translate(18px,-6px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistR"] .armR{transform:rotate(-42deg) translate(-6px,-4px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] #dmUpper{transform:scaleX(.86) rotate(-3deg);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] #dmHead{transform:translateX(-11px) scaleX(.93);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] #dmFace{transform:translateX(-10px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] .pup{transform:translateX(-5px);}
+  #deskSvg[data-pose="twistL"] .armR{transform:rotate(-32deg) translate(-18px,-6px);transition-duration:2.2s;}
+  #deskSvg[data-pose="twistL"] .armL{transform:rotate(42deg) translate(6px,-4px);transition-duration:2.2s;}
   #deskSvg[data-pose="wings"] .armL{transform:rotate(-78deg) translateY(-4px);}
   #deskSvg[data-pose="wings"] .armR{transform:rotate(78deg) translateY(-4px);}
   #deskSvg[data-pose="wrap"] .armL{transform:rotate(38deg) translate(14px,-14px);}
@@ -183,6 +190,7 @@
             <circle cx="160" cy="116" r="55" fill="#1f8a8a"/>
             <circle cx="102" cy="100" r="20" fill="#1f8a8a"/><circle cx="102" cy="100" r="10" fill="#D99A4E"/>
             <circle cx="218" cy="100" r="20" fill="#1f8a8a"/><circle cx="218" cy="100" r="10" fill="#D99A4E"/>
+            <g id="dmFace">
             <ellipse cx="160" cy="128" rx="43" ry="41" fill="#FDF8F0"/>
             <path d="M141 82 l8 13 l11 -16 l11 16 l8 -13" fill="none" stroke="#D99A4E" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
             <ellipse cx="143" cy="122" rx="14" ry="16" fill="#fff" stroke="#136b6b" stroke-width="2"/>
@@ -194,6 +202,7 @@
             <ellipse cx="160" cy="148" rx="23" ry="16" fill="#FDF8F0"/>
             <ellipse cx="160" cy="142" rx="5" ry="3.5" fill="#3A3A3A"/>
             <path d="M148 154 q12 9 24 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
+            </g>
             </g>
           </g>
           <rect x="74" y="228" width="172" height="14" rx="4" fill="#c99a66" stroke="#8a5a3b" stroke-width="2"/>
