@@ -63,6 +63,12 @@
   @keyframes rollB{0%,100%{transform:rotate(0deg);}30%{transform:rotate(15deg) translateY(-4px);}65%{transform:rotate(-7deg);}}
   @keyframes settleDown{0%{transform:translateY(-9px);}100%{transform:translateY(0);}}
   @keyframes deskBreath{0%,100%{transform:translateY(-5px) scale(1);}45%{transform:translateY(-10px) scale(1.035);}}
+  #deskSvg #dmHead{transition:transform 1.4s ease-in-out;transform-box:fill-box;transform-origin:50% 92%;}
+  #deskSvg[data-pose="arch"] #dmUpper{transform:translateY(-7px) scale(1.02);}
+  #deskSvg[data-pose="arch"] #dmHead{transform:rotate(-5deg) translateY(-3px);}
+  #deskSvg[data-pose="round"] #dmUpper{transform:translateY(4px) scale(.985);}
+  #deskSvg[data-pose="round"] #dmHead{transform:rotate(6deg) translateY(8px);}
+  #deskSvg[data-pose="center"] #dmUpper{transform:translateY(-4px);}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -146,6 +152,7 @@
           <g id="dmUpper">
             <ellipse cx="160" cy="222" rx="57" ry="48" fill="#1f8a8a"/>
             <ellipse cx="160" cy="230" rx="36" ry="34" fill="#FDF8F0"/>
+            <g id="dmHead">
             <circle cx="160" cy="116" r="55" fill="#1f8a8a"/>
             <circle cx="102" cy="100" r="20" fill="#1f8a8a"/><circle cx="102" cy="100" r="10" fill="#D99A4E"/>
             <circle cx="218" cy="100" r="20" fill="#1f8a8a"/><circle cx="218" cy="100" r="10" fill="#D99A4E"/>
@@ -160,6 +167,7 @@
             <ellipse cx="160" cy="148" rx="23" ry="16" fill="#FDF8F0"/>
             <ellipse cx="160" cy="142" rx="5" ry="3.5" fill="#3A3A3A"/>
             <path d="M148 154 q12 9 24 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
+            </g>
           </g>
           <rect x="74" y="228" width="172" height="14" rx="4" fill="#c99a66" stroke="#8a5a3b" stroke-width="2"/>
           <rect x="74" y="240" width="172" height="5" fill="#8a5a3b" opacity=".4"/>
@@ -330,19 +338,19 @@
         {cue:"One more breath, tall and easy.",sub:"",say:"One more slow breath, tall and easy.",hold:9,pose:"breathe"}
       ],
       close:"That's Seated Mountain. Any time your body feels wiggly or your brain feels loud, come back to your mountain." },
-    { id:"catcow", kind:"chair", name:"Seated Cat-Cow", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
-      blurb:"Round and arch your back like a slow wave. Wakes up a sleepy spine after sitting.",
-      intro:"Time to wake up your back. We're going to move like a slow wave, right in your chair. Hands on your knees.",
+    { id:"catcow", kind:"chair", demo:"desk", name:"Seated Cat-Cow", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Round and arch your back like a slow wave, right at your desk. Wakes up a sleepy spine.",
+      intro:"Time to wake up your back. We're going to move like a slow wave, right here at our desks. Hands on your desk.",
       lines:[
-        {cue:"Hands on your knees.",sub:"Feet flat. Sit tall.",say:"Put your hands on your knees. Feet flat on the floor. Sit up tall to start.",hold:8},
-        {cue:"Breathe in. Lift your chest.",sub:"Look up a little. Back arches.",say:"Breathe in, and lift your chest up and forward. Look up a little. Your back makes a gentle arch.",hold:8},
-        {cue:"Breathe out. Round your back.",sub:"Chin to chest, like a curled-up cat.",say:"Breathe out, and round your back the other way. Tuck your chin toward your chest, like a curled-up cat.",hold:8},
-        {cue:"In. Chest up.",sub:"",say:"Breathe in. Chest up.",hold:7},
-        {cue:"Out. Round it.",sub:"",say:"Breathe out. Round it.",hold:7},
-        {cue:"In. Chest up.",sub:"Slow wave.",say:"In. Chest up. Nice slow wave.",hold:7},
-        {cue:"Out. Round it.",sub:"",say:"Out. Round it. Last one.",hold:7},
-        {cue:"Come back to the middle.",sub:"Sit tall and easy.",say:"Now come back to the middle. Sit tall and easy.",hold:8},
-        {cue:"Notice your back.",sub:"Warmer? More awake?",say:"Notice your back. Does it feel warmer? More awake? That's you taking care of you.",hold:9}
+        {cue:"Hands on your desk.",sub:"Feet flat. Sit tall.",say:"Put your hands on your desk. Feet flat on the floor. Sit up tall to start.",hold:8,pose:"hands"},
+        {cue:"Breathe in. Lift your chest.",sub:"Look up a little. Back arches.",say:"Breathe in, and lift your chest up and forward. Look up a little. Your back makes a gentle arch.",hold:8,pose:"arch"},
+        {cue:"Breathe out. Round your back.",sub:"Chin to chest, like a curled-up cat.",say:"Breathe out, and round your back the other way. Tuck your chin toward your chest, like a curled-up cat.",hold:8,pose:"round"},
+        {cue:"In. Chest up.",sub:"",say:"Breathe in. Chest up.",hold:7,pose:"arch"},
+        {cue:"Out. Round it.",sub:"",say:"Breathe out. Round it.",hold:7,pose:"round"},
+        {cue:"In. Chest up.",sub:"Slow wave.",say:"In. Chest up. Nice slow wave.",hold:7,pose:"arch"},
+        {cue:"Out. Round it.",sub:"",say:"Out. Round it. Last one.",hold:7,pose:"round"},
+        {cue:"Come back to the middle.",sub:"Sit tall and easy.",say:"Now come back to the middle. Sit tall and easy.",hold:8,pose:"center"},
+        {cue:"Notice your back.",sub:"Warmer? More awake?",say:"Notice your back. Does it feel warmer? More awake? That's you taking care of you.",hold:9,pose:"breathe"}
       ],
       close:"That's Cat-Cow. A slow wave for a sleepy spine." },
     { id:"seatedtwist", kind:"chair", name:"Gentle Seated Twist", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
