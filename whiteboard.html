@@ -83,6 +83,14 @@
   #deskSvg[data-pose="wrapup"] .armL{transform:rotate(38deg) translate(14px,-22px);}
   #deskSvg[data-pose="wrapup"] .armR{transform:rotate(-38deg) translate(-14px,-22px);}
   #deskSvg[data-pose="wrapup"] #dmUpper{transform:translateY(-5px);}
+  #deskSvg[data-pose="fold"] #dmUpper{transform:translateY(24px) scale(1,.84);transition-duration:2.6s;}
+  #deskSvg[data-pose="fold"] #dmHead{transform:rotate(8deg) translateY(12px);transition-duration:2.6s;}
+  #deskSvg[data-pose="fold"] .armL{transform:rotate(-14deg) translateY(10px);transition-duration:2.6s;}
+  #deskSvg[data-pose="fold"] .armR{transform:rotate(14deg) translateY(10px);transition-duration:2.6s;}
+  #deskSvg[data-pose="fold"] .lid{transform:translateY(-4px);}
+  #deskSvg[data-pose="rollup"] #dmUpper{transform:translateY(-4px);transition-duration:4.5s;}
+  #deskSvg[data-pose="rollup"] #dmHead{transform:none;transition-duration:5.5s;}
+  #deskSvg[data-pose="rollup"] .armL,#deskSvg[data-pose="rollup"] .armR{transform:none;transition-duration:4.5s;}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -397,20 +405,20 @@
         {cue:"Shoulders feel different?",sub:"Lighter is the goal.",say:"Do your shoulders feel different? Lighter is the goal.",hold:8,pose:"hands"}
       ],
       close:"That's eagle arms. Your shoulders will thank you." },
-    { id:"forwardfold", kind:"chair", name:"Seated Forward Fold", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
-      blurb:"Fold forward over your legs like a rag doll. The big let-it-all-go move.",
-      intro:"This is the rag doll. We fold forward and let everything hang. It's the big let-it-go move. Nothing to hold up, nothing to do.",
+    { id:"forwardfold", kind:"chair", demo:"desk", name:"Seated Forward Fold", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Fold forward and let everything hang, right at your desk. The big let-it-all-go move.",
+      intro:"This is the rag doll. We fold forward and let everything hang, right here at our desks. It's the big let-it-go move. Nothing to hold up, nothing to do.",
       lines:[
-        {cue:"Scoot toward the edge of your chair.",sub:"Feet flat and wide.",say:"Scoot a little toward the edge of your chair. Feet flat on the floor, a bit wide.",hold:9},
-        {cue:"Breathe in. Sit tall.",sub:"",say:"Breathe in and sit tall.",hold:6},
-        {cue:"Breathe out. Fold forward, slow.",sub:"Belly toward your legs. Hands hang down.",say:"Breathe out, and fold forward slowly. Let your belly come toward your legs, and let your hands hang down toward the floor.",hold:10},
-        {cue:"Let your head hang.",sub:"Heavy like a rag doll.",say:"Let your head hang, heavy like a rag doll. Nothing to hold up.",hold:10},
-        {cue:"Breathe into your back.",sub:"Slow and easy.",say:"Take a slow breath and feel it in your back. Easy.",hold:9},
-        {cue:"Let your shoulders go.",sub:"Anything you're carrying can drip right off.",say:"Let your shoulders go. Anything heavy you've been carrying today can just drip right off your back onto the floor.",hold:11},
-        {cue:"Roll up slowly. One bone at a time.",sub:"Head comes up last.",say:"Now roll up slowly, one bone at a time. Your head comes up last.",hold:10},
-        {cue:"Sit tall. Eyes soft.",sub:"Notice the quiet.",say:"Sit tall, eyes soft. Notice how quiet your body feels.",hold:9}
+        {cue:"Feet flat. Sit tall to start.",sub:"",say:"Feet flat on the floor. Sit up tall to start.",hold:8,pose:"tall"},
+        {cue:"Breathe in.",sub:"",say:"Breathe in.",hold:6,pose:"inhale"},
+        {cue:"Breathe out. Fold forward, slow.",sub:"Let your head come down toward your desk.",say:"Breathe out, and fold forward slowly. Let your head come down toward your desk, and let your arms get heavy.",hold:11,pose:"fold"},
+        {cue:"Let your head hang.",sub:"Heavy like a rag doll.",say:"Let your head hang, heavy like a rag doll. Nothing to hold up.",hold:10,pose:"fold"},
+        {cue:"Breathe into your back.",sub:"Slow and easy.",say:"Take a slow breath and feel it in your back. Easy.",hold:9,pose:"fold"},
+        {cue:"Let your shoulders go.",sub:"Anything you're carrying can drip right off.",say:"Let your shoulders go. Anything heavy you've been carrying today can just drip right off your back.",hold:11,pose:"fold"},
+        {cue:"Roll up slowly. One bone at a time.",sub:"Head comes up last.",say:"Now roll up slowly, one bone at a time. Your head comes up last.",hold:11,pose:"rollup"},
+        {cue:"Sit tall. Eyes soft.",sub:"Notice the quiet.",say:"Sit tall, eyes soft. Notice how quiet your body feels.",hold:9,pose:"soft"}
       ],
-      close:"That's the forward fold. The let-it-go button, right there in your chair." },
+      close:"That's the forward fold. The let-it-go button, right there at your desk." },
     { id:"neckrolls", kind:"chair", name:"Slow Neck Circles", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Draw slow circles with your nose. Melts the tension where we hold it most.",
       intro:"Necks work hard all day holding up our heads. Let's give yours a break. We're going to draw slow circles with our noses. Slow is the whole game.",
