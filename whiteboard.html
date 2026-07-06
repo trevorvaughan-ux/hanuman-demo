@@ -39,6 +39,7 @@
   .card.med{border-left-color:var(--gold);}
   .card.chair{border-left-color:#3fa34d;}
   .card.sel{border-left-color:#7d6bb8;}
+  .card.cls{border-left-color:#c9704f;}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -398,6 +399,32 @@
       close:"That's Kind Words to Myself. Your inside voice is yours. Train it to be a friend." }
   ];
 
+  // ===== CLASSES: 3-minute guided blends of movement + breath + close. Narrated. =====
+  var CLASSES=[
+    { id:"settlein", kind:"class", name:"Settle In", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
+      blurb:"Morning arrival: wake the body, land the breath, set the day. Three minutes to start right.",
+      intro:"Good morning, I'm Hanuman. Backpacks are down, and the day is about to start. Let's take three minutes to arrive, all the way, together.",
+      lines:[
+        {cue:"Feet flat. Sit tall in your mountain.",sub:"Strong and still.",say:"Feet flat on the floor. Sit up tall in your mountain. Strong and still.",hold:10},
+        {cue:"Roll your shoulders back and down.",sub:"Wake up, shoulders.",say:"Roll your shoulders up, back, and down. Wake up, shoulders. One more time.",hold:10},
+        {cue:"Breathe in. Lift your chest.",sub:"",say:"Breathe in, and lift your chest.",hold:7},
+        {cue:"Breathe out. Round your back.",sub:"One slow wave.",say:"Breathe out, and round your back. One slow wave for a sleepy spine.",hold:8},
+        {cue:"In. Chest up.",sub:"",say:"In. Chest up.",hold:7},
+        {cue:"Out. Round it. Come back tall.",sub:"",say:"Out. Round it. And come back to tall.",hold:9},
+        {cue:"Now the breath. In for four.",sub:"One... two... three... four.",say:"Now the breath. Breathe in for four. One, two, three, four.",hold:7},
+        {cue:"Out for six, slow.",sub:"One... two... three... four... five... six.",say:"And out for six, nice and slow. One, two, three, four, five, six.",hold:9},
+        {cue:"In for four.",sub:"Belly fills like a balloon.",say:"In for four. Belly fills like a balloon.",hold:7},
+        {cue:"Out for six.",sub:"Shoulders melt.",say:"Out for six. Let your shoulders melt.",hold:9},
+        {cue:"One more. In for four.",sub:"",say:"One more. In for four.",hold:7},
+        {cue:"Out for six. All the way out.",sub:"",say:"Out for six. All the way out.",hold:9},
+        {cue:"Now pick one word for your day.",sub:"Brave. Kind. Curious. Calm. Strong.",say:"Now pick one word for your day. Maybe brave. Or kind. Or curious. Or calm. Or strong. Any word that feels right.",hold:13},
+        {cue:"Say it inside: \"Today I am ___.\"",sub:"That word is yours all day.",say:"Say it quietly inside: today, I am... your word. That word is yours. It stays with you all day.",hold:12},
+        {cue:"Last breath. Tall and ready.",sub:"",say:"One last slow breath, tall and ready.",hold:10},
+        {cue:"Eyes up. You have arrived.",sub:"Let's have a good day.",say:"Eyes up. You have arrived, all the way. Let's have a good day.",hold:8}
+      ],
+      close:"That's Settle In. Same time tomorrow. Your word is waiting for you." }
+  ];
+
   // ---- step-aware engine: a single breath = a 1-step run; a sequence = many steps ----
   var STEPS=[], stepStarts=[], stepIdx=-1, CURRENT=null;
   function buildSteps(item){
@@ -484,7 +511,7 @@
   }
 
   function addCard(f){
-    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"");
+    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
@@ -493,6 +520,7 @@
   MEDITATIONS.forEach(addCard);
   CHAIR.forEach(addCard);
   SEL.forEach(addCard);
+  CLASSES.forEach(addCard);
   SEQUENCES.forEach(addCard);
   setBall(0);
 })();
