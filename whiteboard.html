@@ -38,6 +38,7 @@
   @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(.35);opacity:.7;}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0;}}
   .card.med{border-left-color:var(--gold);}
   .card.chair{border-left-color:#3fa34d;}
+  .card.sel{border-left-color:#7d6bb8;}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -335,6 +336,26 @@
       close:"Those are neck circles. Your neck carries a lot. Be kind to it." }
   ];
 
+  // ===== SEL TOOLS: social-emotional learning, PreK3-6th. Narrated like meditations. =====
+  // Locked 6.30.2026: SEL is an ADDITION to breaths/meditations, not a replacement.
+  var SEL=[
+    { id:"nameit", kind:"sel", name:"Name It to Tame It", tag:"SEL · Feelings · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+      blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
+      intro:"Hey, I'm Hanuman. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
+      lines:[
+        {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:9},
+        {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:11},
+        {cue:"Find where it lives in your body.",sub:"Belly? Chest? Shoulders? Head?",say:"Find where that feeling lives in your body. Is it in your belly? Your chest? Your shoulders? Your head?",hold:11},
+        {cue:"Now give it a name.",sub:"Mad. Sad. Worried. Excited. Tired. Happy.",say:"Now give it a name, quietly in your head. Maybe it's mad. Or sad. Or worried. Or excited. Or tired. Or happy. Any name is okay.",hold:12},
+        {cue:"Say hi to it.",sub:"\"I see you, worried.\"",say:"Say hi to it, like this: I see you, worried. Or, I see you, mad. You're not in trouble. Feelings are visitors.",hold:11},
+        {cue:"Breathe in. Make room for it.",sub:"",say:"Breathe in, and make a little room for that feeling.",hold:8},
+        {cue:"Breathe out. Let it get smaller.",sub:"Named feelings shrink.",say:"Breathe out, and let it get a little smaller. That's the trick. Named feelings shrink.",hold:10},
+        {cue:"You're the sky. Feelings are the weather.",sub:"Weather always passes.",say:"Remember: you're the sky, and feelings are just the weather. And weather always, always passes.",hold:11},
+        {cue:"One more breath. You did it.",sub:"",say:"One more slow breath. You just did something that some grown-ups are still learning.",hold:9}
+      ],
+      close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." }
+  ];
+
   // ---- step-aware engine: a single breath = a 1-step run; a sequence = many steps ----
   var STEPS=[], stepStarts=[], stepIdx=-1, CURRENT=null;
   function buildSteps(item){
@@ -421,7 +442,7 @@
   }
 
   function addCard(f){
-    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"");
+    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"");
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
@@ -429,6 +450,7 @@
   FLOWS.forEach(addCard);
   MEDITATIONS.forEach(addCard);
   CHAIR.forEach(addCard);
+  SEL.forEach(addCard);
   SEQUENCES.forEach(addCard);
   setBall(0);
 })();
