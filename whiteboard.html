@@ -69,6 +69,13 @@
   #deskSvg[data-pose="round"] #dmUpper{transform:translateY(4px) scale(.985);}
   #deskSvg[data-pose="round"] #dmHead{transform:rotate(6deg) translateY(8px);}
   #deskSvg[data-pose="center"] #dmUpper{transform:translateY(-4px);}
+  #deskSvg .pup{transition:transform 1.2s ease-in-out;transform-box:fill-box;}
+  #deskSvg[data-pose="twistR"] #dmUpper{transform:rotate(5deg) translateX(7px);}
+  #deskSvg[data-pose="twistR"] #dmHead{transform:rotate(11deg) translateX(5px);}
+  #deskSvg[data-pose="twistR"] .pup{transform:translateX(6px);}
+  #deskSvg[data-pose="twistL"] #dmUpper{transform:rotate(-5deg) translateX(-7px);}
+  #deskSvg[data-pose="twistL"] #dmHead{transform:rotate(-11deg) translateX(-5px);}
+  #deskSvg[data-pose="twistL"] .pup{transform:translateX(-6px);}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -160,8 +167,8 @@
             <path d="M141 82 l8 13 l11 -16 l11 16 l8 -13" fill="none" stroke="#D99A4E" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
             <ellipse cx="143" cy="122" rx="14" ry="16" fill="#fff" stroke="#136b6b" stroke-width="2"/>
             <ellipse cx="177" cy="122" rx="14" ry="16" fill="#fff" stroke="#136b6b" stroke-width="2"/>
-            <g><circle cx="143" cy="123" r="7" fill="#3fa34d"/><circle cx="145.5" cy="120" r="2.4" fill="#fff"/></g>
-            <g><circle cx="177" cy="123" r="7" fill="#3fa34d"/><circle cx="179.5" cy="120" r="2.4" fill="#fff"/></g>
+            <g class="pup"><circle cx="143" cy="123" r="7" fill="#3fa34d"/><circle cx="145.5" cy="120" r="2.4" fill="#fff"/></g>
+            <g class="pup"><circle cx="177" cy="123" r="7" fill="#3fa34d"/><circle cx="179.5" cy="120" r="2.4" fill="#fff"/></g>
             <rect class="lid" x="128" y="106" width="30" height="15" rx="7" fill="#FDF8F0"/>
             <rect class="lid" x="162" y="106" width="30" height="15" rx="7" fill="#FDF8F0"/>
             <ellipse cx="160" cy="148" rx="23" ry="16" fill="#FDF8F0"/>
@@ -353,19 +360,19 @@
         {cue:"Notice your back.",sub:"Warmer? More awake?",say:"Notice your back. Does it feel warmer? More awake? That's you taking care of you.",hold:9,pose:"breathe"}
       ],
       close:"That's Cat-Cow. A slow wave for a sleepy spine." },
-    { id:"seatedtwist", kind:"chair", name:"Gentle Seated Twist", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+    { id:"seatedtwist", kind:"chair", demo:"desk", name:"Gentle Seated Twist", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Turn slowly to each side like an owl looking around. Squeezes out the fidgets.",
       intro:"Let's twist, nice and gentle, like an owl looking around the room. Stay slow. No rushing an owl.",
       lines:[
-        {cue:"Sit tall. Feet flat.",sub:"Start in your mountain.",say:"Sit up tall, feet flat on the floor. Start in your mountain.",hold:8},
-        {cue:"Breathe in. Grow taller.",sub:"",say:"Breathe in and grow a little taller.",hold:6},
-        {cue:"Breathe out. Turn to the right, slow.",sub:"One hand on your knee, one behind you.",say:"Breathe out and turn slowly to the right. One hand can rest on your knee, one behind you on the chair.",hold:9},
-        {cue:"Look softly over your shoulder.",sub:"What does the owl see?",say:"Look softly over your right shoulder. What does the owl see back there?",hold:9},
-        {cue:"Breathe in. Come back to the middle.",sub:"",say:"Breathe in, and come slowly back to the middle.",hold:7},
-        {cue:"Breathe out. Turn to the left, slow.",sub:"Switch hands.",say:"Breathe out, and turn slowly to the left. Switch your hands.",hold:9},
-        {cue:"Look softly over your shoulder.",sub:"Slow owl. No rushing.",say:"Look softly over your left shoulder. Slow owl. No rushing.",hold:9},
-        {cue:"Come back to the middle.",sub:"Sit tall.",say:"Come back to the middle and sit tall.",hold:8},
-        {cue:"One easy breath.",sub:"The fidgets got squeezed out.",say:"One easy breath. The wiggles and fidgets just got squeezed right out.",hold:9}
+        {cue:"Sit tall. Feet flat.",sub:"Start in your mountain.",say:"Sit up tall, feet flat on the floor. Start in your mountain.",hold:8,pose:"tall"},
+        {cue:"Breathe in. Grow taller.",sub:"",say:"Breathe in and grow a little taller.",hold:6,pose:"inhale"},
+        {cue:"Breathe out. Turn to the right, slow.",sub:"One hand on your desk, one on your chair.",say:"Breathe out and turn slowly to the right. One hand can stay on your desk, one can hold your chair.",hold:9,pose:"twistR"},
+        {cue:"Look softly over your shoulder.",sub:"What does the owl see?",say:"Look softly over your right shoulder. What does the owl see back there?",hold:9,pose:"twistR"},
+        {cue:"Breathe in. Come back to the middle.",sub:"",say:"Breathe in, and come slowly back to the middle.",hold:7,pose:"center"},
+        {cue:"Breathe out. Turn to the left, slow.",sub:"Switch hands.",say:"Breathe out, and turn slowly to the left. Switch your hands.",hold:9,pose:"twistL"},
+        {cue:"Look softly over your shoulder.",sub:"Slow owl. No rushing.",say:"Look softly over your left shoulder. Slow owl. No rushing.",hold:9,pose:"twistL"},
+        {cue:"Come back to the middle.",sub:"Sit tall.",say:"Come back to the middle and sit tall.",hold:8,pose:"center"},
+        {cue:"One easy breath.",sub:"The fidgets got squeezed out.",say:"One easy breath. The wiggles and fidgets just got squeezed right out.",hold:9,pose:"breathe"}
       ],
       close:"That's the seated twist. Kind to your back, tough on the fidgets." },
     { id:"eaglearms", kind:"chair", name:"Eagle Arms", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
