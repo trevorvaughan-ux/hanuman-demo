@@ -76,6 +76,13 @@
   #deskSvg[data-pose="twistL"] #dmUpper{transform:rotate(-5deg) translateX(-7px);}
   #deskSvg[data-pose="twistL"] #dmHead{transform:rotate(-11deg) translateX(-5px);}
   #deskSvg[data-pose="twistL"] .pup{transform:translateX(-6px);}
+  #deskSvg[data-pose="wings"] .armL{transform:rotate(-78deg) translateY(-4px);}
+  #deskSvg[data-pose="wings"] .armR{transform:rotate(78deg) translateY(-4px);}
+  #deskSvg[data-pose="wrap"] .armL{transform:rotate(38deg) translate(14px,-14px);}
+  #deskSvg[data-pose="wrap"] .armR{transform:rotate(-38deg) translate(-14px,-14px);}
+  #deskSvg[data-pose="wrapup"] .armL{transform:rotate(38deg) translate(14px,-22px);}
+  #deskSvg[data-pose="wrapup"] .armR{transform:rotate(-38deg) translate(-14px,-22px);}
+  #deskSvg[data-pose="wrapup"] #dmUpper{transform:translateY(-5px);}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,48px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -375,19 +382,19 @@
         {cue:"One easy breath.",sub:"The fidgets got squeezed out.",say:"One easy breath. The wiggles and fidgets just got squeezed right out.",hold:9,pose:"breathe"}
       ],
       close:"That's the seated twist. Kind to your back, tough on the fidgets." },
-    { id:"eaglearms", kind:"chair", name:"Eagle Arms", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
+    { id:"eaglearms", kind:"chair", demo:"desk", name:"Eagle Arms", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Wrap your arms like eagle wings, then open wide. Great for tight shoulders and focus.",
-      intro:"This one is called eagle arms. We wrap our arms up like wings, then spread them wide. It looks a little silly and feels really good.",
+      intro:"This one is called eagle arms. We wrap our arms up like wings, then spread them wide. It looks a little silly and feels really good. You can stay right at your desk.",
       lines:[
-        {cue:"Reach both arms out wide.",sub:"Big wings.",say:"Reach both arms out wide to your sides. Big wings.",hold:8},
-        {cue:"Swing them in and cross.",sub:"Right arm under left. Give yourself a hug.",say:"Now swing them in and cross, right arm under left. It's okay if it turns into a hug. A hug counts.",hold:9},
-        {cue:"Lift your elbows a little.",sub:"Feel the stretch between your shoulders.",say:"Lift your elbows up a little. Feel that stretch across your upper back, right where backpacks make us tight.",hold:10},
-        {cue:"Breathe in. Breathe out.",sub:"Stay wrapped.",say:"Breathe in. And breathe out. Stay wrapped.",hold:8},
-        {cue:"Unwrap. Wings out wide.",sub:"",say:"Now unwrap, and stretch your wings out wide.",hold:8},
-        {cue:"Cross the other way.",sub:"Left arm under right this time.",say:"Cross the other way, left arm under right this time.",hold:9},
-        {cue:"Elbows lift. Breathe.",sub:"",say:"Lift your elbows and breathe, nice and slow.",hold:9},
-        {cue:"Unwrap. Wings wide. Then hands down.",sub:"",say:"Unwrap. Wings out wide one more time. And let your hands float down to your legs.",hold:9},
-        {cue:"Shoulders feel different?",sub:"Lighter is the goal.",say:"Do your shoulders feel different? Lighter is the goal.",hold:8}
+        {cue:"Reach both arms out wide.",sub:"Big wings.",say:"Reach both arms out wide to your sides. Big wings.",hold:8,pose:"wings"},
+        {cue:"Swing them in and cross.",sub:"Right arm under left. Give yourself a hug.",say:"Now swing them in and cross, right arm under left. It's okay if it turns into a hug. A hug counts.",hold:9,pose:"wrap"},
+        {cue:"Lift your elbows a little.",sub:"Feel the stretch between your shoulders.",say:"Lift your elbows up a little. Feel that stretch across your upper back, right where backpacks make us tight.",hold:10,pose:"wrapup"},
+        {cue:"Breathe in. Breathe out.",sub:"Stay wrapped.",say:"Breathe in. And breathe out. Stay wrapped.",hold:8,pose:"wrap"},
+        {cue:"Unwrap. Wings out wide.",sub:"",say:"Now unwrap, and stretch your wings out wide.",hold:8,pose:"wings"},
+        {cue:"Cross the other way.",sub:"Left arm under right this time.",say:"Cross the other way, left arm under right this time.",hold:9,pose:"wrap"},
+        {cue:"Elbows lift. Breathe.",sub:"",say:"Lift your elbows and breathe, nice and slow.",hold:9,pose:"wrapup"},
+        {cue:"Unwrap. Wings wide. Then hands down.",sub:"",say:"Unwrap. Wings out wide one more time. And let your hands float down to your desk.",hold:9,pose:"wings"},
+        {cue:"Shoulders feel different?",sub:"Lighter is the goal.",say:"Do your shoulders feel different? Lighter is the goal.",hold:8,pose:"hands"}
       ],
       close:"That's eagle arms. Your shoulders will thank you." },
     { id:"forwardfold", kind:"chair", name:"Seated Forward Fold", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
