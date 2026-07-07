@@ -89,12 +89,17 @@
   #deskSvg[data-pose="twistL"] .armL{transform:rotate(42deg) translate(6px,-4px);transition-duration:2.2s;}
   #deskSvg[data-pose="wings"] .armL{transform:rotate(-78deg) translateY(-4px);}
   #deskSvg[data-pose="wings"] .armR{transform:rotate(78deg) translateY(-4px);}
-  #deskSvg #dmEagle{opacity:0;transition:opacity 1.4s ease-in-out,transform 1.4s ease-in-out;transform-box:fill-box;}
+  #deskSvg #dmEagle,#deskSvg #dmEagle2{opacity:0;transition:opacity 1.4s ease-in-out,transform 1.4s ease-in-out;transform-box:fill-box;}
   #deskSvg[data-pose="wrap"] .armL,#deskSvg[data-pose="wrap"] .armR{opacity:0;}
   #deskSvg[data-pose="wrap"] #dmEagle{opacity:1;}
   #deskSvg[data-pose="wrapup"] .armL,#deskSvg[data-pose="wrapup"] .armR{opacity:0;}
   #deskSvg[data-pose="wrapup"] #dmEagle{opacity:1;transform:translateY(-10px);}
   #deskSvg[data-pose="wrapup"] #dmUpper{transform:translateY(-5px);}
+  #deskSvg[data-pose="wrap2"] .armL,#deskSvg[data-pose="wrap2"] .armR{opacity:0;}
+  #deskSvg[data-pose="wrap2"] #dmEagle2{opacity:1;}
+  #deskSvg[data-pose="wrapup2"] .armL,#deskSvg[data-pose="wrapup2"] .armR{opacity:0;}
+  #deskSvg[data-pose="wrapup2"] #dmEagle2{opacity:1;transform:translateY(-10px);}
+  #deskSvg[data-pose="wrapup2"] #dmUpper{transform:translateY(-5px);}
   #deskSvg[data-pose="fold"] #dmUpper{transform:translateY(24px) scale(1,.84);transition-duration:2.6s;}
   #deskSvg[data-pose="fold"] #dmHead{transform:rotate(8deg) translateY(12px);transition-duration:2.6s;}
   #deskSvg[data-pose="fold"] .armL{transform:rotate(-14deg) translateY(10px);transition-duration:2.6s;}
@@ -236,6 +241,12 @@
             <circle cx="167" cy="144" r="11" fill="#FDF8F0" stroke="#1f8a8a" stroke-width="2.5"/>
             <circle cx="153" cy="146" r="11" fill="#FDF8F0" stroke="#136b6b" stroke-width="2.5"/>
           </g>
+          <g transform="translate(320,0) scale(-1,1)"><g id="dmEagle2">
+            <path d="M116 188 Q146 206 162 198 Q174 190 168 150" fill="none" stroke="#1f8a8a" stroke-width="17" stroke-linecap="round"/>
+            <path d="M204 188 Q174 208 156 200 Q146 192 152 152" fill="none" stroke="#136b6b" stroke-width="17" stroke-linecap="round"/>
+            <circle cx="167" cy="144" r="11" fill="#FDF8F0" stroke="#1f8a8a" stroke-width="2.5"/>
+            <circle cx="153" cy="146" r="11" fill="#FDF8F0" stroke="#136b6b" stroke-width="2.5"/>
+          </g></g>
         </svg>
       </div>
     </div>
@@ -432,9 +443,10 @@
         {cue:"Lift your elbows a little.",sub:"Feel the stretch between your shoulders.",say:"Lift your elbows up a little. Feel that stretch across your upper back, right where backpacks make us tight.",hold:10,pose:"wrapup"},
         {cue:"Breathe in. Breathe out.",sub:"Stay wrapped.",say:"Breathe in. And breathe out. Stay wrapped.",hold:8,pose:"wrap"},
         {cue:"Unwrap. Wings out wide.",sub:"",say:"Now unwrap, and stretch your wings out wide.",hold:8,pose:"wings"},
-        {cue:"Cross the other way.",sub:"Left arm under right this time.",say:"Cross the other way, left arm under right this time.",hold:9,pose:"wrap"},
-        {cue:"Elbows lift. Breathe.",sub:"",say:"Lift your elbows and breathe, nice and slow.",hold:9,pose:"wrapup"},
-        {cue:"Unwrap. Wings wide. Then hands down.",sub:"",say:"Unwrap. Wings out wide one more time. And let your hands float down to your desk.",hold:9,pose:"wings"},
+        {cue:"Cross the other way.",sub:"Left arm under right this time.",say:"Cross the other way, left arm under right this time.",hold:9,pose:"wrap2"},
+        {cue:"Elbows lift. Breathe.",sub:"",say:"Lift your elbows and breathe, nice and slow.",hold:9,pose:"wrapup2"},
+        {cue:"Unwrap. Wings wide.",sub:"",say:"Unwrap. Wings out wide one more time.",hold:8,pose:"wings"},
+        {cue:"Hands float down.",sub:"Nice work.",say:"And let your hands float down to your desk. Nice work.",hold:8,pose:"hands"},
         {cue:"Shoulders feel different?",sub:"Lighter is the goal.",say:"Do your shoulders feel different? Lighter is the goal.",hold:8,pose:"hands"}
       ],
       close:"That's eagle arms. Your shoulders will thank you." },
