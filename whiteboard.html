@@ -66,8 +66,16 @@
   #deskSvg #dmHead{transition:transform 1.4s ease-in-out;transform-box:fill-box;transform-origin:50% 92%;}
   #deskSvg[data-pose="arch"] #dmUpper{transform:translateY(-7px) scale(1.02);}
   #deskSvg[data-pose="arch"] #dmHead{transform:rotate(-5deg) translateY(-3px);}
+  #deskSvg[data-pose="arch"] .armL{transform:rotate(-7deg) translateY(-3px);}
+  #deskSvg[data-pose="arch"] .armR{transform:rotate(7deg) translateY(-3px);}
   #deskSvg[data-pose="round"] #dmUpper{transform:translateY(4px) scale(.985);}
   #deskSvg[data-pose="round"] #dmHead{transform:rotate(6deg) translateY(8px);}
+  #deskSvg[data-pose="round"] .armL{transform:rotate(8deg) translateY(3px);}
+  #deskSvg[data-pose="round"] .armR{transform:rotate(-8deg) translateY(3px);}
+  #deskSvg[data-pose="shake"] .armL{animation:shakeA .45s ease-in-out 6;}
+  #deskSvg[data-pose="shake"] .armR{animation:shakeB .45s ease-in-out 6;}
+  @keyframes shakeA{0%,100%{transform:rotate(-30deg) translateY(-6px);}50%{transform:rotate(-48deg) translateY(-10px);}}
+  @keyframes shakeB{0%,100%{transform:rotate(30deg) translateY(-6px);}50%{transform:rotate(48deg) translateY(-10px);}}
   #deskSvg[data-pose="center"] #dmUpper{transform:translateY(-4px);}
   #deskSvg .pup{transition:transform 1.2s ease-in-out;transform-box:fill-box;}
   #deskSvg #dmFace{transition:transform 1.8s ease-in-out;transform-box:fill-box;}
@@ -544,69 +552,69 @@
 
   // ===== CLASSES: 3-minute guided blends of movement + breath + close. Narrated. =====
   var CLASSES=[
-    { id:"settlein", kind:"class", name:"Settle In", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
+    { id:"settlein", kind:"class", demo:"desk", name:"Settle In", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Morning arrival: wake the body, land the breath, set the day. Three minutes to start right.",
       intro:"Good morning, I'm Hanuman. Backpacks are down, and the day is about to start. Let's take three minutes to arrive, all the way, together.",
       lines:[
-        {cue:"Feet flat. Sit tall in your mountain.",sub:"Strong and still.",say:"Feet flat on the floor. Sit up tall in your mountain. Strong and still.",hold:10},
-        {cue:"Roll your shoulders back and down.",sub:"Wake up, shoulders.",say:"Roll your shoulders up, back, and down. Wake up, shoulders. One more time.",hold:10},
-        {cue:"Breathe in. Lift your chest.",sub:"",say:"Breathe in, and lift your chest.",hold:7},
-        {cue:"Breathe out. Round your back.",sub:"One slow wave.",say:"Breathe out, and round your back. One slow wave for a sleepy spine.",hold:8},
-        {cue:"In. Chest up.",sub:"",say:"In. Chest up.",hold:7},
-        {cue:"Out. Round it. Come back tall.",sub:"",say:"Out. Round it. And come back to tall.",hold:9},
-        {cue:"Now the breath. In for four.",sub:"One... two... three... four.",say:"Now the breath. Breathe in for four. One, two, three, four.",hold:7},
-        {cue:"Out for six, slow.",sub:"One... two... three... four... five... six.",say:"And out for six, nice and slow. One, two, three, four, five, six.",hold:9},
-        {cue:"In for four.",sub:"Belly fills like a balloon.",say:"In for four. Belly fills like a balloon.",hold:7},
-        {cue:"Out for six.",sub:"Shoulders melt.",say:"Out for six. Let your shoulders melt.",hold:9},
-        {cue:"One more. In for four.",sub:"",say:"One more. In for four.",hold:7},
-        {cue:"Out for six. All the way out.",sub:"",say:"Out for six. All the way out.",hold:9},
-        {cue:"Now pick one word for your day.",sub:"Brave. Kind. Curious. Calm. Strong.",say:"Now pick one word for your day. Maybe brave. Or kind. Or curious. Or calm. Or strong. Any word that feels right.",hold:13},
-        {cue:"Say it inside: \"Today I am ___.\"",sub:"That word is yours all day.",say:"Say it quietly inside: today, I am... your word. That word is yours. It stays with you all day.",hold:12},
-        {cue:"Last breath. Tall and ready.",sub:"",say:"One last slow breath, tall and ready.",hold:10},
-        {cue:"Eyes up. You have arrived.",sub:"Let's have a good day.",say:"Eyes up. You have arrived, all the way. Let's have a good day.",hold:8}
+        {cue:"Feet flat. Sit tall in your mountain.",sub:"Strong and still.",say:"Feet flat on the floor. Sit up tall in your mountain. Strong and still.",hold:10,pose:"tall"},
+        {cue:"Roll your shoulders back and down.",sub:"Wake up, shoulders.",say:"Roll your shoulders up, back, and down. Wake up, shoulders. One more time.",hold:10,pose:"roll"},
+        {cue:"Breathe in. Lift your chest.",sub:"",say:"Breathe in, and lift your chest.",hold:7,pose:"arch"},
+        {cue:"Breathe out. Round your back.",sub:"One slow wave.",say:"Breathe out, and round your back. One slow wave for a sleepy spine.",hold:8,pose:"round"},
+        {cue:"In. Chest up.",sub:"",say:"In. Chest up.",hold:7,pose:"arch"},
+        {cue:"Out. Round it. Come back tall.",sub:"",say:"Out. Round it. And come back to tall.",hold:9,pose:"center"},
+        {cue:"Now the breath. In for four.",sub:"One... two... three... four.",say:"Now the breath. Breathe in for four. One, two, three, four.",hold:7,pose:"inhale"},
+        {cue:"Out for six, slow.",sub:"One... two... three... four... five... six.",say:"And out for six, nice and slow. One, two, three, four, five, six.",hold:9,pose:"exhale"},
+        {cue:"In for four.",sub:"Belly fills like a balloon.",say:"In for four. Belly fills like a balloon.",hold:7,pose:"inhale"},
+        {cue:"Out for six.",sub:"Shoulders melt.",say:"Out for six. Let your shoulders melt.",hold:9,pose:"exhale"},
+        {cue:"One more. In for four.",sub:"",say:"One more. In for four.",hold:7,pose:"inhale"},
+        {cue:"Out for six. All the way out.",sub:"",say:"Out for six. All the way out.",hold:9,pose:"exhale"},
+        {cue:"Now pick one word for your day.",sub:"Brave. Kind. Curious. Calm. Strong.",say:"Now pick one word for your day. Maybe brave. Or kind. Or curious. Or calm. Or strong. Any word that feels right.",hold:13,pose:"steady"},
+        {cue:"Say it inside: \"Today I am ___.\"",sub:"That word is yours all day.",say:"Say it quietly inside: today, I am... your word. That word is yours. It stays with you all day.",hold:12,pose:"soft"},
+        {cue:"Last breath. Tall and ready.",sub:"",say:"One last slow breath, tall and ready.",hold:10,pose:"breathe"},
+        {cue:"Eyes up. You have arrived.",sub:"Let's have a good day.",say:"Eyes up. You have arrived, all the way. Let's have a good day.",hold:8,pose:"tall"}
       ],
       close:"That's Settle In. Same time tomorrow. Your word is waiting for you." },
-    { id:"thereset", kind:"class", name:"The Reset", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
+    { id:"thereset", kind:"class", demo:"desk", name:"The Reset", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"For the wild moments: after recess, after lunch, after chaos. Three minutes back to ready.",
       intro:"Hey, I'm Hanuman. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
       lines:[
-        {cue:"Feet on the floor. Hands on your legs.",sub:"Everybody lands.",say:"Feet on the floor. Hands on your legs. Everybody lands.",hold:10},
-        {cue:"Shake out your hands. Fast!",sub:"Shake shake shake...",say:"First, shake out your hands, fast! Shake, shake, shake. Get the last wiggles out.",hold:8},
-        {cue:"And... freeze. Hands down.",sub:"Still as a statue.",say:"And... freeze. Hands down. Still as a statue.",hold:8},
-        {cue:"Big breath in through your nose.",sub:"Fill all the way up.",say:"Now a big breath in through your nose. Fill all the way up.",hold:7},
-        {cue:"Sigh it out. Ahhh.",sub:"Loud is allowed, one time.",say:"And sigh it out. Ahhh. Loud is allowed, just this once.",hold:8},
-        {cue:"Again. Big breath in.",sub:"",say:"Again. Big breath in.",hold:7},
-        {cue:"Quieter sigh this time.",sub:"Half as loud.",say:"Quieter sigh this time. Half as loud.",hold:8},
-        {cue:"One more. Breathe in.",sub:"",say:"One more. Breathe in.",hold:7},
-        {cue:"Silent breath out. Whisper-quiet.",sub:"The room comes down with you.",say:"And a silent breath out, whisper-quiet. Feel the whole room come down with you.",hold:9},
-        {cue:"Now slow: in for four.",sub:"One... two... three... four.",say:"Now we go slow. In for four. One, two, three, four.",hold:7},
-        {cue:"Out for six.",sub:"Shoulders drop.",say:"Out for six. Let your shoulders drop.",hold:9},
-        {cue:"In for four.",sub:"",say:"In for four.",hold:7},
-        {cue:"Out for six. Even slower.",sub:"",say:"Out for six. Even slower.",hold:9},
-        {cue:"Feel your feet. Feel your seat.",sub:"You are right here now.",say:"Feel your feet on the floor. Feel your seat in the chair. Recess is done. You are right here now.",hold:11},
-        {cue:"One last quiet breath.",sub:"Ready position.",say:"One last quiet breath, in... and out. That's ready position.",hold:10},
-        {cue:"Eyes on your teacher. You're back.",sub:"Nice work, everybody.",say:"Eyes up on your teacher. You're back. Nice work, everybody.",hold:8}
+        {cue:"Feet on the floor. Hands on your legs.",sub:"Everybody lands.",say:"Feet on the floor. Hands on your legs. Everybody lands.",hold:10,pose:"feet"},
+        {cue:"Shake out your hands. Fast!",sub:"Shake shake shake...",say:"First, shake out your hands, fast! Shake, shake, shake. Get the last wiggles out.",hold:8,pose:"shake"},
+        {cue:"And... freeze. Hands down.",sub:"Still as a statue.",say:"And... freeze. Hands down. Still as a statue.",hold:8,pose:"hands"},
+        {cue:"Big breath in through your nose.",sub:"Fill all the way up.",say:"Now a big breath in through your nose. Fill all the way up.",hold:7,pose:"inhale"},
+        {cue:"Sigh it out. Ahhh.",sub:"Loud is allowed, one time.",say:"And sigh it out. Ahhh. Loud is allowed, just this once.",hold:8,pose:"exhale"},
+        {cue:"Again. Big breath in.",sub:"",say:"Again. Big breath in.",hold:7,pose:"inhale"},
+        {cue:"Quieter sigh this time.",sub:"Half as loud.",say:"Quieter sigh this time. Half as loud.",hold:8,pose:"exhale"},
+        {cue:"One more. Breathe in.",sub:"",say:"One more. Breathe in.",hold:7,pose:"inhale"},
+        {cue:"Silent breath out. Whisper-quiet.",sub:"The room comes down with you.",say:"And a silent breath out, whisper-quiet. Feel the whole room come down with you.",hold:9,pose:"exhale"},
+        {cue:"Now slow: in for four.",sub:"One... two... three... four.",say:"Now we go slow. In for four. One, two, three, four.",hold:7,pose:"inhale"},
+        {cue:"Out for six.",sub:"Shoulders drop.",say:"Out for six. Let your shoulders drop.",hold:9,pose:"exhale"},
+        {cue:"In for four.",sub:"",say:"In for four.",hold:7,pose:"inhale"},
+        {cue:"Out for six. Even slower.",sub:"",say:"Out for six. Even slower.",hold:9,pose:"exhale"},
+        {cue:"Feel your feet. Feel your seat.",sub:"You are right here now.",say:"Feel your feet on the floor. Feel your seat in the chair. Recess is done. You are right here now.",hold:11,pose:"steady"},
+        {cue:"One last quiet breath.",sub:"Ready position.",say:"One last quiet breath, in... and out. That's ready position.",hold:10,pose:"breathe"},
+        {cue:"Eyes on your teacher. You're back.",sub:"Nice work, everybody.",say:"Eyes up on your teacher. You're back. Nice work, everybody.",hold:8,pose:"tall"}
       ],
       close:"That's The Reset. From wild to ready in three minutes. See you after the next recess." },
-    { id:"winddown", kind:"class", name:"Wind Down", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
+    { id:"winddown", kind:"class", demo:"desk", name:"Wind Down", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Before a test, before dismissal, before anything big. Slow everything down and land soft.",
       intro:"Hey, I'm Hanuman. Something big might be coming, a test, the end of the day, or maybe it's just been a lot. Let's slow everything way down together. There is nowhere to rush to for the next three minutes.",
       lines:[
-        {cue:"Sit tall. Let your eyes go soft.",sub:"Or close them if you like.",say:"Sit tall, and let your eyes go soft. You can close them if you like.",hold:10},
-        {cue:"Drop your right ear to your right shoulder.",sub:"Let your neck stretch, slow.",say:"Gently drop your right ear toward your right shoulder. Let your neck stretch, slow and easy.",hold:10},
-        {cue:"Roll your chin down and to the other side.",sub:"Like honey.",say:"Roll your chin down through the middle and over to the other side. Slow, like honey.",hold:10},
-        {cue:"Come back to the middle.",sub:"",say:"And come back to the middle.",hold:8},
-        {cue:"Breathe in for four.",sub:"One... two... three... four.",say:"Now breathe in for four. One, two, three, four.",hold:7},
-        {cue:"Out for eight. Twice as long.",sub:"The long way out is the calm way.",say:"And out for eight, twice as long. One, two, three, four, five, six, seven, eight.",hold:11},
-        {cue:"In for four.",sub:"",say:"In for four.",hold:7},
-        {cue:"Out for eight.",sub:"Jaw soft. Hands soft.",say:"Out for eight. Let your jaw go soft. Let your hands go soft.",hold:11},
-        {cue:"In for four.",sub:"",say:"One more. In for four.",hold:7},
-        {cue:"Out for eight. Everything settles.",sub:"",say:"Out for eight. Everything settles.",hold:11},
-        {cue:"Now say inside: \"I am ready.\"",sub:"Not perfect. Ready.",say:"Now say quietly inside: I am ready. You don't have to be perfect. Just ready.",hold:11},
-        {cue:"\"I know more than I think I do.\"",sub:"",say:"I know more than I think I do.",hold:9},
-        {cue:"\"I can only do one thing at a time.\"",sub:"And that is enough.",say:"I can only do one thing at a time. And that is enough.",hold:10},
-        {cue:"One last slow breath.",sub:"Land soft.",say:"One last slow breath in... and all the way out. Land soft.",hold:11},
-        {cue:"Eyes open. Steady and ready.",sub:"You've got this.",say:"Eyes open. Steady and ready. You've got this.",hold:8}
+        {cue:"Sit tall. Let your eyes go soft.",sub:"Or close them if you like.",say:"Sit tall, and let your eyes go soft. You can close them if you like.",hold:10,pose:"soft"},
+        {cue:"Drop your right ear to your right shoulder.",sub:"Let your neck stretch, slow.",say:"Gently drop your right ear toward your right shoulder. Let your neck stretch, slow and easy.",hold:10,pose:"earR"},
+        {cue:"Roll your chin down and to the other side.",sub:"Like honey.",say:"Roll your chin down through the middle and over to the other side. Slow, like honey.",hold:10,pose:"earL"},
+        {cue:"Come back to the middle.",sub:"",say:"And come back to the middle.",hold:8,pose:"center"},
+        {cue:"Breathe in for four.",sub:"One... two... three... four.",say:"Now breathe in for four. One, two, three, four.",hold:7,pose:"inhale"},
+        {cue:"Out for eight. Twice as long.",sub:"The long way out is the calm way.",say:"And out for eight, twice as long. One, two, three, four, five, six, seven, eight.",hold:11,pose:"exhale"},
+        {cue:"In for four.",sub:"",say:"In for four.",hold:7,pose:"inhale"},
+        {cue:"Out for eight.",sub:"Jaw soft. Hands soft.",say:"Out for eight. Let your jaw go soft. Let your hands go soft.",hold:11,pose:"exhale"},
+        {cue:"In for four.",sub:"",say:"One more. In for four.",hold:7,pose:"inhale"},
+        {cue:"Out for eight. Everything settles.",sub:"",say:"Out for eight. Everything settles.",hold:11,pose:"exhale"},
+        {cue:"Now say inside: \"I am ready.\"",sub:"Not perfect. Ready.",say:"Now say quietly inside: I am ready. You don't have to be perfect. Just ready.",hold:11,pose:"soft"},
+        {cue:"\"I know more than I think I do.\"",sub:"",say:"I know more than I think I do.",hold:9,pose:"steady"},
+        {cue:"\"I can only do one thing at a time.\"",sub:"And that is enough.",say:"I can only do one thing at a time. And that is enough.",hold:10,pose:"soft"},
+        {cue:"One last slow breath.",sub:"Land soft.",say:"One last slow breath in... and all the way out. Land soft.",hold:11,pose:"breathe"},
+        {cue:"Eyes open. Steady and ready.",sub:"You've got this.",say:"Eyes open. Steady and ready. You've got this.",hold:8,pose:"tall"}
       ],
       close:"That's Wind Down. Calm is not something you find. It's something you make. And you just made it." }
   ];
