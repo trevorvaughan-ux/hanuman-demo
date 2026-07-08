@@ -119,6 +119,8 @@
   #deskSvg[data-pose="earR"] #dmHead{transform:rotate(15deg);transition-duration:2.4s;}
   #deskSvg[data-pose="earL"] #dmHead{transform:rotate(-15deg);transition-duration:2.4s;}
   #deskSvg[data-pose="chinDown"] #dmHead{transform:translateY(9px) rotate(0deg);transition-duration:2.4s;}
+  #deskSvg[data-pose="chinSweepL"] #dmHead{animation:chinSweepL 6s ease-in-out 1 forwards;}
+  @keyframes chinSweepL{0%{transform:rotate(15deg);}45%{transform:rotate(6deg) translateY(8px);}60%{transform:rotate(0deg) translateY(9px);}80%{transform:rotate(-8deg) translateY(5px);}100%{transform:rotate(-15deg);}}
   #deskSvg[data-pose="circle"] #dmHead{animation:neckCircle 11s ease-in-out 1 forwards;}
   @keyframes neckCircle{0%{transform:rotate(15deg);}25%{transform:rotate(6deg) translateY(8px);}45%{transform:rotate(-15deg);}65%{transform:rotate(-6deg) translateY(8px);}90%{transform:rotate(15deg);}100%{transform:rotate(0deg);}}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
@@ -602,7 +604,7 @@
       lines:[
         {cue:"Sit tall. Let your eyes go soft.",sub:"Or close them if you like.",say:"Sit tall, and let your eyes go soft. You can close them if you like.",hold:10,pose:"soft"},
         {cue:"Drop your right ear to your right shoulder.",sub:"Let your neck stretch, slow.",say:"Gently drop your right ear toward your right shoulder. Let your neck stretch, slow and easy.",hold:10,pose:"earR"},
-        {cue:"Roll your chin down and to the other side.",sub:"Like honey.",say:"Roll your chin down through the middle and over to the other side. Slow, like honey.",hold:10,pose:"earL"},
+        {cue:"Roll your chin down and to the other side.",sub:"Like honey.",say:"Roll your chin down through the middle and over to the other side. Slow, like honey.",hold:10,pose:"chinSweepL"},
         {cue:"Come back to the middle.",sub:"",say:"And come back to the middle.",hold:8,pose:"center"},
         {cue:"Breathe in for four.",sub:"One... two... three... four.",say:"Now breathe in for four. One, two, three, four.",hold:7,pose:"inhale"},
         {cue:"Out for eight. Twice as long.",sub:"The long way out is the calm way.",say:"And out for eight, twice as long. One, two, three, four, five, six, seven, eight.",hold:11,pose:"exhale"},
@@ -648,14 +650,27 @@
     raf=requestAnimationFrame(loop);
   }
   function finish(){running=false;cancelAnimationFrame(raf);setBall(0);timerEl.textContent="00:00";
+    hsLog("complete",CURRENT,(Date.now()-hsT0)/1000);
     cue.textContent="Beautiful. The room is calm and ready.";
     sub.textContent="Say it with me: I am happy. I am safe. I am brave. I am strong. I am love.";
     say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");
     againBtn.classList.remove("hide");}
 
+  // ---- anonymous usage metrics: write-only insert, silent failure, no personal data ----
+  var HS_METRICS={url:"https://pebhikfbpgntedvbxqph.supabase.co/rest/v1/hanuman_events",key:"sb_publishable_7wnGQX91msxCwzq7QRqF1w_MWfgWCWT"};
+  var hsClientId=(function(){try{var k="hs_cid",v=localStorage.getItem(k);if(!v){v="c"+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem(k,v);}return v;}catch(e){return "c"+Math.random().toString(36).slice(2,10);}})();
+  var hsT0=0;
+  function hsLog(ev,item,dur){
+    try{
+      var body=JSON.stringify({event:ev,tool_id:(item&&item.id)||null,tool_name:(item&&item.name)||"unknown",kind:(item&&item.kind)||"breath",category:(item&&item.tag)||null,duration_seconds:(dur!=null)?Math.round(dur):null,client_id:hsClientId});
+      fetch(HS_METRICS.url,{method:"POST",keepalive:true,headers:{"apikey":HS_METRICS.key,"Authorization":"Bearer "+HS_METRICS.key,"Content-Type":"application/json","Prefer":"return=minimal"},body:body}).catch(function(){});
+    }catch(e){}
+  }
+
   function run(item){
     stopMed(); deskOn(false);
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
+    hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent=""; setBall(0);
@@ -692,6 +707,7 @@
   }
   function finishMed(item){
     medActive=false; clearMedTimers(); if(medRipple){clearInterval(medRipple);medRipple=null;}
+    hsLog("complete",item,(Date.now()-hsT0)/1000);
     if(item.demo==="desk")setDeskPose("steady");
     timerEl.textContent="00:00";
     cue.textContent="Beautiful work."; sub.textContent="The room is calm and ready.";
@@ -701,6 +717,7 @@
   function runMeditation(item){
     running=false; cancelAnimationFrame(raf); stopMed();
     CURRENT=item; CURRENTMED=item; medActive=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
+    hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent="";
     if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}

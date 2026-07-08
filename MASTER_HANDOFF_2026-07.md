@@ -53,9 +53,9 @@ Visual check: extract `#deskSvg`, inject the `#deskSvg` CSS rules as an inline `
 
 ## OPEN ITEMS (in priority order)
 1. LIVE-EYES VERIFICATION: commits 2acb625 + 02dc83e verified statically (syntax, pose coverage, PNG renders) but transition FEEL not yet seen in a browser by a human. Trevor to confirm from Ireland or on return.
-2. Neck-roll physics in Wind Down: line "roll chin down and to the other side" transitions earR→earL through upright (chin passes top, not bottom). Acceptable v1; ideal fix is a dedicated half-circle keyframe (chin sweeps DOWN through chinDown to earL). Pattern exists: see `neckCircle` keyframes.
+2. Neck-roll physics: FIXED July 8 via `chinSweepL` keyframe (chin sweeps down through center-low to the left ear). Wind Down line wired to it.
 3. SEL layer expansion PreK3–6th (LOCKED strategic decision, driven by Valerie Roper / Center for Supportive Schools — SEL is central to program evaluation). Current 4 SEL tools are the seed. Expansion = more SEL cards using the existing line schema; no engine work required. Ideal task for any capable model.
-4. Anonymous metrics: Supabase `hanuman_events` table + `hanuman-log` edge function exist and are verified. Whiteboard is NOT yet wired to fire events. Wiring = one fetch() call per card start/complete. Check repo history/grep before assuming.
+4. Anonymous metrics: WIRED as of July 8 (see hsLog module in whiteboard.html). Direct PostgREST insert to hanuman_events with modern publishable key; RLS INSERT-only policy `anon_insert_events` (write-only, length-capped) verified by anon-role SQL simulation. Events: start + complete with duration_seconds and random client_id. The hanuman-log edge function is now LEGACY, not used by the app. Live-browser confirmation: after any human opens the live page and runs a card, `SELECT * FROM hanuman_events ORDER BY created_at DESC LIMIT 5` should show rows. VAULT NOTE: SUPABASE_ANON_KEY was found expired+truncated and refreshed 2026-07-08; SUPABASE_SERVICE_ROLE_KEY entry still looks corrupted - refresh before use.
 5. Voice: narration is text-only (`say:` fields exist for future TTS). Do not add TTS without Trevor's go — audio autoplay in classrooms is a product decision.
 
 ## TREVOR'S NON-NEGOTIABLES (violate these and lose trust permanently)
