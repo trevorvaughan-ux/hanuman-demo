@@ -1727,13 +1727,24 @@
   }
 
   function addCard(f){
-    var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
+    var c=document.createElement("div");c.setAttribute("data-goid",f.id);c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
   // EMBED: homepage taste = Balloon Breath (standing) + Name It to Tame It (desk)
   FLOWS.filter(function(f){return f.id==="balloon";}).forEach(addCard);
+  // AUTO-LAUNCH a specific tool via ?go=balloon | ?go=nameit (for hero direct-press)
+  (function(){
+    try{
+      var go=(location.search.match(/[?&]go=(\w+)/)||[])[1];
+      if(go){ setTimeout(function(){
+        var cards=[].slice.call(document.querySelectorAll('.card'));
+        var t=cards.filter(function(c){return c.getAttribute('data-goid')===go;})[0];
+        if(t)t.click();
+      }, 300); }
+    }catch(e){}
+  })();
   SEL.filter(function(f){return f.id==="nameit";}).forEach(addCard);
   setBall(0);
 })();
