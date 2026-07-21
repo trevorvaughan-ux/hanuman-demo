@@ -634,6 +634,56 @@
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
+  // ── HS SPANISH MODE (?lang=es) | added 2026-07-21 | additive, EN stays default ──
+  var HS_ES=/[?&]lang=es\b/.test(location.search);
+  if(HS_ES){(function(){
+    document.documentElement.setAttribute("lang","es");
+    var PREF_ES=["Google español de Estados Unidos","Google español","Paulina","Mónica","Monica","Microsoft Sabina Online","Microsoft Raul Online","Juan","Diego"];
+    pickVoice=function(){if(!("speechSynthesis"in window))return;var vs=speechSynthesis.getVoices()||[];if(!vs.length)return;
+      for(var i=0;i<PREF_ES.length;i++){var h=vs.find(function(v){return v.name===PREF_ES[i];});if(h){chosenVoice=h;return;}}
+      chosenVoice=vs.find(function(v){return /^es/i.test(v.lang);})||chosenVoice;};
+    pickVoice();
+    if("speechSynthesis"in window){speechSynthesis.onvoiceschanged=pickVoice;}
+    say=function(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
+      try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.lang="es-US";u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}};
+    voiceToggle.textContent="\ud83d\udd0a con voz";
+    voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"\ud83d\udd0a con voz":"\ud83d\udd07 sin voz";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
+    var mt=document.getElementById("menuTitle");if(mt)mt.textContent="Prueba Hanuman ahora mismo";
+    var ms=document.getElementById("menuSub");if(ms)ms.textContent="Gratis. Sin registro. Presiona play y respira con la clase por dos minutos.";
+    if(backBtn)backBtn.textContent="‹ Elige otro";
+    var b=FLOWS.filter(function(f){return f.id==="balloon";})[0];
+    if(b){
+      b.name="Respiración de Globo";b.tag="Calma";b.audience="Todas las edades";
+      b.blurb="La pancita se llena como un globo y se vacía despacio. El reset de todos los días.";
+      b.intro="Hola, soy Hanuman. ¿Ves esa bolita? Es tu respiración. Respira y crece. Suelta el aire y se hace pequeña. Vamos a hacerlo juntos.";
+      b.inhale=[["Respira. Llena la bolita como un globo.","Mira cómo crece y brilla."],
+                ["Una respiración grande y lenta. Haz crecer la bolita.","Mis ojos la siguen contigo."],
+                ["Entra el aire por la nariz. Llénate por completo.","Mira qué grande y brillante se pone."]];
+      b.exhale=[["Suéltalo despacio. El globo se hace pequeño.","Salir despacio es lo que te calma."],
+                ["Una salida larga. Baja la bolita.","Deja que tus hombros bajen con ella."],
+                ["Suelta el aire suave. Mira cómo se encoge.","Muy bien. Lo estás logrando."]];
+      b.holdCue=["Sostenlo suavecito arriba.",""];
+    }
+    var n=SEL.filter(function(f){return f.id==="nameit";})[0];
+    if(n){
+      n.name="Nómbralo para Domarlo";n.tag="SEL · Emociones · 2 min";
+      n.blurb="Encuentra el sentimiento, dale un nombre y mira cómo se hace pequeño. Los sentimientos grandes se encogen cuando los nombramos.";
+      n.intro="Hola, soy Hanuman. A veces un sentimiento se pone grande y ruidoso por dentro. Aquí va un secreto: cuando le das un nombre a un sentimiento, se hace más pequeño. Vamos a intentarlo juntos.";
+      n.lines=[
+        {cue:"Siéntate derechito. Una respiración lenta.",sub:"",say:"Siéntate derechito, y toma una respiración lenta... y suelta.",hold:9},
+        {cue:"Mira adentro. ¿Qué hay?",sub:"Como mirar el clima.",say:"Ahora mira adentro de ti, como si miraras el clima. ¿Está soleado? ¿Hay tormenta? ¿Nubes? ¿Viento?",hold:11},
+        {cue:"Encuentra dónde vive en tu cuerpo.",sub:"¿Pancita? ¿Pecho? ¿Hombros? ¿Cabeza?",say:"Encuentra dónde vive ese sentimiento en tu cuerpo. ¿Está en tu pancita? ¿En tu pecho? ¿En tus hombros? ¿En tu cabeza?",hold:11},
+        {cue:"Ahora dale un nombre.",sub:"Enojo. Tristeza. Preocupación. Emoción. Cansancio. Alegría.",say:"Ahora dale un nombre, bajito en tu cabeza. Quizás es enojo. O tristeza. O preocupación. O emoción. O cansancio. O alegría. Cualquier nombre está bien.",hold:12},
+        {cue:"Salúdalo.",sub:"\"Te veo, preocupación.\"",say:"Salúdalo, así: Te veo, preocupación. O, te veo, enojo. No estás en problemas. Los sentimientos son visitas.",hold:11},
+        {cue:"Respira. Hazle un espacio.",sub:"",say:"Respira, y hazle un poco de espacio a ese sentimiento.",hold:8},
+        {cue:"Suelta el aire. Deja que se haga pequeño.",sub:"Los sentimientos con nombre se encogen.",say:"Suelta el aire, y deja que se haga un poco más pequeño. Ese es el truco. Los sentimientos con nombre se encogen.",hold:10},
+        {cue:"Tú eres el cielo. Los sentimientos son el clima.",sub:"El clima siempre pasa.",say:"Recuerda: tú eres el cielo, y los sentimientos son solo el clima. Y el clima siempre, siempre pasa.",hold:11},
+        {cue:"Una respiración más. Lo lograste.",sub:"",say:"Una respiración más, lenta. Acabas de hacer algo que algunos adultos todavía están aprendiendo.",hold:9}
+      ];
+      n.close="Eso es Nómbralo para Domarlo. Cuando un sentimiento se ponga grande, encuéntralo, nómbralo, y mira cómo se encoge.";
+    }
+  })();}
+
   // EMBED: homepage taste = Balloon Breath (standing) + Name It to Tame It (desk)
   FLOWS.filter(function(f){return f.id==="balloon";}).forEach(addCard);
   // AUTO-LAUNCH a specific tool via ?go=balloon | ?go=nameit (for hero direct-press)
