@@ -466,7 +466,30 @@
   // ===== MEDITATIONS: guided narration, not breath-paced. Warm glow spreads in rings. =====
   // Each line: {cue (on board), sub, say (spoken), hold (seconds to rest after it).}
   // Trevor leads the words. Add a meditation = drop a new block here, same as a breath.
-  var MEDITATIONS=[];
+  var MEDITATIONS=[
+{ id:"forestwalkrest", kind:"meditation", demo:"desk", name:"The Forest Walk", tag:"Guided Meditation · 4 min", audience:"2nd-6th", src:"HudsonSeed",
+      blurb:"A longer, deeper rest. Settle in, scan your body, and walk a quiet forest path in your mind.",
+      intro:"Hi, I'm Hanuman. This one is longer and deeper than our other resets, a real chance for your whole body and mind to slow all the way down. Get as comfortable as you can right where you are.",
+      lines:[
+        {cue:"Settle into your seat. Feet flat on the floor.",sub:"Hands resting on your desk or your lap.",say:"Settle into your seat. Feet flat on the floor, hands resting easy on your desk or your lap.",hold:12},
+        {cue:"Let your eyes close, or just look down soft.",sub:"There's nothing to do right now but rest.",say:"Let your eyes close if that feels okay, or just look down soft. There's nothing to do right now but rest.",hold:12},
+        {cue:"Think one calm thought. Something like: I am safe, I am calm.",sub:"Say it quietly to yourself, three times.",say:"Think one calm thought, something like: I am safe, I am calm. Say it quietly to yourself, three times.",hold:14},
+        {cue:"Let your shoulders drop away from your ears.",sub:"Feel them get heavy and loose.",say:"Let your shoulders drop away from your ears. Feel them get heavy and loose.",hold:12},
+        {cue:"Let your arms feel heavy, all the way to your hands.",sub:"Fingers soft, not curled tight.",say:"Let your arms feel heavy, all the way down to your hands. Fingers soft, not curled tight.",hold:12},
+        {cue:"Let your legs feel heavy too, all the way to your feet.",sub:"Just resting, nothing to hold up.",say:"Let your legs feel heavy too, all the way down to your feet. Just resting, nothing to hold up.",hold:12},
+        {cue:"Notice your breath, without changing it.",sub:"In through your nose, out easy.",say:"Notice your breath, without trying to change it. In through your nose, out easy.",hold:11},
+        {cue:"Now imagine a path through a quiet forest.",sub:"Soft ground under your feet, tall trees all around.",say:"Now imagine you're walking a path through a quiet, friendly forest. The ground is soft under your feet, and tall trees stretch up all around you.",hold:14},
+        {cue:"Sunlight comes down through the leaves in little patches.",sub:"Warm on your skin where it touches.",say:"Sunlight comes down through the leaves in little warm patches, touching your skin as you walk.",hold:12},
+        {cue:"You hear a stream nearby, soft and steady.",sub:"You stop and listen for a moment.",say:"You hear a stream nearby, soft and steady, and you stop for a moment just to listen.",hold:12},
+        {cue:"You find a big old tree and lean your back against it.",sub:"It feels strong and steady, holding you up.",say:"You find a big old tree and lean your back right against it. It feels strong and steady, holding you up completely.",hold:13},
+        {cue:"A gentle breeze moves through the leaves above you.",sub:"You have nowhere else to be right now.",say:"A gentle breeze moves through the leaves above you, and you have nowhere else to be right now. Just this quiet place.",hold:13},
+        {cue:"Stay here for a few slow breaths.",sub:"Notice how calm this quiet place feels.",say:"Stay here for a few slow breaths, and notice how calm this quiet place feels inside you.",hold:12},
+        {cue:"Bring your calm thought back. Think it three times.",sub:"I am safe, I am calm.",say:"Bring your calm thought back now, and think it three more times: I am safe, I am calm.",hold:12},
+        {cue:"Slowly start to wiggle your fingers and your toes.",sub:"Let your body know it's time to come back.",say:"Slowly start to wiggle your fingers and your toes, letting your body know it's almost time to come back.",hold:12},
+        {cue:"When you're ready, let your eyes open soft.",sub:"Notice the room around you again.",say:"When you're ready, let your eyes open soft, and notice the room around you again.",hold:11}
+      ],
+      close:"That's The Forest Walk. Your whole body just got a real rest, and that quiet forest is always there in your mind whenever you need it again." }
+];
 
   // ===== CHAIR YOGA: seated poses, narrated line-by-line like meditations. =====
   // No mats, no floor, no standing. Every pose works at a desk. Add a pose = drop a block here.
