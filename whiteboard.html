@@ -28,7 +28,7 @@
   .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
   .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
   .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
-  .card .src{font-size:11px;color:#9bb;margin-top:10px;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
+  .card .src{font-size:11px;color:#9bb;margin-top:10px;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 28%;max-width:320px;}
@@ -271,7 +271,6 @@
   </div>
 </div>
 
-<div id="hanumanModal"><button class="closeModal" aria-label="Close">×</button><video id="hanumanVideo" controls playsinline></video></div>
 <script>
 (function(){
   // ===== THE CEMENT: breath registry. Each breath = one block. =====
@@ -280,7 +279,7 @@
   // The 10 video breaths get added here one at a time.
   var FLOWS = [
 {
-      id:"balloon", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3", video:"assets/video/hanuman-balloon-breath-loop.mp4",
+      id:"balloon", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3",
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hey, I'm Hanuman. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
@@ -1713,17 +1712,10 @@
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
-  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo");
-function playHanuman(src){ hanumanVideo.src=src; hanumanModal.className="show"; hanumanVideo.currentTime=0; hanumanVideo.play(); }
-function closeHanumanModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); }
-if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHanumanModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHanumanModal; }
-document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHanumanModal(); });
   function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hanuman</button>":"")+"";
+    c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>";
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
-    
-    if(f.video){ var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); playHanuman(f.video); }; } }
     cards.appendChild(c);
   }
   FLOWS.forEach(addCard);
