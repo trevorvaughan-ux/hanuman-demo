@@ -104,7 +104,7 @@
   #deskSvg[data-pose="wrapup"] #dmEagle{opacity:1;transform:translateY(-10px);}
   #deskSvg[data-pose="wrapup"] #dmUpper{transform:translateY(-5px);}
   #deskSvg[data-pose="wrap2"] .armL,#deskSvg[data-pose="wrap2"] .armR{opacity:0;}
-  #deskSvg[data-pose="wrap2"] #dmEagle2{opacity:1;}
+  .hide{display:none !important;} .card.vid{border-left-color:#c9704f;} .card.vid .playIcon{display:inline-block;margin-top:8px;color:var(--gold);font-weight:700;font-size:13px;} #videoModal{position:fixed;inset:0;background:rgba(20,20,20,.82);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;} #videoModal .vmInner{position:relative;max-width:92vw;max-height:88vh;} #videoModal video{max-width:92vw;max-height:88vh;border-radius:14px;background:#000;box-shadow:0 20px 60px rgba(0,0,0,.5);} #videoModalClose{position:absolute;top:-42px;right:0;background:none;border:none;color:#fff;font-size:34px;line-height:1;cursor:pointer;}#deskSvg[data-pose="wrap2"] #dmEagle2{opacity:1;}
   #deskSvg[data-pose="wrapup2"] .armL,#deskSvg[data-pose="wrapup2"] .armR{opacity:0;}
   #deskSvg[data-pose="wrapup2"] #dmEagle2{opacity:1;transform:translateY(-10px);}
   #deskSvg[data-pose="wrapup2"] #dmUpper{transform:translateY(-5px);}
@@ -273,7 +273,7 @@
   </div>
 </div>
 
-<script>
+<div id="videoModal" class="hide"><div class="vmInner"><button id="videoModalClose" aria-label="Close">X</button><video id="videoModalPlayer" playsinline controls></video></div></div><script>
 (function(){
   // ===== THE CEMENT: breath registry. Each breath = one block. =====
   // pattern seconds {in,hold,out,rest}; duration total seconds.
@@ -634,7 +634,7 @@
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
-  // ── HS SPANISH MODE (?lang=es) | added 2026-07-21 | additive, EN stays default ──
+vvar VIDEOCARDS=[{id:"balloon",tag:"Calm down",name:"Balloon Breath",audience:"All ages",src:"HudsonSeed",blurb:"Belly fills like a balloon, then empties slow. Watch Hanuman lead it.",video:"assets/video/hanuman-balloon-breath-v2.mp4"},{id:"nameit",tag:"Chair yoga - Balance",name:"Triangle Pose",audience:"All ages",src:"HudsonSeed",blurb:"Reach, tilt, and balance right at the desk. A gentle stretch for focus.",video:"assets/video/hanuman-triangle-pose-classroom.mp4"}]; var videoModal=document.getElementById("videoModal"),videoModalPlayer=document.getElementById("videoModalPlayer"),videoModalClose=document.getElementById("videoModalClose"); function openVideoModal(src){videoModalPlayer.src=src;videoModal.classList.remove("hide");videoModalPlayer.play().catch(function(){});} function closeVideoModal(){videoModal.classList.add("hide");videoModalPlayer.pause();videoModalPlayer.removeAttribute("src");videoModalPlayer.load();} if(videoModalClose)videoModalClose.onclick=closeVideoModal; if(videoModal)videoModal.onclick=function(e){if(e.target===videoModal)closeVideoModal();}; function addVideoCard(v){var c=document.createElement("div");c.setAttribute("data-goid",v.id);c.className="card vid";c.innerHTML="<span class='tag'>"+v.tag+"</span><h3>"+v.name+"</h3><p>"+v.blurb+"</p><div class='src'>"+v.audience+" - "+v.src+"</div><div class='playIcon'>Watch Hanuman</div>";c.onclick=function(){openVideoModal(v.video);};cards.appendChild(c);} // added 2026-07-21 | additive, EN stays default ──
   var HS_ES=/[?&]lang=es\b/.test(location.search);
   if(HS_ES){(function(){
     document.documentElement.setAttribute("lang","es");
@@ -685,7 +685,7 @@
   })();}
 
   // EMBED: homepage taste = Balloon Breath (standing) + Name It to Tame It (desk)
-  FLOWS.filter(function(f){return f.id==="balloon";}).forEach(addCard);
+  VIDEOCARDS.forEach(addVideoCard);
   // AUTO-LAUNCH a specific tool via ?go=balloon | ?go=nameit (for hero direct-press)
   (function(){
     try{
@@ -697,7 +697,7 @@
       }, 300); }
     }catch(e){}
   })();
-  SEL.filter(function(f){return f.id==="nameit";}).forEach(addCard);
+  
   setBall(0);
 })();
 </script>
