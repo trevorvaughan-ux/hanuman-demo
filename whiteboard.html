@@ -28,7 +28,7 @@
   .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
   .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
   .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
-  .card .src{font-size:11px;color:#9bb;margin-top:10px;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
+  .card .src{font-size:11px;color:#9bb;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#e6efef;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#e6efef;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 28%;max-width:320px;}
@@ -171,6 +171,7 @@
 
   <div id="player">
     <div id="scene">
+      <img id="emoBadge" alt="">
       <div id="monkeyWrap">
         <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hanuman the monkey">
           <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#136b6b" stroke-width="14" stroke-linecap="round"/>
@@ -279,7 +280,7 @@
   // The 10 video breaths get added here one at a time.
   var FLOWS = [
 {
-      id:"balloon", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3",
+      id:"balloon", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3",
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hey, I'm Hanuman. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
@@ -292,7 +293,7 @@
       holdCue:["Hold it gently at the top.",""]
     },
 {
-      id:"longout", name:"Long Breath Out", tag:"Calm down · 2 min", audience:"All ages", src:"Module 5",
+      id:"longout", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Long Breath Out", tag:"Calm down · 2 min", audience:"All ages", src:"Module 5",
       blurb:"The breath out is twice as long as the breath in. Deepest calm.",
       pattern:{in:4,hold:0,out:8,rest:1}, duration:120,
       intro:"Let's slow everything down. The secret is making the breath out longer than the breath in. Watch the ball with me.",
@@ -302,7 +303,7 @@
               ["Let the air out slowly.","Longer out means calmer you."]]
     },
 {
-      id:"box", name:"Box Breath", tag:"Focus · 2 min", audience:"Older kids and teens", src:"Module 5",
+      id:"box", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Box Breath", tag:"Focus · 2 min", audience:"Older kids and teens", src:"Module 5",
       blurb:"Four counts in, hold, out, hold. Steady and even. Good before a test.",
       pattern:{in:4,hold:4,out:4,rest:4}, duration:120,
       intro:"This one is a box. Four counts on each side. In, hold, out, hold. Steady and even. Follow the ball.",
@@ -312,7 +313,7 @@
       restCue:["Hold empty. Two, three, four.","Calm and still at the bottom."]
     },
 {
-      id:"beebreath", name:"Bee Breath", tag:"Calm down · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+      id:"beebreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Bee Breath", tag:"Calm down · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Hum your exhale like a buzzing bee. The vibration calms a busy brain fast.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hi, I'm Hanuman. This one is Bee Breath. We're going to hum on the way out, like a friendly bee. Watch the ball with me.",
@@ -323,7 +324,7 @@
       holdCue:["Hold for just a second.",""]
     },
 {
-      id:"lionsbreath", name:"Lion's Breath", tag:"Release · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+      id:"lionsbreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Lion's Breath", tag:"Release · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Big breath in, then roar it out with your tongue out. Great for shaking off frustration.",
       pattern:{in:4,hold:2,out:3,rest:2}, duration:120,
       intro:"Hi, I'm Hanuman. Lion's Breath is loud and fun. Breathe in big, then roar it all out. Ready to be brave and loud?",
@@ -334,7 +335,7 @@
       holdCue:["Hold it for a second, lion.","Get ready to roar."]
     },
 {
-      id:"bunnybreaths", name:"Bunny Breaths", tag:"Focus · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
+      id:"bunnybreaths", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Bunny Breaths", tag:"Focus · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Three quick sniffs in like a curious bunny, then one long breath out.",
       pattern:{in:3,hold:0,out:4,rest:1}, duration:120,
       intro:"Hi friends, I'm Hanuman. Bunny Breaths are quick and wiggly, like a bunny's nose. Three quick sniffs in, then one long breath out. Let's try it.",
@@ -344,7 +345,7 @@
               ["Long breath out. Let your bunny nose rest.",""]]
     },
 {
-      id:"snakebreath", name:"Snake Breath", tag:"Calm down · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+      id:"snakebreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Snake Breath", tag:"Calm down · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A long, slow hiss on the way out. Great for cooling down big energy.",
       pattern:{in:3,hold:1,out:8,rest:1}, duration:120,
       intro:"Hi, I'm Hanuman. This one is Snake Breath. We hiss it out long and slow, like a calm, sleepy snake. Follow the ball with me.",
@@ -355,7 +356,7 @@
       holdCue:["Hold, just for a moment.",""]
     },
 {
-      id:"starbreath", name:"Star Breath", tag:"Focus · 2 min", audience:"1st-6th", src:"HudsonSeed",
+      id:"starbreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Star Breath", tag:"Focus · 2 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Trace a star shape in the air with your finger while you breathe, one point per count.",
       pattern:{in:5,hold:0,out:5,rest:0}, duration:120,
       intro:"Hi, I'm Hanuman. Star Breath uses your finger to trace a star while you breathe. Five points, five counts. Let's draw one together.",
@@ -365,7 +366,7 @@
               ["Breathe out while you finish your star.","Nice and even, just like the in-breath."]]
     },
 {
-      id:"starfishbreath", name:"Starfish Breath", tag:"Calm down · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
+      id:"starfishbreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Starfish Breath", tag:"Calm down · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Trace your fingers like starfish arms, breathing in going up, out going down.",
       pattern:{in:4,hold:0,out:4,rest:1}, duration:120,
       intro:"Hi friends, I'm Hanuman. Hold up one hand, fingers spread wide like a starfish. We're going to trace each finger while we breathe.",
@@ -375,7 +376,7 @@
               ["Breathe out, tracing down the finger.","Nice and slow, valley side."]]
     },
 {
-      id:"candlebreath", name:"Candle Breath", tag:"Calm down · 2 min", audience:"PreK3-3rd", src:"HudsonSeed",
+      id:"candlebreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Candle Breath", tag:"Calm down · 2 min", audience:"PreK3-3rd", src:"HudsonSeed",
       blurb:"Smell an imaginary flower in, blow out a candle slow enough not to blow it over.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hi, I'm Hanuman. Imagine a flower in one hand and a candle in the other. Smell the flower in, blow the candle out gently. Let's try it.",
@@ -386,7 +387,7 @@
       holdCue:["Hold the smell for a second.",""]
     },
 {
-      id:"volcanobreath", name:"Volcano Breath", tag:"Release · 2 min", audience:"1st-6th", src:"HudsonSeed",
+      id:"volcanobreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Volcano Breath", tag:"Release · 2 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Arms rise like a volcano filling with energy, then release it all in one big breath out.",
       pattern:{in:4,hold:2,out:4,rest:1}, duration:120,
       intro:"Hi, I'm Hanuman. Volcano Breath helps big energy have somewhere to go. Arms up as you fill, arms down as you release.",
@@ -397,7 +398,7 @@
       holdCue:["Hold at the top, arms high.","Your volcano is full."]
     },
 {
-      id:"oceanbreath", name:"Ocean Breath", tag:"Calm down · 2 min", audience:"3rd-6th", src:"HudsonSeed",
+      id:"oceanbreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Ocean Breath", tag:"Calm down · 2 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"A gentle wave sound on both the in-breath and out-breath, like ocean waves rolling in and out.",
       pattern:{in:5,hold:0,out:5,rest:0}, duration:120,
       intro:"Hi, I'm Hanuman. Ocean Breath sounds like waves, on the way in and the way out. Try breathing through a slightly open mouth, like fogging up a mirror.",
@@ -407,7 +408,7 @@
               ["Out breath, same gentle wave.","In and out, just like real waves."]]
     },
 {
-      id:"hotcocoabreath", name:"Hot Cocoa Breath", tag:"Calm down · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
+      id:"hotcocoabreath", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Hot Cocoa Breath", tag:"Calm down · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Smell the hot cocoa in slow, then cool it down with a long breath out.",
       pattern:{in:4,hold:2,out:6,rest:1}, duration:120,
       intro:"Hi friends, I'm Hanuman. Imagine a warm mug of hot cocoa in your hands. Smell it in slow, then cool it down with your breath out.",
@@ -470,7 +471,7 @@
   // Each line: {cue (on board), sub, say (spoken), hold (seconds to rest after it).}
   // Trevor leads the words. Add a meditation = drop a new block here, same as a breath.
   var MEDITATIONS=[
-{ id:"forestwalkrest", kind:"meditation", demo:"desk", name:"The Forest Walk", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"forestwalkrest", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"The Forest Walk", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"A longer, deeper rest. Settle in, scan your body, and walk a quiet forest path in your mind.",
       intro:"Hi, I'm Hanuman. This one is longer and deeper than our other resets, a real chance for your whole body and mind to slow all the way down. Get as comfortable as you can right where you are.",
       lines:[
@@ -492,7 +493,7 @@
         {cue:"When you're ready, let your eyes open soft.",sub:"Notice the room around you again.",say:"When you're ready, let your eyes open soft, and notice the room around you again.",hold:10}
       ],
       close:"That's The Forest Walk. Your whole body just got a real rest, and that quiet forest is always there in your mind whenever you need it again." },
-{ id:"bodyscanmed", kind:"meditation", demo:"desk", name:"Body Scan", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed", video:"assets/video/hanuman-breathing-desk-loop.mp4",
+{ id:"bodyscanmed", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", kind:"meditation", demo:"desk", name:"Body Scan", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A slow, calm journey through your whole body, noticing and releasing tension one part at a time.",
       intro:"Hi, I'm Hanuman. We're going to travel through your whole body, slow and gentle, noticing how each part feels.",
       lines:[
@@ -510,7 +511,7 @@
         {cue:"Slowly wiggle your fingers and toes to finish.",sub:"",say:"Slowly start to wiggle your fingers and your toes to finish up.",hold:14}
       ],
       close:"That's the Body Scan. You just gave every part of your body a moment of attention and calm." },
-{ id:"kindwishesmed", kind:"meditation", demo:"desk", name:"Kind Wishes", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"kindwishesmed", img:"assets/img/sel/hanuman-kind.jpg", kind:"meditation", demo:"desk", name:"Kind Wishes", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Send kind wishes to yourself, someone you love, and everyone around you. A loving-kindness practice for kids.",
       intro:"Hi, I'm Hanuman. This one is about sending kindness out, starting with yourself. Get comfortable and let's begin.",
       lines:[
@@ -527,7 +528,7 @@
         {cue:"Slowly let your eyes open when you're ready.",sub:"",say:"Slowly let your eyes open when you're ready to come back.",hold:15}
       ],
       close:"That's Kind Wishes. Kindness sent out has a way of coming right back to you." },
-{ id:"rainbowmed", kind:"meditation", demo:"desk", name:"Rainbow Visualization", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"rainbowmed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Rainbow Visualization", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Breathe in each color of the rainbow, one at a time, for a calm and colorful journey.",
       intro:"Hi, I'm Hanuman. We're going to breathe in every color of the rainbow. Get comfortable and let's paint some calm.",
       lines:[
@@ -544,7 +545,7 @@
         {cue:"Slowly open your eyes when you're ready.",sub:"",say:"Slowly let your eyes open when you're ready.",hold:14}
       ],
       close:"That's the Rainbow Visualization. Every color has its own kind of calm, and you just breathed them all in." },
-{ id:"cloudwatchingmed", kind:"meditation", demo:"desk", name:"Cloud Watching", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"cloudwatchingmed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Cloud Watching", tag:"Guided Meditation · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Imagine lying back and watching clouds drift by. Thoughts float away, just like clouds.",
       intro:"Hi, I'm Hanuman. Let's imagine sitting tall and looking way up at a wide, calm sky, watching clouds go by. No rushing, just watching.",
       lines:[
@@ -559,7 +560,7 @@
         {cue:"Slowly come back, and let your eyes open.",sub:"",say:"Slowly come back now, and let your eyes open when you're ready.",hold:18}
       ],
       close:"That's Cloud Watching. Thoughts come and go, just like clouds, and you don't have to hold onto any of them." },
-{ id:"gardengrowingmed", kind:"meditation", demo:"desk", name:"Garden Growing", tag:"Guided Meditation · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"gardengrowingmed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Garden Growing", tag:"Guided Meditation · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Imagine planting a tiny seed and watching it grow into a strong, beautiful plant, just like you.",
       intro:"Hi, I'm Hanuman. Let's imagine growing something from a tiny seed, all the way into something strong and beautiful.",
       lines:[
@@ -575,7 +576,7 @@
         {cue:"Slowly let your eyes open when ready.",sub:"",say:"Slowly let your eyes open when you're ready to come back.",hold:15}
       ],
       close:"That's Garden Growing. Every strong plant started as one small seed, just like every strong kid started small too." },
-{ id:"peacefulplacemed", kind:"meditation", demo:"desk", name:"Peaceful Place", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"peacefulplacemed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Peaceful Place", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Build your own imaginary peaceful place, a spot that's just yours, calm and safe.",
       intro:"Hi, I'm Hanuman. We're going to build a peaceful place, just for you, somewhere calm you can visit anytime in your mind.",
       lines:[
@@ -590,7 +591,7 @@
         {cue:"Slowly let your eyes open when you're ready.",sub:"",say:"Slowly let your eyes open whenever you're ready to come back.",hold:19}
       ],
       close:"That's your Peaceful Place. It's always there, any time you need to visit it." },
-{ id:"superherostrengthmed", kind:"meditation", demo:"desk", name:"Superhero Strength", tag:"Guided Meditation · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"superherostrengthmed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Superhero Strength", tag:"Guided Meditation · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Discover the inner strength you already have, superhero-sized, whenever you need it.",
       intro:"Hi, I'm Hanuman. Every one of us has real inner strength, like a superhero power we already carry. Let's find yours.",
       lines:[
@@ -606,7 +607,7 @@
         {cue:"Slowly open your eyes, strength and all.",sub:"",say:"Slowly let your eyes open, bringing all that strength with you.",hold:17}
       ],
       close:"That's Superhero Strength. You didn't have to become anyone else, that strength was already yours." },
-{ id:"animalsafarimed", kind:"meditation", demo:"desk", name:"Animal Safari", tag:"Guided Meditation · 3 min", audience:"PreK3-3rd", src:"HudsonSeed",
+{ id:"animalsafarimed", img:"assets/img/sel/hanuman-calm.jpg", kind:"meditation", demo:"desk", name:"Animal Safari", tag:"Guided Meditation · 3 min", audience:"PreK3-3rd", src:"HudsonSeed",
       blurb:"A calm imaginary journey meeting gentle, peaceful animals along a quiet trail.",
       intro:"Hi friends, I'm Hanuman. Let's go on a quiet safari together, in our imaginations, meeting calm animals along the way.",
       lines:[
@@ -836,7 +837,7 @@
   // ===== SEL TOOLS: social-emotional learning, PreK3-6th. Narrated like meditations. =====
   // Locked 6.30.2026: SEL is an ADDITION to breaths/meditations, not a replacement.
   var SEL=[
-{ id:"nameit", kind:"sel", demo:"desk", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"nameit", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
       intro:"Hey, I'm Hanuman. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
       lines:[
@@ -851,7 +852,7 @@
         {cue:"One more breath. You did it.",sub:"",say:"One more slow breath. You just did something that some grown-ups are still learning.",hold:9}
       ],
       close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
-{ id:"grounding54321", kind:"sel", demo:"desk", name:"5-4-3-2-1 Grounding", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"grounding54321", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"5-4-3-2-1 Grounding", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Use your five senses to come back to right here, right now. The worry-brain off switch.",
       intro:"Hey, I'm Hanuman. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
       lines:[
@@ -864,7 +865,7 @@
         {cue:"One slow breath.",sub:"You brought yourself back.",say:"Take one slow breath. You just brought yourself all the way back. That's a real skill.",hold:20}
       ],
       close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." },
-{ id:"gratitude3", kind:"sel", demo:"desk", name:"Gratitude Three", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"gratitude3", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Gratitude Three", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find three good things hiding in your day. Training your brain to spot the good stuff.",
       intro:"Hey, I'm Hanuman. Our brains are really good at spotting problems. But we can train them to spot good things too, like a treasure hunt. Let's find three treasures hiding in your day.",
       lines:[
@@ -878,7 +879,7 @@
         {cue:"Three treasures. One breath.",sub:"They were there the whole time.",say:"Three treasures, and they were there the whole time. Take one more slow breath.",hold:20}
       ],
       close:"That's Gratitude Three. The more you hunt for good things, the better your brain gets at finding them." },
-{ id:"cozyplace", kind:"sel", demo:"desk", name:"My Cozy Place", tag:"SEL · Self-Management · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"cozyplace", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"My Cozy Place", tag:"SEL · Self-Management · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
       intro:"Hi friends, I'm Hanuman. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
       lines:[
@@ -892,7 +893,7 @@
         {cue:"Eyes open. Cozy comes with you.",sub:"",say:"Open your eyes. And guess what? A little bit of that cozy feeling came back with you.",hold:9}
       ],
       close:"That's My Cozy Place. You built it, you own it, and no one can ever take it away. Visit often." },
-{ id:"wallpush", kind:"sel", demo:"desk", name:"Heavy Work Reset", tag:"SEL · Self-Management · 2 min", audience:"PreK3-3rd", src:"HudsonSeed",
+{ id:"wallpush", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"Heavy Work Reset", tag:"SEL · Self-Management · 2 min", audience:"PreK3-3rd", src:"HudsonSeed",
       blurb:"Press your own hands together, hard. Strong muscles help calm a busy brain, no wall or moving furniture needed.",
       intro:"Hi, I'm Hanuman. Sometimes our bodies have extra wiggly energy, and the best way out is through strong, steady pushing. Stay right in your seat for this one, we don't need a wall.",
       lines:[
@@ -907,7 +908,7 @@
         {cue:"Rest your hands in your lap when you're ready.",sub:"Your body did the work.",say:"Rest your hands in your lap whenever you're ready. Your body just did some real work, and your brain gets to feel calmer because of it.",hold:11}
       ],
       close:"That's the Heavy Work Reset. Anytime your body feels too wiggly, strong pushing helps it find calm again, no wall required." },
-{ id:"problem4", kind:"sel", demo:"desk", name:"The Problem-Solving Four", tag:"SEL · Relationship Skills · 2 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"problem4", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Problem-Solving Four", tag:"SEL · Relationship Skills · 2 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Four steps for when a problem happens with a friend: Pause, Name it, Think of choices, Try one.",
       intro:"Hi, I'm Hanuman. Problems with friends happen to everybody, even grown-ups. Today I'll teach you four steps that help almost every time. Let's practice with a problem lots of kids know: someone took your turn.",
       lines:[
@@ -922,7 +923,7 @@
         {cue:"Pause. Name it. Think. Try.",sub:"Four steps, any time, any problem.",say:"Pause. Name it. Think of choices. Try one. Four steps you can use with almost any problem, any day.",hold:11}
       ],
       close:"That's the Problem-Solving Four. You don't need a grown-up to fix every small problem, but always tell a trusted adult if you ever feel unsafe." },
-{ id:"bodydetective", kind:"sel", demo:"desk", name:"Body Detective", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"bodydetective", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Body Detective", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Scan forehead, shoulders, belly, hands for the physical clues feelings leave behind.",
       intro:"Hi, I'm Hanuman. Feelings love to hide inside our bodies before we even notice them in our minds. Let's go on a body detective hunt and find the clues.",
       lines:[
@@ -934,7 +935,7 @@
         {cue:"Now match the clues to a feeling name.",sub:"Any name is okay.",say:"Now put the clues together. What feeling might that be? Any name you find is okay.",hold:32}
       ],
       close:"That's Body Detective. Your body always leaves clues, and now you know how to find them." },
-{ id:"kindwords", kind:"sel", demo:"desk", name:"Kind Words to Myself", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"kindwords", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Kind Words to Myself", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Replace harsh self-talk with the voice you'd use for a best friend.",
       intro:"Hi, I'm Hanuman. Sometimes the voice inside our own head is way meaner to us than we'd ever be to a friend. Let's practice switching that voice to a kinder one.",
       lines:[
@@ -946,7 +947,7 @@
         {cue:"That kind voice is allowed every time.",sub:"Practice makes it louder.",say:"That kind voice is allowed every single time. The more you practice it, the louder it gets.",hold:28}
       ],
       close:"That's Kind Words to Myself. You deserve the same kindness you'd give anyone else." },
-{ id:"volcanoplan", kind:"sel", demo:"desk", name:"The Volcano Plan", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"volcanoplan", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"The Volcano Plan", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A four-step anger plan built while calm: notice the rumble, make space, cool with out-breaths, use words.",
       intro:"Hi, I'm Hanuman. Anger is like a volcano. It rumbles before it erupts, and if we notice the rumble early, we get to choose what happens next. Let's build your plan now, while you're calm.",
       lines:[
@@ -958,7 +959,7 @@
         {cue:"You get to choose before you erupt.",sub:"That's real power.",say:"You get to choose before you erupt. That's real power, and it's yours.",hold:26}
       ],
       close:"That's the Volcano Plan. Every volcano rumbles first. Now you know what to do in that moment." },
-{ id:"worrybox", kind:"sel", demo:"desk", name:"The Worry Box", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"worrybox", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Worry Box", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Visualize setting a worry down without pretending it's gone.",
       intro:"Hi, I'm Hanuman. Worries are heavy to carry around all day. Let's build an imaginary box where you can set one down for a while.",
       lines:[
@@ -970,7 +971,7 @@
         {cue:"For now, your hands are free.",sub:"You set it down. That took courage.",say:"For now, your hands are free. You set it down, and that took real courage.",hold:27}
       ],
       close:"That's the Worry Box. Some worries need sharing with a grown-up, and that's always okay to do." },
-{ id:"lettinggo", kind:"sel", demo:"desk", name:"The Letting-Go Leaf", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"lettinggo", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Letting-Go Leaf", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Watch a leaf carry a hard moment down a stream. Stops the replay loop after a bad moment.",
       intro:"Hi, I'm Hanuman. Sometimes a hard moment plays over and over in our minds, like a video stuck on repeat. Let's give it somewhere to go.",
       lines:[
@@ -982,7 +983,7 @@
         {cue:"One slow breath. Let the water do its work.",sub:"",say:"One more slow breath. Let the water do its work.",hold:25}
       ],
       close:"That's the Letting-Go Leaf. Streams keep moving, and so can you." },
-{ id:"intheirshoes", kind:"sel", demo:"desk", name:"In Their Shoes", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"intheirshoes", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"In Their Shoes", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Guided perspective-taking: picture a real person, imagine one hard thing and one hope in their day, send a kind wish.",
       intro:"Hi, I'm Hanuman. Everyone we meet is carrying a whole day we can't see. Let's practice stepping into someone else's shoes for a minute.",
       lines:[
@@ -994,7 +995,7 @@
         {cue:"Everyone is carrying something.",sub:"Kindness costs nothing to give.",say:"Everyone you meet is carrying something. Kindness costs nothing to give.",hold:28}
       ],
       close:"That's In Their Shoes. The more we imagine other people's days, the kinder we get." },
-{ id:"kindnessdetective", kind:"sel", demo:"desk", name:"Kindness Detective", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"kindnessdetective", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Kindness Detective", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Hunt for kindness received, witnessed, and given. Trains attention toward prosocial behavior.",
       intro:"Hi, I'm Hanuman. Kindness happens around us all day, but our brains don't always notice it. Let's go on a kindness hunt through today.",
       lines:[
@@ -1005,7 +1006,7 @@
         {cue:"The more you look, the more you find.",sub:"Your brain is a kindness detector now.",say:"The more you look for kindness, the more you find it. Your brain just became a kindness detector.",hold:35}
       ],
       close:"That's Kindness Detective. Case closed, and kindness wins." },
-{ id:"listeninggame", kind:"sel", demo:"desk", name:"The Listening Game", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"listeninggame", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Listening Game", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Whole-body listening: eyes, ears, quiet mouth, curious heart. Foundational communication skill.",
       intro:"Hi, I'm Hanuman. Real listening uses your whole body, not just your ears. Let's practice whole-body listening together.",
       lines:[
@@ -1016,7 +1017,7 @@
         {cue:"Eyes, ears, quiet mouth, curious heart.",sub:"That's whole-body listening.",say:"Eyes, ears, quiet mouth, curious heart. That's whole-body listening, and it's a gift you can give anyone.",hold:37}
       ],
       close:"That's the Listening Game. The best friends are usually the best listeners." },
-{ id:"repairkit", kind:"sel", demo:"desk", name:"The Repair Kit", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"repairkit", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"The Repair Kit", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Conflict repair in four tools: honest look, real sorry that names the thing, the listen, the do-different.",
       intro:"Hi, I'm Hanuman. When we hurt someone, even by accident, we can fix it. Here's your repair kit, four tools that work almost every time.",
       lines:[
@@ -1027,7 +1028,7 @@
         {cue:"Look. Sorry. Listen. Do-different.",sub:"Four tools, any broken moment.",say:"Look, sorry, listen, do-different. Four tools that can fix almost any broken moment.",hold:33}
       ],
       close:"That's the Repair Kit. Fixing things is a real skill, and you just practiced it." },
-{ id:"braveenough", kind:"sel", demo:"desk", name:"Brave Enough to Ask", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"braveenough", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Brave Enough to Ask", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Help-seeking as strength: identify the hard thing, pick a helper, practice the ask.",
       intro:"Hi, I'm Hanuman. Asking for help feels hard sometimes, but it's actually one of the bravest things you can do. Let's practice.",
       lines:[
@@ -1038,7 +1039,7 @@
         {cue:"The bravest kids ask.",sub:"Not the ones who never need anything.",say:"The bravest kids are the ones who ask, not the ones who pretend they never need anything.",hold:37}
       ],
       close:"That's Brave Enough to Ask. Go find your helper. That's real courage." },
-{ id:"bravevoice", kind:"sel", demo:"desk", name:"My Brave Voice", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"bravevoice", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"My Brave Voice", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Assertiveness that's calm, clear, and kind: please stop, that's not okay, come sit with us, plus the trusted-adult backup rule.",
       intro:"Hi, I'm Hanuman. Your brave voice isn't loud or mean, it's calm and clear. Let's practice a few brave-voice lines.",
       lines:[
@@ -1049,7 +1050,7 @@
         {cue:"If it doesn't work, tell a trusted adult.",sub:"That's not giving up. That's smart.",say:"And if your brave voice doesn't fix it, tell a trusted adult. That's not giving up, that's smart.",hold:39}
       ],
       close:"That's My Brave Voice. Calm, clear, and kind is stronger than loud." },
-{ id:"theripple", kind:"sel", demo:"desk", name:"The Ripple", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"theripple", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"The Ripple", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Drop a choice in the pond and watch three ripples: how you feel after, how it touches people nearby, and how it looks later.",
       intro:"Hi, I'm Hanuman. Every choice is like a stone dropped in a pond. It makes ripples that go further than we first think. Let's watch one.",
       lines:[
@@ -1060,7 +1061,7 @@
         {cue:"Three ripples, one choice.",sub:"Now you can see further than the splash.",say:"Three ripples from one choice. Now you can see further than just the splash.",hold:34}
       ],
       close:"That's the Ripple. Every choice moves further than we think. Choose with that in mind." },
-{ id:"energygrid", kind:"sel", demo:"desk", name:"The Energy Grid", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"energygrid", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Energy Grid", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find your spot on the energy and feeling grid. A quick, honest check-in.",
       intro:"Hi, I'm Hanuman. Let's do a quick check-in. Not fixing anything, just noticing where you are right now.",
       lines:[
@@ -1071,7 +1072,7 @@
         {cue:"Noticing is the whole skill.",sub:"You just did it.",say:"Noticing where you are is the whole skill, and you just did it.",hold:29}
       ],
       close:"That's the Energy Grid. A quick honest check-in, any time you need one." },
-{ id:"meetyourbrain", kind:"sel", demo:"desk", name:"Meet Your Brain", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"meetyourbrain", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Meet Your Brain", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"The Guard Dog and the Wise Owl: a simple map of why we flip our lids.",
       intro:"Hi, I'm Hanuman. Your brain has two important parts we're going to meet today: the Guard Dog and the Wise Owl.",
       lines:[
@@ -1082,7 +1083,7 @@
         {cue:"Next time you're upset, ask: dog or owl?",sub:"",say:"Next time you feel upset, you can ask yourself: is my Guard Dog barking, or is my Wise Owl awake?",hold:33}
       ],
       close:"That's Meet Your Brain. Now you know both parts, and neither one is the enemy." },
-{ id:"stopandgo", kind:"sel", demo:"desk", name:"Stop and Go Brain Builder", tag:"SEL · Self-Management · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"stopandgo", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Stop and Go Brain Builder", tag:"SEL · Self-Management · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"A Simon-Says style game that trains your stop switch.",
       intro:"Hi, I'm Hanuman. Let's play a game that secretly trains a superpower: your stop switch. Watch closely and only move on the real signal.",
       lines:[
@@ -1093,7 +1094,7 @@
         {cue:"That freeze muscle is a real brain skill.",sub:"You just trained it.",say:"That freeze muscle you just used is a real brain skill, and you just trained it.",hold:40}
       ],
       close:"That's the Stop and Go Brain Builder. The same stop switch helps you pause before big reactions too." },
-{ id:"bystander", kind:"sel", demo:"desk", name:"Bullying Bystander Power Moves", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"bystander", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Bullying Bystander Power Moves", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Stop, Walk, Tell, and the Help Circle: real moves for when you see something unkind happen.",
       intro:"Hi, I'm Hanuman. If you ever see something unkind happening to someone else, you have more power than you think. Here are your moves.",
       lines:[
@@ -1104,7 +1105,7 @@
         {cue:"You don't have to be the boss of the situation.",sub:"You just have to be brave for one moment.",say:"You don't have to control the whole situation. You just have to be brave for one small moment.",hold:35}
       ],
       close:"That's Stop, Walk, Tell, and the Help Circle. Bystanders who act are how bullying actually stops." },
-{ id:"bigfeelingdetective", kind:"sel", demo:"desk", name:"Big Feeling Detective", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"bigfeelingdetective", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Big Feeling Detective", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A body scan plus a 1-to-10 feeling meter, perfect for chaotic transitions like after recess or lunch.",
       intro:"Hi, I'm Hanuman. Right after big transitions, like recess or lunch, feelings can be extra loud. Let's check the size of yours.",
       lines:[
@@ -1115,7 +1116,7 @@
         {cue:"You just noticed and measured a feeling.",sub:"That's real self-awareness.",say:"You just noticed a feeling and measured it. That's real self-awareness in under a minute.",hold:33}
       ],
       close:"That's Big Feeling Detective. A fast check, any time the room feels loud." },
-{ id:"digitaldrain", kind:"sel", demo:"desk", name:"Digital Drain Reflection", tag:"SEL · Self-Management · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"digitaldrain", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Digital Drain Reflection", tag:"SEL · Self-Management · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"Reflect on how screens made you feel, then pick one offline recharge.",
       intro:"Hi, I'm Hanuman. Screens are fun, but sometimes they leave us feeling drained without us noticing. Let's check in.",
       lines:[
@@ -1126,7 +1127,7 @@
         {cue:"Screens aren't bad. Balance is the skill.",sub:"",say:"Screens aren't bad, balance is the actual skill we're building.",hold:30}
       ],
       close:"That's Digital Drain Reflection. Noticing the drain is step one toward balance." },
-{ id:"worryvsreal", kind:"sel", demo:"desk", name:"Worry vs. Real", tag:"SEL · Self-Management · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"worryvsreal", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Worry vs. Real", tag:"SEL · Self-Management · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Sort a worry into what's a fear and what's an actual fact you can act on.",
       intro:"Hi, I'm Hanuman. Worries love to mix up what's really happening with what our brain is scared MIGHT happen. Let's sort one out.",
       lines:[
@@ -1137,7 +1138,7 @@
         {cue:"You can't control the future.",sub:"But you can act on what's real now.",say:"You can't control the future, but you can always act on what's real right now.",hold:32}
       ],
       close:"That's Worry vs. Real. Sorting them out takes the worry's power away." },
-{ id:"strengthsspotlight", kind:"sel", demo:"desk", name:"Strengths Spotlight", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"strengthsspotlight", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Strengths Spotlight", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Shine a light on one thing you're genuinely good at.",
       intro:"Hi, I'm Hanuman. Let's put a spotlight on something you're actually good at. Everybody has at least one.",
       lines:[
@@ -1148,7 +1149,7 @@
         {cue:"Say it out loud: \"I am good at ___.\"",sub:"",say:"Say it out loud if you can: I am good at this.",hold:32}
       ],
       close:"That's Strengths Spotlight. You've got more strengths than you probably give yourself credit for." },
-{ id:"emotionweather", kind:"sel", demo:"desk", name:"Emotion Weather Report", tag:"SEL · Self-Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"emotionweather", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Emotion Weather Report", tag:"SEL · Self-Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"Give your mixed-up feelings a real weather report, not just one word.",
       intro:"Hi, I'm Hanuman. Sometimes feelings aren't just one thing, they're more like weather with a bunch of stuff happening at once. Let's report yours.",
       lines:[
@@ -1159,7 +1160,7 @@
         {cue:"Give your whole report, out loud or in your head.",sub:"",say:"Go ahead and give your whole weather report, out loud or in your head.",hold:31}
       ],
       close:"That's the Emotion Weather Report. Mixed feelings are normal feelings." },
-{ id:"valuescompass", kind:"sel", demo:"desk", name:"My Values Compass", tag:"SEL · Self-Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"valuescompass", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"My Values Compass", tag:"SEL · Self-Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"Point yourself toward what actually matters to you.",
       intro:"Hi, I'm Hanuman. A compass points you somewhere true. Let's find out what points your compass, what actually matters to you.",
       lines:[
@@ -1170,7 +1171,7 @@
         {cue:"Knowing your values helps you make choices.",sub:"You just found one.",say:"Knowing your values helps you make choices you feel good about, and you just found one of yours.",hold:33}
       ],
       close:"That's My Values Compass. It's worth checking in on now and then." },
-{ id:"confidencebuilder", kind:"sel", demo:"desk", name:"Confidence Builder", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"confidencebuilder", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Confidence Builder", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Build a short list of things you CAN do, right now.",
       intro:"Hi, I'm Hanuman. Confidence isn't about being good at everything. It's knowing your own \"I can\" list. Let's build yours.",
       lines:[
@@ -1181,7 +1182,7 @@
         {cue:"That's your list, and it's already real.",sub:"Confidence grows every time you look at it.",say:"That list is already real, and confidence grows every single time you look at it.",hold:38}
       ],
       close:"That's the Confidence Builder. Your I-can list is longer than you think." },
-{ id:"growthmindsetyet", kind:"sel", demo:"desk", name:"Growth Mindset: The Word YET", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"growthmindsetyet", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Growth Mindset: The Word YET", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Turn \"I can't\" into \"I can't yet\", the most powerful word in learning.",
       intro:"Hi, I'm Hanuman. There's a tiny word that changes everything: yet. Let's practice using it.",
       lines:[
@@ -1192,7 +1193,7 @@
         {cue:"Every skill you have now started as a \"not yet.\"",sub:"",say:"Every single skill you already have started out as a not yet.",hold:31}
       ],
       close:"That's the word Yet. Keep it in your back pocket for hard moments." },
-{ id:"disappointmentreset", kind:"sel", demo:"desk", name:"Disappointment Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"disappointmentreset", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Disappointment Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"For when you lose a game, don't get picked, or things don't go your way.",
       intro:"Hi, I'm Hanuman. Disappointment is one of the hardest feelings, and everybody gets it. Let's reset after one.",
       lines:[
@@ -1203,7 +1204,7 @@
         {cue:"Disappointment fades. You get to choose what's next.",sub:"",say:"Disappointment always fades. You get to choose what happens next.",hold:32}
       ],
       close:"That's the Disappointment Reset. Losing is part of playing, every single time." },
-{ id:"testdaycalm", kind:"sel", demo:"desk", name:"Test Day Calm-Down", tag:"SEL · Self-Management · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"testdaycalm", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Test Day Calm-Down", tag:"SEL · Self-Management · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"A quick reset for test-day nerves, before the pencils come out.",
       intro:"Hi, I'm Hanuman. Test-day nerves are super common, they just mean you care. Let's calm your body before the pencils come out.",
       lines:[
@@ -1214,7 +1215,7 @@
         {cue:"You've prepared. Now just do your best, one question at a time.",sub:"",say:"You've prepared for this. Now just do your best, one question at a time.",hold:34}
       ],
       close:"That's the Test Day Calm-Down. Your best is always enough." },
-{ id:"facialfeelings", kind:"sel", demo:"desk", name:"Facial Feelings Detective", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"facialfeelings", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Facial Feelings Detective", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Practice reading feelings on other people's faces and bodies.",
       intro:"Hi, I'm Hanuman. Faces and bodies tell us how people are feeling, if we know how to look. Let's practice reading them.",
       lines:[
@@ -1225,7 +1226,7 @@
         {cue:"Reading others helps us respond with kindness.",sub:"",say:"Reading other people's clues helps us know how to respond with kindness.",hold:34}
       ],
       close:"That's Facial Feelings Detective. The more you practice, the better you get." },
-{ id:"communityhelper", kind:"sel", demo:"desk", name:"Community Helper Gratitude", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"communityhelper", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Community Helper Gratitude", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Notice and appreciate the people who help make your day work.",
       intro:"Hi, I'm Hanuman. So many people help make your day happen without you even noticing. Let's give them some credit.",
       lines:[
@@ -1236,7 +1237,7 @@
         {cue:"Communities run on people helping people.",sub:"You're one of those people too.",say:"Communities run on people helping people, and you're one of those helpers too.",hold:35}
       ],
       close:"That's Community Helper Gratitude. Notice them, and maybe say thanks out loud today." },
-{ id:"differentnotless", kind:"sel", demo:"desk", name:"Different, Not Less", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"differentnotless", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Different, Not Less", tag:"SEL · Social Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Everyone learns, feels, and moves differently, and that's a strength, not a problem.",
       intro:"Hi, I'm Hanuman. Every single person in your class learns, feels, and moves in their own way. Let's celebrate that instead of judging it.",
       lines:[
@@ -1247,7 +1248,7 @@
         {cue:"A classroom full of different people is a strong classroom.",sub:"",say:"A classroom full of different kinds of people is actually a strong classroom.",hold:36}
       ],
       close:"That's Different, Not Less. Every kind of different belongs here." },
-{ id:"turntaking", kind:"sel", demo:"desk", name:"Turn-Taking Trainer", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"turntaking", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Turn-Taking Trainer", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Practice waiting for your turn and sharing, the friendly way.",
       intro:"Hi friends, I'm Hanuman. Taking turns can feel hard when you really want something now. Let's practice.",
       lines:[
@@ -1258,7 +1259,7 @@
         {cue:"Turns always come around.",sub:"Everybody gets a turn eventually.",say:"Turns always come around. Everybody gets one eventually.",hold:31}
       ],
       close:"That's the Turn-Taking Trainer. Waiting gets easier every time you practice." },
-{ id:"teamplayer", kind:"sel", demo:"desk", name:"Team Player Toolkit", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"teamplayer", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Team Player Toolkit", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Tools for when group work gets frustrating: someone's not helping, or ideas clash.",
       intro:"Hi, I'm Hanuman. Working in a group is a real skill, and it's okay that it's sometimes frustrating. Here are some tools.",
       lines:[
@@ -1269,7 +1270,7 @@
         {cue:"Teams are hard sometimes and still worth it.",sub:"",say:"Teams are hard sometimes, and they're still worth it.",hold:28}
       ],
       close:"That's the Team Player Toolkit. Great teammates are made, not born." },
-{ id:"sayingsorry", kind:"sel", demo:"desk", name:"Saying Sorry and Meaning It", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"sayingsorry", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Saying Sorry and Meaning It", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"The difference between a fast sorry and a real one.",
       intro:"Hi, I'm Hanuman. There's a difference between saying sorry to end an argument fast and saying sorry because you mean it. Let's practice the real one.",
       lines:[
@@ -1280,7 +1281,7 @@
         {cue:"A real sorry isn't about ending the conversation fast.",sub:"It's about actually caring.",say:"A real sorry isn't about ending the conversation fast. It's about actually caring.",hold:36}
       ],
       close:"That's Saying Sorry and Meaning It. It's harder, and it's worth it." },
-{ id:"includesomeonenew", kind:"sel", demo:"desk", name:"Include Someone New", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"includesomeonenew", img:"assets/img/sel/hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Include Someone New", tag:"SEL · Relationship Skills · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Notice someone sitting alone or left out, and take one small step to include them.",
       intro:"Hi, I'm Hanuman. Being left out is one of the loneliest feelings there is. Let's practice noticing and including.",
       lines:[
@@ -1291,7 +1292,7 @@
         {cue:"Including someone can change their whole day.",sub:"",say:"Including someone can genuinely change their whole day.",hold:27}
       ],
       close:"That's Include Someone New. It costs you nothing and means everything to them." },
-{ id:"ruleshavereasons", kind:"sel", demo:"desk", name:"Rules Have Reasons", tag:"SEL · Responsible Decision-Making · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"ruleshavereasons", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Rules Have Reasons", tag:"SEL · Responsible Decision-Making · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Understand WHY a rule exists, not just that it exists.",
       intro:"Hi, I'm Hanuman. Rules can feel annoying until you understand why they're there. Let's dig into one.",
       lines:[
@@ -1302,7 +1303,7 @@
         {cue:"Understanding a rule makes it easier to follow.",sub:"",say:"Understanding why a rule exists makes it a whole lot easier to follow.",hold:32}
       ],
       close:"That's Rules Have Reasons. Curious beats grumpy, every time." },
-{ id:"fairnesscheck", kind:"sel", demo:"desk", name:"The Fairness Check", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"fairnesscheck", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"The Fairness Check", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"A quick gut-check before a choice: is this fair to everyone involved?",
       intro:"Hi, I'm Hanuman. Before a tricky choice, there's one quick question that helps a lot. Let's practice it.",
       lines:[
@@ -1313,7 +1314,7 @@
         {cue:"Fair doesn't always mean equal, but it means everyone matters.",sub:"",say:"Fair doesn't always mean exactly equal, but it does mean everyone's feelings matter.",hold:38}
       ],
       close:"That's the Fairness Check. One quick question, a lot clearer choice." },
-{ id:"goalladder", kind:"sel", demo:"desk", name:"Goal Setting Ladder", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"goalladder", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Goal Setting Ladder", tag:"SEL · Responsible Decision-Making · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Break one big goal into small, climbable steps.",
       intro:"Hi, I'm Hanuman. Big goals feel far away, but a ladder gets you there one rung at a time. Let's build yours.",
       lines:[
@@ -1324,7 +1325,7 @@
         {cue:"Ladders are climbed one rung at a time.",sub:"You just built yours.",say:"Ladders are climbed one single rung at a time, and you just built yours.",hold:33}
       ],
       close:"That's the Goal Setting Ladder. Every big goal starts with one small step." },
-{ id:"planbswitch", kind:"sel", demo:"desk", name:"The Plan B Switch", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"planbswitch", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Plan B Switch", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"For when plans change and it feels like the whole day fell apart. Practice pivoting to Plan B without a meltdown.",
       intro:"Hi, I'm Hanuman. Sometimes a plan changes right when you were counting on it, indoor recess instead of outside, a sub instead of your teacher. Let's practice switching to Plan B.",
       lines:[
@@ -1336,7 +1337,7 @@
         {cue:"Practice saying it: \"Okay, new plan. I can do this.\"",sub:"",say:"Practice saying it out loud: okay, new plan, I can do this.",hold:27}
       ],
       close:"That's the Plan B Switch. Flexible brains bend without breaking, and you just practiced bending yours." },
-{ id:"taskstarter", kind:"sel", demo:"desk", name:"The Task Starter", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"taskstarter", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Task Starter", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Breaks an overwhelming task into one tiny, friction-free first step.",
       intro:"Hi, I'm Hanuman. Sometimes a task feels so big that starting it feels impossible, even a messy desk or a homework page. Let's shrink it down to one tiny step.",
       lines:[
@@ -1348,7 +1349,7 @@
         {cue:"Starting is the hardest part, and you just did it.",sub:"",say:"Starting is almost always the hardest part, and you just did it.",hold:26}
       ],
       close:"That's the Task Starter. One tiny move is all it takes to break the freeze." },
-{ id:"morningbridge", kind:"sel", demo:"desk", name:"The Morning Bridge", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"morningbridge", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Morning Bridge", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the hard goodbye at drop-off. Builds a mental bridge between home and school so kids feel held in both places. Best as a 1-on-1 or small-group check-in for a specific struggling child, not a whole-class whiteboard activity, since projecting separation anxiety content to a full room can stir up feelings in kids who were otherwise fine.",
       intro:"Hi friends, I'm Hanuman. Saying goodbye in the morning can feel really hard, even when you know you'll see your grown-up again. Let's build a bridge to help.",
       lines:[
@@ -1360,7 +1361,7 @@
         {cue:"You can do hard goodbyes. Lots of kids do.",sub:"",say:"You can do hard goodbyes. So many kids do this exact same brave thing every single morning.",hold:28}
       ],
       close:"That's the Morning Bridge. The bridge is always there, even when you can't see it." },
-{ id:"recessreset", kind:"sel", demo:"desk", name:"Recess-to-Desk Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"recessreset", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Recess-to-Desk Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A fast down-shift from high recess energy to focused classroom energy.",
       intro:"Hi, I'm Hanuman. Your body just had big, fast, loud energy at recess. Now it's time to bring it down for class. Let's shift gears together.",
       lines:[
@@ -1372,7 +1373,7 @@
         {cue:"Ready for desk mode.",sub:"You just downshifted on purpose.",say:"You're ready for desk mode now. You just downshifted your whole body on purpose.",hold:27}
       ],
       close:"That's the Recess-to-Desk Reset. A fast body can learn to slow down on command." },
-{ id:"sensoryoverload", kind:"sel", demo:"desk", name:"The Sensory Overload Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"sensoryoverload", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Sensory Overload Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A low-stimulation, purely physical reset for when the room feels too loud, too bright, or too much.",
       intro:"Hi, I'm Hanuman. Sometimes a room feels like too much, too loud, too bright, too crowded. This one isn't about thinking, it's just about your body. Let's turn the volume down together.",
       lines:[
@@ -1384,7 +1385,7 @@
         {cue:"Stay here as long as you need.",sub:"There's no rush back.",say:"Stay here as long as you need to. There's no rush to go back until your body feels ready.",hold:31}
       ],
       close:"That's the Sensory Overload Reset. When it's too much, less input is the whole answer." },
-{ id:"strategymatch", kind:"sel", demo:"desk", name:"The Strategy Matchmaker", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"strategymatch", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Strategy Matchmaker", tag:"SEL · Self-Management · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Checks your energy and feeling, then matches you to the right kind of coping strategy for that exact state.",
       intro:"Hi, I'm Hanuman. Different feelings need different tools, a wiggly feeling and a tired feeling don't get fixed the same way. Let's find your match.",
       lines:[
@@ -1396,7 +1397,7 @@
         {cue:"Next time you're stuck, ask: high, low, or big feeling?",sub:"Then pick your match.",say:"Next time you're stuck, ask yourself: is my energy high, low, or is it just a big feeling? Then pick your match.",hold:29}
       ],
       close:"That's the Strategy Matchmaker. The right tool for the right moment makes everything easier." },
-{ id:"istatement", kind:"sel", demo:"desk", name:"The I-Statement Builder", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"istatement", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"The I-Statement Builder", tag:"SEL · Relationship Skills · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Build a real conflict sentence using the I-feel, when, because, I-need formula.",
       intro:"Hi, I'm Hanuman. There's a sentence formula that turns a blow-up into a real conversation. Let's build one together.",
       lines:[
@@ -1408,7 +1409,7 @@
         {cue:"Try building your own sentence now.",sub:"Out loud or in your head.",say:"Try building your own sentence right now, out loud or in your head.",hold:25}
       ],
       close:"That's the I-Statement Builder. One sentence formula, and almost any conflict gets easier to say out loud." },
-{ id:"bigchangemap", kind:"sel", demo:"desk", name:"The Big Change Map", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"bigchangemap", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Big Change Map", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"For moving, new schools, or any big life change at home. Maps what's changing against what's staying the same.",
       intro:"Hi, I'm Hanuman. Big changes, like moving to a new house, starting a new school, or when things at home shift, can make everything feel shaky. Let's map it out.",
       lines:[
@@ -1420,7 +1421,7 @@
         {cue:"You can come back to this map anytime things feel shaky.",sub:"",say:"You can come back to this map anytime things feel shaky again.",hold:24}
       ],
       close:"That's the Big Change Map. Change is easier to hold when you can see the whole picture." },
-{ id:"invisiblestring", kind:"sel", demo:"desk", name:"The Invisible String", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"invisiblestring", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Invisible String", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A gentle visualization for missing someone, grief, or separation. Not physical closeness, but connection that doesn't break.",
       intro:"Hi, I'm Hanuman. Sometimes we miss someone, someone far away, someone who moved, or someone we just haven't seen in a while. There's a string that connects us to the people we love, and it doesn't break, even then.",
       lines:[
@@ -1432,7 +1433,7 @@
         {cue:"It's okay to feel sad and connected at the same time.",sub:"",say:"It's okay to feel sad and still feel connected, both at the same time.",hold:25}
       ],
       close:"That's the Invisible String. Some connections don't need distance to stay real. If missing someone feels really heavy, a trusted adult is a good person to share that with." },
-{ id:"grouptextpause", kind:"sel", demo:"desk", name:"The Group Chat Pause", tag:"SEL · Social Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"grouptextpause", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"The Group Chat Pause", tag:"SEL · Social Awareness · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"For online exclusion, mean comments, or group chat drama. A pause-before-you-post practice.",
       intro:"Hi, I'm Hanuman. Online spaces, group chats, comments, games, can feel just as real as the hallway when something unkind happens. Let's practice a pause before you respond.",
       lines:[
@@ -1444,7 +1445,7 @@
         {cue:"Kindness counts the same online as anywhere else.",sub:"",say:"Kindness counts exactly the same online as it does anywhere else.",hold:24}
       ],
       close:"That's the Group Chat Pause. One pause before you post can save a friendship, and protect you too." },
-{ id:"classcharter", kind:"sel", demo:"desk", name:"Our Classroom Charter", tag:"SEL · Responsible Decision-Making · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"classcharter", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Our Classroom Charter", tag:"SEL · Responsible Decision-Making · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Pick the feelings you want your classroom to have, and one small thing you can do to help build them.",
       intro:"Hi, I'm Hanuman. Every classroom has a feeling, and everyone in it helps build that feeling, together. Let's think about the kind of room you want to be part of.",
       lines:[
@@ -1456,7 +1457,7 @@
         {cue:"You're not just IN this room.",sub:"You're building it.",say:"Remember, you're not just in this room. You're one of the people building it.",hold:28}
       ],
       close:"That's Our Classroom Charter. The room you want starts with the small things you do in it." },
-{ id:"sizeproblem", kind:"sel", demo:"desk", name:"Size of the Problem vs. Size of the Reaction", tag:"SEL · Self-Management · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"sizeproblem", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"Size of the Problem vs. Size of the Reaction", tag:"SEL · Self-Management · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Match how big your reaction is to how big the problem actually is. A dropped pencil isn't the same size as a big, scary problem.",
       intro:"Hi, I'm Hanuman. Some problems are tiny, and some are really big. Let's practice matching our reaction to the right size.",
       lines:[
@@ -1468,7 +1469,7 @@
         {cue:"Big reactions are for big problems.",sub:"That's how we save them for when they matter.",say:"We save our biggest reactions for our biggest problems. That way people know when it's really serious.",hold:28}
       ],
       close:"That's Size of the Problem vs. Size of the Reaction. Matching the size helps everyone, including you." },
-{ id:"triggertracker", kind:"sel", demo:"desk", name:"My Trigger Tracker", tag:"SEL · Self-Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"triggertracker", img:"assets/img/sel/hanuman-angry.jpg", kind:"sel", demo:"desk", name:"My Trigger Tracker", tag:"SEL · Self-Awareness · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Spot the specific things that pop your balloon, before they happen, so you can see them coming.",
       intro:"Hi, I'm Hanuman. Some things pop our balloon faster than others. Let's find yours, so you can see them coming next time.",
       lines:[
@@ -1480,7 +1481,7 @@
         {cue:"Seeing it coming gives you a head start.",sub:"You get to choose what happens next.",say:"Seeing it coming gives you a head start to choose what happens next.",hold:28}
       ],
       close:"That's My Trigger Tracker. Once you know what pops your balloon, you get to choose what happens next." },
-{ id:"neednamer", kind:"sel", demo:"desk", name:"The Need Namer", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"neednamer", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Need Namer", tag:"SEL · Self-Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"A calm script for noticing what you need and asking for it, out loud.",
       intro:"Hi, I'm Hanuman. Sometimes we act out because we don't know how to ask for what we actually need. Let's practice asking.",
       lines:[
@@ -1492,7 +1493,7 @@
         {cue:"You deserve to have what you need.",sub:"",say:"You deserve to have what you need, and asking is how you get there.",hold:24}
       ],
       close:"That's the Need Namer. Naming it and asking for it, that's a real skill." },
-{ id:"independencespark", kind:"sel", demo:"desk", name:"The Independence Spark", tag:"SEL · Self-Management · 3 min", audience:"PreK3-K", src:"HudsonSeed",
+{ id:"independencespark", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Independence Spark", tag:"SEL · Self-Management · 3 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"A morning \"I can do it myself\" menu of tiny self-start actions: coat, materials, seat.",
       intro:"Hi friends, I'm Hanuman. Every morning, there are little things you can do all by yourself. Let's find your spark.",
       lines:[
@@ -1504,7 +1505,7 @@
         {cue:"That's your spark, and it's already lit.",sub:"",say:"That spark of doing things yourself, it's already lit inside you.",hold:28}
       ],
       close:"That's the Independence Spark. You can do more by yourself than you think." },
-{ id:"personalbubble", kind:"sel", demo:"desk", name:"The Personal Bubble", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
+{ id:"personalbubble", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Personal Bubble", tag:"SEL · Social Awareness · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"Everyone has an invisible space bubble. Practice noticing yours, and asking before entering someone else's.",
       intro:"Hi, I'm Hanuman. Everybody has an invisible bubble of space around them. Let's learn to notice it, and respect it.",
       lines:[
@@ -1516,7 +1517,7 @@
         {cue:"Asking first is respect.",sub:"",say:"Asking first, that's what respect looks like, for their bubble and for yours.",hold:26}
       ],
       close:"That's the Personal Bubble. Everyone's space matters, including yours." },
-{ id:"beautifuloops", kind:"sel", demo:"desk", name:"The Beautiful Oops", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"beautifuloops", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Beautiful Oops", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Mistakes are proof your brain is building something new, not something to hide.",
       intro:"Hi, I'm Hanuman. Mistakes feel bad sometimes, but here's a secret: they're actually proof your brain is growing. Let's look at yours.",
       lines:[
@@ -1528,7 +1529,7 @@
         {cue:"Mistakes aren't something to hide.",sub:"They're something to notice.",say:"Mistakes aren't something to hide. They're something to notice, and even be a little proud of.",hold:28}
       ],
       close:"That's the Beautiful Oops. Every mistake means your brain is building something new." },
-{ id:"friendlyno", kind:"sel", demo:"desk", name:"The Friendly No", tag:"SEL · Relationship Skills · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"friendlyno", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Friendly No", tag:"SEL · Relationship Skills · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"Scripts for saying no to a friend's idea, without losing the friendship.",
       intro:"Hi, I'm Hanuman. Sometimes a friend has an idea you don't want to do. You can say no, and still keep the friendship. Let's practice.",
       lines:[
@@ -1540,7 +1541,7 @@
         {cue:"A friendly no keeps you both okay.",sub:"",say:"A friendly no keeps you honest, and keeps the friendship okay too.",hold:26}
       ],
       close:"That's the Friendly No. You can say no and still be a good friend." },
-{ id:"focusfuel", kind:"sel", demo:"desk", name:"Focus Fuel Gauge", tag:"SEL · Self-Management · 3 min", audience:"1st-2nd", src:"HudsonSeed",
+{ id:"focusfuel", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Focus Fuel Gauge", tag:"SEL · Self-Management · 3 min", audience:"1st-2nd", src:"HudsonSeed",
       blurb:"Rate your attention tank from empty to full, then pick one tiny refill before you start.",
       intro:"Hi, I'm Hanuman. Just like a car needs gas, your brain needs fuel to focus. Let's check your tank.",
       lines:[
@@ -1552,7 +1553,7 @@
         {cue:"A fuller tank makes the next few minutes easier.",sub:"",say:"A fuller tank makes the next few minutes of work a whole lot easier.",hold:28}
       ],
       close:"That's the Focus Fuel Gauge. Checking your tank is the first step to filling it." },
-{ id:"roomreader", kind:"sel", demo:"desk", name:"The Room Reader", tag:"SEL · Social Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"roomreader", img:"assets/img/sel/hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Room Reader", tag:"SEL · Social Awareness · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Different rooms expect different behavior. Practice reading the room before you act.",
       intro:"Hi, I'm Hanuman. Every room has its own unwritten rules. Let's practice reading them.",
       lines:[
@@ -1564,7 +1565,7 @@
         {cue:"Rooms give clues if you look for them.",sub:"",say:"Rooms give clues about what's expected, if you take a second to look for them.",hold:28}
       ],
       close:"That's the Room Reader. Reading the room is a real, useful skill." },
-{ id:"pressurepause", kind:"sel", demo:"desk", name:"Peer Pressure Pause Button", tag:"SEL · Responsible Decision-Making · 3 min", audience:"3rd-6th", src:"HudsonSeed",
+{ id:"pressurepause", img:"assets/img/sel/hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"Peer Pressure Pause Button", tag:"SEL · Responsible Decision-Making · 3 min", audience:"3rd-6th", src:"HudsonSeed",
       blurb:"Freeze-frame a moment of peer pressure: what do YOU actually want, versus what they want you to do?",
       intro:"Hi, I'm Hanuman. Sometimes what a group wants and what you actually want are two different things. Let's practice pausing to check.",
       lines:[
@@ -1650,8 +1651,13 @@
     }catch(e){}
   }
 
+  function setEmoBadge(item){
+    var b=document.getElementById('emoBadge');
+    if(item && item.img){ b.src=item.img; b.style.display='block'; }
+    else { b.style.display='none'; b.removeAttribute('src'); }
+  }
   function run(item){
-    stopMed(); deskOn(false);
+    stopMed(); deskOn(false); setEmoBadge(item);
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
@@ -1661,7 +1667,7 @@
     var delay=Math.min(7000, Math.max(3500, item.intro.length*55));
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
-  function toMenu(){running=false;cancelAnimationFrame(raf);stopMed();deskOn(false);if(window.speechSynthesis)speechSynthesis.cancel();
+  function toMenu(){running=false;cancelAnimationFrame(raf);stopMed();deskOn(false);setEmoBadge(null);if(window.speechSynthesis)speechSynthesis.cancel();
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
   backBtn.onclick=toMenu;
@@ -1698,7 +1704,7 @@
     againBtn.classList.remove("hide");
   }
   function runMeditation(item){
-    running=false; cancelAnimationFrame(raf); stopMed();
+    running=false; cancelAnimationFrame(raf); stopMed(); setEmoBadge(item);
     CURRENT=item; CURRENTMED=item; medActive=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
@@ -1714,7 +1720,7 @@
 
   var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function playHanuman(src){ hanumanVideo.src=src; hanumanModal.className="show"; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHanumanModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHanumanModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHanumanModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHanumanModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML="<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hanuman</button>":"")+"";
+    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hanuman</button>":"")+"";
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     if(f.video){ var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); playHanuman(f.video); }; } } cards.appendChild(c);
   }
