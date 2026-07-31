@@ -1,4 +1,4 @@
-# Hanuman Service — MVP
+# HANi Service — MVP
 
 AI yoga coach for K-12 classrooms. Backend proxy + embeddable chat widget.
 Brain sourced from Trevor Vaughan's curriculum (Modules 3 & 5), S.E.L.F., Class Close, trauma-informed principles.
@@ -31,7 +31,7 @@ TESTED locally (real runs):
 - Health endpoint, $0 off-topic gateway, PII scrub (email/phone/address), bad-request handling,
   and that an on-topic message correctly reaches the Anthropic API (fails only on the fake test key).
 NOT yet verified (needs a real key + live deploy):
-- Real Hanuman replies end-to-end, the live URL, Railway logs, the funnel against the live site.
+- Real HANi replies end-to-end, the live URL, Railway logs, the funnel against the live site.
 KNOWN LIMITATIONS (no overclaiming):
 - TTS "auto-play" on load is NOT possible — browsers block speech until a user gesture.
   This widget unlocks voice on the first tap, then speaks each reply. That is the real ceiling.
