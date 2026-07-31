@@ -2,7 +2,7 @@
   "name": "hanuman-service",
   "version": "0.1.0",
   "private": true,
-  "description": "Hanuman AI yoga coach backend + widget for hudsonseed.com",
+  "description": "HANi AI yoga coach backend + widget for hudsonseed.com",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
