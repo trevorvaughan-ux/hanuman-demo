@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>HANi · Whiteboard</title>
+<title>Hani · Whiteboard</title>
 <style>
   :root{--teal:#1f8a8a;--teal-d:#136b6b;--cream:#FDF8F0;--charcoal:#3A3A3A;--gold:#D99A4E;}
   *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
@@ -40,7 +40,7 @@
   .card.chair{border-left-color:#3fa34d;}
   .card.sel{border-left-color:#7d6bb8;}
   .card.cls{border-left-color:#c9704f;}
-  /* ---- desk demo: HANi seated at a school desk, performing each cue ---- */
+  /* ---- desk demo: Hani seated at a school desk, performing each cue ---- */
   #deskWrap{display:none;flex:0 0 52%;max-width:460px;align-items:center;justify-content:center;height:58vh;}
   #deskWrap svg{width:100%;height:100%;max-height:56vh;}
   #deskSvg #dmUpper,#deskSvg .armL,#deskSvg .armR,#deskSvg #dmFeet,#deskSvg .lid{transition:transform 1.4s ease-in-out;transform-box:fill-box;}
@@ -154,14 +154,14 @@
 <body>
 <div id="stage">
   <div id="topbar">
-    <div id="brand">HudsonSeed · <b>HANi</b></div>
+    <div id="brand">HudsonSeed · <b>Hani</b></div>
     <div id="right"><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
 
   <div id="menu">
     <div>
       <div id="menuTitle">Pick a reset for your class</div>
-      <div id="menuSub">Tap one. HANi runs it on the board while you catch your breath.</div>
+      <div id="menuSub">Tap one. Hani runs it on the board while you catch your breath.</div>
     </div>
     <div id="cards"></div>
   </div>
@@ -169,7 +169,7 @@
   <div id="player">
     <div id="scene">
       <div id="monkeyWrap">
-        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="HANi the monkey">
+        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hani the monkey">
           <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#136b6b" stroke-width="14" stroke-linecap="round"/>
           <ellipse cx="100" cy="300" rx="22" ry="16" fill="#136b6b"/>
           <ellipse cx="160" cy="300" rx="22" ry="16" fill="#136b6b"/>
@@ -193,7 +193,7 @@
       </div>
       <div id="ballWrap"><div id="ball"></div></div>
       <div id="deskWrap">
-        <svg id="deskSvg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-label="HANi seated at a school desk" data-pose="neutral">
+        <svg id="deskSvg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-label="Hani seated at a school desk" data-pose="neutral">
           <line x1="20" y1="326" x2="300" y2="326" stroke="#e3d9c8" stroke-width="4" stroke-linecap="round"/>
           <rect x="127" y="272" width="18" height="46" rx="9" fill="#1f8a8a"/>
           <rect x="175" y="272" width="18" height="46" rx="9" fill="#1f8a8a"/>
@@ -279,7 +279,7 @@
       id:"balloon", name:"Balloon Breath", tag:"Calm down", audience:"All ages", src:"Module 3",
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
-      intro:"Hey, I'm HANi. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
+      intro:"Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
       inhale:[["Breathe in. Fill the ball up like a balloon.","Watch it grow and turn bright."],
               ["Big slow breath in. Grow the ball.","My eyes are following it up with you."],
               ["In through your nose. Fill all the way up.","See how big and bright it gets."]],
@@ -379,7 +379,7 @@
   var MEDITATIONS=[
     { id:"lovingkindness", kind:"meditation", demo:"desk", name:"Loving-Kindness", tag:"Kindness · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Send kind wishes outward, from yourself to your class to the whole world. A warm close.",
-      intro:"Hey, I'm HANi. This one is quiet. We are going to send out kindness, like a warm light, starting with you. You can let your eyes close, or look soft at the glow.",
+      intro:"Hey, I'm Hani. This one is quiet. We are going to send out kindness, like a warm light, starting with you. You can let your eyes close, or look soft at the glow.",
       lines:[
         {cue:"Hand on your heart.",sub:"One slow breath.",say:"Put a hand on your heart. Feel it there, warm and steady. Take one slow breath in, and let it go.",hold:11},
         {cue:"May I be happy.",sub:"",say:"Let's start with you. Quietly, in your head or out loud with me, say: may I be happy.",hold:7},
@@ -401,7 +401,7 @@
   var CHAIR=[
     { id:"seatedmountain", kind:"chair", demo:"desk", name:"Seated Mountain", tag:"Chair yoga · 2 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Sit tall and strong like a mountain, right in your chair. The home base for everything.",
-      intro:"Hey, I'm HANi. You don't need a mat for this one. Your chair is your mountain. Let's build it together.",
+      intro:"Hey, I'm Hani. You don't need a mat for this one. Your chair is your mountain. Let's build it together.",
       lines:[
         {cue:"Feet flat on the floor.",sub:"Both of them, side by side.",say:"Put both feet flat on the floor, side by side. Feel them press down, like roots.",hold:9,pose:"feet"},
         {cue:"Sit up tall.",sub:"Grow from your seat to the top of your head.",say:"Now sit up tall. Imagine growing, from your seat all the way to the top of your head.",hold:9,pose:"tall"},
@@ -495,7 +495,7 @@
   var SEL=[
     { id:"nameit", kind:"sel", demo:"desk", name:"Name It to Tame It", tag:"SEL · Feelings · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
-      intro:"Hey, I'm HANi. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
+      intro:"Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:9},
         {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:11},
@@ -510,7 +510,7 @@
       close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
     { id:"grounding54321", kind:"sel", demo:"desk", name:"5-4-3-2-1 Grounding", tag:"SEL · Calm · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Use your five senses to come back to right here, right now. The worry-brain off switch.",
-      intro:"Hey, I'm HANi. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
+      intro:"Hey, I'm Hani. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
       lines:[
         {cue:"Look around. Find 5 things you can SEE.",sub:"Count them quietly. Any 5 things.",say:"First, look around the room. Find five things you can see. Count them quietly in your head. A door. A light. A shoe. Anything.",hold:14},
         {cue:"Find 4 things you can FEEL.",sub:"Your chair. Your shirt. The floor. The air.",say:"Now find four things you can feel. Maybe your chair holding you up. Your shirt on your shoulders. The floor under your feet. The air on your face.",hold:14},
@@ -523,7 +523,7 @@
       close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." },
     { id:"gratitude3", kind:"sel", demo:"desk", name:"Gratitude Three", tag:"SEL · Gratitude · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find three good things hiding in your day. Training your brain to spot the good stuff.",
-      intro:"Hey, I'm HANi. Our brains are really good at spotting problems. But we can train them to spot good things too, like a treasure hunt. Let's find three treasures hiding in your day.",
+      intro:"Hey, I'm Hani. Our brains are really good at spotting problems. But we can train them to spot good things too, like a treasure hunt. Let's find three treasures hiding in your day.",
       lines:[
         {cue:"Sit comfy. One slow breath.",sub:"",say:"Sit comfy and take one slow breath.",hold:8},
         {cue:"Treasure 1: something SMALL that was good today.",sub:"A snack. A joke. Sunshine. A good seat.",say:"Treasure number one: think of something small that was good today. Maybe a snack you liked. A joke that made you laugh. Sunshine on your way to school.",hold:13},
@@ -537,7 +537,7 @@
       close:"That's Gratitude Three. The more you hunt for good things, the better your brain gets at finding them." },
     { id:"kindwords", kind:"sel", demo:"desk", name:"Kind Words to Myself", tag:"SEL · Self-talk · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Talk to yourself the way you'd talk to your best friend. Because you're with you all day.",
-      intro:"Hey, I'm HANi. Quick question: would you ever say mean things to your best friend? No way. But sometimes we say mean things to ourselves. Let's practice being our own best friend instead.",
+      intro:"Hey, I'm Hani. Quick question: would you ever say mean things to your best friend? No way. But sometimes we say mean things to ourselves. Let's practice being our own best friend instead.",
       lines:[
         {cue:"Hand on your heart.",sub:"One slow breath.",say:"Put a hand on your heart, and take one slow breath.",hold:9},
         {cue:"Think of a time something was hard today.",sub:"A mistake. A tough moment. It's okay.",say:"Think of a time something was hard today. Maybe a mistake, or a tough moment. It's okay. Everybody has them.",hold:11},
@@ -552,7 +552,7 @@
       close:"That's Kind Words to Myself. Your inside voice is yours. Train it to be a friend." },
     { id:"pausebutton", kind:"sel", demo:"desk", name:"The Pause Button", tag:"SEL · Choices · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Between something happening and what you do next, there's a magic space. Learn to find it.",
-      intro:"Hey, I'm HANi. Did you know you have a pause button? It's true. When something happens, big feelings want you to act fast. But you have a button that gives you time to choose. Let's find it.",
+      intro:"Hey, I'm Hani. Did you know you have a pause button? It's true. When something happens, big feelings want you to act fast. But you have a button that gives you time to choose. Let's find it.",
       lines:[
         {cue:"Sit tall. Hands in your lap.",sub:"One slow breath.",say:"Sit tall, hands in your lap, and take one slow breath.",hold:9},
         {cue:"Think of a time you acted FAST.",sub:"Grabbed. Yelled. Pushed. It happens.",say:"Think of a time a big feeling made you act fast. Maybe you grabbed something, or yelled, or pushed. It happens to everyone.",hold:12},
@@ -567,7 +567,7 @@
       close:"That's the Pause Button. Something happens, you press pause, you choose. The space between is where the wise thing lives." },
     { id:"theirshoes", kind:"sel", demo:"desk", name:"In Their Shoes", tag:"SEL · Empathy · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A two-minute imagination trip into how somebody else might be feeling.",
-      intro:"Hi, I'm HANi. Every person you see today is carrying feelings you can't see. Let's practice a superpower called empathy. It means imagining what it's like to be somebody else, just for a minute.",
+      intro:"Hi, I'm Hani. Every person you see today is carrying feelings you can't see. Let's practice a superpower called empathy. It means imagining what it's like to be somebody else, just for a minute.",
       lines:[
         {cue:"Close your eyes or look down soft.",sub:"One slow breath.",say:"Close your eyes, or just look down soft. One slow breath.",hold:9},
         {cue:"Picture someone from today.",sub:"A classmate. A teacher. Anyone.",say:"Picture someone you saw today. A classmate, a teacher, someone on your street. Anyone.",hold:11},
@@ -581,7 +581,7 @@
       close:"That's In Their Shoes. The more you practice imagining other people's feelings, the kinder and braver a friend you become." },
     { id:"listeninggame", kind:"sel", demo:"desk", name:"The Listening Game", tag:"SEL · Friendship · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Whole-body listening: the skill that makes everyone want you on their team.",
-      intro:"Hey, I'm HANi. Want to know the number one secret of great friends? They're great listeners. Listening isn't just ears. It's your whole body. Let's train it like a muscle, right now.",
+      intro:"Hey, I'm Hani. Want to know the number one secret of great friends? They're great listeners. Listening isn't just ears. It's your whole body. Let's train it like a muscle, right now.",
       lines:[
         {cue:"Sit tall. This is listening posture.",sub:"Your body says: I'm here.",say:"Sit up tall. This is listening posture. Your body is already saying: I'm here, I'm ready.",hold:10},
         {cue:"Eyes: find one spot and rest them.",sub:"Eyes show you care.",say:"Now your eyes. Find one spot in the room and let your eyes rest there. When a friend talks, your eyes on them says: you matter.",hold:12},
@@ -594,7 +594,7 @@
       close:"That's the Listening Game. Everyone is fighting to be heard. The kid who really listens becomes everyone's favorite teammate." },
     { id:"cozyplace", kind:"sel", demo:"desk", name:"My Cozy Place", tag:"SEL · Calm · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
-      intro:"Hi friends, I'm HANi. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
+      intro:"Hi friends, I'm Hani. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
       lines:[
         {cue:"Close your eyes. Snuggle into your seat.",sub:"Like a bird in a nest.",say:"Close your eyes and snuggle into your seat, like a little bird in a nest.",hold:10},
         {cue:"Imagine the coziest place ever.",sub:"Real or made-up. Yours.",say:"Now imagine the coziest place ever. It can be real, like your bed, or totally made-up, like a cloud castle. It's yours.",hold:13},
@@ -608,7 +608,7 @@
       close:"That's My Cozy Place. You built it, you own it, and no one can ever take it away. Visit often." },
     { id:"bodydetective", kind:"sel", demo:"desk", name:"Body Detective", tag:"SEL \u00b7 Self-awareness \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Feelings leave clues in your body. Learn to find them before they get big.",
-      intro:"Hey, I'm HANi. Here's a secret: feelings don't just live in your head. They leave clues all over your body. Today you're a detective, and the mystery is: what is my body telling me right now?",
+      intro:"Hey, I'm Hani. Here's a secret: feelings don't just live in your head. They leave clues all over your body. Today you're a detective, and the mystery is: what is my body telling me right now?",
       lines:[
         {cue:"Sit still. Detective mode on.",sub:"One slow breath.",say:"Sit very still, and take one slow breath. Detective mode: on.",hold:9},
         {cue:"Check your forehead and jaw.",sub:"Squeezed tight, or soft?",say:"First clue: your forehead and your jaw. Are they squeezed tight, or soft? Just notice. Don't change anything yet.",hold:11},
@@ -622,7 +622,7 @@
       close:"That's Body Detective. Your body always knows first. Learn its language and feelings can never sneak up on you." },
     { id:"volcanoplan", kind:"sel", demo:"desk", name:"The Volcano Plan", tag:"SEL \u00b7 Big feelings \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Anger is a volcano. You can't stop it existing, but you can keep it from erupting on people.",
-      intro:"Hi, I'm HANi. Let's talk about anger. Anger is not bad. Everyone has it, even me. But anger is like a volcano: if we don't have a plan, it erupts all over people we care about. Let's build your plan while you're calm, so it's ready when you're not.",
+      intro:"Hi, I'm Hani. Let's talk about anger. Anger is not bad. Everyone has it, even me. But anger is like a volcano: if we don't have a plan, it erupts all over people we care about. Let's build your plan while you're calm, so it's ready when you're not.",
       lines:[
         {cue:"Think of your last volcano moment.",sub:"Hot face. Tight fists. Loud voice.",say:"Think of your last volcano moment. Hot face, tight fists, maybe a loud voice. Just remember it. You're safe now.",hold:12},
         {cue:"Step 1: NOTICE the rumble.",sub:"Volcanoes always warn you first.",say:"Step one of the plan: notice the rumble. Volcanoes always warn you first. Hot cheeks, fast heart, tight hands. That's the rumble.",hold:12},
@@ -636,7 +636,7 @@
       close:"That's the Volcano Plan. Notice, space, cool, words. Feeling angry is allowed. Erupting on people is what we practice away." },
     { id:"worrybox", kind:"sel", demo:"desk", name:"The Worry Box", tag:"SEL \u00b7 Worry \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Worries take up a lot of room. Learn to set them down so you can think and play.",
-      intro:"Hey, I'm HANi. Do you ever have a worry that follows you around all day, like a heavy backpack you can't take off? Today we're going to build a worry box: a place to set worries down. Not to throw them away. Just to set them down for a while.",
+      intro:"Hey, I'm Hani. Do you ever have a worry that follows you around all day, like a heavy backpack you can't take off? Today we're going to build a worry box: a place to set worries down. Not to throw them away. Just to set them down for a while.",
       lines:[
         {cue:"One slow breath. Find today's worry.",sub:"Big or small. Any worry.",say:"Take one slow breath, and find a worry you're carrying today. It can be big or small. Any worry.",hold:12},
         {cue:"Give it a shape in your mind.",sub:"What color? How heavy?",say:"Now give that worry a shape in your imagination. What color is it? How heavy does it feel? Look at it, like it's a thing you're holding.",hold:12},
@@ -650,7 +650,7 @@
       close:"That's the Worry Box. You can't stop worries from visiting, but you decide when they get carried and when they get set down." },
     { id:"kindnessdetective", kind:"sel", demo:"desk", name:"Kindness Detective", tag:"SEL \u00b7 Noticing good \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Kindness is happening all around you, quietly. Train your eyes to catch it.",
-      intro:"Hi, I'm HANi. Here's something wild: kindness is happening around you all day long, but it's quiet, so most people miss it. Today you become a kindness detective. Your job: catch kindness in the act.",
+      intro:"Hi, I'm Hani. Here's something wild: kindness is happening around you all day long, but it's quiet, so most people miss it. Today you become a kindness detective. Your job: catch kindness in the act.",
       lines:[
         {cue:"One slow breath. Open your memory.",sub:"Rewind today.",say:"Take one slow breath, and rewind your day like a movie, back to this morning.",hold:10},
         {cue:"Find 1 kindness someone did for YOU.",sub:"Even tiny. A smile counts.",say:"First case: find one kind thing someone did for you today. Even tiny. Someone held a door. Someone smiled. Someone saved you a seat.",hold:13},
@@ -663,7 +663,7 @@
       close:"That's Kindness Detective. A kid who hunts for kindness starts finding it everywhere, and starts making more of it too." },
     { id:"repairkit", kind:"sel", demo:"desk", name:"The Repair Kit", tag:"SEL \u00b7 Friendship \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Everyone breaks things sometimes: feelings, trust, friendships. Strong kids know how to repair.",
-      intro:"Hey, I'm HANi. Everybody messes up. Everybody. We say something unkind, we grab, we leave someone out. The mess-up isn't the important part. The repair is. Let's pack your repair kit.",
+      intro:"Hey, I'm Hani. Everybody messes up. Everybody. We say something unkind, we grab, we leave someone out. The mess-up isn't the important part. The repair is. Let's pack your repair kit.",
       lines:[
         {cue:"Think of a time you hurt someone.",sub:"On purpose or by accident.",say:"Think of a time you hurt someone's feelings, on purpose or by accident. It's uncomfortable to remember. That's okay. That feeling means you care.",hold:13},
         {cue:"Tool 1: the honest look.",sub:"What did I actually do?",say:"Tool one in your kit: the honest look. Ask yourself: what did I actually do? Not what they did. Just your part.",hold:12},
@@ -676,7 +676,7 @@
       close:"That's the Repair Kit. Honest look, real sorry, the listen, the do-different. Everyone breaks things. The strong ones repair." },
     { id:"askingforhelp", kind:"sel", demo:"desk", name:"Brave Enough to Ask", tag:"SEL \u00b7 Asking for help \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Asking for help isn't weak. It's one of the bravest, smartest moves there is.",
-      intro:"Hi, I'm HANi. Some kids think asking for help means you're not smart or not strong. Actually it's the opposite. Every hero has helpers. Every champion has a coach. Let's practice the bravest sentence there is.",
+      intro:"Hi, I'm Hani. Some kids think asking for help means you're not smart or not strong. Actually it's the opposite. Every hero has helpers. Every champion has a coach. Let's practice the bravest sentence there is.",
       lines:[
         {cue:"Think of something hard right now.",sub:"Schoolwork. A friend thing. A feeling.",say:"Think of something that's hard for you right now. Maybe schoolwork, maybe a friend thing, maybe a feeling that won't leave.",hold:12},
         {cue:"Notice the \"I should do it alone\" voice.",sub:"Lots of people have it.",say:"Notice if there's a voice saying: I should handle this alone. Lots of people have that voice. It sounds tough, but it usually makes things harder.",hold:12},
@@ -689,7 +689,7 @@
       close:"That's Brave Enough to Ask. Strong people aren't the ones who never need help. They're the ones brave enough to ask for it." },
     { id:"theripple", kind:"sel", demo:"desk", name:"The Ripple", tag:"SEL \u00b7 Choices \u00b7 2 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Every choice is a stone dropped in water. Learn to see the ripples before you throw.",
-      intro:"Hey, I'm HANi. Picture a still pond. Drop in one little stone, and rings spread out farther than you'd ever guess. Choices work exactly like that. Today we practice seeing the ripples before we throw the stone.",
+      intro:"Hey, I'm Hani. Picture a still pond. Drop in one little stone, and rings spread out farther than you'd ever guess. Choices work exactly like that. Today we practice seeing the ripples before we throw the stone.",
       lines:[
         {cue:"Picture the still pond.",sub:"One slow breath.",say:"Close your eyes or look down soft. Picture a perfectly still pond. Take one slow breath.",hold:10},
         {cue:"Pick a choice you might make today.",sub:"Any real choice, big or small.",say:"Now pick a real choice you might face today. Joining a game or sitting out. Telling the truth or not. Being patient or snapping.",hold:13},
@@ -702,7 +702,7 @@
       close:"That's the Ripple. You can't always see where every ring goes, but looking before you throw is what wise people do." },
     { id:"bravevoice", kind:"sel", demo:"desk", name:"My Brave Voice", tag:"SEL \u00b7 Speaking up \u00b7 2 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"For the moments something isn't right: find the voice that's strong AND kind.",
-      intro:"Hi, I'm HANi. Sometimes something happens that isn't right. Someone's unkind to you, or to somebody else. There's a voice inside you built exactly for those moments. It's not a mean voice, and it's not a silent voice. It's your brave voice. Let's warm it up.",
+      intro:"Hi, I'm Hani. Sometimes something happens that isn't right. Someone's unkind to you, or to somebody else. There's a voice inside you built exactly for those moments. It's not a mean voice, and it's not a silent voice. It's your brave voice. Let's warm it up.",
       lines:[
         {cue:"Stand tall inside. Feet grounded.",sub:"Brave starts in the body.",say:"Sit or stand tall, feet flat and grounded. Brave starts in the body, before any words come out.",hold:10},
         {cue:"Your brave voice is CALM and CLEAR.",sub:"Not yelling. Not whispering.",say:"Your brave voice is calm and clear. Not yelling, because yelling starts a fight. Not whispering, because whispers get ignored. Steady, like a mountain talking.",hold:13},
@@ -715,7 +715,7 @@
       close:"That's My Brave Voice. Calm, clear, and kind. You won't need it every day. But the day you do, it'll be ready." },
     { id:"lettinggoleaf", kind:"sel", demo:"desk", name:"The Letting-Go Leaf", tag:"SEL \u00b7 Moving on \u00b7 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"For when one bad moment keeps replaying. Put it on a leaf and let the stream take it.",
-      intro:"Hey, I'm HANi. You know when one bad moment gets stuck in your head and keeps replaying, like a song you can't turn off? Missed the goal, said the wrong thing, got a bad grade. Let's practice letting it float away.",
+      intro:"Hey, I'm Hani. You know when one bad moment gets stuck in your head and keeps replaying, like a song you can't turn off? Missed the goal, said the wrong thing, got a bad grade. Let's practice letting it float away.",
       lines:[
         {cue:"Find the stuck moment.",sub:"The one that keeps replaying.",say:"Take a slow breath, and find the moment that's been replaying in your head. You know the one.",hold:11},
         {cue:"Watch it ONE more time. Just once.",sub:"Then it's done playing.",say:"Watch it one more time in your mind, start to finish. Just once. After this, it's done playing.",hold:11},
@@ -728,7 +728,7 @@
       close:"That's the Letting-Go Leaf. Bad moments are visitors, not roommates. You've always got another leaf." },
     { id:"feelingsweather", kind:"sel", demo:"desk", name:"The Feelings Weather Report", tag:"SEL · Feelings · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Check your inside weather: sunny, cloudy, stormy, foggy. Every weather is okay, and weather always changes.",
-      intro:"Hey, I'm HANi. Did you know you have weather inside you? It's true. Sometimes it's sunny in there, sometimes it's stormy. Let's peek out your inside window and check today's weather.",
+      intro:"Hey, I'm Hani. Did you know you have weather inside you? It's true. Sometimes it's sunny in there, sometimes it's stormy. Let's peek out your inside window and check today's weather.",
       lines:[
         {cue:"Sit tall like a mountain.",sub:"One slow breath.",say:"Sit tall like a mountain, and take one slow breath in... and out.",hold:9},
         {cue:"Peek inside. What's the weather?",sub:"Look out your inside window.",say:"Now peek inside yourself, like you're looking out a little window. What's the weather in there today?",hold:10},
@@ -743,7 +743,7 @@
       close:"That's the Feelings Weather Report. Check your inside weather any time you like. Every weather is okay, and it always, always changes." },
     { id:"feelingfaces", kind:"sel", demo:"desk", name:"Feeling Faces", tag:"SEL · Feelings · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Make a happy face, a sad face, a mad face. Feel how each one changes your whole body.",
-      intro:"Hey, I'm HANi. Your face is like a little billboard for your feelings. Let's try some feeling faces together and see what each one does to your body. Ready? Warm up those cheeks.",
+      intro:"Hey, I'm Hani. Your face is like a little billboard for your feelings. Let's try some feeling faces together and see what each one does to your body. Ready? Warm up those cheeks.",
       lines:[
         {cue:"Make a HAPPY face.",sub:"Big smile. Bright eyes.",say:"First, make your biggest happy face. Huge smile, bright eyes. Feel your cheeks go up.",hold:10},
         {cue:"What does happy do to your body?",sub:"Light? Warm? Bouncy?",say:"Notice what that happy face does to your body. Does it feel light? Warm? A little bouncy?",hold:10},
@@ -758,7 +758,7 @@
       close:"Those are Feeling Faces. Faces show feelings, and a soft calm face can help a big feeling settle down. Try it next time." },
     { id:"enginespeed", kind:"sel", demo:"desk", name:"My Engine Speed", tag:"SEL · Body check · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Is your body engine running too fast, too slow, or just right? Check your speed, then shift it.",
-      intro:"Hey, I'm HANi. Did you know your body has an engine? Sometimes it runs super fast, vroom vroom. Sometimes it runs slow, like a sleepy snail. Let's check your engine speed right now.",
+      intro:"Hey, I'm Hani. Did you know your body has an engine? Sometimes it runs super fast, vroom vroom. Sometimes it runs slow, like a sleepy snail. Let's check your engine speed right now.",
       lines:[
         {cue:"Hands on your tummy.",sub:"Feel your engine.",say:"Put your hands on your tummy and sit still for a second. Your engine is in there, humming.",hold:9},
         {cue:"Is it running TOO FAST?",sub:"Wiggly legs. Racing thoughts. Vroom!",say:"Is your engine running too fast today? Wiggly legs, racing thoughts, like you might zoom out of your seat?",hold:10},
@@ -773,7 +773,7 @@
       close:"That's My Engine Speed. Too fast, too slow, or just right, you're the driver, and drivers know how to shift." },
     { id:"feelingsthermometer", kind:"sel", demo:"desk", name:"The Feelings Thermometer", tag:"SEL · Feelings · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Rate a feeling from 1 to 5, breathe, then rate it again. Discover you can move your own number.",
-      intro:"Hey, I'm HANi. Feelings come in sizes. A little annoyed is not the same as super angry. Today we're using a feelings thermometer to measure a feeling, and then, watch this, we're going to change the number.",
+      intro:"Hey, I'm Hani. Feelings come in sizes. A little annoyed is not the same as super angry. Today we're using a feelings thermometer to measure a feeling, and then, watch this, we're going to change the number.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Find a feeling you have right now.",sub:"Any feeling. Big or small.",say:"Find a feeling you're having right now. Maybe excited, maybe tired, maybe a little worried. Any feeling works.",hold:11},
@@ -788,7 +788,7 @@
       close:"That's the Feelings Thermometer. Measure the feeling, breathe, measure again. The number is yours to move." },
     { id:"twofeelings", kind:"sel", demo:"desk", name:"Two Feelings at Once", tag:"SEL · Feelings · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Excited AND nervous. Happy AND missing someone. You can hold two feelings at the same time.",
-      intro:"Hey, I'm HANi. Here's something most people don't know: you can have two feelings at the exact same time. Excited AND nervous. Happy AND a little sad. It's not weird, it's normal. Let's practice holding both.",
+      intro:"Hey, I'm Hani. Here's something most people don't know: you can have two feelings at the exact same time. Excited AND nervous. Happy AND a little sad. It's not weird, it's normal. Let's practice holding both.",
       lines:[
         {cue:"Sit tall. Hands open in your lap.",sub:"Palms up, like two little bowls.",say:"Sit tall, and put your hands in your lap with your palms up, like two little bowls.",hold:9},
         {cue:"Think of a time you felt TWO things.",sub:"First day of school? A sleepover? A big game?",say:"Think of a time you felt two things at once. Like the first day of school: excited AND nervous. Or a sleepover: happy AND missing home.",hold:12},
@@ -802,7 +802,7 @@
       close:"That's Two Feelings at Once. Mixed feelings aren't broken feelings. They're proof you have a big heart with lots of rooms." },
     { id:"strengthsbackpack", kind:"sel", demo:"desk", name:"My Strengths Backpack", tag:"SEL · Strengths · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Pack three things you're genuinely good at into an invisible backpack, and carry them all day.",
-      intro:"Hey, I'm HANi. You carry a backpack to school with books and snacks. But you also have an invisible backpack, and it carries your strengths, the things you're good at. Let's pack it together.",
+      intro:"Hey, I'm Hani. You carry a backpack to school with books and snacks. But you also have an invisible backpack, and it carries your strengths, the things you're good at. Let's pack it together.",
       lines:[
         {cue:"Sit tall. Backpack time.",sub:"One slow breath.",say:"Sit tall and take one slow breath. Time to pack the invisible backpack.",hold:9},
         {cue:"Strength 1: something you can DO.",sub:"Draw? Run? Build? Read? Sing?",say:"Strength number one: something you can do. Maybe you draw, or run fast, or build amazing things, or read, or sing. Pick one.",hold:12},
@@ -817,7 +817,7 @@
       close:"That's My Strengths Backpack. Your strengths go where you go. When the day gets heavy, remember what you packed." },
     { id:"thoughttrain", kind:"sel", demo:"desk", name:"The Thought Train", tag:"SEL · Thoughts · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Thoughts are trains pulling into the station. You can watch them pass without climbing aboard.",
-      intro:"Hey, I'm HANi. Your mind is like a busy train station, and thoughts are the trains. Here's the secret nobody tells kids: you don't have to get on every train. Let's practice just watching them.",
+      intro:"Hey, I'm Hani. Your mind is like a busy train station, and thoughts are the trains. Here's the secret nobody tells kids: you don't have to get on every train. Let's practice just watching them.",
       lines:[
         {cue:"Sit tall. You're at the station.",sub:"One slow breath.",say:"Sit tall and take one slow breath. Welcome to your train station.",hold:9},
         {cue:"Watch for the next thought-train.",sub:"It's coming. It always comes.",say:"Now just wait, and watch for the next thought that pulls in. Maybe it's about lunch. Maybe it's about recess. Here it comes.",hold:11},
@@ -831,7 +831,7 @@
       close:"That's the Thought Train. Thoughts come and go all day. You get to choose which ones you ride." },
     { id:"triggermap", kind:"sel", demo:"desk", name:"Trigger Map", tag:"SEL · Self-awareness · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Map the situations that reliably light your fuse. Knowing your buttons is the first step to owning them.",
-      intro:"Hey, I'm HANi. Everyone has buttons, things that reliably set off their big feelings. Being cut in line. Losing a game. A certain tone of voice. Today, while you're calm, we're going to map yours. Because a button you know about loses its surprise attack.",
+      intro:"Hey, I'm Hani. Everyone has buttons, things that reliably set off their big feelings. Being cut in line. Losing a game. A certain tone of voice. Today, while you're calm, we're going to map yours. Because a button you know about loses its surprise attack.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"Map-making needs a calm mapmaker.",say:"Sit tall and take one slow breath. Map-making works best when you're calm, which is exactly why we do this now.",hold:10},
         {cue:"Think: when did you last get BIG mad or upset?",sub:"Not the feeling. The situation.",say:"Think back to the last time a feeling got big fast. Not the feeling itself, the situation. What was happening right before?",hold:12},
@@ -845,7 +845,7 @@
       close:"That's the Trigger Map. Know your buttons, know your alarm, and keep one breath between the trigger and you." },
     { id:"valuescompass", kind:"sel", demo:"desk", name:"The Values Compass", tag:"SEL · Values · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Pick the three things that matter most to you, then check one real choice against your compass.",
-      intro:"Hey, I'm HANi. A compass tells you which way is north. People have compasses too, made of the things that matter most to them. Today you're going to find yours. It's been in your pocket this whole time.",
+      intro:"Hey, I'm Hani. A compass tells you which way is north. People have compasses too, made of the things that matter most to them. Today you're going to find yours. It's been in your pocket this whole time.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Here are some values. Listen close.",sub:"Fairness. Courage. Kindness. Honesty. Loyalty. Fun. Family. Trying hard.",say:"Listen to this list, and notice which words tug at you: fairness. Courage. Kindness. Honesty. Loyalty. Fun. Family. Trying hard.",hold:13},
@@ -859,7 +859,7 @@
       close:"That's the Values Compass. Three things that matter most, in your pocket, every day. Check it before the big choices." },
     { id:"insidevoiceaudit", kind:"sel", demo:"desk", name:"Inside Voice Audit", tag:"SEL · Self-talk · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Listen to your own self-talk for one quiet minute. Is that voice a coach or a critic?",
-      intro:"Hey, I'm HANi. There's a voice in your head that talks to you all day long. Most people never stop to actually listen to it. Today, we're doing an audit, which means we listen carefully and check: is that voice a coach, or a critic?",
+      intro:"Hey, I'm Hani. There's a voice in your head that talks to you all day long. Most people never stop to actually listen to it. Today, we're doing an audit, which means we listen carefully and check: is that voice a coach, or a critic?",
       lines:[
         {cue:"Sit tall. Get quiet.",sub:"One slow breath.",say:"Sit tall, get quiet, and take one slow breath.",hold:9},
         {cue:"Now just listen inside.",sub:"What is the voice saying right now?",say:"Now just listen inside for a moment. What is your inside voice saying, right now? Maybe it's narrating. Maybe it's judging. Maybe it's quiet.",hold:12},
@@ -873,7 +873,7 @@
       close:"That's the Inside Voice Audit. Listen in once a day. Keep the coach, retrain the critic. It's your voice, after all." },
     { id:"maskcheck", kind:"sel", demo:"desk", name:"The Mask Check", tag:"SEL · Real feelings · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Sometimes your outside face doesn't match your inside feeling. Notice the mask, and know when it's safe to take it off.",
-      intro:"Hey, I'm HANi. Sometimes we wear a mask. Not a Halloween mask, a feelings mask. Smiling on the outside while something hurts on the inside. Everybody does it sometimes. Today we just check: is my outside matching my inside?",
+      intro:"Hey, I'm Hani. Sometimes we wear a mask. Not a Halloween mask, a feelings mask. Smiling on the outside while something hurts on the inside. Everybody does it sometimes. Today we just check: is my outside matching my inside?",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Check your OUTSIDE.",sub:"What does your face show right now?",say:"First, check your outside. If someone looked at your face right now, what feeling would they guess?",hold:10},
@@ -888,7 +888,7 @@
       close:"That's the Mask Check. Check your match once a day, and keep one safe person who gets to see the real you." },
     { id:"proudreplay", kind:"sel", demo:"desk", name:"Proud Moment Replay", tag:"SEL · Strengths · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Replay a moment you were proud of, in slow motion. Find the strength that made it happen. It's still yours.",
-      intro:"Hey, I'm HANi. Sports players watch replays of their best moments to learn what worked. Today, you're the highlight reel. We're going to replay one moment you were proud of, in slow motion, and find the strength hiding inside it.",
+      intro:"Hey, I'm Hani. Sports players watch replays of their best moments to learn what worked. Today, you're the highlight reel. We're going to replay one moment you were proud of, in slow motion, and find the strength hiding inside it.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"Cue the replay screen.",say:"Sit tall, take one slow breath, and picture a big screen in your mind. Cue the replay.",hold:10},
         {cue:"Find one PROUD moment.",sub:"Big or small. Yours.",say:"Find one moment you felt proud of yourself. It can be big, like a performance, or small, like helping someone when nobody asked. Small ones count double.",hold:13},
@@ -902,7 +902,7 @@
       close:"That's Proud Moment Replay. You have real evidence of your own strength. Watch the tape whenever you forget." },
     { id:"turtletime", kind:"sel", demo:"desk", name:"Turtle Time", tag:"SEL · Calm down · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"When it's too much: stop, tuck into your shell, three breaths, come out ready.",
-      intro:"Hi, I'm HANi. Do you know what a turtle does when the world gets too loud or too much? It tucks into its shell, gets calm, and comes back out when it's ready. You have a shell too. Let's practice.",
+      intro:"Hi, I'm Hani. Do you know what a turtle does when the world gets too loud or too much? It tucks into its shell, gets calm, and comes back out when it's ready. You have a shell too. Let's practice.",
       lines:[
         {cue:"Sit in your seat. Feet on the floor.",sub:"Turtle practice time!",say:"Sit in your seat with your feet on the floor. It's turtle practice time.",hold:9},
         {cue:"Something feels TOO MUCH? Say: \"Turtle time.\"",sub:"Quietly, to yourself.",say:"When something feels too big, too loud, or too much, you say quietly to yourself: turtle time.",hold:10},
@@ -917,7 +917,7 @@
       close:"That's Turtle Time. Too much? Tuck, three breaths, come out ready. Slow and steady really does win." },
     { id:"squeezemelt", kind:"sel", demo:"desk", name:"Squeeze and Melt", tag:"SEL · Calm down · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Squeeze every muscle stiff like uncooked spaghetti, then melt soft like cooked spaghetti.",
-      intro:"Hi, I'm HANi. Have you ever seen spaghetti before it's cooked? Stiff as a stick! And after? Soft and wiggly. Your body can do both. Let's cook some spaghetti.",
+      intro:"Hi, I'm Hani. Have you ever seen spaghetti before it's cooked? Stiff as a stick! And after? Soft and wiggly. Your body can do both. Let's cook some spaghetti.",
       lines:[
         {cue:"Sit tall. Arms by your sides.",sub:"Raw spaghetti time!",say:"Sit tall with your arms by your sides. Time to be raw spaghetti.",hold:8},
         {cue:"SQUEEZE your hands into fists.",sub:"Tight tight tight!",say:"Squeeze your hands into the tightest fists you can. Tight, tight, tight!",hold:8},
@@ -932,7 +932,7 @@
       close:"That's Squeeze and Melt. When your body feels tight and grumpy, cook the spaghetti: squeeze it tight, then melt it soft." },
     { id:"bubblepatience", kind:"sel", demo:"desk", name:"Bubble Patience", tag:"SEL · Waiting · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Blow an imaginary bubble so slowly it doesn't pop. Waiting practice disguised as a game.",
-      intro:"Hi, I'm HANi. Blowing bubbles is easy. But blowing a GIANT bubble that doesn't pop? That takes the slowest, gentlest breath in the world. Let's try.",
+      intro:"Hi, I'm Hani. Blowing bubbles is easy. But blowing a GIANT bubble that doesn't pop? That takes the slowest, gentlest breath in the world. Let's try.",
       lines:[
         {cue:"Sit tall. Hold your bubble wand.",sub:"Pinch your fingers in a circle.",say:"Sit tall and hold up your imaginary bubble wand. Make a circle with your fingers. There it is.",hold:9},
         {cue:"Dip it in the bubble juice.",sub:"Slooowly.",say:"Dip your wand in the bubble juice. Slowly. No rushing, or you'll spill it.",hold:8},
@@ -947,7 +947,7 @@
       close:"That's Bubble Patience. Waiting is hard. But you're a giant-bubble blower now, and bubble blowers know how to go slow." },
     { id:"redobutton", kind:"sel", demo:"desk", name:"The Redo Button", tag:"SEL · Do-overs · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Everyone gets do-overs. Practice noticing a wrong turn, pausing, and asking for a redo.",
-      intro:"Hey, I'm HANi. In video games, when something goes wrong, you don't throw the whole game away. You hit redo and try again. Real life has a redo button too. Most kids just never learn where it is.",
+      intro:"Hey, I'm Hani. In video games, when something goes wrong, you don't throw the whole game away. You hit redo and try again. Real life has a redo button too. Most kids just never learn where it is.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Think of a moment today that went WRONG.",sub:"Said something? Did something? Small counts.",say:"Think of a little moment today or yesterday that went wrong. Maybe you said something snappy, or grabbed, or ignored someone. Small counts.",hold:12},
@@ -961,7 +961,7 @@
       close:"That's the Redo Button. A bad moment doesn't ruin a day. Tap twice, ask for take-two, and go again." },
     { id:"braintrafficlight", kind:"sel", demo:"desk", name:"Brain Traffic Light", tag:"SEL · Impulse control · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Red: stop. Yellow: think of choices. Green: go with the wise one. Impulse control in three colors.",
-      intro:"Hey, I'm HANi. Cars have traffic lights so they don't crash. Your brain has one too, for when big urges show up. Red, yellow, green. Let's turn yours on.",
+      intro:"Hey, I'm Hani. Cars have traffic lights so they don't crash. Your brain has one too, for when big urges show up. Red, yellow, green. Let's turn yours on.",
       lines:[
         {cue:"Sit tall. Picture a traffic light.",sub:"Red on top. Yellow. Green.",say:"Sit tall and picture a traffic light in your mind. Red on top, yellow in the middle, green at the bottom.",hold:10},
         {cue:"An urge shows up: grab, yell, blurt, push.",sub:"That's when the light turns on.",say:"Now imagine a big urge shows up. You want to grab the thing, yell the word, blurt the answer, push to the front. That's the exact moment your light turns on.",hold:13},
@@ -975,7 +975,7 @@
       close:"That's the Brain Traffic Light. Urges are fast, but red-yellow-green is faster. Stop, think, go wise." },
     { id:"boredomninja", kind:"sel", demo:"desk", name:"The Boredom Ninja", tag:"SEL · Patience · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Sitting with nothing to do, without melting down. Boredom tolerance as a trainable skill.",
-      intro:"Hey, I'm HANi. Here's a secret: boredom is not an emergency. But most people treat it like one! A boredom ninja can sit with nothing to do and stay totally calm. Ninja training starts now.",
+      intro:"Hey, I'm Hani. Here's a secret: boredom is not an emergency. But most people treat it like one! A boredom ninja can sit with nothing to do and stay totally calm. Ninja training starts now.",
       lines:[
         {cue:"Sit tall. Put EVERYTHING down.",sub:"Empty hands. This is the training.",say:"Sit tall and put everything down. Empty hands, empty desk. This emptiness IS the ninja training.",hold:10},
         {cue:"Do... nothing.",sub:"Just sit. Just breathe.",say:"Now, do nothing. Just sit and breathe. Nothing to watch, nothing to press, nothing to hold.",hold:11},
@@ -989,7 +989,7 @@
       close:"That's the Boredom Ninja. Bored is where imagination starts. Sit with it, and it turns into something." },
     { id:"focusfortress", kind:"sel", demo:"desk", name:"The Focus Fortress", tag:"SEL · Focus · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"One task, one target, and a plan for each distraction that attacks the walls.",
-      intro:"Hey, I'm HANi. Focus isn't magic. It's a fortress you build on purpose: one target inside, and walls that know exactly what's going to attack them. Let's build yours before your next work block.",
+      intro:"Hey, I'm Hani. Focus isn't magic. It's a fortress you build on purpose: one target inside, and walls that know exactly what's going to attack them. Let's build yours before your next work block.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"Architect mode.",say:"Sit tall, one slow breath. You're the architect now.",hold:8},
         {cue:"Pick ONE target.",sub:"One task. Not three. ONE.",say:"First, pick one target: the single task you need to finish. Not three tasks. One. Say it to yourself clearly.",hold:11},
@@ -1003,7 +1003,7 @@
       close:"That's the Focus Fortress. Distraction isn't defeated by trying harder. It's defeated by planning smarter." },
     { id:"testdaysteady", kind:"sel", demo:"desk", name:"Test-Day Steady", tag:"SEL · Nerves · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"A pre-performance routine: long exhales plus ready words, for tests, tryouts, and presentations.",
-      intro:"Hey, I'm HANi. Athletes have pre-game routines. Musicians have pre-show routines. Today you get yours: for tests, tryouts, presentations, anything with butterflies. Two minutes, and you walk in steady.",
+      intro:"Hey, I'm Hani. Athletes have pre-game routines. Musicians have pre-show routines. Today you get yours: for tests, tryouts, presentations, anything with butterflies. Two minutes, and you walk in steady.",
       lines:[
         {cue:"Sit tall. Feet flat. Hands on your desk.",sub:"Grounded position.",say:"Sit tall, both feet flat on the floor, hands resting on your desk. This is your grounded position.",hold:10},
         {cue:"Notice the butterflies. Don't fight them.",sub:"Butterflies mean you CARE.",say:"Notice the nervous feeling, the butterflies. Don't fight them. Butterflies just mean you care about this. Even pros get them.",hold:11},
@@ -1017,7 +1017,7 @@
       close:"That's Test-Day Steady. Three long exhales, two ready phrases, one question at a time. Take it into every big moment." },
     { id:"frustrationladder", kind:"sel", demo:"desk", name:"The Frustration Ladder", tag:"SEL · Perseverance · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Stuck on hard work? Climb in order: try again, try different, take a break, ask for help.",
-      intro:"Hey, I'm HANi. When work gets hard, most people jump straight from stuck to giving up. But there's a ladder between those two places, with four strong rungs. Learn the ladder, and stuck stops being scary.",
+      intro:"Hey, I'm Hani. When work gets hard, most people jump straight from stuck to giving up. But there's a ladder between those two places, with four strong rungs. Learn the ladder, and stuck stops being scary.",
       lines:[
         {cue:"Sit tall. Think of your last STUCK moment.",sub:"Hard math? Tricky writing? A skill that wouldn't click?",say:"Sit tall and think of the last time you were really stuck. Hard math, tricky writing, a game move that wouldn't click. Feel that stuck feeling again, just a little.",hold:13},
         {cue:"Stuck is a PLACE, not an ending.",sub:"And places have exits.",say:"First truth: stuck is a place, not an ending. And every place has exits. Here's your ladder out.",hold:10},
@@ -1031,7 +1031,7 @@
       close:"That's the Frustration Ladder. Try again, try different, take a break, ask smart. Stuck never gets the last word." },
     { id:"facereading", kind:"sel", demo:"desk", name:"Face Reading", tag:"SEL · Empathy · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"What faces tell us: happy, sad, mad, surprised. The first empathy tool: look at the face.",
-      intro:"Hi, I'm HANi. Faces talk without words! A face can say I'm happy, or I'm sad, or I'm mad, without one single sound. Let's learn to read faces, like reading a book.",
+      intro:"Hi, I'm Hani. Faces talk without words! A face can say I'm happy, or I'm sad, or I'm mad, without one single sound. Let's learn to read faces, like reading a book.",
       lines:[
         {cue:"Sit criss-cross. Eyes on me!",sub:"Face reading school is open.",say:"Sit criss-cross and get your eyes ready. Face reading school is open!",hold:9},
         {cue:"A HAPPY face: smile, bright eyes.",sub:"Make one! Now you can read it.",say:"A happy face has a smile and bright, crinkly eyes. Make a happy face right now. See? Now you know what happy looks like on a friend.",hold:12},
@@ -1045,7 +1045,7 @@
       close:"That's Face Reading. Faces talk without words, and now you speak their language." },
     { id:"gentlehands", kind:"sel", demo:"desk", name:"Gentle Hands, Gentle Voice", tag:"SEL · Kindness · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"How our volume and our touch land on other people's bodies and feelings.",
-      intro:"Hi, I'm HANi. Your hands and your voice are like volume knobs. They can be big and loud, or soft and gentle. Let's practice the gentle settings, because gentle is how friends feel safe.",
+      intro:"Hi, I'm Hani. Your hands and your voice are like volume knobs. They can be big and loud, or soft and gentle. Let's practice the gentle settings, because gentle is how friends feel safe.",
       lines:[
         {cue:"Sit tall. Hands up!",sub:"Time to test our settings.",say:"Sit tall and hold your hands up. Time to test your settings.",hold:8},
         {cue:"Clap one BIG loud clap.",sub:"That's the loud setting.",say:"Clap one big, loud clap. That's your loud setting. Loud is fun outside, at games, at parties.",hold:9},
@@ -1059,7 +1059,7 @@
       close:"That's Gentle Hands, Gentle Voice. You have all the settings. Knowing which one to use? That's what makes a great friend." },
     { id:"everyonegetsaturn", kind:"sel", demo:"desk", name:"Everyone Gets a Turn", tag:"SEL · Noticing · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Noticing when somebody hasn't had a turn yet, before a grown-up has to say it.",
-      intro:"Hi, I'm HANi. In games and circle time, everybody wants a turn. But somebody always gets missed. Today you learn a special power: noticing the kid who hasn't had a turn, all by yourself.",
+      intro:"Hi, I'm Hani. In games and circle time, everybody wants a turn. But somebody always gets missed. Today you learn a special power: noticing the kid who hasn't had a turn, all by yourself.",
       lines:[
         {cue:"Sit criss-cross. One breath.",sub:"",say:"Sit criss-cross and take one nice breath.",hold:8},
         {cue:"Think about your favorite game.",sub:"Blocks? Tag? Pretend?",say:"Think about your favorite game to play with friends. Blocks, tag, pretend, anything.",hold:9},
@@ -1073,7 +1073,7 @@
       close:"That's Everyone Gets a Turn. The kids who notice are the kids everyone wants to play with." },
     { id:"howwouldthatfeel", kind:"sel", demo:"desk", name:"How Would That Feel?", tag:"SEL · Empathy · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"The simplest perspective flip: if that happened to you, what would your heart do?",
-      intro:"Hi, I'm HANi. Today we learn the most important question in the whole world. Ready? Here it is: how would that feel... if it happened to ME? Let's practice asking it.",
+      intro:"Hi, I'm Hani. Today we learn the most important question in the whole world. Ready? Here it is: how would that feel... if it happened to ME? Let's practice asking it.",
       lines:[
         {cue:"Sit tall. Hand on your heart.",sub:"Your heart is the answer-checker.",say:"Sit tall and put one hand on your heart. Your heart is going to be our answer-checker.",hold:9},
         {cue:"Pretend: someone shares their snack with you.",sub:"How would that feel?",say:"Let's pretend. Someone shares their yummy snack with you. Ask your heart: how would that feel? Warm? Happy? Nice?",hold:11},
@@ -1087,7 +1087,7 @@
       close:"That's How Would That Feel. One little question, asked before you act. It makes you the kindest kind of friend." },
     { id:"invisiblebackpack", kind:"sel", demo:"desk", name:"The Invisible Backpack", tag:"SEL · Empathy · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Everyone carries things you can't see: worries, hurts, hopes. Walk gently.",
-      intro:"Hey, I'm HANi. Everyone in your class walked in today wearing an invisible backpack. Not the one with books. A secret one, full of things you can't see: worries, hurts, hopes. Let's talk about it.",
+      intro:"Hey, I'm Hani. Everyone in your class walked in today wearing an invisible backpack. Not the one with books. A secret one, full of things you can't see: worries, hurts, hopes. Let's talk about it.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Picture your OWN invisible backpack.",sub:"What are you carrying today?",say:"First, picture your own invisible backpack. What's in it today? Maybe a worry. Maybe something exciting. Maybe something heavy from home. Only you know.",hold:13},
@@ -1101,7 +1101,7 @@
       close:"That's the Invisible Backpack. Be kind. Always. You never know what someone's carrying." },
     { id:"newkidglasses", kind:"sel", demo:"desk", name:"New Kid Glasses", tag:"SEL · Perspective · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Put on imaginary glasses and see the classroom the way a brand-new kid sees it.",
-      intro:"Hey, I'm HANi. You know this classroom so well you could walk it with your eyes closed. But imagine seeing it for the very first time, knowing nobody. Today we put on New Kid Glasses.",
+      intro:"Hey, I'm Hani. You know this classroom so well you could walk it with your eyes closed. But imagine seeing it for the very first time, knowing nobody. Today we put on New Kid Glasses.",
       lines:[
         {cue:"Sit tall. Put on your invisible glasses.",sub:"Blink twice to turn them on.",say:"Sit tall and put on your invisible New Kid Glasses. Blink twice to turn them on.",hold:9},
         {cue:"Look around like you've NEVER been here.",sub:"First day. First hour.",say:"Now look around the room like you have never, ever been here. It's your first day. Your first hour. You know zero people.",hold:12},
@@ -1115,7 +1115,7 @@
       close:"That's New Kid Glasses. Every expert in this room was new once. Keep the glasses in your pocket." },
     { id:"sameanddifferent", kind:"sel", demo:"desk", name:"Same and Different", tag:"SEL · Connection · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Find three ways you match a classmate and three ways you differ. Both lists make the team stronger.",
-      intro:"Hey, I'm HANi. Pick any kid in this class, and I promise you two things are true: you're alike in ways you haven't noticed, and different in ways that make you a better team. Let's prove it.",
+      intro:"Hey, I'm Hani. Pick any kid in this class, and I promise you two things are true: you're alike in ways you haven't noticed, and different in ways that make you a better team. Let's prove it.",
       lines:[
         {cue:"Think of a classmate you don't know well.",sub:"Not your best friend. Someone else.",say:"Think of a classmate you don't know very well. Not your best friend. Someone you've barely talked to.",hold:11},
         {cue:"Find 3 SAMES.",sub:"Same school. Same recess. What else?",say:"Now find three ways you're the same. Easy ones count: same school, same grade, same recess. But dig deeper. Same favorite subject? Both have little sisters? Both love pizza?",hold:14},
@@ -1129,7 +1129,7 @@
       close:"That's Same and Different. Alike enough to connect, different enough to matter. That's what a team is." },
     { id:"helperspotter", kind:"sel", demo:"desk", name:"The Helper Spotter", tag:"SEL · Hope · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"In any room, any problem, any news story: find the helpers. They're always there.",
-      intro:"Hey, I'm HANi. A very wise TV neighbor once taught kids: when something scary happens, look for the helpers. You will always find people helping. Today we train your helper-spotting eyes.",
+      intro:"Hey, I'm Hani. A very wise TV neighbor once taught kids: when something scary happens, look for the helpers. You will always find people helping. Today we train your helper-spotting eyes.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"Spotter training begins.",say:"Sit tall and take one slow breath. Helper spotter training begins now.",hold:9},
         {cue:"Spot the helpers in THIS school.",sub:"Who helps you every day?",say:"Start easy: spot the helpers in this school. Teachers. The nurse. Cafeteria crew. Crossing guards. Custodians. Count how many you can name.",hold:13},
@@ -1143,7 +1143,7 @@
       close:"That's the Helper Spotter. Look for the helpers. Be one when you can. That's the whole secret." },
     { id:"cheerpractice", kind:"sel", demo:"desk", name:"Cheer Practice", tag:"SEL · Big heart · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Feeling genuinely glad when someone ELSE wins. The rarest skill on the playground.",
-      intro:"Hey, I'm HANi. Cheering when YOU win is easy. Cheering when someone ELSE wins, especially when you wanted it? That's the rarest skill on the playground. Champions of the heart practice it. Let's practice.",
+      intro:"Hey, I'm Hani. Cheering when YOU win is easy. Cheering when someone ELSE wins, especially when you wanted it? That's the rarest skill on the playground. Champions of the heart practice it. Let's practice.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"",say:"Sit tall, one slow breath.",hold:8},
         {cue:"Remember a time someone else WON.",sub:"The prize, the game, the part you wanted.",say:"Remember a time someone else won something you wanted. The game, the prize, the line-leader spot, the part in the play.",hold:12},
@@ -1157,7 +1157,7 @@
       close:"That's Cheer Practice. Being happy for other people doubles the happiness in the room, and some of the extra is yours." },
     { id:"readtheroom", kind:"sel", demo:"desk", name:"Read the Room", tag:"SEL · Awareness · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Sensing a group's mood and energy before you speak or act. What is this room feeling right now?",
-      intro:"Hey, I'm HANi. Rooms have moods, just like people. A room can be excited, tense, tired, or silly. People who can read the room before they speak have a real superpower. Training starts now.",
+      intro:"Hey, I'm Hani. Rooms have moods, just like people. A room can be excited, tense, tired, or silly. People who can read the room before they speak have a real superpower. Training starts now.",
       lines:[
         {cue:"Sit tall. Go quiet. Antennas up.",sub:"",say:"Sit tall, go quiet, and put your invisible antennas up.",hold:9},
         {cue:"Read THIS room's energy right now.",sub:"Fast or slow? Loud or soft?",say:"Read this room right now. Is the energy fast or slow? Loud or soft? Wiggly or still? Just gather data.",hold:12},
@@ -1171,7 +1171,7 @@
       close:"That's Read the Room. The kids who read the room end up leading it." },
     { id:"bothsides", kind:"sel", demo:"desk", name:"Both Sides of the Story", tag:"SEL · Perspective · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"One playground conflict, told honestly twice, once from each side. Both tellings are true to the teller.",
-      intro:"Hey, I'm HANi. Every argument has at least two stories, and here's the hard part: both usually feel one hundred percent true to the person telling them. Today we practice telling both.",
+      intro:"Hey, I'm Hani. Every argument has at least two stories, and here's the hard part: both usually feel one hundred percent true to the person telling them. Today we practice telling both.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Picture this: two kids, one basketball, last one at recess.",sub:"Jordan grabs it. Sam had it first. Or... did they?",say:"Picture this: recess, one basketball left. Jordan grabs it. Sam yells, I had it first! Jordan says, it was on the GROUND! Now they're both furious.",hold:13},
@@ -1185,7 +1185,7 @@
       close:"That's Both Sides of the Story. You don't have to agree with the other side. You just have to know it exists." },
     { id:"exclusionradar", kind:"sel", demo:"desk", name:"The Exclusion Radar", tag:"SEL · Including · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Training your eyes to notice who's on the edge of the group, at lunch, at recess, in the game.",
-      intro:"Hey, I'm HANi. In every cafeteria, every recess, every group project, somebody is standing on the edge, half-in, half-out, hoping someone notices. Today we install your radar for spotting them.",
+      intro:"Hey, I'm Hani. In every cafeteria, every recess, every group project, somebody is standing on the edge, half-in, half-out, hoping someone notices. Today we install your radar for spotting them.",
       lines:[
         {cue:"Sit tall. Radar powering on.",sub:"One slow breath.",say:"Sit tall, one slow breath. Radar powering on.",hold:8},
         {cue:"Picture your lunch table yesterday.",sub:"Scan the whole scene, wide angle.",say:"Picture lunch yesterday. But instead of seeing just your friends, pull the camera back. Wide angle. See the whole room.",hold:12},
@@ -1199,7 +1199,7 @@
       close:"That's the Exclusion Radar. Someone at the edge of the group will remember, for years, the kid who waved them in." },
     { id:"wordslanddifferently", kind:"sel", demo:"desk", name:"Words Land Differently", tag:"SEL · Impact · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"The same joke lands soft on one person and hard on another. Impact matters even when intent was good.",
-      intro:"Hey, I'm HANi. Here's a puzzle: you make a joke, one friend laughs, another goes quiet. Same words. Different landings. Today we figure out why, and what to do when your words land hard.",
+      intro:"Hey, I'm Hani. Here's a puzzle: you make a joke, one friend laughs, another goes quiet. Same words. Different landings. Today we figure out why, and what to do when your words land hard.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Words are like throws.",sub:"You control the throw, not the catch.",say:"Think of words like throwing a ball. You control the throw. But you don't control the catch, because you can't see the other person's hands.",hold:12},
@@ -1213,7 +1213,7 @@
       close:"That's Words Land Differently. Funny is good. Kind and funny is better. Watch the landing." },
     { id:"takingturnstimer", kind:"sel", demo:"desk", name:"Taking Turns Timer", tag:"SEL · Sharing · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"The wait-your-turn muscle: my turn, your turn, my turn again. It always comes back around.",
-      intro:"Hi, I'm HANi. Waiting for your turn is one of the hardest things in the whole world when you're little. But here's the secret: turns always come back around, like a merry-go-round. Let's build your waiting muscle.",
+      intro:"Hi, I'm Hani. Waiting for your turn is one of the hardest things in the whole world when you're little. But here's the secret: turns always come back around, like a merry-go-round. Let's build your waiting muscle.",
       lines:[
         {cue:"Sit criss-cross. Hands in your lap.",sub:"",say:"Sit criss-cross with your hands resting in your lap.",hold:8},
         {cue:"Turns go around like a circle.",sub:"My turn... your turn... my turn again!",say:"Turns move in a circle: my turn, your turn, then my turn again. The circle never forgets you.",hold:10},
@@ -1228,7 +1228,7 @@
       close:"That's the Taking Turns Timer. Breathe, cheer, get ready. The circle always, always comes back to you." },
     { id:"sharingchoice", kind:"sel", demo:"desk", name:"Sharing Is My Choice", tag:"SEL · Sharing · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Practicing the offer: noticing you have something someone wants, and choosing to share it.",
-      intro:"Hi, I'm HANi. Sharing is extra special when nobody makes you do it, when YOU notice, and YOU choose. Today we practice the noticing part and the choosing part.",
+      intro:"Hi, I'm Hani. Sharing is extra special when nobody makes you do it, when YOU notice, and YOU choose. Today we practice the noticing part and the choosing part.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"",say:"Sit tall and take one nice breath.",hold:8},
         {cue:"Pretend you have a big box of crayons.",sub:"All the best colors!",say:"Pretend you have a big, beautiful box of crayons in front of you. All the best colors. They're yours.",hold:10},
@@ -1242,7 +1242,7 @@
       close:"That's Sharing Is My Choice. Notice with your eyes, choose with your heart. Chosen sharing is the warmest kind." },
     { id:"kindask", kind:"sel", demo:"desk", name:"Kind Ask, Kind Answer", tag:"SEL · Manners · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Please and thank you as connection tools, not just rules.",
-      intro:"Hi, I'm HANi. Please and thank you aren't just rules grown-ups made up. They're magic connector words: they tell people, I see you, and you matter. Let's practice the magic.",
+      intro:"Hi, I'm Hani. Please and thank you aren't just rules grown-ups made up. They're magic connector words: they tell people, I see you, and you matter. Let's practice the magic.",
       lines:[
         {cue:"Sit tall. Get your voice ready.",sub:"Magic words coming.",say:"Sit tall and get your kind voice ready. Magic words are coming.",hold:8},
         {cue:"A grabby ask sounds like: \"GIMME THAT!\"",sub:"How does that feel to hear?",say:"First, listen to a grabby ask: GIMME THAT! Ooh. How does that feel to hear? A little like a push, right?",hold:10},
@@ -1256,7 +1256,7 @@
       close:"That's Kind Ask, Kind Answer. Please opens the door, thank you keeps it open, and kindness walks through." },
     { id:"theinvitation", kind:"sel", demo:"desk", name:"The Invitation", tag:"SEL · Friendship · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Practicing the five bravest playground words: do you want to play?",
-      intro:"Hey, I'm HANi. There are five words that take more courage than almost anything on the playground: do you want to play? Five little words. Today we make them easy.",
+      intro:"Hey, I'm Hani. There are five words that take more courage than almost anything on the playground: do you want to play? Five little words. Today we make them easy.",
       lines:[
         {cue:"Sit tall. One brave breath.",sub:"",say:"Sit tall and take one brave breath.",hold:8},
         {cue:"Why is inviting scary?",sub:"Because they might say no.",say:"Let's be honest about why inviting someone is scary: because they might say no. That's it. That's the whole scary part.",hold:11},
@@ -1270,7 +1270,7 @@
       close:"That's The Invitation. Five brave words. Most friendships in the world started with somebody saying them first." },
     { id:"complimentcraft", kind:"sel", demo:"desk", name:"Compliment Craft", tag:"SEL · Kindness · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Real compliments are specific: not \"cool\" but \"I liked how you kept trying.\" Build one and deliver it today.",
-      intro:"Hey, I'm HANi. There are two kinds of compliments: the flat kind, like cool, and the golden kind, the kind people remember for weeks. Today you learn to craft the golden kind.",
+      intro:"Hey, I'm Hani. There are two kinds of compliments: the flat kind, like cool, and the golden kind, the kind people remember for weeks. Today you learn to craft the golden kind.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"Compliment workshop is open.",say:"Sit tall, one slow breath. The compliment workshop is open.",hold:9},
         {cue:"Flat compliment: \"cool.\" \"nice.\" \"good job.\"",sub:"Fine... but forgettable.",say:"First, the flat kind: cool. Nice. Good job. They're fine. But they slide right off, because they could be about anything or anyone.",hold:11},
@@ -1284,7 +1284,7 @@
       close:"That's Compliment Craft. Specific, true, delivered. One golden compliment a day makes you the kid everyone loves to be around." },
     { id:"disagreelikefriends", kind:"sel", demo:"desk", name:"Disagree Like Friends", tag:"SEL · Talking · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"\"I see it differently\" without it becoming a fight. Disagreement is not war.",
-      intro:"Hey, I'm HANi. Friends don't agree about everything. Best pizza topping? Best game? Best superhero? Friends disagree all the time and stay friends. There's a trick to it. Let's learn it.",
+      intro:"Hey, I'm Hani. Friends don't agree about everything. Best pizza topping? Best game? Best superhero? Friends disagree all the time and stay friends. There's a trick to it. Let's learn it.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Disagreeing is NORMAL.",sub:"Different brains see different things.",say:"First, the truth: disagreeing is totally normal. You have different brains, different eyes, different favorites. Of course you see things differently sometimes.",hold:12},
@@ -1298,7 +1298,7 @@
       close:"That's Disagree Like Friends. Different opinions, same team. That's what strong friendships are made of." },
     { id:"interruptioncatcher", kind:"sel", demo:"desk", name:"The Interruption Catcher", tag:"SEL · Listening · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Noticing the urge to interrupt, holding your idea like a firefly in your hands until it's your turn.",
-      intro:"Hey, I'm HANi. You know that feeling when someone's talking and your idea is SO good it starts jumping out of your mouth? Today we learn to catch it, hold it gently, and let it go at the right time.",
+      intro:"Hey, I'm Hani. You know that feeling when someone's talking and your idea is SO good it starts jumping out of your mouth? Today we learn to catch it, hold it gently, and let it go at the right time.",
       lines:[
         {cue:"Sit tall. Cup your hands together.",sub:"Make a little cage, like for a firefly.",say:"Sit tall and cup your hands together, like a gentle little cage you'd hold a firefly in. This is your idea catcher.",hold:10},
         {cue:"The interrupt-urge feels like POPCORN.",sub:"Your idea wants to POP out. Feel it?",say:"When someone else is talking and you get an idea, it feels like popcorn: hot, jumpy, ready to pop right out of your mouth. Everyone knows that feeling.",hold:12},
@@ -1312,7 +1312,7 @@
       close:"That's the Interruption Catcher. Catch it, hold it, release it at your turn. Ideas heard fully beat ideas popped early." },
     { id:"peacepath", kind:"sel", demo:"desk", name:"The Peace Path", tag:"SEL · Conflict · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Two-person conflict steps: each person speaks, each repeats the other back, together find one fix to try.",
-      intro:"Hey, I'm HANi. When two people are stuck in a real conflict, yelling louder never fixes it. But there's a path, four steps, that works so well that grown-up peacemakers use it. Walk it with me.",
+      intro:"Hey, I'm Hani. When two people are stuck in a real conflict, yelling louder never fixes it. But there's a path, four steps, that works so well that grown-up peacemakers use it. Walk it with me.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"Cool heads walk the path.",say:"Sit tall and take one slow breath. The peace path only works with a cooled-down head, so breath first, always.",hold:11},
         {cue:"STEP 1: Person A speaks. Just the facts + the feeling.",sub:"\"When ___ happened, I felt ___.\"",say:"Step one: the first person speaks, short and honest. The formula: when this happened, I felt this. When you showed everyone my drawing, I felt embarrassed. No insults. Facts plus feeling.",hold:14},
@@ -1326,7 +1326,7 @@
       close:"That's the Peace Path. Speak, repeat back, switch, find one fix. It works because everyone finally gets heard." },
     { id:"teamglue", kind:"sel", demo:"desk", name:"Team Glue", tag:"SEL · Teamwork · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"What actually holds a group project together: roles, encouragement, and pulling your weight.",
-      intro:"Hey, I'm HANi. Group projects: sometimes great, sometimes a disaster. The difference is never luck. It's glue. Three kinds of glue, actually. Learn them, and you can hold any team together.",
+      intro:"Hey, I'm Hani. Group projects: sometimes great, sometimes a disaster. The difference is never luck. It's glue. Three kinds of glue, actually. Learn them, and you can hold any team together.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"Think of your last group project.",say:"Sit tall, one slow breath, and think of your last group project. The good, the bad, the chaos.",hold:10},
         {cue:"GLUE 1: Everyone gets a real ROLE.",sub:"No role = someone drifts away.",say:"Glue number one: roles. Every person needs a real job: the researcher, the drawer, the writer, the presenter. A teammate without a role drifts away. Every time.",hold:13},
@@ -1340,7 +1340,7 @@
       close:"That's Team Glue. Roles, encouragement, pull your weight. Every great team you've ever seen is just those three glues." },
     { id:"sayingnokindly", kind:"sel", demo:"desk", name:"Saying No Kindly", tag:"SEL · Boundaries · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Boundaries without meanness: no thank you, I don't want to, please stop. A no can be kind and still be a no.",
-      intro:"Hey, I'm HANi. Some kids think saying no is mean, so they say yes to everything and feel awful. Other kids say no like a slammed door. Today: the third way. A no that's kind, clear, and still a real no.",
+      intro:"Hey, I'm Hani. Some kids think saying no is mean, so they say yes to everything and feel awful. Other kids say no like a slammed door. Today: the third way. A no that's kind, clear, and still a real no.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Truth first: you're ALLOWED to say no.",sub:"To games, trades, dares, hugs, anything.",say:"First truth: you are allowed to say no. To a game you don't want to play, a trade that feels unfair, a dare, a joke about you, even a hug. Your no is yours.",hold:13},
@@ -1354,7 +1354,7 @@
       close:"That's Saying No Kindly. You can be a kind person and still have fences. The kindest people usually do." },
     { id:"gossipofframp", kind:"sel", demo:"desk", name:"The Gossip Off-Ramp", tag:"SEL · Choices · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"How to exit a mean conversation without a scene: change the subject, say something kind, or just walk.",
-      intro:"Hey, I'm HANi. Gossip is like a highway: easy to get on, fast-moving, and it always crashes eventually. You don't have to give a speech to get off it. You just need to know where the exits are. Three off-ramps, coming up.",
+      intro:"Hey, I'm Hani. Gossip is like a highway: easy to get on, fast-moving, and it always crashes eventually. You don't have to give a speech to get off it. You just need to know where the exits are. Three off-ramps, coming up.",
       lines:[
         {cue:"Sit tall. One breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Picture it: the group starts talking about someone.",sub:"Someone who isn't there.",say:"Picture the moment: you're with a group, and the talk turns mean, about somebody who isn't there to speak for themselves. You know the feeling. Everything speeds up.",hold:13},
@@ -1368,7 +1368,7 @@
       close:"That's the Gossip Off-Ramp. You can't stop every mean conversation. But you never have to ride along." },
     { id:"safeornotsafe", kind:"sel", demo:"desk", name:"Safe or Not Safe?", tag:"SEL · Safety · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"The very first sort every choice goes through. When unsure, ask a grown-up.",
-      intro:"Hi, I'm HANi. Before any choice, there's one super-important question that comes first, always: is it safe, or not safe? Let's practice sorting, like sorting toys into bins.",
+      intro:"Hi, I'm Hani. Before any choice, there's one super-important question that comes first, always: is it safe, or not safe? Let's practice sorting, like sorting toys into bins.",
       lines:[
         {cue:"Sit tall. Make two invisible bins.",sub:"Safe bin. Not-safe bin.",say:"Sit tall and put two invisible bins in front of you. One says safe. One says not safe. We're going to sort!",hold:10},
         {cue:"Sort: walking down the stairs slowly.",sub:"Which bin?",say:"First one: walking down the stairs slowly, holding the rail. Which bin? Point to it. Yes! Safe bin!",hold:10},
@@ -1382,7 +1382,7 @@
       close:"That's Safe or Not Safe. Sort every choice first, and when you can't tell, that's exactly what trusted grown-ups are for." },
     { id:"bigdeallittledeal", kind:"sel", demo:"desk", name:"Big Deal or Little Deal?", tag:"SEL · Problem size · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"Sizing the problem before reacting: is this a little-deal problem or a big-deal problem?",
-      intro:"Hi, I'm HANi. Problems come in sizes, just like shoes! Some are little-deal problems, and some are big-deal problems. Knowing the size helps you pick the right size reaction. Let's practice measuring.",
+      intro:"Hi, I'm Hani. Problems come in sizes, just like shoes! Some are little-deal problems, and some are big-deal problems. Knowing the size helps you pick the right size reaction. Let's practice measuring.",
       lines:[
         {cue:"Sit tall. Hands ready to measure.",sub:"Little hands close, big arms wide!",say:"Sit tall and get your measuring hands ready. Hands close together means little deal. Arms stretched wide means big deal.",hold:10},
         {cue:"Measure: you wanted the blue cup, got the red one.",sub:"Show me the size!",say:"Measure this one: you wanted the blue cup, but you got the red cup. Show me with your hands: big deal or little deal? Little deal! Hands close together.",hold:12},
@@ -1396,7 +1396,7 @@
       close:"That's Big Deal or Little Deal. Measure first, react second. Most problems are littler than they feel." },
     { id:"askfirst", kind:"sel", demo:"desk", name:"Ask First", tag:"SEL · Safety · 2 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"The situations where checking with a grown-up comes before doing. Asking first is a smart-kid move.",
-      intro:"Hi, I'm HANi. Some things are do-first things, like playing and coloring. But some things are ask-first things. Smart kids know the difference. Let's learn the ask-first list.",
+      intro:"Hi, I'm Hani. Some things are do-first things, like playing and coloring. But some things are ask-first things. Smart kids know the difference. Let's learn the ask-first list.",
       lines:[
         {cue:"Sit tall. Raise your asking hand!",sub:"That's your ask-first tool.",say:"Sit tall and raise your hand, nice and high. Look at that! That's your ask-first tool, and it's always attached.",hold:10},
         {cue:"Ask first: before going somewhere new.",sub:"Even just next door!",say:"Ask-first thing number one: going somewhere. Before you go anywhere, even next door, even the backyard, a grown-up needs to know. Ask first.",hold:12},
@@ -1410,7 +1410,7 @@
       close:"That's Ask First. Going, eating, touching, and going-with: those are ask-first things, every time. Smart kids ask." },
     { id:"tworoads", kind:"sel", demo:"desk", name:"The Two Roads", tag:"SEL · Choices · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Before choosing, walk both roads in your mind all the way to their endings.",
-      intro:"Hey, I'm HANi. Every choice is a fork with two roads. Most kids only look one step down each road. But choices make sense when you walk them ALL the way to the end. Let's practice mind-walking.",
+      intro:"Hey, I'm Hani. Every choice is a fork with two roads. Most kids only look one step down each road. But choices make sense when you walk them ALL the way to the end. Let's practice mind-walking.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Here's the fork: your friend's test answers are RIGHT THERE.",sub:"Road 1: peek. Road 2: don't.",say:"Here's a fork in the road: you're stuck on a test, and your friend's paper is right there, easy to see. Road one: peek. Road two: don't peek. Let's walk both.",hold:13},
@@ -1424,7 +1424,7 @@
       close:"That's The Two Roads. Every choice has two endings. Visit both before you pick which one you'll live in." },
     { id:"fairsharemath", kind:"sel", demo:"desk", name:"Fair Share Math", tag:"SEL · Fairness · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"What fair actually means when splitting, taking turns, and choosing teams. Fair isn't always identical.",
-      intro:"Hey, I'm HANi. Everybody yells THAT'S NOT FAIR, but almost nobody stops to do the fair math. Here's the surprise: fair doesn't always mean exactly the same. Let's figure out what it DOES mean.",
+      intro:"Hey, I'm Hani. Everybody yells THAT'S NOT FAIR, but almost nobody stops to do the fair math. Here's the surprise: fair doesn't always mean exactly the same. Let's figure out what it DOES mean.",
       lines:[
         {cue:"Sit tall. One breath. Math brains on.",sub:"",say:"Sit tall, one slow breath, fair-math brains switched on.",hold:9},
         {cue:"Easy fair: 8 crackers, 2 kids.",sub:"Four and four. Done.",say:"Start easy: eight crackers, two kids. Fair math says four and four. Same snack, same split. That's fair-as-equal, and it works great for crackers.",hold:12},
@@ -1438,7 +1438,7 @@
       close:"That's Fair Share Math. Equal, catch-up, or what-you-need. Knowing which fair fits is real playground wisdom." },
     { id:"truthmuscle", kind:"sel", demo:"desk", name:"The Truth Muscle", tag:"SEL · Honesty · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Honesty when a lie would be easier. The truth muscle gets stronger every time you use it while it's hard.",
-      intro:"Hey, I'm HANi. Telling the truth when everything's fine is easy. The truth MUSCLE only grows in the hard moments, when a lie would be so much easier. Let's train it.",
+      intro:"Hey, I'm Hani. Telling the truth when everything's fine is easy. The truth MUSCLE only grows in the hard moments, when a lie would be so much easier. Let's train it.",
       lines:[
         {cue:"Sit tall. Flex your arms!",sub:"Muscles grow with hard reps. So does truth.",say:"Sit tall and flex your arm muscles. Muscles only grow when the lifting is hard. Your truth muscle works exactly the same way.",hold:11},
         {cue:"The hard moment: you broke something.",sub:"Nobody saw. A lie would be SO easy.",say:"Here's the hard moment: you knocked something over and it broke. Nobody saw it happen. A lie is standing right there being easy: I don't know what happened.",hold:13},
@@ -1452,7 +1452,7 @@
       close:"That's the Truth Muscle. Hard truths are heavy reps, and heavy reps are the only ones that make you strong." },
     { id:"whoseproblem", kind:"sel", demo:"desk", name:"Whose Problem Is It?", tag:"SEL · Sorting · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Sorting: my problem, your problem, our problem. Each kind gets a different move.",
-      intro:"Hey, I'm HANi. Problems are like mail: every single one is addressed to somebody. Some are addressed to you, some to other people, and some to the whole group. Delivering them right saves SO much drama. Let's sort the mail.",
+      intro:"Hey, I'm Hani. Problems are like mail: every single one is addressed to somebody. Some are addressed to you, some to other people, and some to the whole group. Delivering them right saves SO much drama. Let's sort the mail.",
       lines:[
         {cue:"Sit tall. One breath. Mail-sorting time.",sub:"Three piles: mine, yours, ours.",say:"Sit tall, one slow breath. We're sorting problem-mail into three piles: my problem, your problem, our problem.",hold:11},
         {cue:"Sort: you forgot your homework.",sub:"Whose pile?",say:"First letter: you forgot your homework at home. Whose pile? That one's addressed to... me. My problem. My move: tell the teacher honestly and make a plan to remember.",hold:13},
@@ -1466,7 +1466,7 @@
       close:"That's Whose Problem Is It. Check the address before you deliver your energy. Mine, yours, or ours: each gets its own move." },
     { id:"stopthinkdetective", kind:"sel", demo:"desk", name:"Stop and Think Detective", tag:"SEL · Wise choices · 2 min", audience:"1st-3rd", src:"HudsonSeed",
       blurb:"Gather clues before deciding. First feelings are loud but they're not always right.",
-      intro:"Hey, I'm HANi. A good detective never arrests the first suspect just because the crowd is yelling. And a wise kid never lets the first loud feeling make the whole decision. Grab your magnifying glass. Detective training begins.",
+      intro:"Hey, I'm Hani. A good detective never arrests the first suspect just because the crowd is yelling. And a wise kid never lets the first loud feeling make the whole decision. Grab your magnifying glass. Detective training begins.",
       lines:[
         {cue:"Sit tall. Magnifying glass up!",sub:"Detective posture.",say:"Sit tall and hold up your imaginary magnifying glass. Detective posture: calm, curious, sharp-eyed.",hold:9},
         {cue:"The case: your marker is GONE and Kai has one just like it.",sub:"First feeling shouts: HE TOOK IT!",say:"Here's your case: your favorite marker is gone, and Kai, across the room, is using one exactly like it. Your first feeling shouts: HE TOOK IT! Case closed!",hold:13},
@@ -1480,7 +1480,7 @@
       close:"That's Stop and Think Detective. The first feeling gets a vote, but the clues get the verdict." },
     { id:"regrettest", kind:"sel", demo:"desk", name:"The Regret Test", tag:"SEL · Choices · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Will future-you be glad? Check the choice at ten minutes and ten days.",
-      intro:"Hey, I'm HANi. You have a built-in choice-checker that most people never use: future-you. Today you learn the Regret Test: checking any choice with the you of ten minutes from now, and the you of ten days from now.",
+      intro:"Hey, I'm Hani. You have a built-in choice-checker that most people never use: future-you. Today you learn the Regret Test: checking any choice with the you of ten minutes from now, and the you of ten days from now.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Pick a real choice you're facing.",sub:"Or use this one: skip practice to play games?",say:"Pick a real choice you're actually facing. Or borrow this one: you're thinking about skipping practice, or homework, to play games instead.",hold:12},
@@ -1494,7 +1494,7 @@
       close:"That's the Regret Test. Ten minutes tells you about the fun. Ten days tells you the truth." },
     { id:"peerpressureoff", kind:"sel", demo:"desk", name:"The Peer Pressure Off-Switch", tag:"SEL · Choices · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Deciding for yourself when everyone is pushing: whose voice is actually choosing right now?",
-      intro:"Hey, I'm HANi. When a group is pushing you: come on, everyone's doing it, don't be scared, something sneaky happens: their voices get inside your head and start sounding like YOUR voice. Today you install the off-switch.",
+      intro:"Hey, I'm Hani. When a group is pushing you: come on, everyone's doing it, don't be scared, something sneaky happens: their voices get inside your head and start sounding like YOUR voice. Today you install the off-switch.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"Feel the push. Learn its sound.",sub:"\"Everyone's doing it.\" \"Don't be a baby.\" \"Just this once.\"",say:"First, learn the sound of the push: everyone's doing it. Don't be a baby. Just this once. Nobody will know. When you hear those phrases, the pressure machine is ON.",hold:13},
@@ -1508,7 +1508,7 @@
       close:"That's the Peer Pressure Off-Switch. Crowds are loud, but they don't live your life. You do." },
     { id:"digitalpause", kind:"sel", demo:"desk", name:"The Digital Pause", tag:"SEL · Online choices · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Before you post, send, or forward: would you say it to their face, and does it stay forever?",
-      intro:"Hey, I'm HANi. Online, your thumbs can move faster than your wisdom. One tap and a message is out there, and here's the thing about out there: there's no eraser. Today we install the two-second Digital Pause.",
+      intro:"Hey, I'm Hani. Online, your thumbs can move faster than your wisdom. One tap and a message is out there, and here's the thing about out there: there's no eraser. Today we install the two-second Digital Pause.",
       lines:[
         {cue:"Sit tall. Thumbs up... now FREEZE them.",sub:"That freeze is the whole skill.",say:"Sit tall, thumbs up like you're about to type... and freeze. That tiny freeze, right before sending, is the whole skill we're training.",hold:11},
         {cue:"PAUSE QUESTION 1: Would I say this to their FACE?",sub:"Eyes to eyes. Would the words survive?",say:"Pause question one: would I say this to their face? Eyes to eyes, one step away. Screens make mean feel easy because you can't see the landing. If the words wouldn't survive face-to-face, they don't get sent.",hold:14},
@@ -1521,7 +1521,7 @@
       close:"That's the Digital Pause. Two questions, two seconds. Your thumbs are fast, but now your wisdom is faster." },
     { id:"littlechoices", kind:"sel", demo:"desk", name:"Little Choices, Big Habits", tag:"SEL · Habits · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Repeated small choices quietly build who you are. Pick one small choice worth repeating.",
-      intro:"Hey, I'm HANi. Nobody becomes a great reader, a great athlete, or a great friend in one big moment. It happens in tiny choices, repeated so many times they turn invisible. Today we make yours visible again.",
+      intro:"Hey, I'm Hani. Nobody becomes a great reader, a great athlete, or a great friend in one big moment. It happens in tiny choices, repeated so many times they turn invisible. Today we make yours visible again.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall and take one slow breath.",hold:8},
         {cue:"A habit is a choice you've repeated until it drives itself.",sub:"Brushing teeth. Checking your phone. Saying \"thanks.\"",say:"Here's what a habit really is: a choice you repeated until it started driving itself. Brushing your teeth. Checking a screen first thing. Saying thanks. Nobody chooses those anymore. They just run.",hold:14},
@@ -1535,7 +1535,7 @@
       close:"That's Little Choices, Big Habits. You're always building something. Might as well choose the blueprint." },
     { id:"forkaftermistake", kind:"sel", demo:"desk", name:"The Fork After a Mistake", tag:"SEL · Owning it · 2 min", audience:"4th-6th", src:"HudsonSeed",
       blurb:"Own it or hide it: walk both roads to their endings. Owning is a hill; hiding is a hole.",
-      intro:"Hey, I'm HANi. The mistake already happened. That part's over. But right after every mistake there's a fork with two roads: own it, or hide it. Everything that happens NEXT depends on which road you take. Let's walk both.",
+      intro:"Hey, I'm Hani. The mistake already happened. That part's over. But right after every mistake there's a fork with two roads: own it, or hide it. Everything that happens NEXT depends on which road you take. Let's walk both.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"The mistake is behind you. The fork is in front.",say:"Sit tall, one slow breath. Picture it: the mistake is already behind you on the road. You can't unmake it. But the fork is right in front of you, and that part is one hundred percent yours.",hold:13},
         {cue:"Walk the HIDE road first.",sub:"Step one: relief. Nobody knows.",say:"Walk the hide road first. Step one feels like relief: nobody knows, nothing happens, you got away with it. The hide road always starts downhill and easy.",hold:12},
@@ -1553,7 +1553,7 @@
   var CLASSES=[
     { id:"settlein", kind:"class", demo:"desk", name:"Settle In", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Morning arrival: wake the body, land the breath, set the day. Three minutes to start right.",
-      intro:"Good morning, I'm HANi. Backpacks are down, and the day is about to start. Let's take three minutes to arrive, all the way, together.",
+      intro:"Good morning, I'm Hani. Backpacks are down, and the day is about to start. Let's take three minutes to arrive, all the way, together.",
       lines:[
         {cue:"Feet flat. Sit tall in your mountain.",sub:"Strong and still.",say:"Feet flat on the floor. Sit up tall in your mountain. Strong and still.",hold:10,pose:"tall"},
         {cue:"Roll your shoulders back and down.",sub:"Wake up, shoulders.",say:"Roll your shoulders up, back, and down. Wake up, shoulders. One more time.",hold:10,pose:"roll"},
@@ -1575,7 +1575,7 @@
       close:"That's Settle In. Same time tomorrow. Your word is waiting for you." },
     { id:"thereset", kind:"class", demo:"desk", name:"The Reset", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"For the wild moments: after recess, after lunch, after chaos. Three minutes back to ready.",
-      intro:"Hey, I'm HANi. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
+      intro:"Hey, I'm Hani. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
       lines:[
         {cue:"Feet on the floor. Hands on your legs.",sub:"Everybody lands.",say:"Feet on the floor. Hands on your legs. Everybody lands.",hold:10,pose:"feet"},
         {cue:"Shake out your hands. Fast!",sub:"Shake shake shake...",say:"First, shake out your hands, fast! Shake, shake, shake. Get the last wiggles out.",hold:8,pose:"shake"},
@@ -1597,7 +1597,7 @@
       close:"That's The Reset. From wild to ready in three minutes. See you after the next recess." },
     { id:"winddown", kind:"class", demo:"desk", name:"Wind Down", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Before a test, before dismissal, before anything big. Slow everything down and land soft.",
-      intro:"Hey, I'm HANi. Something big might be coming, a test, the end of the day, or maybe it's just been a lot. Let's slow everything way down together. There is nowhere to rush to for the next three minutes.",
+      intro:"Hey, I'm Hani. Something big might be coming, a test, the end of the day, or maybe it's just been a lot. Let's slow everything way down together. There is nowhere to rush to for the next three minutes.",
       lines:[
         {cue:"Sit tall. Let your eyes go soft.",sub:"Or close them if you like.",say:"Sit tall, and let your eyes go soft. You can close them if you like.",hold:10,pose:"soft"},
         {cue:"Drop your right ear to your right shoulder.",sub:"Let your neck stretch, slow.",say:"Gently drop your right ear toward your right shoulder. Let your neck stretch, slow and easy.",hold:10,pose:"earR"},
@@ -1681,7 +1681,7 @@
   backBtn.onclick=toMenu;
   againBtn.onclick=function(){ if(CURRENT&&CURRENT.lines) runMeditation(CURRENT); else run(CURRENT); };
 
-  // ---- desk demo engine: swap scene to HANi-at-desk, drive poses per line ----
+  // ---- desk demo engine: swap scene to Hani-at-desk, drive poses per line ----
   var deskWrap=document.getElementById("deskWrap"), monkeyWrap=document.getElementById("monkeyWrap"), ballWrap=document.getElementById("ballWrap");
   function setDeskPose(p){var s=document.getElementById("deskSvg");if(s)s.setAttribute("data-pose",p);}
   function deskOn(on){deskWrap.style.display=on?"flex":"none";monkeyWrap.style.display=on?"none":"";ballWrap.style.display=on?"none":"";if(on)setDeskPose("neutral");}
