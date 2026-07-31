@@ -1,4 +1,4 @@
-# HANi SEL Tools — Master Skeleton & Status
+# Hani SEL Tools — Master Skeleton & Status
 
 Last updated: 2026-07-23
 Source of truth: Supabase project `HudsonSeed` (pebhikfbpgntedvbxqph), table `hanuman_tools_backlog`, `category='sel'`. This file is a snapshot for anyone reading the repo — if it ever disagrees with Supabase, Supabase wins.
