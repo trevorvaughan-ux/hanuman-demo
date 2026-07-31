@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>HANi · Whiteboard</title>
+<title>Hani · Whiteboard</title>
 <style>
   :root{--teal:#1f8a8a;--teal-d:#136b6b;--cream:#FDF8F0;--charcoal:#3A3A3A;--gold:#D99A4E;}
   *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
@@ -40,7 +40,7 @@
   .card.chair{border-left-color:#3fa34d;}
   .card.sel{border-left-color:#7d6bb8;}
   .card.cls{border-left-color:#c9704f;}
-  /* ---- desk demo: HANi seated at a school desk, performing each cue ---- */
+  /* ---- desk demo: Hani seated at a school desk, performing each cue ---- */
   #deskWrap{display:none;flex:0 0 52%;max-width:460px;align-items:center;justify-content:center;height:58vh;}
   #deskWrap svg{width:100%;height:100%;max-height:56vh;}
   #deskSvg #dmUpper,#deskSvg .armL,#deskSvg .armR,#deskSvg #dmFeet,#deskSvg .lid{transition:transform 1.4s ease-in-out;transform-box:fill-box;}
@@ -154,13 +154,13 @@
 <body>
 <div id="stage">
   <div id="topbar">
-    <div id="brand">HudsonSeed · <b>HANi</b></div>
+    <div id="brand">HudsonSeed · <b>Hani</b></div>
     <div id="right"><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
 
   <div id="menu">
     <div>
-      <div id="menuTitle">Try HANi right now</div>
+      <div id="menuTitle">Try Hani right now</div>
       <div id="menuSub">Free. No sign-up. Press play and breathe with the class for two minutes.</div>
     </div>
     <div id="cards"></div>
@@ -169,7 +169,7 @@
   <div id="player">
     <div id="scene">
       <div id="monkeyWrap">
-        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="HANi the monkey">
+        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hani the monkey">
           <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#5E3D23" stroke-width="14" stroke-linecap="round"/>
           <ellipse cx="100" cy="300" rx="22" ry="16" fill="#5E3D23"/>
           <ellipse cx="160" cy="300" rx="22" ry="16" fill="#5E3D23"/>
@@ -198,7 +198,7 @@
       </div>
       <div id="ballWrap"><div id="ball"></div></div>
       <div id="deskWrap">
-        <svg id="deskSvg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-label="HANi seated at a school desk" data-pose="neutral">
+        <svg id="deskSvg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-label="Hani seated at a school desk" data-pose="neutral">
           <line x1="20" y1="326" x2="300" y2="326" stroke="#e3d9c8" stroke-width="4" stroke-linecap="round"/>
           <rect x="127" y="272" width="18" height="46" rx="9" fill="#1f8a8a"/>
           <rect x="175" y="272" width="18" height="46" rx="9" fill="#1f8a8a"/>
@@ -284,7 +284,7 @@
       id:"balloon", name:"Balloon Breath", tag:"Calm down", audience:"All ages", src:"Module 3",
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
-      intro:"Hey, I'm HANi. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
+      intro:"Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
       inhale:[["Breathe in. Fill the ball up like a balloon.","Watch it grow and turn bright."],
               ["Big slow breath in. Grow the ball.","My eyes are following it up with you."],
               ["In through your nose. Fill all the way up.","See how big and bright it gets."]],
@@ -437,7 +437,7 @@
   var SEL=[
 { id:"nameit", kind:"sel", demo:"seat", name:"Name It to Tame It", tag:"SEL · Feelings · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
-      intro:"Hey, I'm HANi. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
+      intro:"Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
       lines:[
         {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:9},
         {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:11},
@@ -452,7 +452,7 @@
       close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
 { id:"grounding54321", kind:"sel", demo:"desk", name:"5-4-3-2-1 Grounding", tag:"SEL · Calm · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Use your five senses to come back to right here, right now. The worry-brain off switch.",
-      intro:"Hey, I'm HANi. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
+      intro:"Hey, I'm Hani. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
       lines:[
         {cue:"Look around. Find 5 things you can SEE.",sub:"Count them quietly. Any 5 things.",say:"First, look around the room. Find five things you can see. Count them quietly in your head. A door. A light. A shoe. Anything.",hold:14},
         {cue:"Find 4 things you can FEEL.",sub:"Your chair. Your shirt. The floor. The air.",say:"Now find four things you can feel. Maybe your chair holding you up. Your shirt on your shoulders. The floor under your feet. The air on your face.",hold:14},
@@ -465,7 +465,7 @@
       close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." },
 { id:"gratitude3", kind:"sel", demo:"desk", name:"Gratitude Three", tag:"SEL · Gratitude · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find three good things hiding in your day. Training your brain to spot the good stuff.",
-      intro:"Hey, I'm HANi. Our brains are really good at spotting problems. But we can train them to spot good things too, like a treasure hunt. Let's find three treasures hiding in your day.",
+      intro:"Hey, I'm Hani. Our brains are really good at spotting problems. But we can train them to spot good things too, like a treasure hunt. Let's find three treasures hiding in your day.",
       lines:[
         {cue:"Sit comfy. One slow breath.",sub:"",say:"Sit comfy and take one slow breath.",hold:8},
         {cue:"Treasure 1: something SMALL that was good today.",sub:"A snack. A joke. Sunshine. A good seat.",say:"Treasure number one: think of something small that was good today. Maybe a snack you liked. A joke that made you laugh. Sunshine on your way to school.",hold:13},
@@ -479,7 +479,7 @@
       close:"That's Gratitude Three. The more you hunt for good things, the better your brain gets at finding them." },
 { id:"cozyplace", kind:"sel", demo:"desk", name:"My Cozy Place", tag:"SEL · Calm · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
-      intro:"Hi friends, I'm HANi. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
+      intro:"Hi friends, I'm Hani. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
       lines:[
         {cue:"Close your eyes. Snuggle into your seat.",sub:"Like a bird in a nest.",say:"Close your eyes and snuggle into your seat, like a little bird in a nest.",hold:10},
         {cue:"Imagine the coziest place ever.",sub:"Real or made-up. Yours.",say:"Now imagine the coziest place ever. It can be real, like your bed, or totally made-up, like a cloud castle. It's yours.",hold:13},
@@ -497,7 +497,7 @@
   var CLASSES=[
 { id:"thereset", kind:"class", demo:"desk", name:"The Reset", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"For the wild moments: after recess, after lunch, after chaos. Three minutes back to ready.",
-      intro:"Hey, I'm HANi. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
+      intro:"Hey, I'm Hani. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
       lines:[
         {cue:"Feet on the floor. Hands on your legs.",sub:"Everybody lands.",say:"Feet on the floor. Hands on your legs. Everybody lands.",hold:10,pose:"feet"},
         {cue:"Shake out your hands. Fast!",sub:"Shake shake shake...",say:"First, shake out your hands, fast! Shake, shake, shake. Get the last wiggles out.",hold:8,pose:"shake"},
@@ -582,7 +582,7 @@
   backBtn.onclick=toMenu;
   againBtn.onclick=function(){ if(CURRENT&&CURRENT.lines) runMeditation(CURRENT); else run(CURRENT); };
 
-  // ---- desk demo engine: swap scene to HANi-at-desk, drive poses per line ----
+  // ---- desk demo engine: swap scene to Hani-at-desk, drive poses per line ----
   var deskWrap=document.getElementById("deskWrap"), monkeyWrap=document.getElementById("monkeyWrap"), ballWrap=document.getElementById("ballWrap");
   function setDeskPose(p){var s=document.getElementById("deskSvg");if(s)s.setAttribute("data-pose",p);}
   function deskOn(on){deskWrap.style.display=on?"flex":"none";monkeyWrap.style.display=on?"none":"";ballWrap.style.display=on?"none":"";if(on)setDeskPose("neutral");}
@@ -634,7 +634,7 @@
     c.onclick=function(){ if(f.lines) runMeditation(f); else run(f); };
     cards.appendChild(c);
   }
-var VIDEOCARDS=[{id:"balloon",tag:"Calm down",name:"Balloon Breath",audience:"All ages",src:"HudsonSeed",blurb:"Belly fills like a balloon, then empties slow. Watch HANi lead it.",video:"assets/video/hanuman-balloon-breath-v2.mp4"},{id:"nameit",tag:"Chair yoga - Balance",name:"Triangle Pose",audience:"All ages",src:"HudsonSeed",blurb:"Reach, tilt, and balance right at the desk. A gentle stretch for focus.",video:"assets/video/hanuman-triangle-pose-classroom.mp4"}]; var videoModal=document.getElementById("videoModal"),videoModalPlayer=document.getElementById("videoModalPlayer"),videoModalClose=document.getElementById("videoModalClose"); function openVideoModal(src){videoModalPlayer.src=src;videoModal.classList.remove("hide");videoModalPlayer.play().catch(function(){});} function closeVideoModal(){videoModal.classList.add("hide");videoModalPlayer.pause();videoModalPlayer.removeAttribute("src");videoModalPlayer.load();} if(videoModalClose)videoModalClose.onclick=closeVideoModal; if(videoModal)videoModal.onclick=function(e){if(e.target===videoModal)closeVideoModal();}; function addVideoCard(v){var c=document.createElement("div");c.setAttribute("data-goid",v.id);c.className="card vid";c.innerHTML="<span class='tag'>"+v.tag+"</span><h3>"+v.name+"</h3><p>"+v.blurb+"</p><div class='src'>"+v.audience+" - "+v.src+"</div><div class='playIcon'>Watch HANi</div>";c.onclick=function(){openVideoModal(v.video);};cards.appendChild(c);} // added 2026-07-21 | additive, EN stays default ──
+var VIDEOCARDS=[{id:"balloon",tag:"Calm down",name:"Balloon Breath",audience:"All ages",src:"HudsonSeed",blurb:"Belly fills like a balloon, then empties slow. Watch Hani lead it.",video:"assets/video/hanuman-balloon-breath-v2.mp4"},{id:"nameit",tag:"Chair yoga - Balance",name:"Triangle Pose",audience:"All ages",src:"HudsonSeed",blurb:"Reach, tilt, and balance right at the desk. A gentle stretch for focus.",video:"assets/video/hanuman-triangle-pose-classroom.mp4"}]; var videoModal=document.getElementById("videoModal"),videoModalPlayer=document.getElementById("videoModalPlayer"),videoModalClose=document.getElementById("videoModalClose"); function openVideoModal(src){videoModalPlayer.src=src;videoModal.classList.remove("hide");videoModalPlayer.play().catch(function(){});} function closeVideoModal(){videoModal.classList.add("hide");videoModalPlayer.pause();videoModalPlayer.removeAttribute("src");videoModalPlayer.load();} if(videoModalClose)videoModalClose.onclick=closeVideoModal; if(videoModal)videoModal.onclick=function(e){if(e.target===videoModal)closeVideoModal();}; function addVideoCard(v){var c=document.createElement("div");c.setAttribute("data-goid",v.id);c.className="card vid";c.innerHTML="<span class='tag'>"+v.tag+"</span><h3>"+v.name+"</h3><p>"+v.blurb+"</p><div class='src'>"+v.audience+" - "+v.src+"</div><div class='playIcon'>Watch Hani</div>";c.onclick=function(){openVideoModal(v.video);};cards.appendChild(c);} // added 2026-07-21 | additive, EN stays default ──
   var HS_ES=/[?&]lang=es\b/.test(location.search);
   if(HS_ES){(function(){
     document.documentElement.setAttribute("lang","es");
@@ -648,14 +648,14 @@ var VIDEOCARDS=[{id:"balloon",tag:"Calm down",name:"Balloon Breath",audience:"Al
       try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.lang="es-US";u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}};
     voiceToggle.textContent="\ud83d\udd0a con voz";
     voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"\ud83d\udd0a con voz":"\ud83d\udd07 sin voz";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
-    var mt=document.getElementById("menuTitle");if(mt)mt.textContent="Prueba HANi ahora mismo";
+    var mt=document.getElementById("menuTitle");if(mt)mt.textContent="Prueba Hani ahora mismo";
     var ms=document.getElementById("menuSub");if(ms)ms.textContent="Gratis. Sin registro. Presiona play y respira con la clase por dos minutos.";
     if(backBtn)backBtn.textContent="‹ Elige otro";
     var b=FLOWS.filter(function(f){return f.id==="balloon";})[0];
     if(b){
       b.name="Respiración de Globo";b.tag="Calma";b.audience="Todas las edades";
       b.blurb="La pancita se llena como un globo y se vacía despacio. El reset de todos los días.";
-      b.intro="Hola, soy HANi. ¿Ves esa bolita? Es tu respiración. Respira y crece. Suelta el aire y se hace pequeña. Vamos a hacerlo juntos.";
+      b.intro="Hola, soy Hani. ¿Ves esa bolita? Es tu respiración. Respira y crece. Suelta el aire y se hace pequeña. Vamos a hacerlo juntos.";
       b.inhale=[["Respira. Llena la bolita como un globo.","Mira cómo crece y brilla."],
                 ["Una respiración grande y lenta. Haz crecer la bolita.","Mis ojos la siguen contigo."],
                 ["Entra el aire por la nariz. Llénate por completo.","Mira qué grande y brillante se pone."]];
@@ -668,7 +668,7 @@ var VIDEOCARDS=[{id:"balloon",tag:"Calm down",name:"Balloon Breath",audience:"Al
     if(n){
       n.name="Nómbralo para Domarlo";n.tag="SEL · Emociones · 2 min";
       n.blurb="Encuentra el sentimiento, dale un nombre y mira cómo se hace pequeño. Los sentimientos grandes se encogen cuando los nombramos.";
-      n.intro="Hola, soy HANi. A veces un sentimiento se pone grande y ruidoso por dentro. Aquí va un secreto: cuando le das un nombre a un sentimiento, se hace más pequeño. Vamos a intentarlo juntos.";
+      n.intro="Hola, soy Hani. A veces un sentimiento se pone grande y ruidoso por dentro. Aquí va un secreto: cuando le das un nombre a un sentimiento, se hace más pequeño. Vamos a intentarlo juntos.";
       n.lines=[
         {cue:"Siéntate derechito. Una respiración lenta.",sub:"",say:"Siéntate derechito, y toma una respiración lenta... y suelta.",hold:9},
         {cue:"Mira adentro. ¿Qué hay?",sub:"Como mirar el clima.",say:"Ahora mira adentro de ti, como si miraras el clima. ¿Está soleado? ¿Hay tormenta? ¿Nubes? ¿Viento?",hold:11},
