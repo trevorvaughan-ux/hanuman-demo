@@ -1,6 +1,6 @@
 # HANUMAN — DEEP SUMMARY & HANDOFF
 **Date: June 17, 2026 · Author: Claude (Opus), with Trevor Vaughan**
-**One line: The Hanuman whiteboard + chat widget are BUILT and run offline. Live AI, real voice, and a stable host are still BLOCKED. All code is in GitHub.**
+**One line: The HANi whiteboard + chat widget are BUILT and run offline. Live AI, real voice, and a stable host are still BLOCKED. All code is in GitHub.**
 
 This doc lives in three places so nothing is lost: this GitHub repo, Google Drive, and a labeled Gmail note (June 17). If you are a fresh session, read this top to bottom before doing anything.
 
@@ -8,7 +8,7 @@ This doc lives in three places so nothing is lost: this GitHub repo, Google Driv
 
 ## THE MISSION (unchanged)
 HudsonSeed: K-12 yoga & mindfulness. Reach 1M kids. $1K/day by Q4 2026.
-Hanuman is the door-opener: a friendly monkey coach that runs 2-minute breath/movement
+HANi is the door-opener: a friendly monkey coach that runs 2-minute breath/movement
 resets for classrooms. Pitch line: "Built to save teacher sanity, not take up their time."
 Press play, catch your breath. 100% asynchronous, no prep.
 
@@ -18,7 +18,7 @@ Press play, catch your breath. 100% asynchronous, no prep.
 1. CHAT WIDGET (`claude.html`): a chat box. Funnel = 1 free question, then email gate,
    then a few free, then signup / teacher code. Works offline with scripted answers today.
 2. WHITEBOARD (`whiteboard.html`): full-screen for the classroom projector. Teacher picks
-   a breath from a menu. Hanuman (full-body monkey, white eyes / green pupils) stands beside
+   a breath from a menu. HANi (full-body monkey, white eyes / green pupils) stands beside
    a breathing ball, narrates it, eyes track the ball. Ball grows + cools (aqua) on the inhale,
    shrinks + warms (coral) on the exhale. Everything else is HudsonSeed teal/cream/charcoal/gold.
 
@@ -31,7 +31,7 @@ BUILT + VERIFIED (ran the tests this session):
 - Whiteboard: data-driven breath engine. 4 breaths + 1 sequence. JS parses. Sequence scheduler
   unit-tested (correct breath at every time boundary, total 240s).
 - Chat widget: serves over HTTP, offline engine + funnel present.
-- Hanuman's brain `hanuman-prompt.js`: voice locked, SECULAR (no gods/religion — hard rule),
+- HANi's brain `hanuman-prompt.js`: voice locked, SECULAR (no gods/religion — hard rule),
   trauma-informed, hard walls (no medical/therapy/diagnosis), crisis -> "tell a trusted adult."
 
 NOT VERIFIED (honest gap):
@@ -54,7 +54,7 @@ Repo: https://github.com/trevorvaughan-ux/hanuman-demo  (all code verified prese
 - `whiteboard.html` — projector breath player (menu + breaths + Full Reset sequence)
 - `claude.html` / `index.html` — chat widget (offline + funnel)
 - `server.js` — backend proxy (gateway, PII scrub, caps; key from env)
-- `hanuman-prompt.js` — Hanuman's brain / system prompt (the safety surface)
+- `hanuman-prompt.js` — HANi's brain / system prompt (the safety surface)
 - `package.json`, `README.md`, `HANUMAN_SKELETON.md` (the architecture map + how-to-add-a-breath)
 Main site repo: `trevorvaughan-ux/hudsonseed-website` (Railway project: brave-solace, auto-deploys main).
 
@@ -85,7 +85,7 @@ distill, discard before next (token discipline).
 
 ## LOCKED COPY RULES
 - Em-dashes BANNED everywhere. "Beta" banned. Real names only (no generic greetings).
-- NO gods/religion/prayer/worship anywhere in Hanuman (public school).
+- NO gods/religion/prayer/worship anywhere in HANi (public school).
 - Pricing is PROPRIETARY, never in outward-facing docs.
 - Brand colors: teal #1f8a8a, teal-dark #136b6b, cream #FDF8F0, charcoal #3A3A3A, gold #D99A4E.
   The breathing ball is intentionally OFF-brand (aqua->coral) so it pops.
@@ -123,7 +123,7 @@ Decision rights: Claude owns code/architecture; Trevor owns business/priority/ke
 ---
 
 ## WAKE-UP PROMPT (paste into a fresh chat to continue light)
-"WAKE UP CLAUDE. Hanuman build. Read the repo trevorvaughan-ux/hanuman-demo, especially
+"WAKE UP CLAUDE. HANi build. Read the repo trevorvaughan-ux/hanuman-demo, especially
 HANUMAN_SKELETON.md and CONTINUE_HERE_2026-06-17.md. State is: whiteboard + chat widget built and
 running offline; live AI, real voice, and stable host still blocked. Do NOT claim anything is
 'verified' you haven't actually run; I (Trevor) am the only one who has seen it render. No stubs,
