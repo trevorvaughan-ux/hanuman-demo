@@ -1,4 +1,4 @@
-// server.js — Hanuman backend service (Railway, brave-solace project)
+// server.js — Hani backend service (Railway, brave-solace project)
 // Real, runnable. Key lives ONLY in process.env.ANTHROPIC_API_KEY (Railway env var).
 // Stateless: no conversation is stored server-side. Client sends history each turn.
 
@@ -25,7 +25,7 @@ app.use(cors({
 
 // --- Config / caps ---
 const MODEL = "claude-sonnet-4-6";
-const MAX_TOKENS = 400;              // cost ceiling per reply (Hanuman speaks briefly)
+const MAX_TOKENS = 400;              // cost ceiling per reply (Hani speaks briefly)
 const MAX_TURNS_PER_SESSION = 6;     // funnel + safety: a session is short
 const DAILY_REQUEST_CAP = 2000;      // global circuit breaker (in-memory, see README)
 const SESSION_IDLE_MS = 30 * 60 * 1000;
@@ -69,7 +69,7 @@ app.get("/healthz", (_req, res) => res.json({ ok: true }));
 app.post("/api/hanuman", async (req, res) => {
   rollDaily();
   if (dailyCount >= DAILY_REQUEST_CAP) {
-    return res.status(429).json({ error: "Hanuman is resting. Please try again tomorrow." });
+    return res.status(429).json({ error: "Hani is resting. Please try again tomorrow." });
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -120,7 +120,7 @@ app.post("/api/hanuman", async (req, res) => {
     if (!r.ok) {
       const detail = await r.text();
       console.error("Anthropic error", r.status, detail.slice(0, 200));
-      return res.status(502).json({ error: "Hanuman couldn't catch his breath. Try once more." });
+      return res.status(502).json({ error: "Hani couldn't catch his breath. Try once more." });
     }
 
     const data = await r.json();
@@ -144,4 +144,4 @@ app.post("/api/hanuman", async (req, res) => {
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Hanuman service on :${PORT}`));
+app.listen(PORT, () => console.log(`Hani service on :${PORT}`));

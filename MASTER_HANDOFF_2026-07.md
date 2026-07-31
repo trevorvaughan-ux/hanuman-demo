@@ -1,8 +1,8 @@
-# MASTER HANDOFF — Hanuman Whiteboard — July 2026
+# MASTER HANDOFF — Hani Whiteboard — July 2026
 Written by Claude (Fable) before model transition. Successor model: read this ENTIRE file before touching anything. Trevor hates Groundhog Day resets. Do not make him re-explain.
 
 ## WHAT THIS IS
-Browser-based classroom wellness whiteboard for K-6 teachers. One file: `whiteboard.html`. Zero build step, zero dependencies, deployed on GitHub Pages. Teacher opens link on smartboard, taps a card, Hanuman (monkey character) narrates and physically demonstrates each exercise.
+Browser-based classroom wellness whiteboard for K-6 teachers. One file: `whiteboard.html`. Zero build step, zero dependencies, deployed on GitHub Pages. Teacher opens link on smartboard, taps a card, Hani (monkey character) narrates and physically demonstrates each exercise.
 
 Live: https://trevorvaughan-ux.github.io/hanuman-demo/whiteboard.html
 Cache-bust pattern when verifying: append `?v=<sha>`.
@@ -16,7 +16,7 @@ Cache-bust pattern when verifying: append `?v=<sha>`.
 - CLASSES (terracotta, kind:"class", demo:"desk"): 3 three-minute classes — Settle In, The Reset, Wind Down. ALL desk-mode as of 02dc83e.
 
 ## THE DESK-MODE ENGINE (the crown jewel — do not break)
-- SVG rig `#deskSvg` (viewBox 0 0 320 340): Hanuman seated at a school desk.
+- SVG rig `#deskSvg` (viewBox 0 0 320 340): Hani seated at a school desk.
 - Groups: `#dmUpper` (torso, origin 50% 100%), `#dmHead` (nested in dmUpper, origin 50% 92%), `#dmFace`, `.pup` (pupils), `.lid` (eyelids), `.armL`/`.armR` (each nested inside an outer positioning `<g translate>` — outer g holds placement, inner class gets CSS transforms), `#dmFeet`, `#dmReachL`/`#dmReachR` (cross-body reach arms for twist), `#dmEagle` (right-under-left wrap), `#dmEagle2` (mirrored left-under-right wrap, outer g carries `translate(320,0) scale(-1,1)` so CSS translateY on the inner id doesn't clobber the mirror).
 - Poses are pure CSS: `#deskSvg[data-pose="X"] selector{transform...}`. JS just does `setDeskPose(p)` → sets the data-pose attribute. Each narration line may carry `pose:"X"`.
 - 26 pose states exist. Every `pose:` referenced in narration HAS a CSS rule — keep it that way. Verification one-liner lives below.
@@ -63,6 +63,6 @@ Visual check: extract `#deskSvg`, inject the `#deskSvg` CSS rules as an inline `
 - DONE = built (committed) + deployed (Pages built at SHA) + verified (content/behavior confirmed). Say nothing stronger than the evidence.
 - Nothing staged past end of a work block. Commit or save to Drive before moving on.
 - OSAAT: one step at a time, but complete each step fully.
-- No em-dashes in outbound email. No "beta" language. No tracking pixels. Never say "press play" or "Hanuman" in cold outreach. JC email subjects include "Vendor 9615".
+- No em-dashes in outbound email. No "beta" language. No tracking pixels. Never say "press play" or "Hani" in cold outreach. JC email subjects include "Vendor 9615".
 - Use tools directly. Never ask Trevor to relay, copy-paste, or click UIs if an API path exists.
 - Brutal honesty about built vs promised, blocked vs lazy.
