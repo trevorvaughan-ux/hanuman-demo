@@ -5,23 +5,23 @@ Last poured: June 16, 2026. By: Claude (Opus), with Trevor.
 ---
 
 ## THE ONE-LINE GOAL
-A friendly monkey coach named HANi who runs 2-minute breath and movement resets
+A friendly monkey coach named Hani who runs 2-minute breath and movement resets
 for K-12 classrooms. Lives on hudsonseed.com. Saves teacher sanity, takes no prep.
 
 ---
 
 ## THE TWO FACES OF HANUMAN
-HANi shows up in two different ways. Both are real pieces of the skeleton.
+Hani shows up in two different ways. Both are real pieces of the skeleton.
 
 1. **THE CHAT WIDGET** (`claude.html`)
-   - A little chat box. A teacher (or eventually a kid) types, HANi answers.
+   - A little chat box. A teacher (or eventually a kid) types, Hani answers.
    - Funnel built in: 1 free question, then asks for an email, then a few more free,
      then prompts signup / teacher code.
    - STATUS: built. Works offline with scripted answers. Goes full-AI when the key is wired.
 
 2. **THE WHITEBOARD** (`whiteboard.html`)  ← what we just built
    - Full-screen, for the classroom projector. No typing.
-   - Teacher picks a breath from a menu. HANi stands beside a breathing ball,
+   - Teacher picks a breath from a menu. Hani stands beside a breathing ball,
      narrates it, his eyes track the ball. Ball grows/cools on the in, shrinks/warms on the out.
    - STATUS: built and working offline. Data-driven (see "THE CEMENT" below).
 
@@ -29,7 +29,7 @@ HANi shows up in two different ways. Both are real pieces of the skeleton.
 
 ## THE CEMENT (why this skeleton holds)
 The whiteboard is built so **every breath is just one block of plain settings**:
-a name, a tag (calm/focus/anxious), a timing pattern, and HANi's words.
+a name, a tag (calm/focus/anxious), a timing pattern, and Hani's words.
 Adding a breath = adding one block. No re-engineering.
 
 This same pattern is how the other modules will pour in later. The engine doesn't
@@ -41,10 +41,10 @@ care if it's a breath, a stretch, or a full sequence — it just runs the blocks
 Trevor's curriculum is 9 modules. This is the frame for all of them.
 (Only Module 3 has been opened and used so far. The rest are framed, not filled.)
 
-| Module | Topic | Where it plugs into HANi | Status |
+| Module | Topic | Where it plugs into Hani | Status |
 |---|---|---|---|
 | 1 | Foundations of Yoga for Youth | Background tone + safety rules in the brain | not yet pulled |
-| 2 | Developmental adaptations (age groups) | Lets HANi pick kid vs teen language | not yet pulled |
+| 2 | Developmental adaptations (age groups) | Lets Hani pick kid vs teen language | not yet pulled |
 | 3 | Techniques & poses (breaths, poses) | THE BREATHS + future poses on the whiteboard | **OPEN — in use** |
 | 4 | Lesson planning & classroom management | Full "sequences" (warm-up → peak → close) | not yet pulled |
 | 5 | Trauma-informed practices | Grounding + the safety/crisis guardrails | partially pulled |
@@ -66,7 +66,7 @@ from Trevor (he made them); they can't be scraped from the documents.
   Ground -> Balloon -> Long Breath Out) is live. Scheduler unit-tested (correct breath at every boundary).
 - The monkey: full body, brand colors, white eyes / green pupils that track the ball.
 - The breathing ball: grows + cools on inhale, shrinks + warms on exhale.
-- HANi's brain (the system prompt): voice locked, secular (no gods), trauma-informed,
+- Hani's brain (the system prompt): voice locked, secular (no gods), trauma-informed,
   hard walls (no medical/therapy/diagnosis), crisis → "tell a trusted adult."
 - The backend proxy: key stays server-side, $0 off-topic gate, PII scrub, cost caps. Built & locally tested.
 
@@ -92,7 +92,7 @@ from Trevor (he made them); they can't be scraped from the documents.
 - `claude.html` — chat widget (offline + funnel)
 - `whiteboard.html` — projector breath player (the menu + 4 breaths)
 - `server.js` — backend proxy (gateway, PII scrub, caps; key from env)
-- `hanuman-prompt.js` — HANi's brain (the system prompt / safety surface)
+- `hanuman-prompt.js` — Hani's brain (the system prompt / safety surface)
 - `README.md` — deploy + honest "what's verified" notes
 - Repo used for the live demo link: `trevorvaughan-ux/hanuman-demo`
 - Main site repo: `trevorvaughan-ux/hudsonseed-website` (Railway project: brave-solace)
@@ -115,7 +115,7 @@ In `whiteboard.html`, find the list called `FLOWS`. Each breath is one block lik
       blurb:"One line shown on the menu card.",
       pattern:{in:4, hold:1, out:6, rest:1},   // seconds for each part of the breath
       duration:120,                            // total seconds it runs
-      intro:"What HANi says once at the start.",
+      intro:"What Hani says once at the start.",
       inhale:[["Big line for breathing in","smaller line under it"]],   // add more pairs; they rotate
       exhale:[["Big line for breathing out","smaller line under it"]] }
 
@@ -126,7 +126,7 @@ That is the whole job for each of Trevor's 10 video breaths: one block each.
 In the list called `SEQUENCES`, each one chains breaths you already have:
 
     { id:"name", name:"Full Reset", tag:"Sequence", audience:"All ages", src:"Module 4",
-      blurb:"Menu line.", intro:"What HANi says at the very start.",
+      blurb:"Menu line.", intro:"What Hani says at the very start.",
       steps:[{breathId:"ground",seconds:80},{breathId:"balloon",seconds:80}] }
 
 `breathId` must match an `id` from the FLOWS list. The engine runs them in order and
