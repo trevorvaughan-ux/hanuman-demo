@@ -1709,7 +1709,7 @@
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent="";
-    if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
+    if(item.video){ playHani(item.video); return; } if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
     var delay=Math.min(8000,Math.max(3500,item.intro.length*55));
     medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
     timerEl.textContent=fmt(medRemain);
