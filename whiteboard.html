@@ -31,7 +31,7 @@
   .card .src{font-size:11px;color:#9bb;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#e6efef;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#e6efef;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
-  #monkeyWrap{flex:0 0 28%;max-width:320px;height:58vh;}
+  #monkeyWrap{flex:0 0 52%;max-width:460px;height:58vh;}
   #ballWrap{flex:0 0 40%;display:flex;align-items:center;justify-content:center;height:58vh;position:relative;overflow:visible;}
   #ball{width:32vh;height:32vh;border-radius:50%;will-change:transform;}
   /* meditation: warm glow that spreads outward in rings */
@@ -143,7 +143,8 @@
     #cards{gap:12px;}
     .card{width:min(300px,88vw);padding:18px 18px;}
     #scene{flex-direction:column;gap:2vh;padding:0 5vw;}
-    #monkeyWrap{flex:0 0 auto;width:110px;max-width:110px;}
+    #monkeyWrap{flex:0 0 auto;height:auto;max-width:88vw;}
+    #monkeyWrap img,#monkeyWrap video{max-height:42vh !important;}
     #ballWrap{flex:0 0 auto;height:auto;}
     #deskWrap{flex:0 0 auto;height:auto;max-width:88vw;}
     #deskWrap svg{max-height:42vh;}
@@ -1615,6 +1616,7 @@
     raf=requestAnimationFrame(loop);
   }
   function finish(){running=false;cancelAnimationFrame(raf);setBall(0);timerEl.textContent="00:00";
+    if(CURRENT&&CURRENT.video){try{hanumanVideo.pause();}catch(e){}}
     hsLog("complete",CURRENT,(Date.now()-hsT0)/1000);
     cue.textContent="Beautiful. The room is calm and ready.";
     sub.textContent="Say it with me: I am happy. I am safe. I am brave. I am strong. I am love.";
@@ -1638,7 +1640,8 @@
     else { b.style.display='none'; b.removeAttribute('src'); }
   }
   function run(item){
-    stopMed(); deskOn(false); setEmoBadge(item);
+    stopMed(); setEmoBadge(item);
+    if(item.video){ showHaniVideo(item.video); } else { deskOn(false); }
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
@@ -1681,6 +1684,7 @@
   function finishMed(item){
     medActive=false; clearMedTimers(); if(medRipple){clearInterval(medRipple);medRipple=null;}
     hsLog("complete",item,(Date.now()-hsT0)/1000);
+    if(item.video){try{hanumanVideo.pause();}catch(e){}}
     if(item.demo==="desk")setDeskPose("steady");
     timerEl.textContent="00:00";
     cue.textContent="Beautiful work."; sub.textContent="The room is calm and ready.";
@@ -1693,7 +1697,7 @@
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent="";
-    if(item.video){ playHani(item.video); return; } if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
+    if(item.video){ showHaniVideo(item.video); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
     var delay=Math.min(8000,Math.max(3500,item.intro.length*55));
     medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
     timerEl.textContent=fmt(medRemain);
@@ -1702,11 +1706,12 @@
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
-  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function playHani(src){ menu.style.display="none"; player.style.display="flex"; deskOn(false); ballWrap.style.display="none"; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
+  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.loop=true; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hani</button>":"")+"";
-    c.onclick=function(){ if(f.lines) runMeditation(f); else if(f.video) playHani(f.video); else run(f); };
-    if(f.video){ var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); playHani(f.video); }; } } cards.appendChild(c);
+    function launch(){ if(f.lines) runMeditation(f); else run(f); }
+    c.onclick=launch;
+    if(f.video){ var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } } cards.appendChild(c);
   }
   FLOWS.forEach(addCard);
   MEDITATIONS.forEach(addCard);
