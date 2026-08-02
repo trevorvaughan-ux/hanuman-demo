@@ -176,7 +176,7 @@
         <img src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);">
       </div>
       <div id="ballWrap"><div id="ball"></div></div>
-      <div id="deskWrap">
+      <div id="deskWrap" style="position:relative;"><img src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.18);pointer-events:none;">
         <svg id="deskSvg" viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg" aria-label="Hani seated at a school desk" data-pose="neutral">
           <line x1="20" y1="326" x2="300" y2="326" stroke="#e3d9c8" stroke-width="4" stroke-linecap="round"/>
           <rect x="127" y="272" width="18" height="46" rx="9" fill="#1f8a8a"/>
@@ -414,7 +414,7 @@
     ball.style.transform="translateY("+((0.5-p)*40*0.4)+"vh) scale("+(0.45+0.55*p)+")";
     ball.style.background=ballColor(p);
     ball.style.boxShadow="0 0 "+(30+p*70)+"px "+ballColor(p);
-    var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");
+    if(pL&&pR){var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");}
   }
 
   var voiceOn=true, audioUnlocked=false, chosenVoice=null;
