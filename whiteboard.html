@@ -173,7 +173,8 @@
     <div id="scene">
       <img id="emoBadge" alt="">
       <div id="monkeyWrap">
-        <img src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);">
+        <img id="hanumanImg" src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);">
+        <video id="hanumanVideo" controls playsinline style="display:none;width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);"></video>
       </div>
       <div id="ballWrap"><div id="ball"></div></div>
       <div id="deskWrap" style="position:relative;"><img src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.18);pointer-events:none;">
@@ -252,7 +253,7 @@
   </div>
 </div>
 
-<div id="hanumanModal"><button class="closeModal" aria-label="Close">×</button><video id="hanumanVideo" controls playsinline></video></div><script>
+<div id="hanumanModal"><button class="closeModal" aria-label="Close">×</button></div><script>
 (function(){
   // ===== THE CEMENT: breath registry. Each breath = one block. =====
   // pattern seconds {in,hold,out,rest}; duration total seconds.
@@ -1648,6 +1649,9 @@
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
   function toMenu(){running=false;cancelAnimationFrame(raf);stopMed();deskOn(false);setEmoBadge(null);if(window.speechSynthesis)speechSynthesis.cancel();
+    hanumanVideo.pause();hanumanVideo.removeAttribute("src");hanumanVideo.load();hanumanVideo.style.display="none";
+    var __img=document.getElementById("hanumanImg");if(__img)__img.style.display="";
+    ballWrap.style.display="";
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
 
   backBtn.onclick=toMenu;
@@ -1698,7 +1702,7 @@
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
-  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function playHani(src){ hanumanVideo.src=src; hanumanModal.className="show"; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
+  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function playHani(src){ menu.style.display="none"; player.style.display="flex"; ballWrap.style.display="none"; deskOn(false); var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hani</button>":"")+"";
     c.onclick=function(){ if(f.lines) runMeditation(f); else if(f.video) playHani(f.video); else run(f); };
