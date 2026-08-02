@@ -1708,10 +1708,10 @@
 
   var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.loop=true; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+(f.video?"<button class='watchBtn' type='button'>▶ Watch Hani</button>":"")+"";
+    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>▶ Watch Hani</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
     c.onclick=launch;
-    if(f.video){ var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } } cards.appendChild(c);
+    var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c);
   }
   FLOWS.forEach(addCard);
   MEDITATIONS.forEach(addCard);
