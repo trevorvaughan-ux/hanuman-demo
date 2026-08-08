@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hani by HudsonSeed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#4A9EA6; --cream:#FDF8F0; --charcoal:#3A3A3A; --gold:#D99A4E;
+    --teal-dark:#377177; --line:#E7DFD0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--charcoal);font-family:'DM Sans',sans-serif;}
+  h1,h2,h3{font-family:'Playfair Display',serif;margin:0 0 .3em;}
+  .wrap{max-width:920px;margin:0 auto;padding:24px 18px 80px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:5;}
+  header.top .brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:700;color:var(--teal-dark);font-size:1.2rem;}
+  header.top .brand img{height:32px;width:32px;border-radius:8px;object-fit:cover;}
+  .pill{font-size:.72rem;padding:3px 10px;border-radius:99px;background:var(--teal);color:#fff;font-weight:500;}
+  .pill.gold{background:var(--gold);}
+  .pill.muted{background:#eee;color:#888;}
+  button, .btn{font-family:'DM Sans',sans-serif;border:none;border-radius:10px;padding:11px 18px;font-weight:700;cursor:pointer;font-size:.95rem;}
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-primary:hover{background:var(--teal-dark);}
+  .btn-gold{background:var(--gold);color:#fff;}
+  .btn-ghost{background:transparent;color:var(--teal-dark);border:1px solid var(--teal);}
+  input[type=text],input[type=email],input[type=password]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:inherit;margin:6px 0 14px;}
+  label{font-size:.85rem;font-weight:500;color:#666;}
+  .card-auth{max-width:380px;margin:60px auto;background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 1px 3px rgba(0,0,0,.08);text-align:center;}
+  .card-auth img.mark{width:52px;margin-bottom:6px;}
+  .qr-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;margin:14px 0;}
+  .qr-box img{width:100%;max-width:200px;}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;}
+  .chip{padding:7px 14px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:.85rem;cursor:pointer;font-weight:500;}
+  .chip.active{background:var(--charcoal);color:#fff;border-color:var(--charcoal);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+  .mcard{background:#fff;border-radius:14px;padding:16px;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;}
+  .mcard h3{font-size:1.02rem;font-family:'DM Sans',sans-serif;font-weight:700;margin:0;}
+  .mcard .tag{font-size:.78rem;color:var(--teal-dark);font-weight:500;}
+  .mcard .aud{font-size:.75rem;color:#999;}
+  .mcard .row{display:flex;gap:8px;margin-top:6px;}
+  .mcard .row button{flex:1;font-size:.82rem;padding:9px;}
+  .done-flash{background:var(--teal);color:#fff;}
+  .banner{background:#fff;border:1px solid var(--gold);border-radius:14px;padding:18px 20px;margin-bottom:20px;}
+  .banner h2{font-size:1.15rem;color:var(--gold);}
+  .tabbar{display:flex;gap:6px;margin-bottom:18px;}
+  .tabbar button{background:#fff;border:1px solid var(--line);color:#888;}
+  .tabbar button.active{background:var(--charcoal);color:#fff;border-color:var(--charcoal);}
+  .admin-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--line);}
+  .admin-row:last-child{border-bottom:none;}
+  .toggle{width:40px;height:22px;border-radius:99px;background:#ddd;position:relative;cursor:pointer;flex:none;}
+  .toggle.on{background:var(--teal);}
+  .toggle::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.15s;}
+  .toggle.on::after{left:20px;}
+  .muted-text{color:#999;font-size:.85rem;}
+  .err{color:#b23b3b;font-size:.85rem;margin:-6px 0 10px;}
+  footer.note{text-align:center;color:#aaa;font-size:.78rem;margin-top:40px;}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><img src="hanuman-calm.jpg" onerror="this.style.display='none'"/> Hani by HudsonSeed</div>
+  <div id="headerRight"></div>
+</header>
+
+<div class="wrap" id="app"><!-- rendered by JS --></div>
+
+<footer class="note">HudsonSeed · trevorvaughan@hudsonseed.com</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+/* ===== catalog (curated subset comes from menu_cards; this is the full metadata) ===== */
+const CATALOG = [{"id":"balloon","name":"Balloon Breath","tag":"Calm down · 2 min","audience":"All ages","kind":"breath"},{"id":"longout","name":"Long Breath Out","tag":"Calm down · 2 min","audience":"All ages","kind":"breath"},{"id":"box","name":"Box Breath","tag":"Focus · 2 min","audience":"Older kids and teens","kind":"breath"},{"id":"beebreath","name":"Bee Breath","tag":"Calm down · 2 min","audience":"PreK3-6th","kind":"breath"},{"id":"lionsbreath","name":"Lion's Breath","tag":"Release · 2 min","audience":"PreK3-6th","kind":"breath"},{"id":"bunnybreaths","name":"Bunny Breaths","tag":"Focus · 2 min","audience":"PreK3-2nd","kind":"breath"},{"id":"snakebreath","name":"Snake Breath","tag":"Calm down · 2 min","audience":"PreK3-6th","kind":"breath"},{"id":"starbreath","name":"Star Breath","tag":"Focus · 2 min","audience":"1st-6th","kind":"breath"},{"id":"starfishbreath","name":"Starfish Breath","tag":"Calm down · 2 min","audience":"PreK3-2nd","kind":"breath"},{"id":"candlebreath","name":"Candle Breath","tag":"Calm down · 2 min","audience":"PreK3-3rd","kind":"breath"},{"id":"volcanobreath","name":"Volcano Breath","tag":"Release · 2 min","audience":"1st-6th","kind":"breath"},{"id":"oceanbreath","name":"Ocean Breath","tag":"Calm down · 2 min","audience":"3rd-6th","kind":"breath"},{"id":"hotcocoabreath","name":"Hot Cocoa Breath","tag":"Calm down · 2 min","audience":"PreK3-2nd","kind":"breath"},{"id":"forestwalkrest","name":"The Forest Walk","tag":"Guided Meditation · 3 min","audience":"2nd-6th","kind":"meditation"},{"id":"bodyscanmed","name":"Body Scan","tag":"Guided Meditation · 3 min","audience":"PreK3-6th","kind":"meditation"},{"id":"kindwishesmed","name":"Kind Wishes","tag":"Guided Meditation · 3 min","audience":"2nd-6th","kind":"meditation"},{"id":"rainbowmed","name":"Rainbow Visualization","tag":"Guided Meditation · 3 min","audience":"PreK3-6th","kind":"meditation"},{"id":"cloudwatchingmed","name":"Cloud Watching","tag":"Guided Meditation · 3 min","audience":"2nd-6th","kind":"meditation"},{"id":"gardengrowingmed","name":"Garden Growing","tag":"Guided Meditation · 3 min","audience":"1st-6th","kind":"meditation"},{"id":"peacefulplacemed","name":"Peaceful Place","tag":"Guided Meditation · 3 min","audience":"PreK3-6th","kind":"meditation"},{"id":"superherostrengthmed","name":"Superhero Strength","tag":"Guided Meditation · 3 min","audience":"1st-6th","kind":"meditation"},{"id":"animalsafarimed","name":"Animal Safari","tag":"Guided Meditation · 3 min","audience":"PreK3-3rd","kind":"meditation"},{"id":"catcow","name":"Seated Cat-Cow","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"seatedtwist","name":"Gentle Seated Twist","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"eaglearms","name":"Eagle Arms","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"neckrolls","name":"Slow Neck Circles","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"seatedfold","name":"Seated Forward Fold","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"seatedfigure4","name":"Seated Figure-4","tag":"Chair yoga · 3 min","audience":"2nd-6th","kind":"chair"},{"id":"seatedsidebend","name":"Seated Side Bend","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"shoulderrolls","name":"Shoulder Rolls","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"wristfingerstretch","name":"Wrist & Finger Stretches","tag":"Chair yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"treepose","name":"Tree Pose","tag":"Standing yoga · 3 min","audience":"1st-6th","kind":"chair"},{"id":"mountainpose","name":"Mountain Pose","tag":"Standing yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"chairpose","name":"Chair Pose","tag":"Standing yoga · 3 min","audience":"2nd-6th","kind":"chair"},{"id":"standingfold","name":"Standing Forward Fold","tag":"Standing yoga · 3 min","audience":"2nd-6th","kind":"chair"},{"id":"standingsidestretch","name":"Standing Side Stretch","tag":"Standing yoga · 3 min","audience":"All ages","kind":"chair"},{"id":"standingcatcow","name":"Standing Cat-Cow","tag":"Standing yoga · 3 min","audience":"1st-6th","kind":"chair"},{"id":"airplanepose","name":"Airplane Pose (desk-supported)","tag":"Standing yoga · 3 min","audience":"3rd-6th","kind":"chair"},{"id":"nameit","name":"Name It to Tame It","tag":"SEL · Self-Awareness · 2 min","audience":"PreK3-6th","kind":"sel"},{"id":"grounding54321","name":"5-4-3-2-1 Grounding","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"gratitude3","name":"Gratitude Three","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"cozyplace","name":"My Cozy Place","tag":"SEL · Self-Management · 2 min","audience":"PreK3-2nd","kind":"sel"},{"id":"wallpush","name":"Heavy Work Reset","tag":"SEL · Self-Management · 2 min","audience":"PreK3-3rd","kind":"sel"},{"id":"problem4","name":"The Problem-Solving Four","tag":"SEL · Relationship Skills · 2 min","audience":"2nd-6th","kind":"sel"},{"id":"bodydetective","name":"Body Detective","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"kindwords","name":"Kind Words to Myself","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"volcanoplan","name":"The Volcano Plan","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"worrybox","name":"The Worry Box","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"lettinggo","name":"The Letting-Go Leaf","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"intheirshoes","name":"In Their Shoes","tag":"SEL · Social Awareness · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"kindnessdetective","name":"Kindness Detective","tag":"SEL · Social Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"listeninggame","name":"The Listening Game","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"repairkit","name":"The Repair Kit","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"braveenough","name":"Brave Enough to Ask","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"bravevoice","name":"My Brave Voice","tag":"SEL · Relationship Skills · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"theripple","name":"The Ripple","tag":"SEL · Responsible Decision-Making · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"energygrid","name":"The Energy Grid","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"meetyourbrain","name":"Meet Your Brain","tag":"SEL · Self-Awareness · 3 min","audience":"1st-6th","kind":"sel"},{"id":"stopandgo","name":"Stop and Go Brain Builder","tag":"SEL · Self-Management · 3 min","audience":"PreK3-2nd","kind":"sel"},{"id":"bystander","name":"Bullying Bystander Power Moves","tag":"SEL · Social Awareness · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"bigfeelingdetective","name":"Big Feeling Detective","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"digitaldrain","name":"Digital Drain Reflection","tag":"SEL · Self-Management · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"worryvsreal","name":"Worry vs. Real","tag":"SEL · Self-Management · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"strengthsspotlight","name":"Strengths Spotlight","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"emotionweather","name":"Emotion Weather Report","tag":"SEL · Self-Awareness · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"valuescompass","name":"My Values Compass","tag":"SEL · Self-Awareness · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"confidencebuilder","name":"Confidence Builder","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"growthmindsetyet","name":"Growth Mindset: The Word YET","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"disappointmentreset","name":"Disappointment Reset","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"testdaycalm","name":"Test Day Calm-Down","tag":"SEL · Self-Management · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"facialfeelings","name":"Facial Feelings Detective","tag":"SEL · Social Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"communityhelper","name":"Community Helper Gratitude","tag":"SEL · Social Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"differentnotless","name":"Different, Not Less","tag":"SEL · Social Awareness · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"turntaking","name":"Turn-Taking Trainer","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-2nd","kind":"sel"},{"id":"teamplayer","name":"Team Player Toolkit","tag":"SEL · Relationship Skills · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"sayingsorry","name":"Saying Sorry and Meaning It","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"includesomeonenew","name":"Include Someone New","tag":"SEL · Relationship Skills · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"ruleshavereasons","name":"Rules Have Reasons","tag":"SEL · Responsible Decision-Making · 3 min","audience":"1st-6th","kind":"sel"},{"id":"fairnesscheck","name":"The Fairness Check","tag":"SEL · Responsible Decision-Making · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"goalladder","name":"Goal Setting Ladder","tag":"SEL · Responsible Decision-Making · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"planbswitch","name":"The Plan B Switch","tag":"SEL · Self-Management · 3 min","audience":"1st-6th","kind":"sel"},{"id":"taskstarter","name":"The Task Starter","tag":"SEL · Self-Management · 3 min","audience":"1st-6th","kind":"sel"},{"id":"morningbridge","name":"The Morning Bridge","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-2nd","kind":"sel"},{"id":"recessreset","name":"Recess-to-Desk Reset","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"sensoryoverload","name":"The Sensory Overload Reset","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"strategymatch","name":"The Strategy Matchmaker","tag":"SEL · Self-Management · 3 min","audience":"1st-6th","kind":"sel"},{"id":"istatement","name":"The I-Statement Builder","tag":"SEL · Relationship Skills · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"bigchangemap","name":"The Big Change Map","tag":"SEL · Self-Awareness · 3 min","audience":"1st-6th","kind":"sel"},{"id":"invisiblestring","name":"The Invisible String","tag":"SEL · Self-Awareness · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"grouptextpause","name":"The Group Chat Pause","tag":"SEL · Social Awareness · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"classcharter","name":"Our Classroom Charter","tag":"SEL · Responsible Decision-Making · 3 min","audience":"1st-6th","kind":"sel"},{"id":"sizeproblem","name":"Size of the Problem vs. Size of the Reaction","tag":"SEL · Self-Management · 3 min","audience":"PreK3-2nd","kind":"sel"},{"id":"triggertracker","name":"My Trigger Tracker","tag":"SEL · Self-Awareness · 3 min","audience":"2nd-6th","kind":"sel"},{"id":"neednamer","name":"The Need Namer","tag":"SEL · Self-Awareness · 3 min","audience":"1st-6th","kind":"sel"},{"id":"independencespark","name":"The Independence Spark","tag":"SEL · Self-Management · 3 min","audience":"PreK3-K","kind":"sel"},{"id":"personalbubble","name":"The Personal Bubble","tag":"SEL · Social Awareness · 3 min","audience":"PreK3-2nd","kind":"sel"},{"id":"beautifuloops","name":"The Beautiful Oops","tag":"SEL · Self-Management · 3 min","audience":"PreK3-6th","kind":"sel"},{"id":"friendlyno","name":"The Friendly No","tag":"SEL · Relationship Skills · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"focusfuel","name":"Focus Fuel Gauge","tag":"SEL · Self-Management · 3 min","audience":"1st-2nd","kind":"sel"},{"id":"roomreader","name":"The Room Reader","tag":"SEL · Social Awareness · 3 min","audience":"1st-6th","kind":"sel"},{"id":"pressurepause","name":"Peer Pressure Pause Button","tag":"SEL · Responsible Decision-Making · 3 min","audience":"3rd-6th","kind":"sel"},{"id":"thereset","name":"The Reset","tag":"Class · 3 min","audience":"All ages","kind":"class"}];
+
+/* ===== Supabase ===== */
+const SUPABASE_URL = "https://pebhikfbpgntedvbxqph.supabase.co";
+const SUPABASE_KEY = "sb_publishable_7wnGQX91msxCwzq7QRqF1w_MWfgWCWT";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+/* Square payment links — fill these in once created in the Square Dashboard
+   (Online Checkout > Subscription plans > Share link). One for parents
+   (personal), one placeholder note for schools since that's usually a
+   sales-assisted signup, not self-serve. */
+const SQUARE_LINK_PARENT = "https://square.link/u/REPLACE_WITH_PARENT_PLAN";
+
+let state = { user:null, profile:null, access:null, guest:false, view:'loading', filter:'all', mfaFactorId:null, cards:[] };
+const $app = document.getElementById('app');
+const $hr = document.getElementById('headerRight');
+
+function esc(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function shareApp(){
+  const url = location.href.split('?')[0];
+  if(navigator.share){ navigator.share({ title:'Try this — Hani by HudsonSeed', url }); }
+  else { navigator.clipboard.writeText(url); const b=document.getElementById('shareBtn'); if(b){ const t=b.textContent; b.textContent='Link copied'; setTimeout(()=>b.textContent=t,1500); } }
+}
+
+init();
+async function init(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if(session){ await afterSignIn(); } else { renderGuestMenu(); }
+}
+
+/* Guests get the free 5 immediately, no account needed — sign-in is offered, never required. */
+async function renderGuestMenu(){
+  state.guest = true;
+  const { data: menuRows } = await sb.from('menu_cards').select('*').eq('active', true).eq('free', true);
+  const ids = new Set((menuRows||[]).map(r=>r.card_id));
+  state.cards = CATALOG.filter(c => ids.has(c.id));
+  $hr.innerHTML = `<button class="btn-ghost" style="padding:7px 12px;font-size:.8rem;" onclick="renderLogin()">Sign in</button>`;
+  $app.innerHTML = `
+    <div class="banner">
+      <h2>Free to try, always</h2>
+      <p class="muted-text">These five are open to everyone, no account needed. Sign in for the full library whenever you're ready — no rush.</p>
+      <button id="shareBtn" class="btn-ghost" onclick="shareApp()">Share this</button>
+    </div>
+    <div class="grid" id="cardGrid"></div>`;
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = state.cards.map(c => `
+    <div class="mcard">
+      <span class="pill ${c.kind==='sel'?'gold':''}" style="align-self:flex-start;">${KIND_LABEL[c.kind]||c.kind}</span>
+      <h3>${esc(c.name)}</h3>
+      <div class="tag">${esc(c.tag)}</div>
+      <div class="aud">${esc(c.audience)}</div>
+    </div>`).join('');
+}
+
+/* ================= LOGIN ================= */
+function renderLogin(){
+  $hr.innerHTML='';
+  $app.innerHTML = `
+    <div class="card-auth">
+      <h2>Sign in</h2>
+      <p class="muted-text">Teacher and parent accounts are created by HudsonSeed — check your email for your invite.</p>
+      <div id="loginErr" class="err" style="display:none"></div>
+      <label>Email</label>
+      <input type="email" id="loginEmail" autocomplete="username"/>
+      <label>Password</label>
+      <input type="password" id="loginPass" autocomplete="current-password"/>
+      <button class="btn-primary" style="width:100%" onclick="doLogin()">Sign in</button>
+    </div>`;
+}
+
+async function doLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPass').value;
+  const errBox = document.getElementById('loginErr');
+  errBox.style.display='none';
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if(error){ errBox.textContent = error.message; errBox.style.display='block'; return; }
+  await afterSignIn();
+}
+
+/* ================= MFA (TOTP, required for every account) ================= */
+async function afterSignIn(){
+  const { data:{ user } } = await sb.auth.getUser();
+  state.user = user;
+
+  const { data: aal } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+  const { data: factorsData } = await sb.auth.mfa.listFactors();
+  const verifiedFactor = (factorsData?.totp || []).find(f => f.status === 'verified');
+
+  if(!verifiedFactor){
+    return renderMfaEnroll();
+  }
+  if(aal.currentLevel !== 'aal2'){
+    return renderMfaChallenge(verifiedFactor.id);
+  }
+  await loadProfileAndRender();
+}
+
+async function renderMfaEnroll(){
+  $app.innerHTML = `<div class="card-auth"><h2>Set up 2FA</h2><p class="muted-text">Required once per account. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
+  const { data, error } = await sb.auth.mfa.enroll({ factorType:'totp' });
+  if(error){ document.getElementById('mfaBody').innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
+  state.mfaFactorId = data.id;
+  const qrTarget = document.getElementById('mfaBody');
+  qrTarget.innerHTML = `
+    <div class="qr-box"><canvas id="qrCanvas"></canvas></div>
+    <p class="muted-text" style="font-size:.7rem;word-break:break-all;">${esc(data.totp.secret)}</p>
+    <label>Enter the 6-digit code from your app</label>
+    <input type="text" id="mfaCode" maxlength="6" inputmode="numeric"/>
+    <div id="mfaErr" class="err" style="display:none"></div>
+    <button class="btn-primary" style="width:100%" onclick="finishMfaEnroll()">Confirm</button>`;
+  QRCode.toCanvas(document.getElementById('qrCanvas'), data.totp.uri, { width:200 });
+}
+
+async function finishMfaEnroll(){
+  const code = document.getElementById('mfaCode').value.trim();
+  const errBox = document.getElementById('mfaErr');
+  const { data: chal, error: chalErr } = await sb.auth.mfa.challenge({ factorId: state.mfaFactorId });
+  if(chalErr){ errBox.textContent = chalErr.message; errBox.style.display='block'; return; }
+  const { error: verErr } = await sb.auth.mfa.verify({ factorId: state.mfaFactorId, challengeId: chal.id, code });
+  if(verErr){ errBox.textContent = verErr.message; errBox.style.display='block'; return; }
+  await loadProfileAndRender();
+}
+
+function renderMfaChallenge(factorId){
+  $app.innerHTML = `
+    <div class="card-auth">
+      <h2>Enter your 2FA code</h2>
+      <input type="text" id="mfaChallengeCode" maxlength="6" inputmode="numeric"/>
+      <div id="mfaChallengeErr" class="err" style="display:none"></div>
+      <button class="btn-primary" style="width:100%" onclick="submitMfaChallenge('${factorId}')">Verify</button>
+    </div>`;
+}
+async function submitMfaChallenge(factorId){
+  const code = document.getElementById('mfaChallengeCode').value.trim();
+  const errBox = document.getElementById('mfaChallengeErr');
+  const { data: chal, error: chalErr } = await sb.auth.mfa.challenge({ factorId });
+  if(chalErr){ errBox.textContent = chalErr.message; errBox.style.display='block'; return; }
+  const { error: verErr } = await sb.auth.mfa.verify({ factorId, challengeId: chal.id, code });
+  if(verErr){ errBox.textContent = verErr.message; errBox.style.display='block'; return; }
+  await loadProfileAndRender();
+}
+
+/* ================= PROFILE + ACCESS ================= */
+async function loadProfileAndRender(){
+  const { data: profile } = await sb.from('profiles').select('*').eq('id', state.user.id).single();
+  state.profile = profile;
+
+  const { data: accessRows } = await sb.rpc('has_active_access', { uid: state.user.id });
+  state.access = !!accessRows;
+
+  renderHeader();
+  return renderMenu();
+}
+
+function renderHeader(){
+  const roleLabel = state.profile?.role === 'admin' ? 'Admin' : state.profile?.role === 'teacher' ? 'Teacher' : 'Parent';
+  $hr.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span class="pill ${state.profile?.role==='admin'?'gold':''}">${roleLabel}</span>
+      <button class="btn-ghost" style="padding:7px 12px;font-size:.8rem;" onclick="signOut()">Sign out</button>
+    </div>`;
+}
+async function signOut(){ await sb.auth.signOut(); location.reload(); }
+
+/* Soft status line shown above the menu when someone doesn't have full
+   access yet — informational, never blocking. The free 5 always work. */
+async function accessNoticeHtml(){
+  if(state.access) return '';
+  if(state.profile.role === 'teacher'){
+    let note = "Your school's full library isn't active yet.";
+    if(state.profile.school_id){
+      const { data: school } = await sb.from('schools').select('*').eq('id', state.profile.school_id).single();
+      if(school) note = `${esc(school.name)}'s full-library access is <b>${esc(school.status)}</b>.`;
+    }
+    return `<div class="banner"><h2>Exploring the free set</h2><p class="muted-text">${note} The five below are always yours to use. Ask your school admin about the rest whenever it's useful — no rush.</p></div>`;
+  }
+  return `<div class="banner"><h2>Exploring the free set</h2><p class="muted-text">The five below are always yours to use. Subscribe whenever you're ready for the full 102 — there's no deadline.</p>
+    <a class="btn btn-gold" style="display:inline-block;text-decoration:none;margin-top:8px;margin-right:8px;" href="${SQUARE_LINK_PARENT}" target="_blank">See full library options</a>
+    <button id="shareBtn" class="btn-ghost" onclick="shareApp()">Share this</button></div>`;
+}
+
+/* ================= MENU ================= */
+async function renderMenu(){
+  // RLS already scopes this: free cards always come back; the rest only if state.access.
+  const { data: menuRows } = await sb.from('menu_cards').select('*').eq('active', true);
+  const visible = new Map((menuRows||[]).map(r=>[r.card_id, r]));
+  // Show the whole active catalog either way, so locked cards render as
+  // gentle previews rather than just vanishing — but only cards we're
+  // actually allowed to see (free, or all if access) get real data back
+  // from menu_cards, so we can't accidentally leak details of inactive ones.
+  state.cards = CATALOG.filter(c => visible.has(c.id) || !state.access);
+  state.visibleRows = visible;
+
+  const isAdmin = state.profile.role === 'admin';
+  const notice = await accessNoticeHtml();
+  $app.innerHTML = `
+    ${notice}
+    ${isAdmin ? `<div class="tabbar">
+      <button id="tabMenu" class="active" onclick="switchTab('menu')">Menu</button>
+      <button id="tabCurate" onclick="switchTab('curate')">Curate</button>
+    </div>` : ''}
+    <div id="tabBody"></div>`;
+  renderMenuTab();
+}
+
+function switchTab(tab){
+  document.getElementById('tabMenu')?.classList.toggle('active', tab==='menu');
+  document.getElementById('tabCurate')?.classList.toggle('active', tab==='curate');
+  if(tab==='menu') renderMenuTab(); else renderCurateTab();
+}
+
+const KIND_LABEL = { breath:'Breath', meditation:'Meditation', chair:'Chair Yoga', sel:'SEL', class:'Class Flow' };
+
+function renderMenuTab(){
+  const body = document.getElementById('tabBody');
+  const kinds = ['all', ...new Set(state.cards.map(c=>c.kind))];
+  body.innerHTML = `
+    <div class="filters">
+      ${kinds.map(k=>`<div class="chip ${state.filter===k?'active':''}" onclick="setFilter('${k}')">${k==='all'?'All':(KIND_LABEL[k]||k)}</div>`).join('')}
+    </div>
+    <div class="grid" id="cardGrid"></div>`;
+  paintGrid();
+}
+function setFilter(k){ state.filter = k; paintGrid(); document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('active', c.textContent.trim() === (k==='all'?'All':(KIND_LABEL[k]||k)))); }
+
+function paintGrid(){
+  const grid = document.getElementById('cardGrid');
+  const list = state.cards.filter(c => state.filter==='all' || c.kind===state.filter);
+  grid.innerHTML = list.map(c => {
+    const unlocked = state.visibleRows.has(c.id);
+    if(!unlocked){
+      return `
+      <div class="mcard" style="opacity:.6;">
+        <span class="pill muted" style="align-self:flex-start;">${KIND_LABEL[c.kind]||c.kind}</span>
+        <h3>${esc(c.name)}</h3>
+        <div class="aud">Part of the full library</div>
+      </div>`;
+    }
+    return `
+    <div class="mcard">
+      <span class="pill ${c.kind==='sel'?'gold':''}" style="align-self:flex-start;">${KIND_LABEL[c.kind]||c.kind}</span>
+      <h3>${esc(c.name)}</h3>
+      <div class="tag">${esc(c.tag)}</div>
+      <div class="aud">${esc(c.audience)}</div>
+      <div class="row">
+        <button class="btn-ghost" id="done-${c.id}" onclick="markDone('${c.id}')">Mark done</button>
+      </div>
+    </div>`;
+  }).join('') || `<p class="muted-text">No cards in this category yet.</p>`;
+}
+
+async function markDone(cardId){
+  const btn = document.getElementById('done-'+cardId);
+  const { error } = await sb.from('completions').insert({ user_id: state.user.id, card_id: cardId });
+  if(!error){ btn.textContent = 'Done ✓'; btn.classList.add('done-flash'); }
+}
+
+/* ================= ADMIN CURATE TAB ================= */
+async function renderCurateTab(){
+  const body = document.getElementById('tabBody');
+  const { data: menuRows } = await sb.from('menu_cards').select('*');
+  const activeMap = new Map((menuRows||[]).map(r=>[r.card_id, r.active]));
+  body.innerHTML = `<p class="muted-text">Toggle which of the 102 cards teachers and parents can see. Off by default until you flip it on.</p>
+    <div style="background:#fff;border-radius:14px;border:1px solid var(--line);overflow:hidden;">
+      ${CATALOG.map(c => `
+        <div class="admin-row">
+          <div><b>${esc(c.name)}</b> <span class="muted-text">· ${KIND_LABEL[c.kind]||c.kind}</span></div>
+          <div class="toggle ${activeMap.get(c.id) ? 'on':''}" id="tog-${c.id}" onclick="toggleCard('${c.id}', this)"></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+async function toggleCard(cardId, el){
+  const nowOn = !el.classList.contains('on');
+  el.classList.toggle('on', nowOn);
+  await sb.from('menu_cards').upsert({ card_id: cardId, active: nowOn }, { onConflict:'card_id' });
+}
+</script>
+</body>
+</html>

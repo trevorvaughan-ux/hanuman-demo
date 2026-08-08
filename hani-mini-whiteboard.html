@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hani · Mini Whiteboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#2F6B6E;--teal-d:#136b6b;--cream:#FDF8F0;--charcoal:#3A3A3A;--gold:#D99A4E;--purple:#7d6bb8;--display:"Playfair Display",Georgia,serif;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
+  html,body{height:100%;}
+  body{background:var(--cream);color:var(--charcoal);overflow:hidden;}
+  #stage{height:100vh;height:100dvh;display:flex;flex-direction:column;}
+  #topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 26px;}
+  #brand{font-weight:800;color:var(--teal-d);font-size:20px;letter-spacing:-.5px;}
+  #brand b{color:var(--gold);}
+  #brand .sub{display:block;font-size:11px;font-weight:600;color:#8aa;letter-spacing:.4px;margin-top:2px;}
+  #right{display:flex;gap:16px;align-items:center;}
+  #voiceToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
+  #timer{font-variant-numeric:tabular-nums;font-size:32px;font-weight:800;color:var(--teal-d);}
+  #menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:0 6vw;}
+  #menuTitle{font-family:var(--display);font-size:clamp(26px,4vw,46px);font-weight:700;color:var(--teal-d);text-align:center;}
+  #menuSub{font-size:clamp(15px,1.8vw,20px);color:var(--charcoal);text-align:center;margin-top:-14px;}
+  #groups{display:flex;flex-direction:column;gap:22px;max-width:1000px;width:100%;}
+  .grouplabel{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9bb;text-align:center;}
+  #cards{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:1100px;}
+  .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.15s;text-align:left;}
+  .card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08);}
+  .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
+  .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+  .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
+  .card.sel{border-left-color:var(--purple);}
+  .card.sel .tag{color:var(--purple);}
+  .card.med{border-left-color:var(--gold);}
+  #player{flex:1;display:none;flex-direction:column;}
+  #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
+  #monkeyWrap{flex:0 0 26%;max-width:280px;}
+  #ballWrap{flex:0 0 40%;display:none;align-items:center;justify-content:center;height:58vh;position:relative;overflow:visible;}
+  #ball{width:32vh;height:32vh;border-radius:50%;will-change:transform;}
+  #ringWrap{flex:0 0 40%;display:none;align-items:center;justify-content:center;height:58vh;position:relative;}
+  #ring{width:28vh;height:28vh;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(217,154,78,.85),rgba(217,154,78,.32) 45%,rgba(31,138,138,.12) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(217,154,78,.5);animation:glowPulse 7s ease-in-out infinite;}
+  #ringWrap.sel #ring{background:radial-gradient(circle at 50% 50%,rgba(125,107,184,.85),rgba(125,107,184,.32) 45%,rgba(31,138,138,.12) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(125,107,184,.5);}
+  @keyframes glowPulse{0%,100%{transform:scale(.9);}50%{transform:scale(1.08);}}
+  #cuebar{text-align:center;padding:0 6vw 2vh;}
+  #cue{font-size:clamp(24px,4vw,44px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
+  #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
+  #progress{text-align:center;font-size:13px;font-weight:700;color:#9bb;letter-spacing:.5px;margin-top:6px;}
+  #controls{display:flex;justify-content:center;gap:14px;padding-bottom:4vh;flex-wrap:wrap;}
+  .btn{border:none;border-radius:12px;padding:14px 28px;font-size:18px;font-weight:700;cursor:pointer;}
+  .primary{background:var(--teal);color:#fff;}.primary:hover{background:var(--teal-d);}
+  .ghost{background:transparent;color:var(--teal-d);border:2px solid var(--teal);}
+  .hide{display:none !important;}
+  #closeLine{text-align:center;font-size:16px;color:var(--teal-d);font-weight:600;max-width:600px;margin:0 auto 10px;padding:0 5vw;}
+  @media (max-width:640px){
+    #topbar{padding:12px 16px;}
+    #brand{font-size:17px;}
+    #timer{font-size:26px;}
+    #menu{gap:16px;padding:0 5vw;}
+    #cards{gap:12px;}
+    .card{width:min(300px,88vw);padding:18px 18px;}
+    #scene{flex-direction:column;gap:2vh;padding:0 5vw;}
+    #monkeyWrap{flex:0 0 auto;width:100px;max-width:100px;}
+    #ballWrap,#ringWrap{flex:0 0 auto;height:auto;}
+    #ball{width:46vw;height:46vw;}
+    #ring{width:44vw;height:44vw;}
+    #cuebar{padding:0 5vw 1.5vh;}
+    #controls{padding-bottom:3vh;}
+    .btn{padding:13px 22px;font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="topbar">
+    <div id="brand">HudsonSeed · <b>Hani</b><span class="sub">Mini Whiteboard — Beta Sandbox</span></div>
+    <div id="right"><button id="voiceToggle">🔊 voice on</button><div id="timer">--:--</div></div>
+  </div>
+
+  <div id="menu">
+    <div>
+      <div id="menuTitle">Pick a reset</div>
+      <div id="menuSub">Tap one. Hani walks you through it, start to finish.</div>
+    </div>
+    <div id="groups"></div>
+  </div>
+
+  <div id="player">
+    <div id="scene">
+      <div id="monkeyWrap">
+        <svg viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-label="Hani the monkey">
+          <path d="M70 250 q-60 10 -55 -55 q3 -34 30 -30 q18 3 12 24 q-5 16 -16 10" fill="none" stroke="#136b6b" stroke-width="14" stroke-linecap="round"/>
+          <ellipse cx="100" cy="300" rx="22" ry="16" fill="#136b6b"/>
+          <ellipse cx="160" cy="300" rx="22" ry="16" fill="#136b6b"/>
+          <ellipse cx="130" cy="235" rx="68" ry="62" fill="#1f8a8a"/>
+          <ellipse cx="130" cy="245" rx="42" ry="44" fill="#FDF8F0"/>
+          <path d="M70 215 q-34 -6 -40 24 q-4 18 16 20" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
+          <path d="M192 210 q40 -20 46 -58" fill="none" stroke="#1f8a8a" stroke-width="22" stroke-linecap="round"/>
+          <circle cx="130" cy="120" r="80" fill="#1f8a8a"/>
+          <circle cx="58" cy="110" r="26" fill="#1f8a8a"/><circle cx="58" cy="110" r="13" fill="#D99A4E"/>
+          <circle cx="202" cy="110" r="26" fill="#1f8a8a"/><circle cx="202" cy="110" r="13" fill="#D99A4E"/>
+          <ellipse cx="130" cy="135" rx="58" ry="56" fill="#FDF8F0"/>
+          <path d="M108 70 l10 16 l12 -20 l12 20 l10 -16" fill="none" stroke="#D99A4E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="106" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
+          <ellipse cx="154" cy="128" rx="20" ry="23" fill="#fff" stroke="#136b6b" stroke-width="2"/>
+          <g id="pL"><circle cx="106" cy="128" r="9" fill="#3fa34d"/><circle cx="109" cy="124" r="3" fill="#fff"/></g>
+          <g id="pR"><circle cx="154" cy="128" r="9" fill="#3fa34d"/><circle cx="157" cy="124" r="3" fill="#fff"/></g>
+          <ellipse cx="130" cy="165" rx="30" ry="22" fill="#FDF8F0"/>
+          <ellipse cx="130" cy="154" rx="6" ry="4" fill="#3A3A3A"/>
+          <path d="M114 176 q16 14 32 0" fill="none" stroke="#3A3A3A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div id="ballWrap"><div id="ball"></div></div>
+      <div id="ringWrap"><div id="ring"></div></div>
+    </div>
+    <div id="cuebar"><div id="cue"></div><div id="sub"></div><div id="progress"></div></div>
+    <div id="closeLine" class="hide"></div>
+    <div id="controls">
+      <button class="btn ghost" id="backBtn">‹ Pick another</button>
+      <button class="btn ghost hide" id="prevBtn">‹ Back a step</button>
+      <button class="btn primary hide" id="nextBtn">Next step ›</button>
+      <button class="btn primary hide" id="againBtn">↺ Again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ===== BREATHS: 2 samples pulled from the full HudsonSeed library =====
+  var BREATHS=[
+    { id:"balloon", kind:"breath", name:"Balloon Breath", tag:"Breathing · 2 min", audience:"All ages",
+      blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
+      pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
+      intro:"Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
+      inhale:[["Breathe in. Fill the ball up like a balloon.","Watch it grow and turn bright."],
+              ["Big slow breath in. Grow the ball.","My eyes are following it up with you."],
+              ["In through your nose. Fill all the way up.","See how big and bright it gets."]],
+      exhale:[["Let it go, slow. The balloon gets small.","The slow way out is what calms you down."],
+              ["Long breath out. Send the ball back down.","Let your shoulders sink with it."],
+              ["Breathe out easy. Watch it shrink and warm.","Nice. You are doing it."]],
+      holdCue:["Hold it gently at the top.",""] },
+    { id:"beebreath", kind:"breath", name:"Bee Breath", tag:"Breathing · 2 min", audience:"PreK3-6th",
+      blurb:"Hum your exhale like a buzzing bee. The vibration calms a busy brain fast.",
+      pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
+      intro:"Hi, I'm Hani. This one is Bee Breath. We're going to hum on the way out, like a friendly bee. Watch the ball with me.",
+      inhale:[["Breathe in slow through your nose.","Fill up like the ball is filling."],
+              ["Big quiet breath in.","Get ready to hum."]],
+      exhale:[["Now hum it out. Mmmmmm, like a bee.","Feel the buzz in your lips."],
+              ["Hum your whole breath out. Mmmmm.","Long and slow, like a happy bee."]],
+      holdCue:["Hold for just a second.",""] }
+  ];
+
+  // ===== SEL: 2 samples pulled from the full HudsonSeed library =====
+  var SEL=[
+    { id:"nameit", kind:"sel", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th",
+      blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
+      intro:"Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
+      lines:[
+        {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:9},
+        {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:11},
+        {cue:"Find where it lives in your body.",sub:"Belly? Chest? Shoulders? Head?",say:"Find where that feeling lives in your body. Is it in your belly? Your chest? Your shoulders? Your head?",hold:11},
+        {cue:"Now give it a name.",sub:"Mad. Sad. Worried. Excited. Tired. Happy.",say:"Now give it a name, quietly in your head. Maybe it's mad. Or sad. Or worried. Or excited. Or tired. Or happy. Any name is okay.",hold:12},
+        {cue:"Say hi to it.",sub:"\"I see you, worried.\"",say:"Say hi to it, like this: I see you, worried. Or, I see you, mad. You're not in trouble. Feelings are visitors.",hold:11},
+        {cue:"Breathe in. Make room for it.",sub:"",say:"Breathe in, and make a little room for that feeling.",hold:8},
+        {cue:"Breathe out. Let it get smaller.",sub:"Named feelings shrink.",say:"Breathe out, and let it get a little smaller. That's the trick. Named feelings shrink.",hold:10},
+        {cue:"You're the sky. Feelings are the weather.",sub:"Weather always passes.",say:"Remember: you're the sky, and feelings are just the weather. And weather always, always passes.",hold:11},
+        {cue:"One more breath. You did it.",sub:"",say:"One more slow breath. You just did something that some grown-ups are still learning.",hold:9}
+      ],
+      close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
+    { id:"grounding54321", kind:"sel", name:"5-4-3-2-1 Grounding", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th",
+      blurb:"Use your five senses to come back to right here, right now. The worry-brain off switch.",
+      intro:"Hey, I'm Hani. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
+      lines:[
+        {cue:"Look around. Find 5 things you can SEE.",sub:"Count them quietly. Any 5 things.",say:"First, look around the room. Find five things you can see. Count them quietly in your head. A door. A light. A shoe. Anything.",hold:29},
+        {cue:"Find 4 things you can FEEL.",sub:"Your chair. Your shirt. The blanket. The air.",say:"Now find four things you can feel. Maybe your chair or bed holding you up. Your shirt on your shoulders. A blanket. The air on your face.",hold:29},
+        {cue:"Find 3 things you can HEAR.",sub:"Close ones and far ones.",say:"Now listen. Find three things you can hear. Close sounds, and far away sounds. Even quiet has a sound.",hold:27},
+        {cue:"Find 2 things you can SMELL.",sub:"Or 2 smells you like.",say:"Find two things you can smell. And if you can't smell anything right now, just think of two smells you love.",hold:23},
+        {cue:"Think of 1 taste you remember.",sub:"Or one you can imagine right now.",say:"And think of one taste you remember, or one you can imagine right now, like your favorite food.",hold:20},
+        {cue:"Notice where you are.",sub:"Right here. Right now.",say:"Now notice: your whole brain is right here, right now, in this room. Not in yesterday. Not in tomorrow.",hold:23},
+        {cue:"One slow breath.",sub:"You brought yourself back.",say:"Take one slow breath. You just brought yourself all the way back. That's a real skill.",hold:20}
+      ],
+      close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." }
+  ];
+
+  // ===== MEDITATIONS: 2 brand-new 5-minute scripts, written for this sandbox =====
+  // Longer format than the standard 3-min library. Kept comforting, not medical -
+  // no promises about outcomes, just steadiness and rest. Good fit for hospital settings.
+  var MEDS=[
+    { id:"calmanchor", kind:"meditation", name:"The Calm Anchor", tag:"Guided Meditation · 5 min", audience:"PreK3-6th",
+      blurb:"A steady anchor for uncertain moments: your own breath, always right here with you.",
+      intro:"Hi, I'm Hani. This one is longer, a real chance to slow all the way down. Get as comfortable as you can, wherever you're resting right now.",
+      lines:[
+        {cue:"Settle in wherever you are right now.",sub:"Your bed, your chair, wherever you're resting.",say:"Settle in wherever you are right now, your bed, your chair, wherever you happen to be resting.",hold:18},
+        {cue:"Let your eyes close, or just look down soft.",sub:"",say:"Let your eyes close if that feels okay, or just look down soft.",hold:16},
+        {cue:"You don't have to fix anything right now.",sub:"Just rest here with me for a while.",say:"You don't have to fix anything or make anything happen right now. Just rest here with me for a while.",hold:18},
+        {cue:"Notice one thing that's true right now.",sub:"You are breathing. In... and out.",say:"Notice one thing that is true right now: you are breathing. In... and out.",hold:16},
+        {cue:"That's your anchor.",sub:"No matter what else is happening, your breath is right here.",say:"That's your anchor. No matter what else is happening around you, your breath is always right here with you.",hold:18},
+        {cue:"Take one slow breath in through your nose.",sub:"",say:"Take one slow breath in through your nose.",hold:14},
+        {cue:"And let it out slow, however that feels today.",sub:"",say:"And let it out slow, however that feels for you today.",hold:14},
+        {cue:"Now think of one safe person.",sub:"Someone who's on your team.",say:"Now think of one safe person, someone who is on your team.",hold:18},
+        {cue:"You don't have to see them to feel them near.",sub:"",say:"You don't have to see them right now to feel like they're near.",hold:16},
+        {cue:"Imagine their hand near yours, or their kind voice.",sub:"",say:"Imagine their hand resting gently near yours, or their voice saying something kind.",hold:20},
+        {cue:"You are allowed to rest.",sub:"Resting is doing something important.",say:"You are allowed to rest. Resting is not doing nothing, it's doing something important.",hold:20},
+        {cue:"Let your shoulders get heavy and soft.",sub:"",say:"Let your shoulders get heavy and soft.",hold:14},
+        {cue:"Let your hands get heavy and soft too.",sub:"",say:"Let your hands get heavy and soft too.",hold:14},
+        {cue:"If your mind gets busy, that's okay.",sub:"Just come back to your anchor, your breath.",say:"If your mind gets busy or worried, that's okay. Just come back to your anchor, your breath.",hold:20},
+        {cue:"In... and out.",sub:"Your breath has been with you every day of your life.",say:"In... and out. Your breath has been with you every single day of your life.",hold:18},
+        {cue:"It's with you right now, this exact moment.",sub:"",say:"It's with you right now, in this exact moment.",hold:14},
+        {cue:"You are held. You are breathing. You are here.",sub:"",say:"You are held. You are breathing. You are here.",hold:16},
+        {cue:"Take one more slow breath, nice and easy.",sub:"",say:"Take one more slow breath, nice and easy.",hold:14},
+        {cue:"Whenever you're ready, let your eyes open soft.",sub:"",say:"Whenever you're ready, slowly let your eyes open, or just let your attention come back to the room.",hold:18}
+      ],
+      close:"That's the Calm Anchor. Your breath goes wherever you go, so you always have something steady to hold onto." },
+    { id:"gentlewaves", kind:"meditation", name:"Gentle Waves of Rest", tag:"Guided Meditation · 5 min", audience:"PreK3-6th",
+      blurb:"A slow float on calm water. Nothing to do, nowhere to be, just quiet rest.",
+      intro:"Hi, I'm Hani. This one is just about rest. There is nothing to do and nowhere to be, just this quiet time. Let's rest together.",
+      lines:[
+        {cue:"Get as comfortable as you can right where you are.",sub:"",say:"Get as comfortable as you can, right where you are.",hold:16},
+        {cue:"Let your eyes close, or just soften your gaze.",sub:"",say:"Let your eyes close if that's comfortable, or just soften your gaze.",hold:16},
+        {cue:"Imagine resting on calm, gentle water.",sub:"",say:"Imagine you're resting on something soft, like calm, gentle water.",hold:18},
+        {cue:"The water holds you up.",sub:"You don't have to work to float.",say:"The water holds you up completely. You don't have to do any work at all to float.",hold:20},
+        {cue:"Little waves rock you, slow and easy.",sub:"Side to side.",say:"Little waves rock you, slow and easy, side to side.",hold:18},
+        {cue:"Each wave takes a little worry out to sea.",sub:"",say:"Each wave that passes takes a tiny bit of worry with it, out to the sea.",hold:20},
+        {cue:"You don't need to chase the worry.",sub:"Just let the wave carry it away.",say:"You don't need to chase the worry or hold onto it. Just let the wave carry it away.",hold:20},
+        {cue:"Notice your breath rising and falling.",sub:"Like its own small wave.",say:"Notice your breath rising and falling, like its own small wave.",hold:18},
+        {cue:"In, like the water gently rising.",sub:"",say:"In, like the water gently rising.",hold:12},
+        {cue:"Out, like the water gently going back out.",sub:"",say:"Out, like the water gently going back out.",hold:12},
+        {cue:"Above you, the sky is wide and calm.",sub:"Watching over you.",say:"Above you, the sky is wide and calm, watching over you.",hold:16},
+        {cue:"You are safe here.",sub:"You are allowed to just rest.",say:"You are safe here. You are allowed to just rest.",hold:16},
+        {cue:"Your body is doing something important right now.",sub:"It's resting, and resting matters.",say:"Your body is doing something important right now, even though it looks like nothing. It's resting, and resting matters.",hold:24},
+        {cue:"If a thought floats by, let it float.",sub:"Like a leaf on the water.",say:"If a thought floats by, let it float, like a leaf on the water.",hold:18},
+        {cue:"Feel how heavy and soft your arms have become.",sub:"",say:"Feel how heavy and soft your arms have become.",hold:14},
+        {cue:"Feel how heavy and soft your legs have become.",sub:"",say:"Feel how heavy and soft your legs have become.",hold:14},
+        {cue:"The waves keep rocking you, slow and steady.",sub:"Just like this whole time.",say:"The waves keep rocking you, slow and steady, exactly like they have this whole time.",hold:18},
+        {cue:"Take one more slow breath here.",sub:"In this calm water.",say:"Take one more slow breath here, in this calm water.",hold:16},
+        {cue:"Let the waves set you gently back down.",sub:"Let your eyes open soft.",say:"Whenever you're ready, let the waves set you gently back down, and let your eyes open soft.",hold:18}
+      ],
+      close:"That's Gentle Waves of Rest. Rest isn't giving up, it's how your whole self gets stronger. You can come back to these waves anytime." }
+  ];
+
+  var GROUPS=[
+    {label:"Breathing", items:BREATHS},
+    {label:"SEL Tools", items:SEL},
+    {label:"Meditations", items:MEDS}
+  ];
+
+  var menu=document.getElementById("menu"), groupsEl=document.getElementById("groups");
+  var player=document.getElementById("player");
+  var ballWrap=document.getElementById("ballWrap"), ball=document.getElementById("ball"), pL=document.getElementById("pL"), pR=document.getElementById("pR");
+  var ringWrap=document.getElementById("ringWrap");
+  var cue=document.getElementById("cue"), sub=document.getElementById("sub"), progress=document.getElementById("progress"), timerEl=document.getElementById("timer");
+  var closeLine=document.getElementById("closeLine");
+  var backBtn=document.getElementById("backBtn"), againBtn=document.getElementById("againBtn");
+  var nextBtn=document.getElementById("nextBtn"), prevBtn=document.getElementById("prevBtn");
+  var voiceToggle=document.getElementById("voiceToggle");
+
+  // ---- render menu ----
+  GROUPS.forEach(function(g){
+    var wrap=document.createElement("div");
+    var label=document.createElement("div"); label.className="grouplabel"; label.textContent=g.label;
+    var row=document.createElement("div"); row.id="cards"; row.style.marginTop="10px";
+    g.items.forEach(function(item){
+      var c=document.createElement("div");
+      c.className="card"+(item.kind==="sel"?" sel":item.kind==="meditation"?" med":"");
+      c.innerHTML="<div class='tag'>"+item.tag+"</div><h3>"+item.name+"</h3><p>"+item.blurb+"</p>";
+      c.onclick=function(){ openItem(item); };
+      row.appendChild(c);
+    });
+    wrap.appendChild(label); wrap.appendChild(row);
+    groupsEl.appendChild(wrap);
+  });
+
+  var BIG=[143,227,255], SMALL=[255,158,122];
+  function lerp(a,b,t){return Math.round(a+(b-a)*t);}
+  function ballColor(p){return "rgb("+lerp(SMALL[0],BIG[0],p)+","+lerp(SMALL[1],BIG[1],p)+","+lerp(SMALL[2],BIG[2],p)+")";}
+  function setBall(p){
+    ball.style.transform="translateY("+((0.5-p)*40*0.4)+"vh) scale("+(0.45+0.55*p)+")";
+    ball.style.background=ballColor(p);
+    ball.style.boxShadow="0 0 "+(30+p*70)+"px "+ballColor(p);
+    var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");
+  }
+
+  var voiceOn=true, audioUnlocked=false, chosenVoice=null;
+  var PREF=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
+  function pickVoice(){if(!("speechSynthesis"in window))return;var vs=speechSynthesis.getVoices()||[];if(!vs.length)return;
+    for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];});if(h){chosenVoice=h;return;}}
+    chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];}
+  if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+  function say(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
+    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
+  voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"🔊 voice on":"🔇 voice off";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
+
+  var current=null, mode=null, raf=null, running=false;
+  // breath state
+  var startT=0, ci=0, lastPhase="";
+  // line state
+  var lineIdx=0, lineTimer=null;
+
+  function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;}
+
+  function openItem(item){
+    current=item; mode=item.kind;
+    menu.style.display="none"; player.style.display="flex";
+    closeLine.classList.add("hide"); closeLine.textContent="";
+    nextBtn.classList.add("hide"); prevBtn.classList.add("hide"); againBtn.classList.add("hide");
+    progress.textContent="";
+    if(mode==="breath"){
+      ballWrap.style.display="flex"; ringWrap.style.display="none";
+      timerEl.style.display="block"; timerEl.textContent=fmt(item.duration);
+      startBreath(item);
+    } else {
+      ballWrap.style.display="none"; ringWrap.style.display="flex";
+      ringWrap.className = mode==="sel" ? "sel" : "";
+      timerEl.style.display="none";
+      nextBtn.classList.remove("hide"); prevBtn.classList.remove("hide");
+      startLines(item);
+    }
+  }
+
+  // ---- breath player ----
+  function phaseAt(t,pat){var c=pat.in+pat.hold+pat.out+pat.rest,x=t%c;
+    if(x<pat.in)return{name:"in",p:x/pat.in};
+    if(x<pat.in+pat.hold)return{name:"hold",p:1};
+    if(x<pat.in+pat.hold+pat.out)return{name:"out",p:1-(x-pat.in-pat.hold)/pat.out};
+    return{name:"rest",p:0};}
+  function pair(arr){return arr&&arr.length?arr[ci%arr.length]:null;}
+
+  function startBreath(item){
+    running=true; startT=performance.now(); ci=0; lastPhase="";
+    audioUnlocked=true; say(item.intro);
+    cue.textContent=""; sub.textContent="";
+    function loop(now){
+      if(!running)return;
+      var elapsed=(now-startT)/1000;
+      var remain=item.duration-elapsed;
+      timerEl.textContent=fmt(remain);
+      if(remain<=0){ finishBreath(); return; }
+      var ph=phaseAt(elapsed,item.pattern);
+      setBall(ph.p);
+      if(ph.name!==lastPhase){
+        lastPhase=ph.name;
+        if(ph.name==="in"){ var pr=pair(item.inhale); if(pr){cue.textContent=pr[0];sub.textContent=pr[1];say(pr[0]);} }
+        else if(ph.name==="hold"&&item.holdCue){ cue.textContent=item.holdCue[0]||""; sub.textContent=item.holdCue[1]||""; if(item.holdCue[0])say(item.holdCue[0]); }
+        else if(ph.name==="out"){ var pr2=pair(item.exhale); if(pr2){cue.textContent=pr2[0];sub.textContent=pr2[1];say(pr2[0]);ci++;} }
+        else if(ph.name==="rest"&&item.restCue){ cue.textContent=item.restCue[0]||""; sub.textContent=item.restCue[1]||""; }
+      }
+      raf=requestAnimationFrame(loop);
+    }
+    raf=requestAnimationFrame(loop);
+  }
+  function finishBreath(){
+    running=false; if(raf)cancelAnimationFrame(raf);
+    cue.textContent="Nice work."; sub.textContent="";
+    closeLine.textContent=current.blurb; closeLine.classList.remove("hide");
+    againBtn.classList.remove("hide");
+  }
+
+  // ---- line player (SEL + meditation) ----
+  function startLines(item){
+    lineIdx=0; audioUnlocked=true; say(item.intro);
+    setTimeout(function(){ showLine(); }, 400);
+  }
+  function showLine(){
+    if(lineTimer){clearTimeout(lineTimer);lineTimer=null;}
+    if(lineIdx>=current.lines.length){ finishLines(); return; }
+    var L=current.lines[lineIdx];
+    cue.textContent=L.cue; sub.textContent=L.sub||""; say(L.say||L.cue);
+    progress.textContent="Step "+(lineIdx+1)+" of "+current.lines.length;
+    prevBtn.disabled=lineIdx===0;
+    lineTimer=setTimeout(function(){ lineIdx++; showLine(); }, (L.hold||14)*1000);
+  }
+  function finishLines(){
+    cue.textContent="All done."; sub.textContent=""; progress.textContent="";
+    closeLine.textContent=current.close; closeLine.classList.remove("hide");
+    nextBtn.classList.add("hide"); prevBtn.classList.add("hide");
+    againBtn.classList.remove("hide");
+  }
+  nextBtn.onclick=function(){ if(lineTimer)clearTimeout(lineTimer); lineIdx++; showLine(); };
+  prevBtn.onclick=function(){ if(lineIdx>0){ if(lineTimer)clearTimeout(lineTimer); lineIdx--; showLine(); } };
+
+  backBtn.onclick=function(){
+    running=false; if(raf)cancelAnimationFrame(raf); if(lineTimer)clearTimeout(lineTimer);
+    if(window.speechSynthesis)speechSynthesis.cancel();
+    player.style.display="none"; menu.style.display="flex";
+  };
+  againBtn.onclick=function(){ openItem(current); };
+})();
+</script>
+</body>
+</html>
