@@ -129,33 +129,41 @@ async function renderGuestMenu(){
     </div>`).join('');
 }
 
-/* ================= LOGIN ================= */
+/* ================= LOGIN (magic link — no password, no separate 2FA step) ================= */
 function renderLogin(){
   $hr.innerHTML='';
   $app.innerHTML = `
     <div class="card-auth">
       <h2>Sign in</h2>
-      <p class="muted-text">Teacher and parent accounts are created by HudsonSeed — check your email for your invite.</p>
+      <p class="muted-text">Enter your email and we'll send you a link to sign in — no password to create or remember.</p>
       <div id="loginErr" class="err" style="display:none"></div>
+      <div id="loginOk" class="muted-text" style="display:none;color:var(--teal-dark);font-weight:600;"></div>
       <label>Email</label>
       <input type="email" id="loginEmail" autocomplete="username"/>
-      <label>Password</label>
-      <input type="password" id="loginPass" autocomplete="current-password"/>
-      <button class="btn-primary" style="width:100%" onclick="doLogin()">Sign in</button>
+      <button class="btn-primary" style="width:100%" onclick="sendMagicLink()">Send my link</button>
     </div>`;
 }
 
-async function doLogin(){
+async function sendMagicLink(){
   const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPass').value;
   const errBox = document.getElementById('loginErr');
-  errBox.style.display='none';
-  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  const okBox = document.getElementById('loginOk');
+  errBox.style.display='none'; okBox.style.display='none';
+  if(!email){ errBox.textContent = 'Enter your email first.'; errBox.style.display='block'; return; }
+  const redirectTo = location.href.split('#')[0].split('?')[0];
+  const { error } = await sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: redirectTo } });
   if(error){ errBox.textContent = error.message; errBox.style.display='block'; return; }
-  await afterSignIn();
+  okBox.textContent = `Check ${email} for your sign-in link. You can close this tab.`;
+  okBox.style.display = 'block';
+  document.getElementById('loginEmail').disabled = true;
+  document.querySelector('.card-auth button').disabled = true;
 }
 
-/* ================= MFA (TOTP, required for every account) ================= */
+/* ================= AFTER SIGN-IN + MFA (TOTP, required for every account) =================
+   Magic link proves "you have access to this email" but is forwardable — anyone with
+   inbox access can request a fresh link. TOTP binds the account to one physical
+   authenticator app, which is what actually stops casual seat-sharing. Required from
+   the very first sign-in, not optional. */
 async function afterSignIn(){
   const { data:{ user } } = await sb.auth.getUser();
   state.user = user;
@@ -174,7 +182,7 @@ async function afterSignIn(){
 }
 
 async function renderMfaEnroll(){
-  $app.innerHTML = `<div class="card-auth"><h2>Set up 2FA</h2><p class="muted-text">Required once per account. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
+  $app.innerHTML = `<div class="card-auth"><h2>One more step</h2><p class="muted-text">Set up 2FA once per account — this is what keeps your access yours. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
   const { data, error } = await sb.auth.mfa.enroll({ factorType:'totp' });
   if(error){ document.getElementById('mfaBody').innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
   state.mfaFactorId = data.id;
@@ -220,10 +228,10 @@ async function submitMfaChallenge(factorId){
 
 /* ================= PROFILE + ACCESS ================= */
 async function loadProfileAndRender(){
-  const { data: profile } = await sb.from('profiles').select('*').eq('id', state.user.id).single();
+  const { data: profile } = await sb.from('menu_profiles').select('*').eq('id', state.user.id).single();
   state.profile = profile;
 
-  const { data: accessRows } = await sb.rpc('has_active_access', { uid: state.user.id });
+  const { data: accessRows } = await sb.rpc('menu_has_active_access', { uid: state.user.id });
   state.access = !!accessRows;
 
   renderHeader();
@@ -246,8 +254,8 @@ async function accessNoticeHtml(){
   if(state.access) return '';
   if(state.profile.role === 'teacher'){
     let note = "Your school's full library isn't active yet.";
-    if(state.profile.school_id){
-      const { data: school } = await sb.from('schools').select('*').eq('id', state.profile.school_id).single();
+    if(state.profile.school_license_id){
+      const { data: school } = await sb.from('menu_school_licenses').select('*').eq('id', state.profile.school_license_id).single();
       if(school) note = `${esc(school.name)}'s full-library access is <b>${esc(school.status)}</b>.`;
     }
     return `<div class="banner"><h2>Exploring the free set</h2><p class="muted-text">${note} The five below are always yours to use. Ask your school admin about the rest whenever it's useful — no rush.</p></div>`;
@@ -329,7 +337,7 @@ function paintGrid(){
 
 async function markDone(cardId){
   const btn = document.getElementById('done-'+cardId);
-  const { error } = await sb.from('completions').insert({ user_id: state.user.id, card_id: cardId });
+  const { error } = await sb.from('menu_completions').insert({ user_id: state.user.id, card_id: cardId });
   if(!error){ btn.textContent = 'Done ✓'; btn.classList.add('done-flash'); }
 }
 
