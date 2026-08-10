@@ -62,7 +62,7 @@
 <body>
 
 <header class="top">
-  <div class="brand"><img src="hanuman-calm.jpg" onerror="this.style.display='none'"/> Hani by HudsonSeed</div>
+  <div class="brand"><img src="hanuman-smiling.jpg" onerror="this.style.display='none'"/> Hani by HudsonSeed</div>
   <div id="headerRight"></div>
 </header>
 
@@ -134,6 +134,7 @@ function renderLogin(){
   $hr.innerHTML='';
   $app.innerHTML = `
     <div class="card-auth">
+      <img class="mark" src="hanuman-smiling.jpg" onerror="this.style.display='none'"/>
       <h2>Sign in</h2>
       <p class="muted-text">Enter your email and we'll send you a link to sign in — no password to create or remember.</p>
       <div id="loginErr" class="err" style="display:none"></div>
@@ -182,7 +183,7 @@ async function afterSignIn(){
 }
 
 async function renderMfaEnroll(){
-  $app.innerHTML = `<div class="card-auth"><h2>One more step</h2><p class="muted-text">Set up 2FA once per account — this is what keeps your access yours. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
+  $app.innerHTML = `<div class="card-auth"><img class="mark" src="hanuman-smiling.jpg" onerror="this.style.display='none'"/><h2>One more step</h2><p class="muted-text">Set up 2FA once per account — this is what keeps your access yours. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
   const { data, error } = await sb.auth.mfa.enroll({ factorType:'totp' });
   if(error){ document.getElementById('mfaBody').innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
   state.mfaFactorId = data.id;
@@ -210,6 +211,7 @@ async function finishMfaEnroll(){
 function renderMfaChallenge(factorId){
   $app.innerHTML = `
     <div class="card-auth">
+      <img class="mark" src="hanuman-smiling.jpg" onerror="this.style.display='none'"/>
       <h2>Enter your 2FA code</h2>
       <input type="text" id="mfaChallengeCode" maxlength="6" inputmode="numeric"/>
       <div id="mfaChallengeErr" class="err" style="display:none"></div>
