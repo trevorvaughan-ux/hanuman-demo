@@ -1,0 +1,13 @@
+{
+  "name": "Hani by HudsonSeed",
+  "short_name": "Hani",
+  "description": "Yoga, breathing, and SEL tools for kids — 2-3 minutes at a time.",
+  "start_url": "hanuman-menu.html",
+  "display": "standalone",
+  "background_color": "#FDF8F0",
+  "theme_color": "#4A9EA6",
+  "icons": [
+    { "src": "hanuman-smiling.jpg", "sizes": "192x192", "type": "image/jpeg" },
+    { "src": "hanuman-smiling.jpg", "sizes": "512x512", "type": "image/jpeg" }
+  ]
+}
