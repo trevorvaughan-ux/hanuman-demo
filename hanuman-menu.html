@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Hani by HudsonSeed</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="hanuman-smiling.jpg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Hani">
@@ -368,6 +368,16 @@ async function toggleCard(cardId, el){
   const nowOn = !el.classList.contains('on');
   el.classList.toggle('on', nowOn);
   await sb.from('menu_cards').upsert({ card_id: cardId, active: nowOn }, { onConflict:'card_id' });
+}
+
+/* ================= INSTALLABLE APP (PWA) =================
+   Registers the offline service worker so the app opens instantly and
+   works without a connection after the first visit. Never touches
+   Supabase requests — auth/data always stay live. */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
 }
 </script>
 </body>

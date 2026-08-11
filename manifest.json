@@ -3,11 +3,14 @@
   "short_name": "Hani",
   "description": "Yoga, breathing, and SEL tools for kids — 2-3 minutes at a time.",
   "start_url": "hanuman-menu.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#FDF8F0",
   "theme_color": "#4A9EA6",
   "icons": [
-    { "src": "hanuman-smiling.jpg", "sizes": "192x192", "type": "image/jpeg" },
-    { "src": "hanuman-smiling.jpg", "sizes": "512x512", "type": "image/jpeg" }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
