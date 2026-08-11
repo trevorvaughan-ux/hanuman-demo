@@ -122,6 +122,7 @@ async function renderGuestMenu(){
     <div class="banner">
       <h2>Free to try, always</h2>
       <p class="muted-text">These five are open to everyone, no account needed. Sign in for the full library whenever you're ready — no rush.</p>
+      <a class="btn btn-primary" style="display:inline-block;text-decoration:none;margin-top:4px;margin-right:8px;" href="whiteboard.html">Start Practicing</a>
       <button id="shareBtn" class="btn-ghost" onclick="shareApp()">Share this</button>
     </div>
     <div class="grid" id="cardGrid"></div>`;
@@ -250,6 +251,7 @@ function renderHeader(){
   const roleLabel = state.profile?.role === 'admin' ? 'Admin' : state.profile?.role === 'teacher' ? 'Teacher' : 'Parent';
   $hr.innerHTML = `
     <div style="display:flex;align-items:center;gap:10px;">
+      <a class="btn-primary" style="padding:7px 12px;font-size:.8rem;text-decoration:none;display:inline-block;" href="whiteboard.html">Start Practicing</a>
       <span class="pill ${state.profile?.role==='admin'?'gold':''}">${roleLabel}</span>
       <button class="btn-ghost" style="padding:7px 12px;font-size:.8rem;" onclick="signOut()">Sign out</button>
     </div>`;

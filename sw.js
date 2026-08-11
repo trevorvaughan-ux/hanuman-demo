@@ -1,15 +1,22 @@
 // Hani by HudsonSeed — service worker
 // Caches the app shell so the app opens instantly and works offline after first load.
 // Never caches Supabase requests (auth/data must always be live).
-const CACHE_NAME = 'hani-shell-v1';
+const CACHE_NAME = 'hani-shell-v2';
 const SHELL_FILES = [
   'hanuman-menu.html',
+  'whiteboard.html',
   'manifest.json',
   'icon-192.png',
   'icon-512.png',
   'icon-512-maskable.png',
   'apple-touch-icon.png',
-  'hanuman-smiling.jpg'
+  'hanuman-smiling.jpg',
+  'hanuman-calm.jpg',
+  'hanuman-kind.jpg',
+  'hanuman-angry.jpg',
+  'hanuman-sadgrief.jpg',
+  'hanuman-pensive.jpg',
+  'hanuman-surprised.jpg'
 ];
 
 self.addEventListener('install', (event) => {
