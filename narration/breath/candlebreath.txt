@@ -1,0 +1,110 @@
+-- Candle Breath  (id: candlebreath)
+-- pattern seconds: in=4 hold=1 out=6 rest=1  (cycle=12s, ~10 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. Imagine a flower in one hand and a candle in the other. Smell the flower in, blow the candle out gently. Let's try it.
+<break time="1.5s" />
+
+[CYCLE 1]
+Smell the flower. Breathe in slow through your nose.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Now blow out your candle, gentle and slow.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Breathe in and smell your imaginary flower.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Blow out the candle nice and easy.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Smell the flower. Breathe in slow through your nose.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Now blow out your candle, gentle and slow.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Breathe in and smell your imaginary flower.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Blow out the candle nice and easy.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Smell the flower. Breathe in slow through your nose.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Now blow out your candle, gentle and slow.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Breathe in and smell your imaginary flower.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Blow out the candle nice and easy.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Smell the flower. Breathe in slow through your nose.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Now blow out your candle, gentle and slow.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Breathe in and smell your imaginary flower.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Blow out the candle nice and easy.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Smell the flower. Breathe in slow through your nose.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Now blow out your candle, gentle and slow.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Breathe in and smell your imaginary flower.
+<break time="4s" />
+Hold the smell for a second.
+<break time="1s" />
+Blow out the candle nice and easy.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
