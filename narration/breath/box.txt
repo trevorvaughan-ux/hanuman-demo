@@ -1,0 +1,90 @@
+-- Box Breath  (id: box)
+-- pattern seconds: in=4 hold=4 out=4 rest=4  (cycle=16s, ~8 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+This one is a box. Four counts on each side. In, hold, out, hold. Steady and even. Follow the ball.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 2]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 3]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 4]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 5]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 6]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 7]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CYCLE 8]
+Breathe in. Two, three, four.
+<break time="4s" />
+Hold. Two, three, four.
+<break time="4s" />
+Breathe out. Two, three, four.
+<break time="4s" />
+Hold empty. Two, three, four.
+<break time="4s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
