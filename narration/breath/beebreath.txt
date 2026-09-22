@@ -1,0 +1,110 @@
+-- Bee Breath  (id: beebreath)
+-- pattern seconds: in=4 hold=1 out=6 rest=1  (cycle=12s, ~10 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. This one is Bee Breath. We're going to hum on the way out, like a friendly bee. Watch the ball with me.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in slow through your nose.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Now hum it out. Mmmmmm, like a bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Big quiet breath in. Get ready to hum.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Hum your whole breath out. Mmmmm. Long and slow, like a happy bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Breathe in slow through your nose.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Now hum it out. Mmmmmm, like a bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Big quiet breath in. Get ready to hum.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Hum your whole breath out. Mmmmm. Long and slow, like a happy bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Breathe in slow through your nose.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Now hum it out. Mmmmmm, like a bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Big quiet breath in. Get ready to hum.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Hum your whole breath out. Mmmmm. Long and slow, like a happy bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Breathe in slow through your nose.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Now hum it out. Mmmmmm, like a bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Big quiet breath in. Get ready to hum.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Hum your whole breath out. Mmmmm. Long and slow, like a happy bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Breathe in slow through your nose.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Now hum it out. Mmmmmm, like a bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Big quiet breath in. Get ready to hum.
+<break time="4s" />
+Hold for just a second.
+<break time="1s" />
+Hum your whole breath out. Mmmmm. Long and slow, like a happy bee.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
