@@ -1,0 +1,110 @@
+-- Balloon Breath  (id: balloon)
+-- pattern seconds: in=4 hold=1 out=6 rest=1  (cycle=12s, ~10 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in. Fill the ball up like a balloon.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Let it go, slow. The balloon gets small.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Big slow breath in. Grow the ball.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Long breath out. Send the ball back down.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+In through your nose. Fill all the way up.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Breathe out easy. Watch it shrink and warm.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Breathe in. Fill the ball up like a balloon.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Let it go, slow. The balloon gets small.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Big slow breath in. Grow the ball.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Long breath out. Send the ball back down.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+In through your nose. Fill all the way up.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Breathe out easy. Watch it shrink and warm.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Breathe in. Fill the ball up like a balloon.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Let it go, slow. The balloon gets small.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Big slow breath in. Grow the ball.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Long breath out. Send the ball back down.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+In through your nose. Fill all the way up.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Breathe out easy. Watch it shrink and warm.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Breathe in. Fill the ball up like a balloon.
+<break time="4s" />
+Hold it gently at the top.
+<break time="1s" />
+Let it go, slow. The balloon gets small.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
