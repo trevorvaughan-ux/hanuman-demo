@@ -1,0 +1,100 @@
+-- Snake Breath  (id: snakebreath)
+-- pattern seconds: in=3 hold=1 out=8 rest=1  (cycle=13s, ~9 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. This one is Snake Breath. We hiss it out long and slow, like a calm, sleepy snake. Follow the ball with me.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in through your nose. Get ready to hiss.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Now hiss it out. Ssssssss, long and slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Quiet breath in. Fill up like the ball.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Sssssss. Slow snake hiss all the way out.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Breathe in through your nose. Get ready to hiss.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Now hiss it out. Ssssssss, long and slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Quiet breath in. Fill up like the ball.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Sssssss. Slow snake hiss all the way out.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Breathe in through your nose. Get ready to hiss.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Now hiss it out. Ssssssss, long and slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Quiet breath in. Fill up like the ball.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Sssssss. Slow snake hiss all the way out.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Breathe in through your nose. Get ready to hiss.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Now hiss it out. Ssssssss, long and slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Quiet breath in. Fill up like the ball.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Sssssss. Slow snake hiss all the way out.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Breathe in through your nose. Get ready to hiss.
+<break time="3s" />
+Hold, just for a moment.
+<break time="1s" />
+Now hiss it out. Ssssssss, long and slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
