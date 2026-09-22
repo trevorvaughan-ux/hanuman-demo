@@ -1,0 +1,120 @@
+-- Lion's Breath  (id: lionsbreath)
+-- pattern seconds: in=4 hold=2 out=3 rest=2  (cycle=11s, ~11 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. Lion's Breath is loud and fun. Breathe in big, then roar it all out. Ready to be brave and loud?
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 2]
+Big breath in. Get your roar ready.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Roar it out! Tongue out, big breath, HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 3]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 4]
+Big breath in. Get your roar ready.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Roar it out! Tongue out, big breath, HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 5]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 6]
+Big breath in. Get your roar ready.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Roar it out! Tongue out, big breath, HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 7]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 8]
+Big breath in. Get your roar ready.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Roar it out! Tongue out, big breath, HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 9]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 10]
+Big breath in. Get your roar ready.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Roar it out! Tongue out, big breath, HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CYCLE 11]
+Breathe in big through your nose.
+<break time="4s" />
+Hold it for a second, lion. Get ready to roar.
+<break time="2s" />
+Open your mouth, stick out your tongue, and roar it out! HAAA!
+<break time="3s" />
+Rest.
+<break time="2s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
