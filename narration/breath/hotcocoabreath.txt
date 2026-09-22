@@ -1,0 +1,100 @@
+-- Hot Cocoa Breath  (id: hotcocoabreath)
+-- pattern seconds: in=4 hold=2 out=6 rest=1  (cycle=13s, ~9 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi friends, I'm Hani. Imagine a warm mug of hot cocoa in your hands. Smell it in slow, then cool it down with your breath out.
+<break time="1.5s" />
+
+[CYCLE 1]
+Smell your hot cocoa. Breathe in through your nose.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Now cool it down. Blow out slow and long.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Breathe in slow and smell the cocoa.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Blow out slow to cool your cocoa.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Smell your hot cocoa. Breathe in through your nose.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Now cool it down. Blow out slow and long.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Breathe in slow and smell the cocoa.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Blow out slow to cool your cocoa.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Smell your hot cocoa. Breathe in through your nose.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Now cool it down. Blow out slow and long.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Breathe in slow and smell the cocoa.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Blow out slow to cool your cocoa.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Smell your hot cocoa. Breathe in through your nose.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Now cool it down. Blow out slow and long.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Breathe in slow and smell the cocoa.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Blow out slow to cool your cocoa.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Smell your hot cocoa. Breathe in through your nose.
+<break time="4s" />
+Hold the warm smell for a second.
+<break time="2s" />
+Now cool it down. Blow out slow and long.
+<break time="6s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
