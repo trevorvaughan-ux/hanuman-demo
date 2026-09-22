@@ -1,0 +1,82 @@
+-- Long Breath Out  (id: longout)
+-- pattern seconds: in=4 hold=0 out=8 rest=1  (cycle=13s, ~9 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Let's slow everything down. The secret is making the breath out longer than the breath in. Watch the ball with me.
+<break time="1.5s" />
+
+[CYCLE 1]
+A smooth breath in. The ball grows.
+<break time="4s" />
+Now a long, long breath out. Twice as slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Breathe in. Fill up halfway and relax.
+<break time="4s" />
+Let the air out slowly. Longer out means calmer you.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+A smooth breath in. The ball grows.
+<break time="4s" />
+Now a long, long breath out. Twice as slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Breathe in. Fill up halfway and relax.
+<break time="4s" />
+Let the air out slowly. Longer out means calmer you.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+A smooth breath in. The ball grows.
+<break time="4s" />
+Now a long, long breath out. Twice as slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Breathe in. Fill up halfway and relax.
+<break time="4s" />
+Let the air out slowly. Longer out means calmer you.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+A smooth breath in. The ball grows.
+<break time="4s" />
+Now a long, long breath out. Twice as slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Breathe in. Fill up halfway and relax.
+<break time="4s" />
+Let the air out slowly. Longer out means calmer you.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+A smooth breath in. The ball grows.
+<break time="4s" />
+Now a long, long breath out. Twice as slow.
+<break time="8s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
