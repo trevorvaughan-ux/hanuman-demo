@@ -1,0 +1,114 @@
+-- Starfish Breath  (id: starfishbreath)
+-- pattern seconds: in=4 hold=0 out=4 rest=1  (cycle=9s, ~13 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi friends, I'm Hani. Hold up one hand, fingers spread wide like a starfish. We're going to trace each finger while we breathe.
+<break time="1.5s" />
+
+[CYCLE 1]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 11]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 12]
+Breathe in, tracing up a finger.
+<break time="4s" />
+Breathe out, tracing down the finger.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 13]
+Trace up your thumb as you breathe in.
+<break time="4s" />
+Trace down the other side as you breathe out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
