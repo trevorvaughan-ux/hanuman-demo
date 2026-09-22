@@ -1,0 +1,82 @@
+-- Ocean Breath  (id: oceanbreath)
+-- pattern seconds: in=5 hold=0 out=5 rest=0  (cycle=10s, ~12 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. Ocean Breath sounds like waves, on the way in and the way out. Try breathing through a slightly open mouth, like fogging up a mirror.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 2]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CYCLE 3]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 4]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CYCLE 5]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 6]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CYCLE 7]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 8]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CYCLE 9]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 10]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CYCLE 11]
+Breathe in slow, making a soft wave sound.
+<break time="5s" />
+Breathe out slow, same soft wave sound.
+<break time="5s" />
+
+[CYCLE 12]
+In breath, gentle wave sound.
+<break time="5s" />
+Out breath, same gentle wave.
+<break time="5s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
