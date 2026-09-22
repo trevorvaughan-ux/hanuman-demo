@@ -1,0 +1,82 @@
+-- Star Breath  (id: starbreath)
+-- pattern seconds: in=5 hold=0 out=5 rest=0  (cycle=10s, ~12 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. Star Breath uses your finger to trace a star while you breathe. Five points, five counts. Let's draw one together.
+<break time="1.5s" />
+
+[CYCLE 1]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 2]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CYCLE 3]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 4]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CYCLE 5]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 6]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CYCLE 7]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 8]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CYCLE 9]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 10]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CYCLE 11]
+Trace up to the first point as you breathe in.
+<break time="5s" />
+Trace back down as you breathe out.
+<break time="5s" />
+
+[CYCLE 12]
+Breathe in while you trace the star's points.
+<break time="5s" />
+Breathe out while you finish your star.
+<break time="5s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
