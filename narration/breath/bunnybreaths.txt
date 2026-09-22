@@ -1,0 +1,130 @@
+-- Bunny Breaths  (id: bunnybreaths)
+-- pattern seconds: in=3 hold=0 out=4 rest=1  (cycle=8s, ~15 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi friends, I'm Hani. Bunny Breaths are quick and wiggly, like a bunny's nose. Three quick sniffs in, then one long breath out. Let's try it.
+<break time="1.5s" />
+
+[CYCLE 1]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 11]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 12]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 13]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 14]
+Quick bunny sniffs. One, two, three.
+<break time="3s" />
+Long breath out. Let your bunny nose rest.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 15]
+Sniff, sniff, sniff! Three quick bunny sniffs in.
+<break time="3s" />
+Now one long breath out through your mouth.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
