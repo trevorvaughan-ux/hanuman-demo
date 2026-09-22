@@ -1,0 +1,120 @@
+-- Volcano Breath  (id: volcanobreath)
+-- pattern seconds: in=4 hold=2 out=4 rest=1  (cycle=11s, ~11 cycles for a 120s track)
+-- Model: ElevenLabs Multilingual v2 (exact-second <break> control). Do NOT use v3 for this file.
+
+[INTRO]
+Hi, I'm Hani. Volcano Breath helps big energy have somewhere to go. Arms up as you fill, arms down as you release.
+<break time="1.5s" />
+
+[CYCLE 1]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 2]
+Arms rising, breath filling up.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Release it! Arms down, big breath out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 3]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 4]
+Arms rising, breath filling up.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Release it! Arms down, big breath out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 5]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 6]
+Arms rising, breath filling up.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Release it! Arms down, big breath out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 7]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 8]
+Arms rising, breath filling up.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Release it! Arms down, big breath out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 9]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 10]
+Arms rising, breath filling up.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Release it! Arms down, big breath out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CYCLE 11]
+Breathe in and raise your arms up slow.
+<break time="4s" />
+Hold at the top, arms high. Your volcano is full.
+<break time="2s" />
+Now let it erupt! Arms drop, breath rushes out.
+<break time="4s" />
+Rest.
+<break time="1s" />
+
+[CLOSE]
+Beautiful. Take one more easy breath, and come on back to the room whenever you're ready.
