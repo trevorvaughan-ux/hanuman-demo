@@ -20,13 +20,22 @@
   #right{display:flex;gap:16px;align-items:center;}
   #voiceToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
   #timer{font-variant-numeric:tabular-nums;font-size:32px;font-weight:800;color:var(--teal-d);}
-  #menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:0 6vw;}
+  #menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:20px;padding:2vh 6vw 4vh;overflow-y:auto;}
   #menuTitle{font-family:var(--display);font-size:clamp(26px,4vw,46px);font-weight:700;color:var(--teal-d);text-align:center;}
   #menuSub{font-size:clamp(15px,1.8vw,20px);color:var(--charcoal);text-align:center;margin-top:-14px;}
+  #filters{display:flex;flex-direction:column;gap:10px;max-width:1000px;width:100%;background:#fff;border:2px solid #e6efef;border-radius:16px;padding:16px 20px;}
+  .filterRow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+  .filterLabel{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8aa;width:100%;margin-bottom:2px;}
+  .chip{border:2px solid var(--teal);background:#fff;color:var(--teal-d);font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px;cursor:pointer;transition:.12s;}
+  .chip:hover{border-color:var(--gold);}
+  .chip.active{background:var(--teal);color:#fff;}
+  .chip.rise{border-color:var(--purple);color:var(--purple);}
+  .chip.rise.active{background:var(--purple);color:#fff;}
+  .chip.reset{border-style:dashed;color:#9bb;border-color:#cfe0e0;}
   #groups{display:flex;flex-direction:column;gap:22px;max-width:1000px;width:100%;}
   .grouplabel{font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9bb;text-align:center;}
   #cards{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;max-width:1100px;}
-  .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.15s;text-align:left;}
+  .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.15s;text-align:left;position:relative;}
   .card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.08);}
   .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
   .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
@@ -34,6 +43,8 @@
   .card.sel{border-left-color:var(--purple);}
   .card.sel .tag{color:var(--purple);}
   .card.med{border-left-color:var(--gold);}
+  .card .lang{position:absolute;top:14px;right:14px;font-size:11px;font-weight:800;color:var(--teal-d);background:var(--cream);padding:3px 8px;border-radius:8px;}
+  .emptyNote{text-align:center;color:#9bb;font-size:14px;padding:10px;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 26%;max-width:280px;}
@@ -43,6 +54,8 @@
   #ring{width:28vh;height:28vh;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(217,154,78,.85),rgba(217,154,78,.32) 45%,rgba(31,138,138,.12) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(217,154,78,.5);animation:glowPulse 7s ease-in-out infinite;}
   #ringWrap.sel #ring{background:radial-gradient(circle at 50% 50%,rgba(125,107,184,.85),rgba(125,107,184,.32) 45%,rgba(31,138,138,.12) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(125,107,184,.5);}
   @keyframes glowPulse{0%,100%{transform:scale(.9);}50%{transform:scale(1.08);}}
+  #langbar{text-align:center;padding-top:1vh;}
+  #langbar .chip{padding:5px 16px;font-size:13px;}
   #cuebar{text-align:center;padding:0 6vw 2vh;}
   #cue{font-size:clamp(24px,4vw,44px);font-weight:800;color:var(--charcoal);min-height:1.3em;line-height:1.25;}
   #sub{font-size:clamp(14px,1.7vw,21px);color:var(--teal-d);margin-top:8px;font-weight:600;min-height:1.2em;}
@@ -57,7 +70,7 @@
     #topbar{padding:12px 16px;}
     #brand{font-size:17px;}
     #timer{font-size:26px;}
-    #menu{gap:16px;padding:0 5vw;}
+    #menu{gap:16px;padding:2vh 5vw 4vh;}
     #cards{gap:12px;}
     .card{width:min(300px,88vw);padding:18px 18px;}
     #scene{flex-direction:column;gap:2vh;padding:0 5vw;}
@@ -82,6 +95,16 @@
     <div>
       <div id="menuTitle">Pick a reset</div>
       <div id="menuSub">Tap one. Hani walks you through it, start to finish.</div>
+    </div>
+    <div id="filters">
+      <div class="filterRow">
+        <div class="filterLabel">Customize by condition</div>
+      </div>
+      <div class="filterRow" id="condRow"></div>
+      <div class="filterRow">
+        <div class="filterLabel">Customize by R.I.S.E. behavior</div>
+      </div>
+      <div class="filterRow" id="riseRow"></div>
     </div>
     <div id="groups"></div>
   </div>
@@ -114,6 +137,10 @@
       <div id="ballWrap"><div id="ball"></div></div>
       <div id="ringWrap"><div id="ring"></div></div>
     </div>
+    <div id="langbar" class="hide">
+      <button class="chip active" id="langEnBtn">English</button>
+      <button class="chip" id="langEsBtn">Español</button>
+    </div>
     <div id="cuebar"><div id="cue"></div><div id="sub"></div><div id="progress"></div></div>
     <div id="closeLine" class="hide"></div>
     <div id="controls">
@@ -127,9 +154,13 @@
 
 <script>
 (function(){
+  var CONDITIONS=["ADD","ADHD","ODD","ERI"];
+  var RISE=["Task Avoidance & Refusal","Escape-Maintained Behavior","Shutdown & Withdrawal","Elopement"];
+
   // ===== BREATHS: 2 samples pulled from the full HudsonSeed library =====
   var BREATHS=[
     { id:"balloon", kind:"breath", name:"Balloon Breath", tag:"Breathing · 2 min", audience:"All ages",
+      conditions:["ADD","ADHD","ERI"], rise:[],
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
@@ -141,6 +172,7 @@
               ["Breathe out easy. Watch it shrink and warm.","Nice. You are doing it."]],
       holdCue:["Hold it gently at the top.",""] },
     { id:"beebreath", kind:"breath", name:"Bee Breath", tag:"Breathing · 2 min", audience:"PreK3-6th",
+      conditions:["ADD","ADHD","ERI"], rise:[],
       blurb:"Hum your exhale like a buzzing bee. The vibration calms a busy brain fast.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hi, I'm Hani. This one is Bee Breath. We're going to hum on the way out, like a friendly bee. Watch the ball with me.",
@@ -151,9 +183,10 @@
       holdCue:["Hold for just a second.",""] }
   ];
 
-  // ===== SEL: 2 samples pulled from the full HudsonSeed library =====
+  // ===== SEL: existing samples + RISE-mapped tools pulled from the HudsonSeed library =====
   var SEL=[
     { id:"nameit", kind:"sel", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th",
+      conditions:["ERI","ODD"], rise:[],
       blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
       intro:"Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
       lines:[
@@ -169,6 +202,7 @@
       ],
       close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
     { id:"grounding54321", kind:"sel", name:"5-4-3-2-1 Grounding", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th",
+      conditions:["ADD","ADHD","ERI"], rise:["Escape-Maintained Behavior"],
       blurb:"Use your five senses to come back to right here, right now. The worry-brain off switch.",
       intro:"Hey, I'm Hani. When our brains get worried, they run off to yesterday or tomorrow. This game brings your brain back to right here, right now, using your five senses. Ready?",
       lines:[
@@ -180,14 +214,97 @@
         {cue:"Notice where you are.",sub:"Right here. Right now.",say:"Now notice: your whole brain is right here, right now, in this room. Not in yesterday. Not in tomorrow.",hold:23},
         {cue:"One slow breath.",sub:"You brought yourself back.",say:"Take one slow breath. You just brought yourself all the way back. That's a real skill.",hold:20}
       ],
-      close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." }
+      close:"That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too." },
+    { id:"cozyplace", kind:"sel", name:"My Cozy Place", tag:"SEL · Self-Management · 2 min", audience:"PreK3-2nd",
+      conditions:["ERI","ODD"], rise:["Shutdown & Withdrawal"],
+      blurb:"For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
+      intro:"Hi friends, I'm Hani. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
+      lines:[
+        {cue:"Close your eyes. Snuggle into your seat.",sub:"Like a bird in a nest.",say:"Close your eyes and snuggle into your seat, like a little bird in a nest.",hold:10},
+        {cue:"Imagine the coziest place ever.",sub:"Real or made-up. Yours.",say:"Now imagine the coziest place ever. It can be real, like your bed, or totally made-up, like a cloud castle. It's yours.",hold:13},
+        {cue:"What do you SEE there?",sub:"Colors. Soft things. Favorite things.",say:"Look around your cozy place. What do you see? What colors? What soft things? Maybe your favorite things are there.",hold:12},
+        {cue:"What do you HEAR?",sub:"Quiet? Waves? A purring cat?",say:"What do you hear in your cozy place? Maybe it's quiet. Maybe there are waves, or rain on a roof, or a purring cat.",hold:12},
+        {cue:"Who is with you?",sub:"A person. A pet. A stuffie. Or just you.",say:"Who is with you? Maybe someone you love, or a pet, or your favorite stuffie. Or maybe it's just you, safe and snug.",hold:12},
+        {cue:"Take three cozy breaths there.",sub:"In... and out. Three times.",say:"Now take three slow, cozy breaths in your special place. In... and out. In... and out. In... and out.",hold:14},
+        {cue:"Wave goodbye. You can come back!",sub:"Any time feelings get big.",say:"Wave goodbye to your cozy place for now. But remember: it's yours forever. Any time your feelings get too big, close your eyes and come back.",hold:12},
+        {cue:"Eyes open. Cozy comes with you.",sub:"",say:"Open your eyes. And guess what? A little bit of that cozy feeling came back with you.",hold:9}
+      ],
+      close:"That's My Cozy Place. You built it, you own it, and no one can ever take it away. Visit often." },
+    { id:"wallpush", kind:"sel", name:"Heavy Work Reset", tag:"SEL · Self-Management · 2 min", audience:"PreK3-3rd",
+      conditions:["ADHD","ODD"], rise:["Escape-Maintained Behavior"],
+      blurb:"Press your own hands together, hard. Strong muscles help calm a busy brain, no wall or moving furniture needed.",
+      intro:"Hi, I'm Hani. Sometimes our bodies have extra wiggly energy, and the best way out is through strong, steady pushing. Stay right in your seat for this one, we don't need a wall.",
+      lines:[
+        {cue:"Sit tall. Press your palms together hard.",sub:"Right in front of your chest.",say:"Sit tall, and press your two palms together hard, right in front of your chest.",hold:9},
+        {cue:"Push your hands into each other.",sub:"Push... push... push!",say:"Push your hands into each other as hard as you can. Push, push, push!",hold:10},
+        {cue:"Breathe out while you push.",sub:"Strong and steady.",say:"Breathe out slow while you push. Strong and steady, not fast.",hold:9},
+        {cue:"Now stop. Shake your hands loose.",sub:"Let them go floppy.",say:"Now stop pushing, and shake your hands out loose. Let them go floppy like noodles.",hold:9},
+        {cue:"Hook your hands under your chair seat.",sub:"Pull straight up, hard.",say:"Now hook your hands under the edge of your chair seat, and pull straight up, hard, like you're trying to lift the chair.",hold:10},
+        {cue:"Breathe out slow the whole time.",sub:"",say:"Breathe out slow the whole time you're pulling.",hold:8},
+        {cue:"Stop. Shake it out again.",sub:"",say:"Stop, and shake your hands out again.",hold:8},
+        {cue:"Notice your muscles.",sub:"Tired is different from wiggly.",say:"Notice how your arms feel now. A little tired is different from wiggly. Tired muscles are calm muscles.",hold:11},
+        {cue:"Rest your hands in your lap when you're ready.",sub:"Your body did the work.",say:"Rest your hands in your lap whenever you're ready. Your body just did some real work, and your brain gets to feel calmer because of it.",hold:11}
+      ],
+      close:"That's the Heavy Work Reset. Anytime your body feels too wiggly, strong pushing helps it find calm again, no wall required." },
+    { id:"bodydetective", kind:"sel", name:"Body Detective", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-6th",
+      conditions:["ERI","ADD"], rise:["Shutdown & Withdrawal"],
+      blurb:"Scan forehead, shoulders, belly, hands for the physical clues feelings leave behind.",
+      intro:"Hi, I'm Hani. Feelings love to hide inside our bodies before we even notice them in our minds. Let's go on a body detective hunt and find the clues.",
+      lines:[
+        {cue:"Sit tall. Close your eyes if that feels okay.",sub:"Or just look down softly.",say:"Sit tall, and close your eyes if that feels okay, or just look down softly at your lap.",hold:26},
+        {cue:"Check your forehead. Tight or relaxed?",sub:"",say:"Check your forehead. Is it tight and scrunched, or relaxed and smooth?",hold:29},
+        {cue:"Check your shoulders. Up by your ears?",sub:"Or hanging loose?",say:"Check your shoulders. Are they up by your ears, or hanging loose and easy?",hold:29},
+        {cue:"Check your belly. Tight like a fist?",sub:"Or soft like a pillow?",say:"Check your belly. Does it feel tight like a fist, or soft like a pillow?",hold:29},
+        {cue:"Check your hands. Clenched or open?",sub:"",say:"Check your hands. Are they clenched tight, or open and calm?",hold:26},
+        {cue:"Now match the clues to a feeling name.",sub:"Any name is okay.",say:"Now put the clues together. What feeling might that be? Any name you find is okay.",hold:32}
+      ],
+      close:"That's Body Detective. Your body always leaves clues, and now you know how to find them." },
+    { id:"recessreset", kind:"sel", name:"Recess-to-Desk Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th",
+      conditions:["ADHD","ODD"], rise:["Elopement"],
+      blurb:"A fast down-shift from high recess energy to focused classroom energy.",
+      intro:"Hi, I'm Hani. Your body just had big, fast, loud energy at recess. Now it's time to bring it down for class. Let's shift gears together.",
+      lines:[
+        {cue:"Notice your fast heart and quick breath.",sub:"That's leftover recess energy.",say:"Notice your fast heart and your quick breath. That's just leftover recess energy, still moving through your body.",hold:33},
+        {cue:"Three big breaths out, slow and long.",sub:"",say:"Take three big breaths out, slow and long, like you're blowing out birthday candles gently.",hold:30},
+        {cue:"Shake your hands out for a second.",sub:"Let the wiggles go through your fingers.",say:"Shake your hands out for just a second. Let the wiggles go right out through your fingers.",hold:27},
+        {cue:"Feel your feet on the floor.",sub:"Heavy and still.",say:"Now feel your feet on the floor, heavy and still.",hold:23},
+        {cue:"Your body is shifting from fast to focused.",sub:"Both speeds are useful, just at different times.",say:"Your body is shifting gears, from fast to focused. Both speeds are useful, just at different times.",hold:30},
+        {cue:"Ready for desk mode.",sub:"You just downshifted on purpose.",say:"You're ready for desk mode now. You just downshifted your whole body on purpose.",hold:27}
+      ],
+      close:"That's the Recess-to-Desk Reset. A fast body can learn to slow down on command." },
+    { id:"taskstarter", kind:"sel", name:"The Task Starter", tag:"SEL · Self-Management · 3 min", audience:"1st-6th",
+      conditions:["ADD","ADHD"], rise:["Task Avoidance & Refusal"], bilingual:true,
+      blurb:"Breaks an overwhelming task into one tiny, friction-free first step. Bilingual demo (EN/ES), written with a slow, reflective cadence.",
+      en:{
+        intro:"Hi, I'm Hani. Here's a curious thing about a big task: it never actually arrives all at once. It only ever arrives as one single, next small thing. So let's stop looking at the mountain... and look, just for a moment, at the very next stone.",
+        lines:[
+          {cue:"Notice the thing you've been avoiding.",sub:"No need to name it aloud.",say:"Just for a moment... let your mind drift to something you've been avoiding. A chore. A paper. A phone call you keep putting down. You don't have to name it out loud. Simply notice that it's there.",hold:30},
+          {cue:"The whole task was never the problem.",sub:"It's the picture of it, finished, all at once.",say:"Now here's the curious part. The task itself was never really the problem. What stopped you... was the picture of it, finished, all at once, arriving in your mind like a wave too large to meet.",hold:32},
+          {cue:"So set that wave down.",sub:"Look only at the very next small motion.",say:"So set that whole wave down, just for now. Don't try to meet it. Instead... look only at the very next small motion. One paper lifted. One shoe put away. One sentence written. That's all. That's the entire task, right now.",hold:34},
+          {cue:"That one small motion is the whole job.",sub:"Nothing else counts yet.",say:"That one small motion... is the whole job. Nothing else counts yet. Not the mountain behind it, not the mountain ahead. Just this.",hold:28},
+          {cue:"Go ahead. Do only that.",sub:"Notice what happens once it's done.",say:"Go ahead, then. Do only that one small thing. And when it's done... notice what happens. Notice how the next small thing is somehow a little easier to see.",hold:30},
+          {cue:"You already crossed the hardest part.",sub:"Starting was the mountain. You're past it.",say:"And there it is. Starting was the only real mountain in this whole task... and you're already standing on the other side of it.",hold:26}
+        ],
+        close:"That's the Task Starter. The whole task was never the mountain, the picture of it was. One small motion, and you're already moving."
+      },
+      es:{
+        intro:"Hola, soy Hani. Aquí hay algo curioso sobre una tarea grande: nunca llega toda de una vez. Solo llega como una cosa pequeña, la siguiente. Así que dejemos de mirar la montaña... y miremos, solo por un momento, la piedra que sigue.",
+        lines:[
+          {cue:"Piensa en algo que has estado evitando.",sub:"No hace falta decirlo en voz alta.",say:"Solo por un momento... deja que tu mente vaya hacia algo que has estado evitando. Un quehacer. Una tarea. Una llamada que sigues posponiendo. No hace falta decirlo en voz alta. Solo nota que está ahí.",hold:32},
+          {cue:"La tarea entera nunca fue el problema.",sub:"Es la imagen de ella, terminada, toda de golpe.",say:"Aquí está lo curioso. La tarea en sí nunca fue realmente el problema. Lo que te detuvo... fue la imagen de ella, terminada, toda de golpe, llegando a tu mente como una ola demasiado grande para enfrentar.",hold:34},
+          {cue:"Así que suelta esa ola.",sub:"Mira solo el siguiente pequeño movimiento.",say:"Así que suelta esa ola entera, solo por ahora. No intentes enfrentarla. En cambio... mira solo el siguiente pequeño movimiento. Un papel levantado. Un zapato guardado. Una oración escrita. Eso es todo. Esa es la tarea entera, ahora mismo.",hold:36},
+          {cue:"Ese pequeño movimiento es todo el trabajo.",sub:"Nada más cuenta todavía.",say:"Ese pequeño movimiento... es todo el trabajo. Nada más cuenta todavía. Ni la montaña detrás, ni la montaña por delante. Solo esto.",hold:30},
+          {cue:"Adelante. Haz solo eso.",sub:"Nota qué pasa cuando esté hecho.",say:"Adelante, entonces. Haz solo esa pequeña cosa. Y cuando esté hecha... nota qué pasa. Nota cómo el siguiente pequeño paso se ve, de alguna manera, un poco más fácil.",hold:32},
+          {cue:"Ya cruzaste la parte más difícil.",sub:"Empezar era la montaña. Ya la pasaste.",say:"Y ahí está. Empezar era la única montaña real en toda esta tarea... y ya estás del otro lado.",hold:28}
+        ],
+        close:"Eso es el Iniciador de Tareas. La tarea entera nunca fue la montaña, la imagen de ella lo era. Un pequeño movimiento, y ya te estás moviendo."
+      } }
   ];
 
   // ===== MEDITATIONS: 2 brand-new 5-minute scripts, written for this sandbox =====
-  // Longer format than the standard 3-min library. Kept comforting, not medical -
-  // no promises about outcomes, just steadiness and rest. Good fit for hospital settings.
   var MEDS=[
     { id:"calmanchor", kind:"meditation", name:"The Calm Anchor", tag:"Guided Meditation · 5 min", audience:"PreK3-6th",
+      conditions:["ERI"], rise:[],
       blurb:"A steady anchor for uncertain moments: your own breath, always right here with you.",
       intro:"Hi, I'm Hani. This one is longer, a real chance to slow all the way down. Get as comfortable as you can, wherever you're resting right now.",
       lines:[
@@ -213,6 +330,7 @@
       ],
       close:"That's the Calm Anchor. Your breath goes wherever you go, so you always have something steady to hold onto." },
     { id:"gentlewaves", kind:"meditation", name:"Gentle Waves of Rest", tag:"Guided Meditation · 5 min", audience:"PreK3-6th",
+      conditions:["ERI"], rise:[],
       blurb:"A slow float on calm water. Nothing to do, nowhere to be, just quiet rest.",
       intro:"Hi, I'm Hani. This one is just about rest. There is nothing to do and nowhere to be, just this quiet time. Let's rest together.",
       lines:[
@@ -245,31 +363,85 @@
     {label:"Meditations", items:MEDS}
   ];
 
+  var activeConditions=new Set(), activeRise=new Set();
+
   var menu=document.getElementById("menu"), groupsEl=document.getElementById("groups");
+  var condRow=document.getElementById("condRow"), riseRow=document.getElementById("riseRow");
   var player=document.getElementById("player");
   var ballWrap=document.getElementById("ballWrap"), ball=document.getElementById("ball"), pL=document.getElementById("pL"), pR=document.getElementById("pR");
   var ringWrap=document.getElementById("ringWrap");
+  var langbar=document.getElementById("langbar"), langEnBtn=document.getElementById("langEnBtn"), langEsBtn=document.getElementById("langEsBtn");
   var cue=document.getElementById("cue"), sub=document.getElementById("sub"), progress=document.getElementById("progress"), timerEl=document.getElementById("timer");
   var closeLine=document.getElementById("closeLine");
   var backBtn=document.getElementById("backBtn"), againBtn=document.getElementById("againBtn");
   var nextBtn=document.getElementById("nextBtn"), prevBtn=document.getElementById("prevBtn");
   var voiceToggle=document.getElementById("voiceToggle");
 
-  // ---- render menu ----
-  GROUPS.forEach(function(g){
-    var wrap=document.createElement("div");
-    var label=document.createElement("div"); label.className="grouplabel"; label.textContent=g.label;
-    var row=document.createElement("div"); row.id="cards"; row.style.marginTop="10px";
-    g.items.forEach(function(item){
-      var c=document.createElement("div");
-      c.className="card"+(item.kind==="sel"?" sel":item.kind==="meditation"?" med":"");
-      c.innerHTML="<div class='tag'>"+item.tag+"</div><h3>"+item.name+"</h3><p>"+item.blurb+"</p>";
-      c.onclick=function(){ openItem(item); };
-      row.appendChild(c);
+  // ---- filter chips ----
+  function makeChip(label, isRise, onClick){
+    var b=document.createElement("button");
+    b.className="chip"+(isRise?" rise":"");
+    b.textContent=label;
+    b.onclick=onClick;
+    return b;
+  }
+  CONDITIONS.forEach(function(c){
+    var b=makeChip(c, false, function(){
+      if(activeConditions.has(c)) activeConditions.delete(c); else activeConditions.add(c);
+      b.classList.toggle("active");
+      renderCards();
     });
-    wrap.appendChild(label); wrap.appendChild(row);
-    groupsEl.appendChild(wrap);
+    condRow.appendChild(b);
   });
+  var condReset=makeChip("All", false, function(){ activeConditions.clear(); condRow.querySelectorAll(".chip").forEach(function(el){el.classList.remove("active");}); renderCards(); });
+  condReset.classList.add("reset"); condRow.appendChild(condReset);
+
+  RISE.forEach(function(r){
+    var b=makeChip(r, true, function(){
+      if(activeRise.has(r)) activeRise.delete(r); else activeRise.add(r);
+      b.classList.toggle("active");
+      renderCards();
+    });
+    riseRow.appendChild(b);
+  });
+  var riseReset=makeChip("All", true, function(){ activeRise.clear(); riseRow.querySelectorAll(".chip").forEach(function(el){el.classList.remove("active");}); renderCards(); });
+  riseReset.classList.add("reset"); riseRow.appendChild(riseReset);
+
+  function matchesFilters(item){
+    var condOk = activeConditions.size===0 || (item.conditions||[]).some(function(c){return activeConditions.has(c);});
+    var riseOk = activeRise.size===0 || (item.rise||[]).some(function(r){return activeRise.has(r);});
+    return condOk && riseOk;
+  }
+
+  // ---- render menu (re-run whenever filters change) ----
+  function renderCards(){
+    groupsEl.innerHTML="";
+    var anyVisible=false;
+    GROUPS.forEach(function(g){
+      var visibleItems=g.items.filter(matchesFilters);
+      if(!visibleItems.length) return;
+      anyVisible=true;
+      var wrap=document.createElement("div");
+      var label=document.createElement("div"); label.className="grouplabel"; label.textContent=g.label;
+      var row=document.createElement("div"); row.id="cards"; row.style.marginTop="10px";
+      visibleItems.forEach(function(item){
+        var c=document.createElement("div");
+        c.className="card"+(item.kind==="sel"?" sel":item.kind==="meditation"?" med":"");
+        c.innerHTML="<div class='tag'>"+item.tag+"</div>"+(item.bilingual?"<div class='lang'>EN / ES</div>":"")+"<h3>"+item.name+"</h3><p>"+item.blurb+"</p>";
+        c.onclick=function(){ openItem(item); };
+        row.appendChild(c);
+      });
+      wrap.appendChild(label); wrap.appendChild(row);
+      groupsEl.appendChild(wrap);
+    });
+    if(!anyVisible){
+      var note=document.createElement("div");
+      note.className="emptyNote";
+      note.textContent="No tools match that combination yet — try clearing a filter.";
+      groupsEl.appendChild(note);
+    }
+  }
+  renderCards();
 
   var BIG=[143,227,255], SMALL=[255,158,122];
   function lerp(a,b,t){return Math.round(a+(b-a)*t);}
@@ -281,17 +453,32 @@
     var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");
   }
 
-  var voiceOn=true, audioUnlocked=false, chosenVoice=null;
-  var PREF=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
-  function pickVoice(){if(!("speechSynthesis"in window))return;var vs=speechSynthesis.getVoices()||[];if(!vs.length)return;
-    for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];});if(h){chosenVoice=h;return;}}
-    chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];}
-  if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
-  function say(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
-    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
+  var voiceOn=true, audioUnlocked=false, chosenVoiceEN=null, chosenVoiceES=null;
+  var PREF_EN=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
+  var PREF_ES=["Google español","Monica","Paulina","Jorge","Microsoft Sabina Online","Microsoft Pablo Online"];
+  function pickVoices(){
+    if(!("speechSynthesis"in window))return;
+    var vs=speechSynthesis.getVoices()||[]; if(!vs.length)return;
+    for(var i=0;i<PREF_EN.length;i++){var h=vs.find(function(v){return v.name===PREF_EN[i];});if(h){chosenVoiceEN=h;break;}}
+    if(!chosenVoiceEN) chosenVoiceEN=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];
+    for(var j=0;j<PREF_ES.length;j++){var h2=vs.find(function(v){return v.name===PREF_ES[j];});if(h2){chosenVoiceES=h2;break;}}
+    if(!chosenVoiceES) chosenVoiceES=vs.find(function(v){return /^es/i.test(v.lang);});
+  }
+  if("speechSynthesis"in window){pickVoices();speechSynthesis.onvoiceschanged=pickVoices;}
+  function say(t, lang){
+    if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
+    try{
+      speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(t);
+      if(lang==="es"){ u.lang="es-ES"; if(chosenVoiceES)u.voice=chosenVoiceES; }
+      else { u.lang="en-US"; if(chosenVoiceEN)u.voice=chosenVoiceEN; }
+      u.rate=.82; u.pitch=.8;
+      speechSynthesis.speak(u);
+    }catch(e){}
+  }
   voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"🔊 voice on":"🔇 voice off";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
 
-  var current=null, mode=null, raf=null, running=false;
+  var current=null, mode=null, raf=null, running=false, curLang="en";
   // breath state
   var startT=0, ci=0, lastPhase="";
   // line state
@@ -299,12 +486,21 @@
 
   function fmt(s){s=Math.max(0,Math.round(s));var m=Math.floor(s/60),r=s%60;return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;}
 
+  // returns the active-language content block for a line-based item
+  function content(item){ return item.bilingual ? item[curLang] : item; }
+
   function openItem(item){
-    current=item; mode=item.kind;
+    current=item; mode=item.kind; curLang="en";
     menu.style.display="none"; player.style.display="flex";
     closeLine.classList.add("hide"); closeLine.textContent="";
     nextBtn.classList.add("hide"); prevBtn.classList.add("hide"); againBtn.classList.add("hide");
     progress.textContent="";
+    if(item.bilingual){
+      langbar.classList.remove("hide");
+      langEnBtn.classList.add("active"); langEsBtn.classList.remove("active");
+    } else {
+      langbar.classList.add("hide");
+    }
     if(mode==="breath"){
       ballWrap.style.display="flex"; ringWrap.style.display="none";
       timerEl.style.display="block"; timerEl.textContent=fmt(item.duration);
@@ -318,6 +514,19 @@
     }
   }
 
+  langEnBtn.onclick=function(){
+    if(curLang==="en"||!current||!current.bilingual)return;
+    curLang="en"; langEnBtn.classList.add("active"); langEsBtn.classList.remove("active");
+    if(lineTimer)clearTimeout(lineTimer);
+    showLine();
+  };
+  langEsBtn.onclick=function(){
+    if(curLang==="es"||!current||!current.bilingual)return;
+    curLang="es"; langEsBtn.classList.add("active"); langEnBtn.classList.remove("active");
+    if(lineTimer)clearTimeout(lineTimer);
+    showLine();
+  };
+
   // ---- breath player ----
   function phaseAt(t,pat){var c=pat.in+pat.hold+pat.out+pat.rest,x=t%c;
     if(x<pat.in)return{name:"in",p:x/pat.in};
@@ -328,7 +537,7 @@
 
   function startBreath(item){
     running=true; startT=performance.now(); ci=0; lastPhase="";
-    audioUnlocked=true; say(item.intro);
+    audioUnlocked=true; say(item.intro,"en");
     cue.textContent=""; sub.textContent="";
     function loop(now){
       if(!running)return;
@@ -340,9 +549,9 @@
       setBall(ph.p);
       if(ph.name!==lastPhase){
         lastPhase=ph.name;
-        if(ph.name==="in"){ var pr=pair(item.inhale); if(pr){cue.textContent=pr[0];sub.textContent=pr[1];say(pr[0]);} }
-        else if(ph.name==="hold"&&item.holdCue){ cue.textContent=item.holdCue[0]||""; sub.textContent=item.holdCue[1]||""; if(item.holdCue[0])say(item.holdCue[0]); }
-        else if(ph.name==="out"){ var pr2=pair(item.exhale); if(pr2){cue.textContent=pr2[0];sub.textContent=pr2[1];say(pr2[0]);ci++;} }
+        if(ph.name==="in"){ var pr=pair(item.inhale); if(pr){cue.textContent=pr[0];sub.textContent=pr[1];say(pr[0],"en");} }
+        else if(ph.name==="hold"&&item.holdCue){ cue.textContent=item.holdCue[0]||""; sub.textContent=item.holdCue[1]||""; if(item.holdCue[0])say(item.holdCue[0],"en"); }
+        else if(ph.name==="out"){ var pr2=pair(item.exhale); if(pr2){cue.textContent=pr2[0];sub.textContent=pr2[1];say(pr2[0],"en");ci++;} }
         else if(ph.name==="rest"&&item.restCue){ cue.textContent=item.restCue[0]||""; sub.textContent=item.restCue[1]||""; }
       }
       raf=requestAnimationFrame(loop);
@@ -356,23 +565,27 @@
     againBtn.classList.remove("hide");
   }
 
-  // ---- line player (SEL + meditation) ----
+  // ---- line player (SEL + meditation, language-aware) ----
   function startLines(item){
-    lineIdx=0; audioUnlocked=true; say(item.intro);
+    lineIdx=0; audioUnlocked=true;
+    var c=content(item);
+    say(c.intro, curLang);
     setTimeout(function(){ showLine(); }, 400);
   }
   function showLine(){
     if(lineTimer){clearTimeout(lineTimer);lineTimer=null;}
-    if(lineIdx>=current.lines.length){ finishLines(); return; }
-    var L=current.lines[lineIdx];
-    cue.textContent=L.cue; sub.textContent=L.sub||""; say(L.say||L.cue);
-    progress.textContent="Step "+(lineIdx+1)+" of "+current.lines.length;
+    var c=content(current);
+    if(lineIdx>=c.lines.length){ finishLines(); return; }
+    var L=c.lines[lineIdx];
+    cue.textContent=L.cue; sub.textContent=L.sub||""; say(L.say||L.cue, curLang);
+    progress.textContent="Step "+(lineIdx+1)+" of "+c.lines.length;
     prevBtn.disabled=lineIdx===0;
     lineTimer=setTimeout(function(){ lineIdx++; showLine(); }, (L.hold||14)*1000);
   }
   function finishLines(){
+    var c=content(current);
     cue.textContent="All done."; sub.textContent=""; progress.textContent="";
-    closeLine.textContent=current.close; closeLine.classList.remove("hide");
+    closeLine.textContent=c.close; closeLine.classList.remove("hide");
     nextBtn.classList.add("hide"); prevBtn.classList.add("hide");
     againBtn.classList.remove("hide");
   }
