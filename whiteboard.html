@@ -28,6 +28,22 @@
   #menu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:26px;padding:24px 6vw 48px;overflow-y:auto;min-height:0;}
   #menuTitle{font-family:var(--display);font-size:clamp(26px,4vw,46px);font-weight:700;color:var(--teal-d);text-align:center;}
   #menuSub{font-size:clamp(15px,1.8vw,20px);color:var(--charcoal);text-align:center;margin-top:8px;margin-bottom:6px;}
+
+  #finder{width:100%;max-width:1100px;margin:14px auto 6px;padding:0 12px;box-sizing:border-box;}
+  #searchRow{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+  #search{flex:1 1 320px;max-width:560px;font-size:18px;padding:13px 18px;border:2px solid #cfe0e0;border-radius:30px;background:#fff;color:var(--charcoal);outline:none;font-family:inherit;}
+  #search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,107,110,.18);}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
+  .chip{background:#fff;border:2px solid #cfe0e0;color:var(--teal-d);font-weight:700;font-size:14px;padding:7px 14px;border-radius:22px;cursor:pointer;font-family:inherit;}
+  .chip:hover{border-color:var(--teal);}
+  .chip.on{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .chips.prob .chip.on{background:var(--gold);border-color:var(--gold);}
+  #resultCount{text-align:center;font-size:14px;color:#6a8a8a;margin-top:10px;min-height:18px;}
+  #capToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
+  body.nocaps #cuebar{display:none !important;}
+  .card.hidden{display:none !important;}
+  .card .vidBadge{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:var(--teal-d);}
+  #noMatch{display:none;text-align:center;color:var(--charcoal);font-size:17px;margin:20px;}
   #cards{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;max-width:1100px;margin-top:8px;}
   .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.22s ease;text-align:left;box-shadow:0 4px 14px -6px rgba(0,0,0,.12);}
   .card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 28px -8px rgba(0,0,0,.16);}
@@ -165,7 +181,7 @@
 <div id="stage">
   <div id="topbar">
     <div id="brand">HudsonSeed · <b>Hani</b></div>
-    <div id="right"><a href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
+    <div id="right"><a href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="capToggle" aria-pressed="true">💬 captions on</button><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
 
   <div id="menu">
@@ -173,7 +189,14 @@
       <div id="menuTitle">Pick a reset for your class</div>
       <div id="menuSub">Tap one. Hani runs it on the board while you catch your breath.</div>
     </div>
+    <div id="finder">
+      <div id="searchRow"><input id="search" type="search" placeholder="Search by what your scholars are dealing with… (angry, worried, can't focus)" aria-label="Search tools"></div>
+      <div class="chips prob" id="probChips"></div>
+      <div class="chips" id="kindChips"></div>
+      <div id="resultCount"></div>
+    </div>
     <div id="cards"></div>
+    <div id="noMatch">No match yet. Try a simpler word like <b>angry</b>, <b>worried</b>, <b>focus</b>, or <b>sleepy</b>.</div>
   </div>
 
   <div id="player">
@@ -1717,14 +1740,70 @@
     c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>▶ Watch Hani</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
     c.onclick=launch;
-    var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c);
+    var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c); register(c,f);
   }
+
+  /* ---- Search, problem chips, filters, captions ---- */
+  var PROBLEMS=[
+    ["😡 Big anger","angry anger mad frustrat rage explod temper hit yell outburst furious upset meltdown"],
+    ["😟 Worry & anxiety","worr anxi nervous fear scared afraid panic stress overwhelm jitter butterflies"],
+    ["🎯 Can't focus","focus attention distract concentrat adhd zone mind wander listen"],
+    ["🥱 Sleepy & low energy","sleep tired sleepy energy drowsy yawn wake rest calm down wind"],
+    ["😢 Sad or lonely","sad lonely alone grief cry down hurt left out miss"],
+    ["🐜 Wiggly & restless","wiggly wiggle restless fidget squirm hyper movement stretch energy jump"],
+    ["🤝 Friend problems","friend conflict fight argue bully kind empathy sharing apolog mean teas"],
+    ["📝 Test stress","test exam quiz pressure perfect nervous performance"],
+    ["🔄 Transitions","transition reset start class recess lunch after before change ready"],
+    ["💪 Confidence","confiden brave courage proud self-esteem growth mindset believe strong worth"]
+  ];
+  var KINDS=[["all","All tools"],["flow","Breathing"],["meditation","Meditations"],["chair","Chair yoga"],["sel","SEL"],["class","Full class"],["video","🎬 Has Hani video"]];
+  var allCards=[], qEl=document.getElementById("search"), countEl=document.getElementById("resultCount"), noMatch=document.getElementById("noMatch");
+  var activeProb=null, activeKind="all";
+  function norm(t){return String(t||"").toLowerCase();}
+  function register(el,f){
+    var kind=f.kind||(f.pattern||f.inhale?"flow":"flow");
+    var blob=norm([f.name,f.tag,f.blurb,f.intro,f.audience,f.src,kind].join(" "));
+    allCards.push({el:el,blob:blob,kind:kind,video:!!f.video});
+  }
+  function applyFilter(){
+    var q=norm(qEl.value).trim(), words=q?q.split(/\s+/):[], pk=activeProb!==null?PROBLEMS[activeProb][1].split(" "):null, shown=0;
+    allCards.forEach(function(c){
+      var ok=true;
+      words.forEach(function(w){ if(w.length>1){ var stem=w.length>4?w.slice(0,w.length-1):w; if(c.blob.indexOf(stem)<0) ok=false; } });
+      if(ok&&pk){ var hit=false; pk.forEach(function(k){ if(c.blob.indexOf(k)>=0) hit=true; }); ok=hit; }
+      if(ok&&activeKind!=="all"){ ok=(activeKind==="video")?c.video:(c.kind===activeKind); }
+      c.el.classList.toggle("hidden",!ok); if(ok) shown++;
+    });
+    countEl.textContent=(q||pk||activeKind!=="all")?(shown+" of "+allCards.length+" tools"):(allCards.length+" tools");
+    noMatch.style.display=shown?"none":"block";
+  }
+  function buildChips(box,items,isProb){
+    items.forEach(function(it,i){
+      var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=isProb?it[0]:it[1];
+      if(!isProb&&it[0]==="all") b.classList.add("on");
+      b.onclick=function(){
+        if(isProb){ activeProb=(activeProb===i)?null:i; Array.prototype.forEach.call(box.children,function(x,j){x.classList.toggle("on",activeProb===j);}); }
+        else{ activeKind=it[0]; Array.prototype.forEach.call(box.children,function(x,j){x.classList.toggle("on",items[j][0]===activeKind);}); }
+        applyFilter();
+      };
+      box.appendChild(b);
+    });
+  }
+  buildChips(document.getElementById("probChips"),PROBLEMS,true);
+  buildChips(document.getElementById("kindChips"),KINDS,false);
+  qEl.addEventListener("input",applyFilter);
+  applyFilter();
+  var capBtn=document.getElementById("capToggle"), capsOn=true;
+  try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
+  function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?"💬 captions on":"💬 captions off"; capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
+  capBtn.onclick=function(){capsOn=!capsOn;setCaps();}; setCaps();
   FLOWS.forEach(addCard);
   MEDITATIONS.forEach(addCard);
   CHAIR.forEach(addCard);
   SEL.forEach(addCard);
   CLASSES.forEach(addCard);
   SEQUENCES.forEach(addCard);
+  applyFilter();
   setBall(0);
 })();
 </script>
