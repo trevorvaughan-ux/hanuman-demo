@@ -1797,7 +1797,7 @@
   /* ---- search bar dropdown (overrides card filtering) ---- */
   var dd=document.getElementById("dd"), finder=document.getElementById("finder");
   function matches(c,q){
-    var words=q.split(/\s+/).filter(function(w){return w.length>1;}); if(!words.length) return true;
+    var words=q.split(/\s+/).filter(function(w){return w.length>1&&w.indexOf("'")<0&&!/^(the|and|for|with|too|cant|can|has|have|get|gets|kid|kids|scholar|scholars|who|are|is)$/.test(w);}); if(!words.length) return true;
     return words.every(function(w){
       var st=w.length>4?w.slice(0,w.length-1):w;
       if(c.blob.indexOf(st)>=0) return true;
