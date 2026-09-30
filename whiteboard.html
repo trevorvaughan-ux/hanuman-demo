@@ -44,6 +44,14 @@
   .card.hidden{display:none !important;}
   .card .vidBadge{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:var(--teal-d);}
   #noMatch{display:none;text-align:center;color:var(--charcoal);font-size:17px;margin:20px;}
+
+  #finder{position:relative;}
+  #dd{display:none;position:absolute;left:50%;transform:translateX(-50%);top:62px;width:min(560px,92vw);max-height:55vh;overflow:auto;background:#fff;border:2px solid var(--teal);border-radius:18px;box-shadow:0 14px 34px -10px rgba(0,0,0,.3);z-index:60;text-align:left;}
+  #dd.open{display:block;}
+  #dd .it{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 18px;cursor:pointer;border-bottom:1px solid #eef4f4;}
+  #dd .it:last-child{border-bottom:none;} #dd .it:hover,#dd .it.act{background:var(--cream);}
+  #dd .nm{font-weight:700;color:var(--teal-d);font-size:16px;} #dd .tg{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap;}
+  #dd .none{padding:14px 18px;color:var(--charcoal);}
   #cards{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;max-width:1100px;margin-top:8px;}
   .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.22s ease;text-align:left;box-shadow:0 4px 14px -6px rgba(0,0,0,.12);}
   .card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 28px -8px rgba(0,0,0,.16);}
@@ -190,13 +198,11 @@
       <div id="menuSub">Tap one. Hani runs it on the board while you catch your breath.</div>
     </div>
     <div id="finder">
-      <div id="searchRow"><input id="search" type="search" placeholder="Search by what your scholars are dealing with… (angry, worried, can't focus)" aria-label="Search tools"></div>
-      <div class="chips prob" id="probChips"></div>
-      <div class="chips" id="kindChips"></div>
-      <div id="resultCount"></div>
+      <div id="searchRow" style="position:relative"><input id="search" type="search" placeholder="🔍 Search tools — angry, worried, focus, sleepy…" autocomplete="off" aria-label="Search tools"></div>
+      <div id="dd"></div>
     </div>
     <div id="cards"></div>
-    <div id="noMatch">No match yet. Try a simpler word like <b>angry</b>, <b>worried</b>, <b>focus</b>, or <b>sleepy</b>.</div>
+    
   </div>
 
   <div id="player">
@@ -1757,7 +1763,7 @@
     ["💪 Confidence","confiden brave courage proud self-esteem growth mindset believe strong worth"]
   ];
   var KINDS=[["all","All tools"],["flow","Breathing"],["meditation","Meditations"],["chair","Chair yoga"],["sel","SEL"],["class","Full class"],["video","🎬 Has Hani video"]];
-  var allCards=[], qEl=document.getElementById("search"), countEl=document.getElementById("resultCount"), noMatch=document.getElementById("noMatch");
+  var allCards=[], qEl=document.getElementById("search");
   var activeProb=null, activeKind="all";
   function norm(t){return String(t||"").toLowerCase();}
   function register(el,f){
@@ -1774,8 +1780,6 @@
       if(ok&&activeKind!=="all"){ ok=(activeKind==="video")?c.video:(c.kind===activeKind); }
       c.el.classList.toggle("hidden",!ok); if(ok) shown++;
     });
-    countEl.textContent=(q||pk||activeKind!=="all")?(shown+" of "+allCards.length+" tools"):(allCards.length+" tools");
-    noMatch.style.display=shown?"none":"block";
   }
   function buildChips(box,items,isProb){
     items.forEach(function(it,i){
@@ -1789,10 +1793,30 @@
       box.appendChild(b);
     });
   }
-  buildChips(document.getElementById("probChips"),PROBLEMS,true);
-  buildChips(document.getElementById("kindChips"),KINDS,false);
-  qEl.addEventListener("input",applyFilter);
-  applyFilter();
+
+  /* ---- search bar dropdown (overrides card filtering) ---- */
+  var dd=document.getElementById("dd"), finder=document.getElementById("finder");
+  function matches(c,q){
+    var words=q.split(/\s+/).filter(function(w){return w.length>1;}); if(!words.length) return true;
+    return words.every(function(w){
+      var st=w.length>4?w.slice(0,w.length-1):w;
+      if(c.blob.indexOf(st)>=0) return true;
+      return PROBLEMS.some(function(pr){ var ks=pr[1].split(" ");
+        var rel=ks.some(function(k){return k.indexOf(st)===0||st.indexOf(k)===0;});
+        return rel&&ks.some(function(k){return c.blob.indexOf(k)>=0;}); });
+    });
+  }
+  function renderDD(){
+    var q=norm(qEl.value).trim(), list=allCards.filter(function(c){return matches(c,q);}); dd.innerHTML="";
+    if(!list.length){ dd.innerHTML="<div class='none'>No match. Try angry, worried, focus, or sleepy.</div>"; }
+    list.forEach(function(c){ var d=document.createElement("div"); d.className="it";
+      d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+(c.video?" · 🎬":"")+"</span>";
+      d.onmousedown=function(e){e.preventDefault();}; d.onclick=function(){dd.className=""; qEl.blur(); c.el.click();}; dd.appendChild(d); });
+    dd.className="open";
+  }
+  qEl.addEventListener("input",renderDD); qEl.addEventListener("focus",renderDD);
+  qEl.addEventListener("blur",function(){setTimeout(function(){dd.className="";},150);});
+  qEl.addEventListener("keydown",function(e){ if(e.key==="Enter"){ var f=dd.querySelector(".it"); if(f) f.click(); } if(e.key==="Escape"){dd.className="";qEl.blur();} });
   var capBtn=document.getElementById("capToggle"), capsOn=true;
   try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
   function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?"💬 captions on":"💬 captions off"; capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
@@ -1803,7 +1827,6 @@
   SEL.forEach(addCard);
   CLASSES.forEach(addCard);
   SEQUENCES.forEach(addCard);
-  applyFilter();
   setBall(0);
 })();
 </script>
