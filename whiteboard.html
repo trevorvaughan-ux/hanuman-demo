@@ -1807,7 +1807,7 @@
     });
   }
   function renderDD(){
-    var q=norm(qEl.value).trim(), list=allCards.filter(function(c){return matches(c,q);}); dd.innerHTML="";
+    var q=norm(qEl.value).trim(), list=allCards.filter(function(c){return matches(c,q);}).sort(function(a,b){return (b.video?1:0)-(a.video?1:0);}); dd.innerHTML="";
     if(!list.length){ dd.innerHTML="<div class='none'>No match. Try angry, worried, focus, or sleepy.</div>"; }
     list.forEach(function(c){ var d=document.createElement("div"); d.className="it";
       d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+(c.video?" · 🎬":"")+"</span>";
