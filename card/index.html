@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hani Card | HudsonSeed</title>
+<meta name="description" content="A 2-minute classroom calm reset from HudsonSeed. Put it on the board and breathe along. No login, no student data.">
+<style>
+:root{--teal:#3FA6AA;--deep:#176E6B;--cream:#FAF6EE;--line:#E7E1D3;--ink:#34312B;--muted:#6E685C;--coral:#E8795B;--mint:#E3F0EF}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--cream);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif;display:flex;flex-direction:column;min-height:100vh}
+header{background:#267F83;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+header .brand{font:bold 22px Georgia,serif}
+header .right{display:flex;align-items:center;gap:14px}
+header .tag{font-size:12px;text-align:right;line-height:1.4}
+header .tag i{font-family:Georgia,serif}
+#lang{background:#fff;color:var(--deep);border:2px solid #fff;border-radius:6px;font:bold 13px Arial;padding:6px 10px;cursor:pointer}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px;text-align:center}
+.label{font:bold 12px Arial;letter-spacing:1.4px;color:var(--deep);text-transform:uppercase}
+h1{font:bold clamp(28px,5vw,52px)/1.1 Georgia,serif;color:var(--deep);margin:6px 0 4px}
+.sub{color:var(--muted);margin:0 0 18px;font-size:clamp(14px,1.8vw,20px)}
+.stage{position:relative;width:min(62vmin,460px);height:min(62vmin,460px);display:flex;align-items:center;justify-content:center}
+.orb{width:34%;height:34%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F6A98F,var(--coral) 60%,#C95A3E);box-shadow:0 12px 40px rgba(232,121,91,.35);position:relative;transition-property:width,height,transform,filter;transition-timing-function:ease-in-out}
+.orb::after{content:"";position:absolute;left:50%;bottom:-18%;width:2px;height:22%;background:#B98B6A;transform:translateX(-50%)}
+.orb.big{width:88%;height:88%}
+.orb.up{transform:translateY(-22%) scale(1.5)}
+.orb.shrunk{filter:saturate(.75)}
+.cue{font:bold clamp(30px,6vw,68px) Georgia,serif;color:var(--deep);margin:18px 0 4px;min-height:1.2em}
+.count{font-size:clamp(16px,2.2vw,24px);color:var(--muted)}
+.timer{font:bold clamp(16px,2vw,22px) Arial;color:var(--deep);margin-top:6px}
+.btn{display:inline-block;border:2px solid var(--deep);border-radius:6px;padding:14px 26px;font:bold 18px Arial;cursor:pointer;text-decoration:none;margin:6px}
+.btn.solid{background:var(--deep);color:#fff}.btn.ghost{background:#fff;color:var(--deep)}
+.btn:focus-visible,input:focus-visible,#lang:focus-visible,.pick a:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.hidden{display:none!important}
+.pick{margin-top:18px;font-size:14px;color:var(--muted)}
+.pick a{color:var(--deep);font-weight:bold;margin:0 8px}
+.end{max-width:640px;width:100%}
+.end h2{font:bold clamp(26px,4vw,40px) Georgia,serif;color:var(--deep);margin:4px 0 6px}
+.end p{margin:0 0 16px}
+.choices{display:grid;gap:12px;margin:18px 0}
+.choice{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;text-align:left}
+.choice h3{margin:0 0 4px;font:bold 18px Georgia,serif;color:var(--deep)}
+.choice p{margin:0 0 10px;color:#5b564c;font-size:14px}
+form{display:flex;gap:8px;flex-wrap:wrap}
+input[type=email]{flex:1 1 200px;padding:12px;border:1px solid #8a8478;border-radius:6px;font-size:16px}
+form .btn{margin:0;padding:12px 18px;font-size:16px}
+.hp{position:absolute;left:-5000px}
+.msg{font-size:14px;margin-top:8px;color:var(--deep);min-height:1.2em}
+.msg.err{color:#B3261E}
+.fine{font-size:12px;color:var(--muted);margin-top:14px}
+footer{text-align:center;font-size:12px;color:var(--muted);padding:12px}
+footer a{color:var(--deep)}
+@media (prefers-reduced-motion:reduce){.orb{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">HudsonSeed &middot; Hani</div>
+  <div class="right"><button id="lang" type="button" aria-label="Switch language">ES</button><div class="tag"><b>K-12 YOGA &amp; MINDFULNESS</b><br><i>The Science of Calm</i></div></div>
+</header>
+
+<main>
+  <section id="start">
+    <div class="label" id="t-label"></div>
+    <h1 id="t-title"></h1>
+    <p class="sub" id="t-sub"></p>
+    <button class="btn solid" id="go" type="button"></button>
+    <div class="pick" id="pick"></div>
+  </section>
+
+  <section id="player" class="hidden" aria-live="polite">
+    <div class="stage"><div class="orb" id="orb" aria-hidden="true"></div></div>
+    <div class="cue" id="cue"></div>
+    <div class="count" id="count"></div>
+    <div class="timer" id="timer">2:00</div>
+    <button class="btn ghost" id="stop" type="button"></button>
+  </section>
+
+  <section id="end" class="end hidden">
+    <div class="label" id="e-label"></div>
+    <h2 id="e-title"></h2>
+    <p id="e-sub"></p>
+    <button class="btn ghost" id="again" type="button"></button>
+    <div class="choices">
+      <div class="choice">
+        <h3 id="c1h"></h3><p id="c1p"></p>
+        <form data-kind="friday">
+          <input type="email" name="email" required autocomplete="email" id="c1i">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn solid" type="submit" id="c1b"></button>
+        </form>
+        <div class="msg" role="status"></div>
+      </div>
+      <div class="choice">
+        <h3 id="c2h"></h3><p id="c2p"></p>
+        <form data-kind="app">
+          <input type="email" name="email" required autocomplete="email" id="c2i">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn ghost" type="submit" id="c2b"></button>
+        </form>
+        <div class="msg" role="status"></div>
+      </div>
+      <div class="choice">
+        <h3 id="c3h"></h3><p id="c3p"></p>
+        <a class="btn ghost" id="book" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ27FoNUv6PiGC_wks5TsqmQ98C1xxwqyM15CE5-KTjhd2Xap1C-5CAc0b5wFvWd6f0j9fnUWfXF"></a>
+      </div>
+    </div>
+    <p class="fine" id="fine"></p>
+  </section>
+</main>
+
+<footer>HudsonSeed &middot; 333 River St, Hoboken, NJ 07030 &middot; <a href="https://www.hudsonseed.com" target="_blank" rel="noopener">hudsonseed.com</a></footer>
+
+<script>
+(function(){
+  var ENDPOINT = "https://pebhikfbpgntedvbxqph.supabase.co/functions/v1/card-signup";
+  var P = new URLSearchParams(location.search);
+  var src = (P.get("src") || "card").toLowerCase();
+  var lang = P.get("lang") === "es" ? "es" : "en";
+  var cardId = ["balloon","long-out","shoulders"].indexOf(P.get("card")) > -1 ? P.get("card") : "balloon";
+  var TOTAL = 120;
+
+  var CARDS = {
+    "balloon":   { kind:"orb", phases:[{k:"in",s:4,st:"big"},{k:"out",s:6,st:"shrunk"}] },
+    "long-out":  { kind:"orb", phases:[{k:"in",s:4,st:"big"},{k:"out",s:8,st:"shrunk"}] },
+    "shoulders": { kind:"move", phases:[{k:"lift",s:4,st:"up"},{k:"hold",s:2,st:"up"},{k:"drop",s:4,st:"shrunk"}] }
+  };
+  var T = {
+    en: {
+      names:{"balloon":"Balloon Breath","long-out":"Long Breath Out","shoulders":"Shoulder Drop"},
+      subs:{"balloon":"Put this on the board. Breathe along together.<br>The balloon grows as you breathe in, and shrinks on a long breath out.",
+            "long-out":"Put this on the board. Breathe along together.<br>Breathe in for 4, then make the breath out nice and long.",
+            "shoulders":"Put this on the board. Move along together.<br>Lift your shoulders up, hold, then let them drop."},
+      label:"Free Hani card · Calm down · 2 min · all ages", go:"▶ Start the 2-minute reset", stop:"Stop", again:"↺ Do it again",
+      cues:{in:"Breathe in",out:"Long breath out",lift:"Lift your shoulders",hold:"Hold",drop:"Let them drop"},
+      ready:"Get ready", ready2:"Sit tall. Hands on your belly.", ready2s:"Sit tall. Feet on the floor.",
+      pick:"Try another card:", elabel:"Nice work, everyone", etitle:"Two minutes of calm. Done.", esub:"Use it any time: after recess, after lunch, before a test.",
+      c1h:"Get a new reset every Friday", c1p:"One short, calm moment for you and your class each week. No pitch. Leave any time.", c1b:"Send me Fridays", ph:"you@school.org",
+      c2h:"Join the Hani app waitlist", c2p:"The full Hani library is on its way. We'll send one note the day it opens.", c2b:"Join the waitlist",
+      c3h:"Bring Hani to your school", c3p:"A short call to see how it works across classrooms.", c3b:"Book a short call",
+      fine:"This card needs no login and collects no student information. If you share your email, we use it only for what you asked for.",
+      saving:"Saving...", okF:"You're in. Your first Friday reset arrives this Friday.", okA:"You're on the list. We'll write the day it opens.", err:"Something went wrong. Try again.", net:"Couldn't connect. Try again.", sw:"ES"
+    },
+    es: {
+      names:{"balloon":"Respiración del globo","long-out":"Exhalación larga","shoulders":"Hombros abajo"},
+      subs:{"balloon":"Ponla en la pizarra. Respiren juntos.<br>El globo crece al inhalar y se encoge con una exhalación larga.",
+            "long-out":"Ponla en la pizarra. Respiren juntos.<br>Inhala contando 4 y haz la exhalación bien larga.",
+            "shoulders":"Ponla en la pizarra. Muévanse juntos.<br>Sube los hombros, sostén, y déjalos caer."},
+      label:"Tarjeta Hani gratis · Calma · 2 min · todas las edades", go:"▶ Empezar el reinicio de 2 minutos", stop:"Detener", again:"↺ Repetir",
+      cues:{in:"Inhala",out:"Exhala largo",lift:"Sube los hombros",hold:"Sostén",drop:"Déjalos caer"},
+      ready:"Prepárense", ready2:"Siéntense derechos. Manos en la barriga.", ready2s:"Siéntense derechos. Pies en el suelo.",
+      pick:"Prueba otra tarjeta:", elabel:"Buen trabajo, todos", etitle:"Dos minutos de calma. Listo.", esub:"Úsala cuando quieras: después del recreo, después del almuerzo, antes de un examen.",
+      c1h:"Recibe un reinicio nuevo cada viernes", c1p:"Un momento breve y tranquilo para ti y tu clase cada semana. Sin ventas. Puedes salir cuando quieras.", c1b:"Envíame los viernes", ph:"tu@escuela.org",
+      c2h:"Únete a la lista de la app Hani", c2p:"La biblioteca completa de Hani viene en camino. Te escribiremos el día que abra.", c2b:"Unirme a la lista",
+      c3h:"Lleva Hani a tu escuela", c3p:"Una llamada breve para ver cómo funciona en todas las aulas.", c3b:"Agendar una llamada",
+      fine:"Esta tarjeta no necesita cuenta y no recopila información de estudiantes. Si compartes tu correo, solo lo usamos para lo que pediste.",
+      saving:"Guardando...", okF:"Listo. Tu primer reinicio del viernes llega este viernes.", okA:"Estás en la lista. Te escribiremos el día que abra.", err:"Algo salió mal. Inténtalo de nuevo.", net:"No se pudo conectar. Inténtalo de nuevo.", sw:"EN"
+    }
+  };
+  var $ = function(id){ return document.getElementById(id); };
+  var orb=$("orb"), cue=$("cue"), count=$("count"), timer=$("timer");
+  var timers=[], running=false, started=0, tick=null;
+
+  function show(id){ ["start","player","end"].forEach(function(s){ $(s).classList.toggle("hidden", s!==id); }); }
+  function url(l,c){ var q=new URLSearchParams(location.search); q.set("lang",l); q.set("card",c); return location.pathname+"?"+q.toString(); }
+
+  function paint(){
+    var t=T[lang]; document.documentElement.lang=lang;
+    document.title=t.names[cardId]+" | HudsonSeed Hani";
+    $("t-label").textContent=t.label; $("t-title").textContent=t.names[cardId]; $("t-sub").innerHTML=t.subs[cardId];
+    $("go").textContent=t.go; $("stop").textContent=t.stop; $("again").textContent=t.again;
+    $("lang").textContent=t.sw; $("lang").setAttribute("aria-label", lang==="en"?"Cambiar a español":"Switch to English");
+    var pk=t.pick; Object.keys(CARDS).forEach(function(id){ if(id!==cardId) pk+=' <a href="'+url(lang,id)+'">'+t.names[id]+'</a>'; }); $("pick").innerHTML=pk;
+    $("e-label").textContent=t.elabel; $("e-title").textContent=t.etitle; $("e-sub").textContent=t.esub;
+    $("c1h").textContent=t.c1h; $("c1p").textContent=t.c1p; $("c1b").textContent=t.c1b; $("c1i").placeholder=t.ph; $("c1i").setAttribute("aria-label",t.c1h);
+    $("c2h").textContent=t.c2h; $("c2p").textContent=t.c2p; $("c2b").textContent=t.c2b; $("c2i").placeholder=t.ph; $("c2i").setAttribute("aria-label",t.c2h);
+    $("c3h").textContent=t.c3h; $("c3p").textContent=t.c3p; $("book").textContent=t.c3b; $("fine").textContent=t.fine;
+  }
+  function later(fn,ms){ timers.push(setTimeout(fn,ms)); }
+  function clearAll(){ timers.forEach(clearTimeout); timers=[]; clearInterval(tick); running=false; }
+  function fmt(s){ s=Math.max(0,Math.ceil(s)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
+
+  function runPhase(i){
+    if(!running) return;
+    var card=CARDS[cardId], ph=card.phases[i%card.phases.length], t=T[lang];
+    var left=TOTAL-(Date.now()-started)/1000;
+    var cycle=card.phases.reduce(function(a,p){return a+p.s;},0);
+    if(i%card.phases.length===0 && left<cycle-0.5) return finish();
+    orb.style.transitionDuration=ph.s+"s";
+    orb.classList.remove("big","up","shrunk"); void orb.offsetWidth;
+    if(ph.st==="big") orb.classList.add("big"); else if(ph.st==="up") orb.classList.add("up"); else orb.classList.add("shrunk");
+    cue.textContent=t.cues[ph.k];
+    for(var n=0;n<ph.s;n++)(function(k){ later(function(){ count.textContent=String(k+1); },k*1000); })(n);
+    later(function(){ runPhase(i+1); }, ph.s*1000);
+  }
+  function begin(){
+    clearAll(); show("player"); running=true; var t=T[lang];
+    orb.style.transitionDuration="0s"; orb.classList.remove("big","up","shrunk");
+    cue.textContent=t.ready; count.textContent=(CARDS[cardId].kind==="move"?t.ready2s:t.ready2);
+    started=Date.now()+3000; timer.textContent=fmt(TOTAL);
+    later(function(){ tick=setInterval(function(){ timer.textContent=fmt(TOTAL-(Date.now()-started)/1000); },250); runPhase(0); },3000);
+  }
+  function finish(){ clearAll(); show("end"); }
+
+  $("go").onclick=begin; $("again").onclick=begin; $("stop").onclick=function(){ clearAll(); show("start"); };
+  $("lang").onclick=function(){ location.href=url(lang==="en"?"es":"en",cardId); };
+
+  document.querySelectorAll("form[data-kind]").forEach(function(f){
+    f.addEventListener("submit",function(e){
+      e.preventDefault(); var t=T[lang], msg=f.nextElementSibling, btn=f.querySelector("button");
+      msg.classList.remove("err"); msg.textContent=t.saving; btn.disabled=true;
+      fetch(ENDPOINT,{method:"POST",headers:{"content-type":"application/json"},
+        body:JSON.stringify({email:f.email.value,website:f.website.value,src:src,lang:lang,app_waitlist:f.dataset.kind==="app"})})
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
+      .then(function(res){
+        if(res.ok){ msg.textContent=f.dataset.kind==="app"?t.okA:t.okF; f.reset(); }
+        else{ msg.classList.add("err"); msg.textContent=(res.j&&res.j.error)||t.err; btn.disabled=false; }
+      }).catch(function(){ msg.classList.add("err"); msg.textContent=t.net; btn.disabled=false; });
+    });
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
