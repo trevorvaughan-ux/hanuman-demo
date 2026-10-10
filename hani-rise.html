@@ -1769,7 +1769,7 @@
   function register(el,f){
     var kind=f.kind||(f.pattern||f.inhale?"flow":"flow");
     var blob=norm([f.name,f.tag,f.blurb,f.intro,f.audience,f.src,kind].join(" "));
-    allCards.push({el:el,blob:blob,kind:kind,video:!!f.video});
+    allCards.push({el:el,name:f.name,blob:blob,kind:kind,video:!!f.video});
   }
   function applyFilter(){
     var q=norm(qEl.value).trim(), words=q?q.split(/\s+/):[], pk=activeProb!==null?PROBLEMS[activeProb][1].split(" "):null, shown=0;
@@ -1806,9 +1806,46 @@
         return rel&&ks.some(function(k){return c.blob.indexOf(k)>=0;}); });
     });
   }
+  /* ---- concept search: plain teacher language -> best-fit cards (OR match, ranked) ---- */
+  var CONCEPTS=[
+   ["angr|anger|\\bmad\\b|rage|temper|punch|\\bhit|kick|fight|aggress|violen|explod|outburst|meltdown|tantrum|yell|scream|throw|lashes? out|blow up",["Volcano Breath","The Volcano Plan","Lion's Breath","Size of the Problem vs. Size of the Reaction","My Trigger Tracker","Long Breath Out","Name It to Tame It","The Repair Kit","Saying Sorry and Meaning It"]],
+   ["anxi|worr|nervous|scared|fear|panic|stress|overwhelm|stomach|headache|butterfl|ptsd|trauma|on edge|jittery",["5-4-3-2-1 Grounding","The Worry Box","Worry vs. Real","Balloon Breath","Box Breath","Ocean Breath","Body Scan","The Letting-Go Leaf","Peaceful Place","Name It to Tame It"]],
+   ["test|exam|quiz|assessment|state test|nervous before",["Test Day Calm-Down","Box Breath","Star Breath","Confidence Builder","Worry vs. Real","Candle Breath"]],
+   ["sit still|still|wiggl|fidget|restless|hyper|squirm|bounc|energy|can.?t stop moving|out of (his|her) seat",["Heavy Work Reset","Bunny Breaths","The Energy Grid","Stop and Go Brain Builder","Seated Cat-Cow","Gentle Seated Twist","Shoulder Rolls","Eagle Arms","Standing Side Stretch"]],
+   ["focus|attention|adhd|add\\b|distract|concentrat|zone out|daydream|off task|start (a )?task|procrastin|stuck",["Box Breath","Focus Fuel Gauge","The Task Starter","Stop and Go Brain Builder","Bunny Breaths","Star Breath","The Listening Game","The Forest Walk"]],
+   ["talk|chatter|interrupt|blurt|call out|wait (his|her)? ?turn|impuls|turn.?tak",["Turn-Taking Trainer","The Listening Game","Stop and Go Brain Builder","Bee Breath","Size of the Problem vs. Size of the Reaction"]],
+   ["\\bsad|cry|crying|tears|griev|grief|lonel|miss (mom|dad|home)|homesick|divorce|death|died|loss|lost (a|his|her)|separat|parent|deploy",["Kind Wishes","The Invisible String","Name It to Tame It","Hot Cocoa Breath","Kind Words to Myself","Cloud Watching","Emotion Weather Report","My Cozy Place","Include Someone New"]],
+   ["morning|drop.?off|school refus|won.?t come in|clings?|separation|back to school|monday|after (a )?(break|weekend|vacation)",["The Morning Bridge","The Invisible String","Hot Cocoa Breath","My Cozy Place","Balloon Breath","The Big Change Map"]],
+   ["confiden|self.?esteem|shy|brave|courage|speak up|afraid to (speak|ask)|quiet|insecure|doubt|put.?down|negative self|can.?t do",["Confidence Builder","My Brave Voice","Kind Words to Myself","Strengths Spotlight","Superhero Strength","Brave Enough to Ask","Growth Mindset: The Word YET","Mountain Pose"]],
+   ["bull|mean|tease|teasing|exclud|left out|nobody|friend|clique|rumor|gossip|drama|peer pressure",["Bullying Bystander Power Moves","The Friendly No","My Brave Voice","Include Someone New","In Their Shoes","The Repair Kit","The I-Statement Builder","The Personal Bubble","Peer Pressure Pause Button"]],
+   ["jealous|envy|compar|not fair|unfair",["Gratitude Three","Strengths Spotlight","Different, Not Less","The Fairness Check","Community Helper Gratitude","Name It to Tame It"]],
+   ["disrespect|defian|oppositional|refus|won.?t listen|talks? back|argu|rules|authority|boundar|power struggle|no one tells",["Rules Have Reasons","The I-Statement Builder","The Need Namer","The Independence Spark","The Fairness Check","Our Classroom Charter","The Strategy Matchmaker","Name It to Tame It"]],
+   ["lie|lying|honest|steal|cheat|blam|excuse|sorry|apolog",["Saying Sorry and Meaning It","The Repair Kit","My Values Compass","The Fairness Check","Brave Enough to Ask","In Their Shoes"]],
+   ["sensory|autis|overload|noise|loud|texture|overstim|sound",["The Sensory Overload Reset","Heavy Work Reset","5-4-3-2-1 Grounding","Ocean Breath","Bee Breath","My Cozy Place","Body Scan"]],
+   ["transition|recess|lunch|gym|come back|settle|reset|change|new (teacher|school|class)|switch",["Recess-to-Desk Reset","The Reset","The Big Change Map","The Plan B Switch","The Morning Bridge","Balloon Breath"]],
+   ["sleep|tired|nap|drows|yawn|exhaust|low energy|wake up",["Long Breath Out","Candle Breath","Body Scan","Peaceful Place","Hot Cocoa Breath","Seated Forward Fold","Seated Cat-Cow"]],
+   ["disappoint|lose|lost the|perfect|mistake|fail|oops|give up|quit|frustrat",["Disappointment Reset","The Beautiful Oops","Growth Mindset: The Word YET","The Plan B Switch","Size of the Problem vs. Size of the Reaction","Long Breath Out"]],
+   ["screen|phone|tablet|game|social media|tiktok|youtube|group chat|text",["Digital Drain Reflection","The Group Chat Pause","Peer Pressure Pause Button","Focus Fuel Gauge"]],
+   ["neck|back ?(ache|pain|hurt)|shoulder|wrist|sore|tight|ache|posture|slouch|stiff|desk",["Slow Neck Circles","Shoulder Rolls","Wrist & Finger Stretches","Seated Side Bend","Seated Cat-Cow","Gentle Seated Twist"]],
+   ["calm|regulat|settle|relax|breath|breathe|de.?escalat|cool down|chill",["Balloon Breath","Long Breath Out","Box Breath","Ocean Breath","Candle Breath","Star Breath","Hot Cocoa Breath"]],
+   ["feeling|emotion|upset|big feeling|mood|name (it|the)|identify|angry or sad",["Name It to Tame It","Big Feeling Detective","Emotion Weather Report","Facial Feelings Detective","The Need Namer","Body Detective"]]
+  ];
+  var CONCEPT_RX=CONCEPTS.map(function(c){return [new RegExp(c[0],"i"),c[1]];});
+  var FALLBACK=["Balloon Breath","5-4-3-2-1 Grounding","Name It to Tame It","Box Breath","Big Feeling Detective"];
+  var STOP=/^(the|and|for|with|too|can|cant|has|have|get|gets|kid|kids|scholar|scholars|student|students|who|are|is|a|an|to|of|in|on|my|his|her|she|he|they|them|that|this|when|every|always|keeps|keep|really|very|how|do|does|did|help|helps|need|needs|want|wants|class|room|one)$/;
+  function rankCards(q){
+    q=norm(q).trim(); var score=new Map(), any=false;
+    if(!q) return {list:allCards.slice(),exact:true};
+    CONCEPT_RX.forEach(function(c){ if(c[0].test(q)){ any=true; c[1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(c[1].length-i)); }); } });
+    var words=q.split(/[^a-z0-9']+/).filter(function(w){return w.length>2&&!STOP.test(w);});
+    allCards.forEach(function(c){ var s=0,nm=c.name; words.forEach(function(w){ var st=w.length>4?w.slice(0,w.length-1):w; if(norm(nm).indexOf(st)>=0) s+=6; else if(c.blob.indexOf(st)>=0) s+=2; }); if(s){ any=true; score.set(nm,(score.get(nm)||0)+s); } });
+    var list=allCards.filter(function(c){return score.has(c.name);}).sort(function(a,b){return score.get(b.name)-score.get(a.name)||((b.video?1:0)-(a.video?1:0));}).slice(0,8);
+    if(!list.length){ list=allCards.filter(function(c){return FALLBACK.indexOf(c.name)>=0;}); return {list:list,exact:false}; }
+    return {list:list,exact:true};
+  }
   function renderDD(){
-    var q=norm(qEl.value).trim(), list=allCards.filter(function(c){return matches(c,q);}).sort(function(a,b){return (b.video?1:0)-(a.video?1:0);}); dd.innerHTML="";
-    if(!list.length){ dd.innerHTML="<div class='none'>No match. Try angry, worried, focus, or sleepy.</div>"; }
+    var res=rankCards(qEl.value), list=res.list; dd.innerHTML="";
+    if(!res.exact){ dd.innerHTML="<div class='none'>No exact match. Here are good starting points:</div>"; }
     list.forEach(function(c){ var d=document.createElement("div"); d.className="it";
       d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+(c.video?" · 🎬":"")+"</span>";
       d.onmousedown=function(e){e.preventDefault();}; d.onclick=function(){dd.className=""; qEl.blur(); c.el.click();}; dd.appendChild(d); });
