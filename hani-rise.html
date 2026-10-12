@@ -9,19 +9,19 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Hani">
-<meta name="theme-color" content="#2F6B6E">
+<meta name="theme-color" content="#171D3A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--teal:#2F6B6E;--teal-d:#136b6b;--cream:#FDF8F0;--charcoal:#3A3A3A;--gold:#D99A4E;--display:"Playfair Display",Georgia,serif;}
+  :root{--teal:#805A9C;--teal-d:#171D3A;--cream:#E5E9FD;--charcoal:#171D3A;--gold:#F598FF;--display:"Playfair Display",Georgia,serif;}
   *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
   html,body{height:100%;}
   body{background:var(--cream);color:var(--charcoal);overflow:hidden;}
   #stage{height:100vh;height:100dvh;display:flex;flex-direction:column;}
   #topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 26px;}
   #brand{font-weight:800;color:var(--teal-d);font-size:20px;letter-spacing:-.5px;}
-  #brand b{color:var(--gold);}
+  #brand b{color:var(--teal);}
   #right{display:flex;gap:16px;align-items:center;}
   #voiceToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
   #timer{font-variant-numeric:tabular-nums;font-size:32px;font-weight:800;color:var(--teal-d);}
@@ -31,14 +31,14 @@
 
   #finder{width:100%;max-width:1100px;margin:14px auto 6px;padding:0 12px;box-sizing:border-box;}
   #searchRow{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
-  #search{flex:1 1 320px;max-width:560px;font-size:18px;padding:13px 18px;border:2px solid #cfe0e0;border-radius:30px;background:#fff;color:var(--charcoal);outline:none;font-family:inherit;}
-  #search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,107,110,.18);}
+  #search{flex:1 1 320px;max-width:560px;font-size:18px;padding:13px 18px;border:2px solid #94ABF9;border-radius:30px;background:#fff;color:var(--charcoal);outline:none;font-family:inherit;}
+  #search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(128,90,156,.22);}
   .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;}
-  .chip{background:#fff;border:2px solid #cfe0e0;color:var(--teal-d);font-weight:700;font-size:14px;padding:7px 14px;border-radius:22px;cursor:pointer;font-family:inherit;}
+  .chip{background:#fff;border:2px solid #94ABF9;color:var(--teal-d);font-weight:700;font-size:14px;padding:7px 14px;border-radius:22px;cursor:pointer;font-family:inherit;}
   .chip:hover{border-color:var(--teal);}
   .chip.on{background:var(--teal);border-color:var(--teal);color:#fff;}
-  .chips.prob .chip.on{background:var(--gold);border-color:var(--gold);}
-  #resultCount{text-align:center;font-size:14px;color:#6a8a8a;margin-top:10px;min-height:18px;}
+  .chips.prob .chip.on{background:var(--gold);border-color:var(--gold);color:var(--teal-d);}
+  #resultCount{text-align:center;font-size:14px;color:#171D3A;margin-top:10px;min-height:18px;}
   #capToggle{background:none;border:none;color:var(--teal-d);font-weight:700;cursor:pointer;font-size:15px;}
   body.nocaps #cuebar{display:none !important;}
   .card.hidden{display:none !important;}
@@ -48,31 +48,31 @@
   #finder{position:relative;}
   #dd{display:none;position:absolute;left:50%;transform:translateX(-50%);top:62px;width:min(560px,92vw);max-height:55vh;overflow:auto;background:#fff;border:2px solid var(--teal);border-radius:18px;box-shadow:0 14px 34px -10px rgba(0,0,0,.3);z-index:60;text-align:left;}
   #dd.open{display:block;}
-  #dd .it{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 18px;cursor:pointer;border-bottom:1px solid #eef4f4;}
+  #dd .it{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 18px;cursor:pointer;border-bottom:1px solid #E5E9FD;}
   #dd .it:last-child{border-bottom:none;} #dd .it:hover,#dd .it.act{background:var(--cream);}
-  #dd .nm{font-weight:700;color:var(--teal-d);font-size:16px;} #dd .tg{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap;}
+  #dd .nm{font-weight:700;color:var(--teal-d);font-size:16px;} #dd .tg{font-size:12px;color:#6B4587;font-weight:700;white-space:nowrap;}
   #dd .none{padding:14px 18px;color:var(--charcoal);}
   #cards{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;max-width:1100px;margin-top:8px;}
-  .card{background:#fff;border:2px solid #e6efef;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.22s ease;text-align:left;box-shadow:0 4px 14px -6px rgba(0,0,0,.12);}
+  .card{background:#fff;border:2px solid #E5E9FD;border-left:8px solid var(--teal);border-radius:16px;padding:22px 24px;width:250px;cursor:pointer;transition:.22s ease;text-align:left;box-shadow:0 4px 14px -6px rgba(0,0,0,.12);}
   .card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 28px -8px rgba(0,0,0,.16);}
   .card h3{font-size:22px;color:var(--teal-d);margin-bottom:6px;}
-  .card .tag{display:inline-block;background:var(--cream);color:var(--gold);font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+  .card .tag{display:inline-block;background:var(--cream);color:#6B4587;font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
   .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
-  .card .src{font-size:11px;color:#9bb;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#e6efef;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#e6efef;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
+  .card .src{font-size:11px;color:#5A4A7A;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#E5E9FD;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#E5E9FD;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 52%;max-width:460px;height:58vh;}
   #ballWrap{flex:0 0 40%;display:flex;align-items:center;justify-content:center;height:58vh;position:relative;overflow:visible;}
   #ball{width:32vh;height:32vh;border-radius:50%;will-change:transform;}
   /* meditation: warm glow that spreads outward in rings */
-  #ball.glow{background:radial-gradient(circle at 50% 50%,rgba(217,154,78,.95),rgba(217,154,78,.38) 45%,rgba(31,138,138,.14) 70%,rgba(31,138,138,0) 80%);box-shadow:0 0 90px rgba(217,154,78,.55);animation:glowPulse 6s ease-in-out infinite;}
+  #ball.glow{background:radial-gradient(circle at 50% 50%,rgba(245,152,255,.95),rgba(245,152,255,.38) 45%,rgba(148,171,249,.14) 70%,rgba(148,171,249,0) 80%);box-shadow:0 0 90px rgba(245,152,255,.55);animation:glowPulse 6s ease-in-out infinite;}
   @keyframes glowPulse{0%,100%{transform:scale(.9);}50%{transform:scale(1.08);}}
-  .ripple{position:absolute;left:50%;top:50%;width:30vh;height:30vh;border-radius:50%;border:3px solid rgba(217,154,78,.45);transform:translate(-50%,-50%) scale(.35);animation:rippleOut 4s ease-out forwards;pointer-events:none;}
+  .ripple{position:absolute;left:50%;top:50%;width:30vh;height:30vh;border-radius:50%;border:3px solid rgba(245,152,255,.55);transform:translate(-50%,-50%) scale(.35);animation:rippleOut 4s ease-out forwards;pointer-events:none;}
   @keyframes rippleOut{0%{transform:translate(-50%,-50%) scale(.35);opacity:.7;}100%{transform:translate(-50%,-50%) scale(2.6);opacity:0;}}
   .card.med{border-left-color:var(--gold);}
-  .card.chair{border-left-color:#3fa34d;}
-  .card.sel{border-left-color:#7d6bb8;}
-  .card.cls{border-left-color:#c9704f;}
+  .card.chair{border-left-color:#94ABF9;}
+  .card.sel{border-left-color:#805A9C;}
+  .card.cls{border-left-color:#171D3A;}
   /* ---- desk demo: Hani seated at a school desk, performing each cue ---- */
   #deskWrap{display:none;flex:0 0 52%;max-width:460px;align-items:center;justify-content:center;height:58vh;}
   #deskWrap svg{width:100%;height:100%;max-height:56vh;}
@@ -444,7 +444,7 @@
   var backBtn=document.getElementById("backBtn"), againBtn=document.getElementById("againBtn");
   var voiceToggle=document.getElementById("voiceToggle");
 
-  var BIG=[143,227,255], SMALL=[255,158,122];
+  var BIG=[148,171,249], SMALL=[245,152,255];
   function lerp(a,b,t){return Math.round(a+(b-a)*t);}
   function ballColor(p){return "rgb("+lerp(SMALL[0],BIG[0],p)+","+lerp(SMALL[1],BIG[1],p)+","+lerp(SMALL[2],BIG[2],p)+")";}
   function setBall(p){
@@ -1816,14 +1816,16 @@
    ["talk|chatter|interrupt|blurt|call out|wait (his|her)? ?turn|impuls|turn.?tak",["Turn-Taking Trainer","The Listening Game","Stop and Go Brain Builder","Bee Breath","Size of the Problem vs. Size of the Reaction"]],
    ["\\bsad|cry|crying|tears|griev|grief|lonel|miss (mom|dad|home)|homesick|divorce|death|died|loss|lost (a|his|her)|separat|parent|deploy",["Kind Wishes","The Invisible String","Name It to Tame It","Hot Cocoa Breath","Kind Words to Myself","Cloud Watching","Emotion Weather Report","My Cozy Place","Include Someone New"]],
    ["morning|drop.?off|school refus|won.?t come in|clings?|separation|back to school|monday|after (a )?(break|weekend|vacation)",["The Morning Bridge","The Invisible String","Hot Cocoa Breath","My Cozy Place","Balloon Breath","The Big Change Map"]],
-   ["confiden|self.?esteem|shy|brave|courage|speak up|afraid to (speak|ask)|quiet|insecure|doubt|put.?down|negative self|can.?t do",["Confidence Builder","My Brave Voice","Kind Words to Myself","Strengths Spotlight","Superhero Strength","Brave Enough to Ask","Growth Mindset: The Word YET","Mountain Pose"]],
+   ["confiden|self.?esteem|shy|brave|courage|speak up|afraid to (speak|ask)|too quiet|so quiet|quiet (kid|voice|student)|insecure|doubt|put.?down|negative self|can.?t do",["Confidence Builder","My Brave Voice","Kind Words to Myself","Strengths Spotlight","Superhero Strength","Brave Enough to Ask","Growth Mindset: The Word YET","Mountain Pose"]],
    ["bull|mean|tease|teasing|exclud|left out|nobody|friend|clique|rumor|gossip|drama|peer pressure",["Bullying Bystander Power Moves","The Friendly No","My Brave Voice","Include Someone New","In Their Shoes","The Repair Kit","The I-Statement Builder","The Personal Bubble","Peer Pressure Pause Button"]],
    ["jealous|envy|compar|not fair|unfair",["Gratitude Three","Strengths Spotlight","Different, Not Less","The Fairness Check","Community Helper Gratitude","Name It to Tame It"]],
    ["disrespect|defian|oppositional|refus|won.?t listen|talks? back|argu|rules|authority|boundar|power struggle|no one tells",["Rules Have Reasons","The I-Statement Builder","The Need Namer","The Independence Spark","The Fairness Check","Our Classroom Charter","The Strategy Matchmaker","Name It to Tame It"]],
    ["lie|lying|honest|steal|cheat|blam|excuse|sorry|apolog",["Saying Sorry and Meaning It","The Repair Kit","My Values Compass","The Fairness Check","Brave Enough to Ask","In Their Shoes"]],
    ["sensory|autis|overload|noise|loud|texture|overstim|sound",["The Sensory Overload Reset","Heavy Work Reset","5-4-3-2-1 Grounding","Ocean Breath","Bee Breath","My Cozy Place","Body Scan"]],
    ["transition|recess|lunch|gym|come back|settle|reset|change|new (teacher|school|class)|switch",["Recess-to-Desk Reset","The Reset","The Big Change Map","The Plan B Switch","The Morning Bridge","Balloon Breath"]],
-   ["sleep|tired|nap|drows|yawn|exhaust|low energy|wake up",["Long Breath Out","Candle Breath","Body Scan","Peaceful Place","Hot Cocoa Breath","Seated Forward Fold","Seated Cat-Cow"]],
+   ["bedtime|can.?t sleep|trouble sleep|fall(ing)? asleep|insomnia|at night|nightmare|\\bsleep\\b(?! in class)",["Long Breath Out","Candle Breath","Body Scan","Peaceful Place","Hot Cocoa Breath","Seated Forward Fold"]],
+   ["tired|\\bnap|drows|sleepy|yawn|exhaust|low energy|wake up|sluggish|slump|sleeps? in class|after lunch",["Bunny Breaths","Lion's Breath","Heavy Work Reset","The Energy Grid","Seated Cat-Cow","Shoulder Rolls","Recess-to-Desk Reset","The Reset"]],
+   ["brain break|need a break|take a break|movement break|get moving|move around|move my body|stretch break",["Heavy Work Reset","The Energy Grid","Bunny Breaths","Seated Cat-Cow","Shoulder Rolls","Standing Side Stretch","Stop and Go Brain Builder","Eagle Arms","Gentle Seated Twist"]],
    ["disappoint|lose|lost the|perfect|mistake|fail|oops|give up|quit|frustrat",["Disappointment Reset","The Beautiful Oops","Growth Mindset: The Word YET","The Plan B Switch","Size of the Problem vs. Size of the Reaction","Long Breath Out"]],
    ["screen|phone|tablet|game|social media|tiktok|youtube|group chat|text",["Digital Drain Reflection","The Group Chat Pause","Peer Pressure Pause Button","Focus Fuel Gauge"]],
    ["neck|back ?(ache|pain|hurt)|shoulder|wrist|sore|tight|ache|posture|slouch|stiff|desk",["Slow Neck Circles","Shoulder Rolls","Wrist & Finger Stretches","Seated Side Bend","Seated Cat-Cow","Gentle Seated Twist"]],
