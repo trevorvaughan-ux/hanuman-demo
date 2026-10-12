@@ -59,6 +59,15 @@
   .card .tag{display:inline-block;background:var(--cream);color:#6B4587;font-weight:700;font-size:12px;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
   .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
   .card .src{font-size:11px;color:#5A4A7A;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#E5E9FD;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#E5E9FD;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
+  #monkeyWrap{position:relative;}
+  #langPill{display:inline-flex;border:2px solid #805A9C;border-radius:22px;background:#fff;overflow:hidden;}
+  #langPill button{min-width:44px;min-height:32px;padding:4px 12px;border:none;background:#fff;color:#171D3A;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;}
+  #langPill button[aria-pressed="true"]{background:#805A9C;color:#fff;}
+  #langPill button:focus-visible{outline:3px solid #171D3A;outline-offset:-3px;}
+  #langPill button[aria-pressed="true"]:focus-visible{outline-color:#fff;}
+  .esSoon{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:#171D3A;background:#F598FF;padding:2px 8px;border-radius:20px;vertical-align:middle;}
+  #esSoon{position:absolute;top:10px;right:10px;z-index:6;margin:0;}
+  #esSoon[hidden]{display:none;}
   #player{flex:1;display:none;flex-direction:column;}
   #scene{flex:1;display:flex;align-items:center;justify-content:center;gap:4vw;padding:0 4vw;}
   #monkeyWrap{flex:0 0 52%;max-width:460px;height:58vh;}
@@ -166,8 +175,12 @@
   .hide{display:none !important;}
   /* phones: stack monkey above ball, shrink, keep controls on screen */
   @media (max-width:640px){
-    #topbar{padding:12px 16px;}
-    #brand{font-size:17px;}
+    #topbar{padding:12px 16px;gap:8px;}
+    #brand{font-size:17px;min-width:0;}
+    #right{gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+    #langPill{flex:0 0 auto;}
+    #langPill button{min-width:40px;padding:4px 8px;}
+    #capToggle,#voiceToggle{font-size:13px;white-space:nowrap;}
     #timer{font-size:26px;}
     #menu{gap:16px;padding:0 5vw;}
     #cards{gap:12px;}
@@ -189,7 +202,7 @@
 <div id="stage">
   <div id="topbar">
     <div id="brand">HudsonSeed · <b>Hani</b> R.I.S.E. Board</div>
-    <div id="right"><a href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="capToggle" aria-pressed="true">💬 captions on</button><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
+    <div id="right"><div id="langPill" role="group" aria-label="Language / Idioma"><button type="button" id="langEN" data-lang="en" aria-pressed="true" lang="en">EN</button><button type="button" id="langES" data-lang="es" aria-pressed="false" lang="es">ES</button></div><a id="acctLink" href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="capToggle" aria-pressed="true">💬 captions on</button><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
 
   <div id="menu">
@@ -208,7 +221,7 @@
   <div id="player">
     <div id="scene">
       <img id="emoBadge" alt="">
-      <div id="monkeyWrap">
+      <div id="monkeyWrap"><span id="esSoon" class="esSoon" hidden>Español pronto</span>
         <img id="hanumanImg" src="assets/img/hanuman-breath-thumb.jpg" alt="Hani" style="width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);">
         <video id="hanumanVideo" controls playsinline style="display:none;width:100%;height:100%;max-height:58vh;object-fit:cover;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.18);"></video>
       </div>
@@ -454,15 +467,33 @@
     if(pL&&pR){var dy=(0.5-p)*7; pL.setAttribute("transform","translate(0,"+dy+")"); pR.setAttribute("transform","translate(0,"+dy+")");}
   }
 
+  // ===== EN/ES language layer: English objects are never mutated; text is looked up by EXACT English card name =====
+  var LANG="en", ESD=null, ES_URL="assets/i18n/hani-rise-es.json";
+  var ES_VIDEOS=new Set([]);   // add an English video path here ONLY once its *_ES.mp4 twin exists (avoids 404s)
+  var ES_BRIDGES={balloon:"Ahora, la respiración del globo. Una mano en tu pancita.",longout:"Ahora, exhalaciones más largas. El doble de despacio.",box:"Ahora, la respiración de la caja. Parejo y estable.",ground:"Ahora, conectemos con el suelo. Siente tus pies en el piso."};
+  function esCard(f){return (LANG==="es"&&ESD&&f&&ESD.cards[f.name])||null;}
+  function tx(f,k){var e=esCard(f);return (e&&e[k]!=null&&e[k]!=="")?e[k]:f[k];}
+  function dispName(f){var e=esCard(f);return (e&&e.title)?e.title:f.name;}
+  function UI(k,en){return (LANG==="es"&&ESD&&ESD.ui&&ESD.ui[k])?ESD.ui[k]:en;}
+  function LX(f,k){var e=esCard(f);return (e&&e[k]&&f[k]&&e[k].length===f[k].length)?e[k]:f[k];}
+  function lineAt(item,i){var L=item.lines[i],e=esCard(item),S=e&&e.steps&&e.steps[i];
+    if(!S)return L;
+    return {cue:S.cue||L.cue,sub:L.sub?(S.sub||""):(S.sub||""),say:S.say||L.say,hold:L.hold,pose:L.pose};}
+  function videoFor(item){return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
+  function needsEsSoon(item){return LANG==="es"&&!!item.video&&!ES_VIDEOS.has(item.video);}
+  function bridgeText(id,en){return (LANG==="es"&&ES_BRIDGES[id])?ES_BRIDGES[id]:en;}
+  function foldStr(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+
   var voiceOn=true, audioUnlocked=false, chosenVoice=null;
   var PREF=["Google UK English Male","Microsoft Guy Online","Daniel","Arthur","Alex","Fred","Google US English"];
   function pickVoice(){if(!("speechSynthesis"in window))return;var vs=speechSynthesis.getVoices()||[];if(!vs.length)return;
+    if(LANG==="es"){chosenVoice=vs.find(function(v){return /^es[-_]US/i.test(v.lang);})||vs.find(function(v){return /^es[-_]MX/i.test(v.lang);})||vs.find(function(v){return /^es/i.test(v.lang);})||null;return;}
     for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];});if(h){chosenVoice=h;return;}}
     chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];}
   if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
   function say(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
-    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
-  voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?"🔊 voice on":"🔇 voice off";if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
+    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;if(LANG==="es"&&!(chosenVoice&&/^es/i.test(chosenVoice.lang)))u.lang="es-US";u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
+  voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?UI("voice_on","🔊 voice on"):UI("voice_off","🔇 voice off");if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
 
   var FLOW=null, running=false, startT=0, raf=null, lastPhase="", ci=0, TOTAL=120;
   function phaseAt(t,pat){var c=pat.in+pat.hold+pat.out+pat.rest,x=t%c;
@@ -1638,24 +1669,26 @@
     timerEl.textContent="0"+Math.floor(remain/60)+":"+String(remain%60).padStart(2,"0");
     if(t>=TOTAL)return finish();
     var si=stepAt(t);
-    if(si!==stepIdx){ stepIdx=si; ci=0; lastPhase=""; if(si>0){var br=BRIDGES[STEPS[si].breath.id]; if(br)say(br);} }
+    if(si!==stepIdx){ stepIdx=si; ci=0; lastPhase=""; if(si>0){var br=bridgeText(STEPS[si].breath.id,BRIDGES[STEPS[si].breath.id]); if(br)say(br);} }
     var FLOW=STEPS[si].breath, localT=t-stepStarts[si];
     var ph=phaseAt(localT,FLOW.pattern); setBall(ph.p);
     if(ph.name!==lastPhase){
       lastPhase=ph.name;
-      if(ph.name==="in"){var a=pair(FLOW.inhale);if(a){cue.textContent=a[0];sub.textContent=a[1];say(a[0]+" "+a[1]);}}
-      else if(ph.name==="out"){var b=pair(FLOW.exhale);if(b){cue.textContent=b[0];sub.textContent=b[1];say(b[0]+" "+b[1]);}ci++;}
-      else if(ph.name==="hold"&&FLOW.holdCue){cue.textContent=FLOW.holdCue[0];sub.textContent=FLOW.holdCue[1]||"";if(FLOW.holdCue[0])say(FLOW.holdCue[0]);}
-      else if(ph.name==="rest"&&FLOW.restCue){cue.textContent=FLOW.restCue[0];sub.textContent=FLOW.restCue[1]||"";if(FLOW.restCue[0])say(FLOW.restCue[0]);}
+      if(ph.name==="in"){var a=pair(LX(FLOW,"inhale"));if(a){cue.textContent=a[0];sub.textContent=a[1];say(a[0]+" "+a[1]);}}
+      else if(ph.name==="out"){var b=pair(LX(FLOW,"exhale"));if(b){cue.textContent=b[0];sub.textContent=b[1];say(b[0]+" "+b[1]);}ci++;}
+      else if(ph.name==="hold"&&FLOW.holdCue){var hc=LX(FLOW,"holdCue");cue.textContent=hc[0];sub.textContent=hc[1]||"";if(hc[0])say(hc[0]);}
+      else if(ph.name==="rest"&&FLOW.restCue){var rc=LX(FLOW,"restCue");cue.textContent=rc[0];sub.textContent=rc[1]||"";if(rc[0])say(rc[0]);}
     }
     raf=requestAnimationFrame(loop);
   }
   function finish(){running=false;cancelAnimationFrame(raf);setBall(0);timerEl.textContent="00:00";
     if(CURRENT&&CURRENT.video){try{hanumanVideo.pause();}catch(e){}}
     hsLog("complete",CURRENT,(Date.now()-hsT0)/1000);
+    if(LANG==="es"&&ESD&&ESD.ui&&ESD.ui.done_breath){cue.textContent=ESD.ui.done_breath;sub.textContent=ESD.ui.affirm||"";say(ESD.ui.done_breath+" "+(ESD.ui.affirm||""));}
+    else{
     cue.textContent="Beautiful. The room is calm and ready.";
     sub.textContent="Say it with me: I am happy. I am safe. I am brave. I am strong. I am love.";
-    say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");
+    say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");}
     againBtn.classList.remove("hide");}
 
   // ---- anonymous usage metrics: write-only insert, silent failure, no personal data ----
@@ -1676,18 +1709,19 @@
   }
   function run(item){
     stopMed(); setEmoBadge(item);
-    if(item.video){ showHaniVideo(item.video); } else { deskOn(false); }
+    if(item.video){ showHaniVideo(videoFor(item)); } else { deskOn(false); }
+    setEsSoon(item);
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent=""; setBall(0);
-    say(item.intro);
-    var delay=Math.min(7000, Math.max(3500, item.intro.length*55));
+    say(tx(item,"intro"));
+    var delay=Math.min(7000, Math.max(3500, tx(item,"intro").length*55));
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
   }
   function toMenu(){running=false;cancelAnimationFrame(raf);stopMed();deskOn(false);setEmoBadge(null);if(window.speechSynthesis)speechSynthesis.cancel();
-    hanumanVideo.pause();hanumanVideo.removeAttribute("src");hanumanVideo.load();hanumanVideo.style.display="none";
+    hanumanVideo.pause();hanumanVideo.removeAttribute("src");hanumanVideo.load();hanumanVideo.style.display="none";setEsSoon(null);
     var __img=document.getElementById("hanumanImg");if(__img)__img.style.display="";
     ballWrap.style.display="";
     player.style.display="none";menu.style.display="flex";timerEl.textContent="02:00";}
@@ -1710,7 +1744,7 @@
   function stopMed(){medActive=false;clearMedTimers();stopGlow();}
   function playLine(item,i){
     if(!medActive)return;
-    var L=item.lines[i];
+    var L=lineAt(item,i);
     cue.textContent=L.cue; sub.textContent=L.sub||""; say(L.say);
     if(L.pose)setDeskPose(L.pose);
     var next=(i+1<item.lines.length)?function(){playLine(item,i+1);}:function(){finishMed(item);};
@@ -1722,8 +1756,8 @@
     if(item.video){try{hanumanVideo.pause();}catch(e){}}
     if(item.demo==="desk")setDeskPose("steady");
     timerEl.textContent="00:00";
-    cue.textContent="Beautiful work."; sub.textContent="The room is calm and ready.";
-    say(item.close||"Beautiful work.");
+    cue.textContent=UI("done_med","Beautiful work."); sub.textContent=UI("done_med2","The room is calm and ready.");
+    say(tx(item,"close")||UI("done_med","Beautiful work."));
     againBtn.classList.remove("hide");
   }
   function runMeditation(item){
@@ -1732,18 +1766,19 @@
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent="";
-    if(item.video){ showHaniVideo(item.video); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
-    var delay=Math.min(8000,Math.max(3500,item.intro.length*55));
+    if(item.video){ showHaniVideo(videoFor(item)); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
+    setEsSoon(item);
+    var delay=Math.min(8000,Math.max(3500,tx(item,"intro").length*55));
     medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
     timerEl.textContent=fmt(medRemain);
-    say(item.intro);
+    say(tx(item,"intro"));
     medTick=setInterval(function(){medRemain=Math.max(0,medRemain-1);timerEl.textContent=fmt(medRemain);},1000);
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
   var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>▶ Watch Hani</button>";
+    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>"+UI("watch_hani","▶ Watch Hani")+"</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
     c.onclick=launch;
     var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c); register(c,f);
@@ -1765,11 +1800,12 @@
   var KINDS=[["all","All tools"],["flow","Breathing"],["meditation","Meditations"],["chair","Chair yoga"],["sel","SEL"],["class","Full class"],["video","🎬 Has Hani video"]];
   var allCards=[], qEl=document.getElementById("search");
   var activeProb=null, activeKind="all";
-  function norm(t){return String(t||"").toLowerCase();}
+  function norm(t){return LANG==="es"?foldStr(t):String(t||"").toLowerCase();}
   function register(el,f){
     var kind=f.kind||(f.pattern||f.inhale?"flow":"flow");
-    var blob=norm([f.name,f.tag,f.blurb,f.intro,f.audience,f.src,kind].join(" "));
-    allCards.push({el:el,name:f.name,blob:blob,kind:kind,video:!!f.video});
+    var blob=norm([f.name,f.tag,f.blurb,f.intro,f.audience,f.src,kind].join(" ")), dn=null;
+    if(LANG==="es"&&esCard(f)){ dn=foldStr(dispName(f)); blob=foldStr([f.name,tx(f,"tag"),tx(f,"blurb"),tx(f,"intro")].join(" ")); }
+    allCards.push({el:el,name:f.name,blob:blob,kind:kind,video:!!f.video,dn:dn});
   }
   function applyFilter(){
     var q=norm(qEl.value).trim(), words=q?q.split(/\s+/):[], pk=activeProb!==null?PROBLEMS[activeProb][1].split(" "):null, shown=0;
@@ -1834,20 +1870,48 @@
   ];
   var CONCEPT_RX=CONCEPTS.map(function(c){return [new RegExp(c[0],"i"),c[1]];});
   var FALLBACK=["Balloon Breath","5-4-3-2-1 Grounding","Name It to Tame It","Box Breath","Big Feeling Detective"];
-  var STOP=/^(the|and|for|with|too|can|cant|has|have|get|gets|kid|kids|scholar|scholars|student|students|who|are|is|a|an|to|of|in|on|my|his|her|she|he|they|them|that|this|when|every|always|keeps|keep|really|very|how|do|does|did|help|helps|need|needs|want|wants|class|room|one)$/;
+  var STOP=/^(the|and|for|with|too|can|can't|can’t|cant|cannot|has|have|get|gets|kid|kids|scholar|scholars|student|students|who|are|is|a|an|to|of|in|on|my|his|her|she|he|they|them|that|this|when|every|always|keeps|keep|really|very|how|do|does|did|help|helps|need|needs|want|wants|class|room|one)$/;
+  /* ---- Spanish search (runs only when ES is on; input is accent-folded lowercase) ---- */
+  var ES_STOP=/^(el|la|los|las|un|una|unos|unas|de|del|al|en|y|o|que|se|le|les|lo|su|sus|muy|mi|mis|es|esta|estan|son|ser|nino|nina|ninos|ninas|alumno|alumna|alumnos|alumnas|estudiante|estudiantes|clase|necesita|necesito|ayuda|ayudar|puede|pueden|para|por|con|como|cada|mas|todo|todos|tiene|tienen|hace|hacen|otros|otras|otro|otra|cuando|siempre|sin|sobre|entre|pero|porque|cuando|donde|quiere|quieren|tambien|hay|tengo|tiene|vez|dia|dias|hora|a)$/;
+  var ES_RULES=[
+   ["angr|anger","enoj|enfad|furi|rabia|coraje|berrinche|grit|golpe|pega(r|n)?\\b|pelea|muerde|patea|explot|agresiv|se le sale"],
+   ["anxi|worr","ansi|nervios|preocup|miedo|asustad|panico|estres|agobi|angusti|simulacro|dolor de (panza|estomago|cabeza)"],
+   ["test|exam","examen|prueba|quiz|evaluacion|nervios(o|a)? (antes|por) (el|la) (examen|prueba)"],
+   ["sit still","no se (puede )?queda(r)? quiet|inquiet|no para de moverse|se mueve mucho|hiperactiv|movid|energia|no se sienta"],
+   ["brain break","descanso|pausa|pausa activa|moverse|mover el cuerpo|estirar"],
+   ["tired","cansad|sueno|somnolien|bostez|sin energia|despues del almuerzo|despues de comer|flojera|aguad"],
+   ["bedtime","no (puede|logra) dormir|dormirse|insomnio|de noche|pesadilla|hora de dormir"],
+   ["focus|attention","concentr|enfoc|atencion|distraid|tdah|en la luna|no termina|empezar la tarea"],
+   ["talk|chatter","habla(r)? (mucho|sin parar)|no (deja|para) de hablar|interrump|grita respuestas|esperar (su )?turno|impulsiv"],
+   ["\\bsad","trist|llor|lagrim|sol(o|a)\\b|soledad|duelo|extrana|divorcio|murio|perdida|separ"],
+   ["morning|drop","llora cada manana|en la manana|despedida|no quiere entrar|se aferra|ansiedad de separacion|lunes|regreso a clases"],
+   ["confiden","timid|verguenza|penoso|confianza|autoestima|valiente|no (me|se) atreve|callad(o|a)\\b|inseguro|no puedo"],
+   ["bull|mean","acoso|bullying|molest|se burla|burlas|excluid|lo dejan fuera|amigos|chisme|presion de grupo"],
+   ["disrespect|defian","desafiant|no hace caso|contesta|respond(e|on)|reglas|no obedece|lucha de poder|discute"],
+   ["lie|lying","mentir|miente|mentira|robar|copia|trampa|culpa|disculpa|perdon"],
+   ["sensory|autis","autis|tea\\b|sensorial|ruido|mucho ruido|sobrecarga|sobreestimul|textura"],
+   ["transition|recess","transicion|recreo|almuerzo|comida|gimnasio|cambio de (clase|actividad)|regresar del recreo"],
+   ["disappoint","decepcion|perdio|error|equivoc|se rinde|frustr|perfeccion"],
+   ["screen|phone","pantalla|celular|telefono|tableta|videojuego|redes sociales|tiktok|youtube"],
+   ["neck|back","cuello|espalda|hombros|munecas|rigid|tieso|postura"],
+   ["calm|regulat","calma|calmar|tranquil|relaj|respira|respiracion tranquila|desestres"],
+   ["feeling|emotion","sentimiento|emocion|molest(o|a)\\b|sentir|ponerle nombre"]
+  ].map(function(r){var i=-1;for(var k=0;k<CONCEPTS.length;k++){if(CONCEPTS[k][0].indexOf(r[0])===0){i=k;break;}} return {i:i,rx:new RegExp(r[1],"i")};}).filter(function(r){return r.i>=0;});
   function rankCards(q){
     q=norm(q).trim(); var score=new Map(), any=false;
+    if(LANG==="en") q=q.replace(/\bcan not\b/g," ");
     if(!q) return {list:allCards.slice(),exact:true};
     CONCEPT_RX.forEach(function(c){ if(c[0].test(q)){ any=true; c[1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(c[1].length-i)); }); } });
-    var words=q.split(/[^a-z0-9']+/).filter(function(w){return w.length>2&&!STOP.test(w);});
-    allCards.forEach(function(c){ var s=0,nm=c.name; words.forEach(function(w){ var st=w.length>4?w.slice(0,w.length-1):w; if(norm(nm).indexOf(st)>=0) s+=6; else if(c.blob.indexOf(st)>=0) s+=2; }); if(s){ any=true; score.set(nm,(score.get(nm)||0)+s); } });
+    if(LANG==="es") ES_RULES.forEach(function(r){ if(r.rx.test(q)){ any=true; CONCEPTS[r.i][1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(CONCEPTS[r.i][1].length-i)); }); } });
+    var words=q.split(/[^a-z0-9'’]+/).filter(function(w){return w.length>2&&!STOP.test(w)&&!(LANG==="es"&&ES_STOP.test(w));});
+    allCards.forEach(function(c){ var s=0,nm=c.name; words.forEach(function(w){ var st=w.length>4?w.slice(0,w.length-1):w; if(norm(nm).indexOf(st)>=0||(c.dn&&c.dn.indexOf(st)>=0)) s+=6; else if(c.blob.indexOf(st)>=0) s+=2; }); if(s){ any=true; score.set(nm,(score.get(nm)||0)+s); } });
     var list=allCards.filter(function(c){return score.has(c.name);}).sort(function(a,b){return score.get(b.name)-score.get(a.name)||((b.video?1:0)-(a.video?1:0));}).slice(0,8);
     if(!list.length){ list=allCards.filter(function(c){return FALLBACK.indexOf(c.name)>=0;}); return {list:list,exact:false}; }
     return {list:list,exact:true};
   }
   function renderDD(){
     var res=rankCards(qEl.value), list=res.list; dd.innerHTML="";
-    if(!res.exact){ dd.innerHTML="<div class='none'>No exact match. Here are good starting points:</div>"; }
+    if(!res.exact){ dd.innerHTML="<div class='none'>"+UI("dropdown_fallback","No exact match. Here are good starting points:")+"</div>"; }
     list.forEach(function(c){ var d=document.createElement("div"); d.className="it";
       d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+(c.video?" · 🎬":"")+"</span>";
       d.onmousedown=function(e){e.preventDefault();}; d.onclick=function(){dd.className=""; qEl.blur(); c.el.click();}; dd.appendChild(d); });
@@ -1858,15 +1922,54 @@
   qEl.addEventListener("keydown",function(e){ if(e.key==="Enter"){ var f=dd.querySelector(".it"); if(f) f.click(); } if(e.key==="Escape"){dd.className="";qEl.blur();} });
   var capBtn=document.getElementById("capToggle"), capsOn=true;
   try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
-  function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?"💬 captions on":"💬 captions off"; capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
+  function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?UI("captions_on","💬 captions on"):UI("captions_off","💬 captions off"); capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
   capBtn.onclick=function(){capsOn=!capsOn;setCaps();}; setCaps();
-  FLOWS.forEach(addCard);
-  MEDITATIONS.forEach(addCard);
-  CHAIR.forEach(addCard);
-  SEL.forEach(addCard);
-  CLASSES.forEach(addCard);
-  SEQUENCES.forEach(addCard);
+  function buildAll(){
+    cards.innerHTML=""; allCards=[];
+    FLOWS.forEach(addCard);
+    MEDITATIONS.forEach(addCard);
+    CHAIR.forEach(addCard);
+    SEL.forEach(addCard);
+    CLASSES.forEach(addCard);
+    SEQUENCES.forEach(addCard);
+  }
+  buildAll();
   setBall(0);
+
+  /* ---- EN | ES toggle ---- */
+  var esSoonEl=document.getElementById("esSoon"), langBtns=document.querySelectorAll("#langPill button");
+  function setEsSoon(item){ if(esSoonEl) esSoonEl.hidden=!(item&&needsEsSoon(item)); }
+  function applyLangUI(){
+    document.documentElement.lang=LANG;
+    var br=document.getElementById("brand");
+    if(br) br.innerHTML=(LANG==="es"&&ESD&&ESD.ui&&ESD.ui.brand)?"HudsonSeed · <b>Hani</b> "+ESD.ui.brand.replace(/^Hani\s*·\s*/,""):"HudsonSeed · <b>Hani</b> R.I.S.E. Board";
+    var set=function(id,k,en){var e=document.getElementById(id); if(e) e.textContent=UI(k,en);};
+    set("acctLink","my_account","My Account"); set("menuTitle","menu_title","Pick a reset for your class");
+    set("menuSub","menu_sub","Tap one. Hani runs it on the board while you catch your breath.");
+    set("backBtn","back","‹ Pick another"); set("againBtn","again","↺ Again");
+    voiceToggle.textContent=voiceOn?UI("voice_on","🔊 voice on"):UI("voice_off","🔇 voice off");
+    qEl.placeholder=UI("search_placeholder","🔍 Search tools — angry, worried, focus, sleepy…"); qEl.setAttribute("aria-label",UI("search_aria","Search tools"));
+    setCaps(); pickVoice();
+    Array.prototype.forEach.call(langBtns,function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===LANG?"true":"false");});
+    buildAll(); applyFilter(); if(dd.className==="open") renderDD();
+  }
+  function setLang(l,persist){
+    if(l!=="es") l="en";
+    var go=function(){ LANG=l; if(persist){try{localStorage.setItem("hani_lang",l);}catch(e){}} applyLangUI(); };
+    if(l==="es"&&!ESD){
+      fetch(ES_URL).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(j){ ESD=j; go(); })
+        .catch(function(){ LANG="en"; applyLangUI(); });   // offline or file missing: stay in English, pill shows EN
+    } else go();
+  }
+  Array.prototype.forEach.call(langBtns,function(b){ b.addEventListener("click",function(){ setLang(b.getAttribute("data-lang"),true); }); });
+  (function(){
+    var l=null;
+    try{ var m=/[?&]lang=(en|es)\b/i.exec(location.search); if(m){ l=m[1].toLowerCase(); localStorage.setItem("hani_lang",l); } }catch(e){}
+    if(!l){ try{ l=localStorage.getItem("hani_lang"); }catch(e){} }
+    if(l!=="en"&&l!=="es") l=/^es/i.test(navigator.language||"")?"es":"en";
+    if(l==="es") setLang("es",false);
+  })();
 })();
 </script>
 <script>(function(){var dw=document.getElementById("deskWrap");if(dw){dw.style.position=dw.style.position||"relative";var img=document.createElement("img");img.src="assets/img/hanuman-breath-thumb.jpg";img.alt="Hani";img.style.cssText="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:24px;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.18);";dw.appendChild(img);}})();</script>
