@@ -60,6 +60,9 @@
   .card p{font-size:14px;color:var(--charcoal);line-height:1.45;}
   .card .src{font-size:11px;color:#5A4A7A;margin-top:10px;}.card .cardArt{display:block;width:calc(100% + 48px);margin:-22px -24px 14px -24px;border-radius:14px 14px 0 0;aspect-ratio:4/3;object-fit:cover;background:#E5E9FD;}#emoBadge{display:none;position:absolute;top:14px;left:14px;width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;background:#E5E9FD;}#scene{position:relative;}.watchBtn{display:inline-block;margin-top:10px;background:var(--teal);color:#fff;font-weight:700;font-size:12px;padding:6px 14px;border:none;border-radius:20px;cursor:pointer;}.watchBtn:hover{background:var(--teal-d);}#hanumanModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;}#hanumanModal.show{display:flex;}#hanumanModal video{max-width:90vw;max-height:80vh;border-radius:16px;}#hanumanModal .closeModal{position:absolute;top:20px;right:28px;color:#fff;font-size:32px;cursor:pointer;background:none;border:none;}
   #monkeyWrap{position:relative;}
+  .betaTag{display:inline-block;margin-left:5px;padding:1px 6px;border-radius:10px;background:#F598FF;color:#171D3A;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;vertical-align:middle;}
+  #betaNote{margin:0 26px;padding:6px 14px;border-radius:12px;background:#E5E9FD;color:#171D3A;font-size:13px;font-weight:600;}
+  #betaNote[hidden]{display:none;}
   #langPill{display:inline-flex;border:2px solid #805A9C;border-radius:22px;background:#fff;overflow:hidden;}
   #langPill button{min-width:44px;min-height:32px;padding:4px 12px;border:none;background:#fff;color:#171D3A;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;}
   #langPill button[aria-pressed="true"]{background:#805A9C;color:#fff;}
@@ -202,8 +205,9 @@
 <div id="stage">
   <div id="topbar">
     <div id="brand">HudsonSeed · <b>Hani</b> R.I.S.E. Board</div>
-    <div id="right"><div id="langPill" role="group" aria-label="Language / Idioma"><button type="button" id="langEN" data-lang="en" aria-pressed="true" lang="en">EN</button><button type="button" id="langES" data-lang="es" aria-pressed="false" lang="es">ES</button></div><a id="acctLink" href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="capToggle" aria-pressed="true">💬 captions on</button><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
+    <div id="right"><div id="langPill" role="group" aria-label="Language / Idioma"><button type="button" id="langEN" data-lang="en" aria-pressed="true" lang="en">EN</button><button type="button" id="langES" data-lang="es" aria-pressed="false" lang="es">ES<span id="betaTag" class="betaTag" lang="en">Beta</span></button></div><a id="acctLink" href="hanuman-menu.html" style="color:var(--teal-d);font-weight:700;text-decoration:none;font-size:14px;margin-right:4px;">My Account</a><button id="capToggle" aria-pressed="true">💬 captions on</button><button id="voiceToggle">🔊 voice on</button><div id="timer">02:00</div></div>
   </div>
+  <div id="betaNote" role="status" lang="es" hidden>Español (beta): traducción en revisión</div>
 
   <div id="menu">
     <div>
@@ -470,7 +474,7 @@
   // ===== EN/ES language layer: English objects are never mutated; text is looked up by EXACT English card name =====
   var LANG="en", ESD=null, ES_URL="assets/i18n/hani-rise-es.json";
   var ES_VIDEOS=new Set([]);   // add an English video path here ONLY once its *_ES.mp4 twin exists (avoids 404s)
-  var ES_BRIDGES={balloon:"Ahora, la respiración del globo. Una mano en tu pancita.",longout:"Ahora, exhalaciones más largas. El doble de despacio.",box:"Ahora, la respiración de la caja. Parejo y estable.",ground:"Ahora, conectemos con el suelo. Siente tus pies en el piso."};
+  var ES_BRIDGES={balloon:"Ahora, la respiración del globo. Una mano en tu pancita.",longout:"Ahora, exhalaciones más largas. El doble de despacio.",box:"Ahora, la respiración en caja. Pareja y tranquila.",ground:"Ahora, conectemos con el suelo. Siente tus pies en el piso."};
   function esCard(f){return (LANG==="es"&&ESD&&f&&ESD.cards[f.name])||null;}
   function tx(f,k){var e=esCard(f);return (e&&e[k]!=null&&e[k]!=="")?e[k]:f[k];}
   function dispName(f){var e=esCard(f);return (e&&e.title)?e.title:f.name;}
@@ -481,7 +485,8 @@
     return {cue:S.cue||L.cue,sub:L.sub?(S.sub||""):(S.sub||""),say:S.say||L.say,hold:L.hold,pose:L.pose};}
   function videoFor(item){return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
   function needsEsSoon(item){return LANG==="es"&&!!item.video&&!ES_VIDEOS.has(item.video);}
-  function bridgeText(id,en){return (LANG==="es"&&ES_BRIDGES[id])?ES_BRIDGES[id]:en;}
+  function bridgeText(id,en){if(LANG!=="es")return en;var B=(ESD&&ESD.bridges)||ES_BRIDGES;return B[id]||ES_BRIDGES[id]||en;}
+  function mapLbl(m,v){return (LANG==="es"&&ESD&&ESD[m]&&ESD[m][v])?ESD[m][v]:v;}
   function foldStr(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
 
   var voiceOn=true, audioUnlocked=false, chosenVoice=null;
@@ -1778,7 +1783,7 @@
 
   var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>"+UI("watch_hani","▶ Watch Hani")+"</button>";
+    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+mapLbl("audience_map",f.audience)+" · "+mapLbl("src_map",f.src)+"</div>"+"<button class='watchBtn' type='button'>"+UI("watch_hani","▶ Watch Hani")+"</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
     c.onclick=launch;
     var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c); register(c,f);
@@ -1941,6 +1946,7 @@
   function setEsSoon(item){ if(esSoonEl) esSoonEl.hidden=!(item&&needsEsSoon(item)); }
   function applyLangUI(){
     document.documentElement.lang=LANG;
+    var bn=document.getElementById("betaNote"); if(bn) bn.hidden=(LANG!=="es");
     var br=document.getElementById("brand");
     if(br) br.innerHTML=(LANG==="es"&&ESD&&ESD.ui&&ESD.ui.brand)?"HudsonSeed · <b>Hani</b> "+ESD.ui.brand.replace(/^Hani\s*·\s*/,""):"HudsonSeed · <b>Hani</b> R.I.S.E. Board";
     var set=function(id,k,en){var e=document.getElementById(id); if(e) e.textContent=UI(k,en);};
