@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hani · R.I.S.E. Board</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -14,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  .noVid{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E5E9FD;color:#805A9C;border:1px solid #94ABF9;}
   :root{--teal:#805A9C;--teal-d:#171D3A;--cream:#E5E9FD;--charcoal:#171D3A;--gold:#F598FF;--display:"Playfair Display",Georgia,serif;}
   *{box-sizing:border-box;margin:0;padding:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
   html,body{height:100%;}
@@ -179,11 +181,15 @@
   /* phones: stack monkey above ball, shrink, keep controls on screen */
   @media (max-width:640px){
     #topbar{padding:12px 16px;gap:8px;}
-    #brand{font-size:17px;min-width:0;}
-    #right{gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+    #topbar{flex-wrap:wrap;}
+    #brand{font-size:16px;min-width:0;flex:1 1 100%;white-space:nowrap;}
+    #right{gap:8px;flex-wrap:wrap;justify-content:space-between;width:100%;align-items:center;}
+    #acctLink{white-space:nowrap;}
     #langPill{flex:0 0 auto;}
     #langPill button{min-width:40px;padding:4px 8px;}
-    #capToggle,#voiceToggle{font-size:13px;white-space:nowrap;}
+    #capToggle,#voiceToggle{font-size:12px;white-space:nowrap;}
+    #right{gap:6px 10px;}
+    #timer{margin-left:auto;}
     #timer{font-size:26px;}
     #menu{gap:16px;padding:0 5vw;}
     #cards{gap:12px;}
@@ -314,7 +320,7 @@
   // The 10 video breaths get added here one at a time.
   var FLOWS = [
 {
-      id:"balloon", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3",
+      id:"balloon", img:"assets/img/hanuman-breath-thumb.jpg", name:"Balloon Breath", tag:"Calm down · 2 min", audience:"All ages", src:"Module 3",
       blurb:"Belly fills like a balloon, then empties slow. The everyday reset.",
       pattern:{in:4,hold:1,out:6,rest:1}, duration:120,
       intro:"Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
@@ -546,7 +552,7 @@
         {cue:"When you're ready, let your eyes open soft.",sub:"Notice the room around you again.",say:"When you're ready, let your eyes open soft, and notice the room around you again.",hold:10}
       ],
       close:"That's The Forest Walk. Your whole body just got a real rest, and that quiet forest is always there in your mind whenever you need it again." },
-{ id:"bodyscanmed", img:"assets/img/hanuman-breath-thumb.jpg", video:"assets/video/hanuman-balloon-breath-v2.mp4", kind:"meditation", demo:"desk", name:"Body Scan", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"bodyscanmed", img:"assets/img/hanuman-breath-thumb.jpg", kind:"meditation", demo:"desk", name:"Body Scan", tag:"Guided Meditation · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A slow, calm journey through your whole body, noticing and releasing tension one part at a time.",
       intro:"Hi, I'm Hani. We're going to travel through your whole body, slow and gentle, noticing how each part feels.",
       lines:[
@@ -1720,7 +1726,7 @@
     hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
-    cue.textContent=""; sub.textContent=""; setBall(0);
+    cue.textContent=tx(item,"intro"); sub.textContent=""; setBall(0);
     say(tx(item,"intro"));
     var delay=Math.min(7000, Math.max(3500, tx(item,"intro").length*55));
     setTimeout(function(){ if(running) raf=requestAnimationFrame(loop); }, delay);
@@ -1770,7 +1776,7 @@
     CURRENT=item; CURRENTMED=item; medActive=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
-    cue.textContent=""; sub.textContent="";
+    cue.textContent=tx(item,"intro"); sub.textContent="";
     if(item.video){ showHaniVideo(videoFor(item)); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
     setEsSoon(item);
     var delay=Math.min(8000,Math.max(3500,tx(item,"intro").length*55));
@@ -1783,7 +1789,7 @@
 
   var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
-    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+mapLbl("audience_map",f.audience)+" · "+mapLbl("src_map",f.src)+"</div>"+"<button class='watchBtn' type='button'>"+UI("watch_hani","▶ Watch Hani")+"</button>";
+    c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(f.video?"":"<span class='noVid'>"+UI("guided_novid","Guided · no video")+"</span>")+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+mapLbl("audience_map",f.audience)+" · "+mapLbl("src_map",f.src)+"</div>"+"<button class='watchBtn' type='button'>"+(f.video?UI("watch_hani","▶ Watch Hani"):UI("start_guided","▶ Start guided"))+"</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
     c.onclick=launch;
     var wb=c.querySelector(".watchBtn"); if(wb){ wb.onclick=function(ev){ ev.stopPropagation(); launch(); }; } cards.appendChild(c); register(c,f);
@@ -1929,11 +1935,14 @@
   try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
   function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?UI("captions_on","💬 captions on"):UI("captions_off","💬 captions off"); capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
   capBtn.onclick=function(){capsOn=!capsOn;setCaps();}; setCaps();
+  // Standing/floor-pose cards hidden until each has a real matching Hani video (no seated still on a standing pose).
+  var HIDE_IDS={treepose:1,mountainpose:1,chairpose:1,standingfold:1,standingsidestretch:1,standingcatcow:1,airplanepose:1};
+  function visible(f){ return !HIDE_IDS[f.id]; }
   function buildAll(){
     cards.innerHTML=""; allCards=[];
-    FLOWS.forEach(addCard);
-    MEDITATIONS.forEach(addCard);
-    CHAIR.forEach(addCard);
+    FLOWS.filter(visible).forEach(addCard);
+    MEDITATIONS.filter(visible).forEach(addCard);
+    CHAIR.filter(visible).forEach(addCard);
     SEL.forEach(addCard);
     CLASSES.forEach(addCard);
     SEQUENCES.forEach(addCard);
