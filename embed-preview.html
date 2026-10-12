@@ -1659,12 +1659,12 @@
     againBtn.classList.remove("hide");}
 
   // ---- anonymous usage metrics: write-only insert, silent failure, no personal data ----
-  var HS_METRICS={url:"https://pebhikfbpgntedvbxqph.supabase.co/rest/v1/hanuman_events",key:"sb_publishable_7wnGQX91msxCwzq7QRqF1w_MWfgWCWT"};
+  var HS_METRICS={url:"https://pebhikfbpgntedvbxqph.supabase.co/rest/v1/hani_events",key:"sb_publishable_7wnGQX91msxCwzq7QRqF1w_MWfgWCWT"};
   var hsClientId=(function(){try{var k="hs_cid",v=localStorage.getItem(k);if(!v){v="c"+Math.random().toString(36).slice(2,10)+Date.now().toString(36);localStorage.setItem(k,v);}return v;}catch(e){return "c"+Math.random().toString(36).slice(2,10);}})();
   var hsT0=0;
   function hsLog(ev,item,dur){
     try{
-      var body=JSON.stringify({event:ev,tool_id:(item&&item.id)||null,tool_name:(item&&item.name)||"unknown",kind:(item&&item.kind)||"breath",category:(item&&item.tag)||null,duration_seconds:(dur!=null)?Math.round(dur):null,client_id:hsClientId});
+      var body=JSON.stringify({event:ev,tool_id:(item&&item.id)||null,tool_name:(item&&item.name)||"unknown",kind:(item&&item.kind)||"breath",category:(item&&item.tag)?String(item.tag).slice(0,32):null,duration_seconds:(dur!=null)?Math.round(dur):null,client_id:hsClientId});
       fetch(HS_METRICS.url,{method:"POST",keepalive:true,headers:{"apikey":HS_METRICS.key,"Authorization":"Bearer "+HS_METRICS.key,"Content-Type":"application/json","Prefer":"return=minimal"},body:body}).catch(function(){});
     }catch(e){}
   }
