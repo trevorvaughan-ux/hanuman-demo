@@ -473,7 +473,9 @@
 
   // ===== EN/ES language layer: English objects are never mutated; text is looked up by EXACT English card name =====
   var LANG="en", ESD=null, ES_URL="assets/i18n/hani-rise-es.json";
-  var ES_VIDEOS=new Set([]);   // add an English video path here ONLY once its *_ES.mp4 twin exists (avoids 404s)
+  var ES_VIDEOS=new Set([]), ES_VIDEO_BY_ID={seatedtwist:"assets/video/Hani_Seated_Twist_Chair_v3_ES.mp4"}, ES_READY={};   // ES_READY fills only for files that really exist (HEAD check), so no 404s
+  function checkEsVideos(done){var ks=Object.keys(ES_VIDEO_BY_ID),n=ks.length;if(!n){done&&done();return;}ks.forEach(function(k){if(ES_READY[k]){if(--n===0&&done)done();return;}fetch(ES_VIDEO_BY_ID[k],{method:"HEAD"}).then(function(r){if(r.ok&&/video/i.test(r.headers.get("content-type")||""))ES_READY[k]=ES_VIDEO_BY_ID[k];}).catch(function(){}).then(function(){if(--n===0&&done)done();});});}
+  //    // add an English video path here ONLY once its *_ES.mp4 twin exists (avoids 404s)
   var ES_BRIDGES={balloon:"Ahora, la respiración del globo. Una mano en tu pancita.",longout:"Ahora, exhalaciones más largas. El doble de despacio.",box:"Ahora, la respiración en caja. Pareja y tranquila.",ground:"Ahora, conectemos con el suelo. Siente tus pies en el piso."};
   function esCard(f){return (LANG==="es"&&ESD&&f&&ESD.cards[f.name])||null;}
   function tx(f,k){var e=esCard(f);return (e&&e[k]!=null&&e[k]!=="")?e[k]:f[k];}
@@ -483,8 +485,8 @@
   function lineAt(item,i){var L=item.lines[i],e=esCard(item),S=e&&e.steps&&e.steps[i];
     if(!S)return L;
     return {cue:S.cue||L.cue,sub:L.sub?(S.sub||""):(S.sub||""),say:S.say||L.say,hold:L.hold,pose:L.pose};}
-  function videoFor(item){return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
-  function needsEsSoon(item){return LANG==="es"&&!!item.video&&!ES_VIDEOS.has(item.video);}
+  function videoFor(item){if(LANG==="es"&&item.id&&ES_READY[item.id])return ES_READY[item.id];return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
+  function needsEsSoon(item){return LANG==="es"&&!!item.video&&!(item.id&&ES_READY[item.id])&&!ES_VIDEOS.has(item.video);}
   function bridgeText(id,en){if(LANG!=="es")return en;var B=(ESD&&ESD.bridges)||ES_BRIDGES;return B[id]||ES_BRIDGES[id]||en;}
   function mapLbl(m,v){return (LANG==="es"&&ESD&&ESD[m]&&ESD[m][v])?ESD[m][v]:v;}
   function foldStr(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
@@ -1964,9 +1966,9 @@
     var go=function(){ LANG=l; if(persist){try{localStorage.setItem("hani_lang",l);}catch(e){}} applyLangUI(); };
     if(l==="es"&&!ESD){
       fetch(ES_URL).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function(j){ ESD=j; go(); })
+        .then(function(j){ ESD=j; checkEsVideos(go); })
         .catch(function(){ LANG="en"; applyLangUI(); });   // offline or file missing: stay in English, pill shows EN
-    } else go();
+    } else if(l==="es"){ checkEsVideos(go); } else go();
   }
   Array.prototype.forEach.call(langBtns,function(b){ b.addEventListener("click",function(){ setLang(b.getAttribute("data-lang"),true); }); });
   (function(){
