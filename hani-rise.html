@@ -50,6 +50,12 @@
   #finder{position:relative;}
   #dd{display:none;position:absolute;left:50%;transform:translateX(-50%);top:62px;width:min(560px,92vw);max-height:55vh;overflow:auto;background:#fff;border:2px solid var(--teal);border-radius:18px;box-shadow:0 14px 34px -10px rgba(0,0,0,.3);z-index:60;text-align:left;}
   #dd.open{display:block;}
+  #behRow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:12px auto 0;max-width:900px;}
+  #behRow .bl{font-size:13px;font-weight:800;color:#6B4587;letter-spacing:.04em;text-transform:uppercase;margin-right:4px;}
+  #behRow .chip{font-size:13px;padding:6px 12px;}
+  #behRow .chip.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+  #dd .bh{padding:12px 18px;border-bottom:2px solid #E5E9FD;background:#F7F8FF;}
+  #dd .bh b{display:block;color:var(--teal-d);font-size:15px;} #dd .bh span{display:block;font-size:13px;color:var(--charcoal);margin-top:3px;} #dd .bh em{display:block;font-style:normal;font-size:13px;font-weight:700;color:#6B4587;margin-top:6px;}
   #dd .it{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 18px;cursor:pointer;border-bottom:1px solid #E5E9FD;}
   #dd .it:last-child{border-bottom:none;} #dd .it:hover,#dd .it.act{background:var(--cream);}
   #dd .nm{font-weight:700;color:var(--teal-d);font-size:16px;} #dd .tg{font-size:12px;color:#6B4587;font-weight:700;white-space:nowrap;}
@@ -223,6 +229,7 @@
     <div id="finder">
       <div id="searchRow" style="position:relative"><input id="search" type="search" placeholder="🔍 Search tools — angry, worried, focus, sleepy…" autocomplete="off" aria-label="Search tools"></div>
       <div id="dd"></div>
+      <div id="behRow" aria-label="Behavior tools"></div>
     </div>
     <div id="cards"></div>
     
@@ -966,7 +973,7 @@
         {cue:"Notice your muscles.",sub:"Tired is different from wiggly.",say:"Notice how your arms feel now. A little tired is different from wiggly. Tired muscles are calm muscles.",hold:11},
         {cue:"Rest your hands in your lap when you're ready.",sub:"Your body did the work.",say:"Rest your hands in your lap whenever you're ready. Your body just did some real work, and your brain gets to feel calmer because of it.",hold:11}
       ],
-      close:"That's the Heavy Work Reset. Anytime your body feels too wiggly, strong pushing helps it find calm again, no wall required." },
+      close:"That's the Heavy Work Reset. Anytime your body feels too wiggly, strong pushing helps it find calm again, no wall required. Now, back to the task. You've got this." },
 { id:"problem4", img:"hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Problem-Solving Four", tag:"SEL · Relationship Skills · 2 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Four steps for when a problem happens with a friend: Pause, Name it, Think of choices, Try one.",
       intro:"Hi, I'm Hani. Problems with friends happen to everybody, even grown-ups. Today I'll teach you four steps that help almost every time. Let's practice with a problem lots of kids know: someone took your turn.",
@@ -1017,7 +1024,7 @@
         {cue:"Rumble. Space. Cool. Words.",sub:"Say it with me.",say:"Rumble, space, cool, words. Say it with me: rumble, space, cool, words.",hold:29},
         {cue:"You get to choose before you erupt.",sub:"That's real power.",say:"You get to choose before you erupt. That's real power, and it's yours.",hold:26}
       ],
-      close:"That's the Volcano Plan. Every volcano rumbles first. Now you know what to do in that moment." },
+      close:"That's the Volcano Plan. Every volcano rumbles first. Now you know what to do in that moment. Now, back to the task. You've got this." },
 { id:"worrybox", img:"hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Worry Box", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Visualize setting a worry down without pretending it's gone.",
       intro:"Hi, I'm Hani. Worries are heavy to carry around all day. Let's build an imaginary box where you can set one down for a while.",
@@ -1407,7 +1414,7 @@
         {cue:"Do just that one tiny thing.",sub:"See how it feels.",say:"Go ahead and do just that one tiny thing. Notice how it feels once it's done.",hold:29},
         {cue:"Starting is the hardest part, and you just did it.",sub:"",say:"Starting is almost always the hardest part, and you just did it.",hold:26}
       ],
-      close:"That's the Task Starter. One tiny move is all it takes to break the freeze." },
+      close:"That's the Task Starter. One tiny move is all it takes to break the freeze. Now, back to the task. You've got this." },
 { id:"morningbridge", img:"hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Morning Bridge", tag:"SEL · Self-Awareness · 3 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the hard goodbye at drop-off. Builds a mental bridge between home and school so kids feel held in both places. Best as a 1-on-1 or small-group check-in for a specific struggling child, not a whole-class whiteboard activity, since projecting separation anxiety content to a full room can stir up feelings in kids who were otherwise fine.",
       intro:"Hi friends, I'm Hani. Saying goodbye in the morning can feel really hard, even when you know you'll see your grown-up again. Let's build a bridge to help.",
@@ -1432,6 +1439,22 @@
         {cue:"Ready for desk mode.",sub:"You just downshifted on purpose.",say:"You're ready for desk mode now. You just downshifted your whole body on purpose.",hold:27}
       ],
       close:"That's the Recess-to-Desk Reset. A fast body can learn to slow down on command." },
+{ id:"askbeforego", img:"hanuman-kind.jpg", kind:"sel", demo:"desk", name:"Ask Before I Go", tag:"SEL · Self-Management · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
+      blurb:"When your body wants to leave, stop your feet, ask for a break, and come back. A break pass routine for the littlest movers.",
+      intro:"Hi friends, I'm Hani. Sometimes our bodies want to run out of the room. That feeling is okay. Today we practice a safe way to get a break: stop, ask, wait, and come back.",
+      lines:[
+        {cue:"Feel the GO feeling?",sub:"Busy legs. Want to run.",say:"Do you ever get the go feeling? Busy legs, a body that wants to run out the door. Let's notice it.",hold:10},
+        {cue:"Stop your feet.",sub:"Feet flat. Like roots.",say:"First, stop your feet. Press them flat on the floor, like strong tree roots.",hold:10},
+        {cue:"Hand up, or show your break card.",sub:"No words needed.",say:"Next, raise your hand, or hold up your break card. You don't even need words.",hold:10},
+        {cue:"Say: I need a break.",sub:"Quiet voice is fine.",say:"If you can, say it: I need a break. A quiet voice is just fine.",hold:10},
+        {cue:"Wait for the nod.",sub:"Your teacher says yes.",say:"Now wait for your teacher's nod. That nod means yes, go to your calm spot.",hold:10},
+        {cue:"Walk to your calm spot.",sub:"Walking feet. Inside the room.",say:"Walk with slow feet to your calm spot, right inside the room.",hold:10},
+        {cue:"Three slow breaths.",sub:"In through your nose. Out slow.",say:"Take three slow breaths. Breathe in through your nose. Breathe out slow. Again. One more time.",hold:16},
+        {cue:"Squeeze and let go.",sub:"Hands tight, then soft.",say:"Squeeze your hands tight, tight, tight. Now let them go soft.",hold:10},
+        {cue:"Ready? Walk back.",sub:"Same walking feet.",say:"When your body feels calm, walk back to your seat with those same walking feet.",hold:10},
+        {cue:"Back to the task.",sub:"You asked. You came back. That's brave.",say:"Now, back to the task. You asked, you came back, and that's brave.",hold:10}
+      ],
+      close:"That's Ask Before I Go. Stop, ask, wait, and come back. Now, back to the task. You've got this." },
 { id:"sensoryoverload", img:"hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"The Sensory Overload Reset", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"A low-stimulation, purely physical reset for when the room feels too loud, too bright, or too much.",
       intro:"Hi, I'm Hani. Sometimes a room feels like too much, too loud, too bright, too crowded. This one isn't about thinking, it's just about your body. Let's turn the volume down together.",
@@ -1449,7 +1472,7 @@
       intro:"Hi, I'm Hani. Different feelings need different tools, a wiggly feeling and a tired feeling don't get fixed the same way. Let's find your match.",
       lines:[
         {cue:"First, check your energy.",sub:"High and buzzing, or low and heavy?",say:"First, check your energy. Is it high and buzzing, or low and heavy?",hold:26},
-        {cue:"If your energy is HIGH, you need a MOVING strategy.",sub:"Push against a wall, shake it out, big breaths out.",say:"If your energy is high, you need a moving strategy, like pushing against a wall, shaking it out, or big breaths out.",hold:29},
+        {cue:"If your energy is HIGH, you need a MOVING strategy.",sub:"Press your hands together hard, shake it out, big breaths out.",say:"If your energy is high, you need a moving strategy, like pressing your hands together hard, shaking it out, or big breaths out.",hold:29},
         {cue:"If your energy is LOW, you need a WAKING-UP strategy.",sub:"Stretch tall, cold water, stand up and move a little.",say:"If your energy is low, you need a waking-up strategy, like stretching tall, a sip of cold water, or standing up and moving a little.",hold:29},
         {cue:"If your energy is JUST RIGHT but the feeling is big, try a THINKING strategy.",sub:"Name it, talk it out, worry vs. real.",say:"If your energy feels okay but the feeling itself is big, try a thinking strategy, naming it, talking it out, or sorting worry from real.",hold:29},
         {cue:"The trick is matching the tool to the moment.",sub:"Not every tool works for every feeling.",say:"The real trick is matching the tool to the moment. Not every tool works for every feeling, and that's okay.",hold:26},
@@ -1551,7 +1574,7 @@
         {cue:"Asking for what you need isn't weak.",sub:"It's one of the strongest things you can do.",say:"Asking for what you need isn't weak. It's actually one of the strongest things a person can do.",hold:30},
         {cue:"You deserve to have what you need.",sub:"",say:"You deserve to have what you need, and asking is how you get there.",hold:24}
       ],
-      close:"That's the Need Namer. Naming it and asking for it, that's a real skill." },
+      close:"That's the Need Namer. Naming it and asking for it, that's a real skill. Now, back to the task. You've got this." },
 { id:"independencespark", img:"hanuman-calm.jpg", kind:"sel", demo:"desk", name:"The Independence Spark", tag:"SEL · Self-Management · 3 min", audience:"PreK3-K", src:"HudsonSeed",
       blurb:"A morning \"I can do it myself\" menu of tiny self-start actions: coat, materials, seat.",
       intro:"Hi friends, I'm Hani. Every morning, there are little things you can do all by yourself. Let's find your spark.",
@@ -1855,6 +1878,10 @@
   }
   /* ---- concept search: plain teacher language -> best-fit cards (OR match, ranked) ---- */
   var CONCEPTS=[
+   // Behavior terms from Great Oaks Legacy (Amnah, 9/18): weighted x3 so the school's own words win over single-word matches.
+   ["shut ?down|shuts? down|shutting down|freez|withdraw|won.?t (talk|speak|answer|look up)|head down|non.?verbal|goes? quiet|disengag|checks? out|won.?t respond",["The Sensory Overload Reset","My Cozy Place","Body Detective","The Need Namer","5-4-3-2-1 Grounding"],3],
+   ["elop|runs? (out|away)|running (out|away)|ran (out|away)|left the (room|class)|leav(e|es|ing) the (room|class|area)|walk(s|ed)? out|bolt|wander|out of the room|runner",["Recess-to-Desk Reset","Ask Before I Go","Heavy Work Reset","My Trigger Tracker","The Volcano Plan","Mountain Pose","Standing Side Stretch","Chair Pose"],3],
+   ["escape|avoid|get out of (work|it|the task|doing)|won.?t (start|do|work|begin)|refus(e|es|al|ing)? (to )?(do|work|start|begin|write|read|join)|task refus|^refus(e|es|ing|al)?$|delay",["The Task Starter","The Need Namer","The Volcano Plan","Growth Mindset: The Word YET","Heavy Work Reset","The Strategy Matchmaker"],3],
    ["angr|anger|\\bmad\\b|rage|temper|punch|\\bhit|kick|fight|aggress|violen|explod|outburst|meltdown|tantrum|yell|scream|throw|lashes? out|blow up",["Volcano Breath","The Volcano Plan","Lion's Breath","Size of the Problem vs. Size of the Reaction","My Trigger Tracker","Long Breath Out","Name It to Tame It","The Repair Kit","Saying Sorry and Meaning It"]],
    ["anxi|worr|nervous|scared|fear|panic|stress|overwhelm|stomach|headache|butterfl|ptsd|trauma|on edge|jittery",["5-4-3-2-1 Grounding","The Worry Box","Worry vs. Real","Balloon Breath","Box Breath","Ocean Breath","Body Scan","The Letting-Go Leaf","Peaceful Place","Name It to Tame It"]],
    ["test|exam|quiz|assessment|state test|nervous before",["Test Day Calm-Down","Box Breath","Star Breath","Confidence Builder","Worry vs. Real","Candle Breath"]],
@@ -1866,7 +1893,7 @@
    ["confiden|self.?esteem|shy|brave|courage|speak up|afraid to (speak|ask)|too quiet|so quiet|quiet (kid|voice|student)|insecure|doubt|put.?down|negative self|can.?t do",["Confidence Builder","My Brave Voice","Kind Words to Myself","Strengths Spotlight","Superhero Strength","Brave Enough to Ask","Growth Mindset: The Word YET","Mountain Pose"]],
    ["bull|mean|tease|teasing|exclud|left out|nobody|friend|clique|rumor|gossip|drama|peer pressure",["Bullying Bystander Power Moves","The Friendly No","My Brave Voice","Include Someone New","In Their Shoes","The Repair Kit","The I-Statement Builder","The Personal Bubble","Peer Pressure Pause Button"]],
    ["jealous|envy|compar|not fair|unfair",["Gratitude Three","Strengths Spotlight","Different, Not Less","The Fairness Check","Community Helper Gratitude","Name It to Tame It"]],
-   ["disrespect|defian|oppositional|refus|won.?t listen|talks? back|argu|rules|authority|boundar|power struggle|no one tells",["Rules Have Reasons","The I-Statement Builder","The Need Namer","The Independence Spark","The Fairness Check","Our Classroom Charter","The Strategy Matchmaker","Name It to Tame It"]],
+   ["disrespect|defian|oppositional|\\bodd\\b|refus|won.?t listen|talks? back|argu|rules|authority|boundar|power struggle|no one tells",["Rules Have Reasons","The I-Statement Builder","The Need Namer","The Independence Spark","The Fairness Check","Our Classroom Charter","The Strategy Matchmaker","Name It to Tame It"]],
    ["lie|lying|honest|steal|cheat|blam|excuse|sorry|apolog",["Saying Sorry and Meaning It","The Repair Kit","My Values Compass","The Fairness Check","Brave Enough to Ask","In Their Shoes"]],
    ["sensory|autis|overload|noise|loud|texture|overstim|sound",["The Sensory Overload Reset","Heavy Work Reset","5-4-3-2-1 Grounding","Ocean Breath","Bee Breath","My Cozy Place","Body Scan"]],
    ["transition|recess|lunch|gym|come back|settle|reset|change|new (teacher|school|class)|switch",["Recess-to-Desk Reset","The Reset","The Big Change Map","The Plan B Switch","The Morning Bridge","Balloon Breath"]],
@@ -1877,14 +1904,17 @@
    ["screen|phone|tablet|game|social media|tiktok|youtube|group chat|text",["Digital Drain Reflection","The Group Chat Pause","Peer Pressure Pause Button","Focus Fuel Gauge"]],
    ["neck|back ?(ache|pain|hurt)|shoulder|wrist|sore|tight|ache|posture|slouch|stiff|desk",["Slow Neck Circles","Shoulder Rolls","Wrist & Finger Stretches","Seated Side Bend","Seated Cat-Cow","Gentle Seated Twist"]],
    ["calm|regulat|settle|relax|breath|breathe|de.?escalat|cool down|chill",["Balloon Breath","Long Breath Out","Box Breath","Ocean Breath","Candle Breath","Star Breath","Hot Cocoa Breath"]],
-   ["feeling|emotion|upset|big feeling|mood|name (it|the)|identify|angry or sad",["Name It to Tame It","Big Feeling Detective","Emotion Weather Report","Facial Feelings Detective","The Need Namer","Body Detective"]]
+   ["feeling|emotion|\\beri\\b|regulation impair|upset|big feeling|mood|name (it|the)|identify|angry or sad",["Name It to Tame It","Big Feeling Detective","Emotion Weather Report","Facial Feelings Detective","The Need Namer","Body Detective"]]
   ];
-  var CONCEPT_RX=CONCEPTS.map(function(c){return [new RegExp(c[0],"i"),c[1]];});
+  var CONCEPT_RX=CONCEPTS.map(function(c){return [new RegExp(c[0],"i"),c[1],c[2]||1];});
   var FALLBACK=["Balloon Breath","5-4-3-2-1 Grounding","Name It to Tame It","Box Breath","Big Feeling Detective"];
   var STOP=/^(the|and|for|with|too|can|can't|can’t|cant|cannot|has|have|get|gets|kid|kids|scholar|scholars|student|students|who|are|is|a|an|to|of|in|on|my|his|her|she|he|they|them|that|this|when|every|always|keeps|keep|really|very|how|do|does|did|help|helps|need|needs|want|wants|class|room|one)$/;
   /* ---- Spanish search (runs only when ES is on; input is accent-folded lowercase) ---- */
   var ES_STOP=/^(el|la|los|las|un|una|unos|unas|de|del|al|en|y|o|que|se|le|les|lo|su|sus|muy|mi|mis|es|esta|estan|son|ser|nino|nina|ninos|ninas|alumno|alumna|alumnos|alumnas|estudiante|estudiantes|clase|necesita|necesito|ayuda|ayudar|puede|pueden|para|por|con|como|cada|mas|todo|todos|tiene|tienen|hace|hacen|otros|otras|otro|otra|cuando|siempre|sin|sobre|entre|pero|porque|cuando|donde|quiere|quieren|tambien|hay|tengo|tiene|vez|dia|dias|hora|a)$/;
   var ES_RULES=[
+   ["shut ?down","se bloquea|bloquead|se cierra|se apaga|no habla|no contesta|se congela|se paraliza|retraid|se aisla|cabeza (abajo|agachada)|no responde"],
+   ["elop","se (sale|va|escapa|fuga) del (salon|aula|clase)|sale corriendo|se va sin permiso|se escapa|fuga|abandona el salon|deambula"],
+   ["escape|avoid","evita|evade|no quiere (empezar|trabajar|hacer)|se niega|rehusa|para no trabajar|escapar de la tarea|retras"],
    ["angr|anger","enoj|enfad|furi|rabia|coraje|berrinche|grit|golpe|pega(r|n)?\\b|pelea|muerde|patea|explot|agresiv|se le sale"],
    ["anxi|worr","ansi|nervios|preocup|miedo|asustad|panico|estres|agobi|angusti|simulacro|dolor de (panza|estomago|cabeza)"],
    ["test|exam","examen|prueba|quiz|evaluacion|nervios(o|a)? (antes|por) (el|la) (examen|prueba)"],
@@ -1912,8 +1942,8 @@
     q=norm(q).trim(); var score=new Map(), any=false;
     if(LANG==="en") q=q.replace(/\bcan not\b/g," ");
     if(!q) return {list:allCards.slice(),exact:true};
-    CONCEPT_RX.forEach(function(c){ if(c[0].test(q)){ any=true; c[1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(c[1].length-i)); }); } });
-    if(LANG==="es") ES_RULES.forEach(function(r){ if(r.rx.test(q)){ any=true; CONCEPTS[r.i][1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(CONCEPTS[r.i][1].length-i)); }); } });
+    CONCEPT_RX.forEach(function(c){ if(c[0].test(q)){ any=true; c[1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(c[1].length-i)*c[2]); }); } });
+    if(LANG==="es") ES_RULES.forEach(function(r){ if(r.rx.test(q)){ any=true; CONCEPTS[r.i][1].forEach(function(nm,i){ score.set(nm,(score.get(nm)||0)+(CONCEPTS[r.i][1].length-i)*(CONCEPTS[r.i][2]||1)); }); } });
     var words=q.split(/[^a-z0-9'’]+/).filter(function(w){return w.length>2&&!STOP.test(w)&&!(LANG==="es"&&ES_STOP.test(w));});
     allCards.forEach(function(c){ var s=0,nm=c.name; words.forEach(function(w){ var st=w.length>4?w.slice(0,w.length-1):w; if(norm(nm).indexOf(st)>=0||(c.dn&&c.dn.indexOf(st)>=0)) s+=6; else if(c.blob.indexOf(st)>=0) s+=2; }); if(s){ any=true; score.set(nm,(score.get(nm)||0)+s); } });
     var list=allCards.filter(function(c){return score.has(c.name);}).sort(function(a,b){return score.get(b.name)-score.get(a.name)||((b.video?1:0)-(a.video?1:0));}).slice(0,8);
@@ -1921,7 +1951,7 @@
     return {list:list,exact:true};
   }
   function renderDD(){
-    var res=rankCards(qEl.value), list=res.list; dd.innerHTML="";
+    var res=rankCards(qEl.value), list=res.list; dd.innerHTML=""; dd.style.top="";
     if(!res.exact){ dd.innerHTML="<div class='none'>"+UI("dropdown_fallback","No exact match. Here are good starting points:")+"</div>"; }
     list.forEach(function(c){ var d=document.createElement("div"); d.className="it";
       d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+(c.video?" · 🎬":"")+"</span>";
@@ -1930,6 +1960,32 @@
   }
   qEl.addEventListener("input",renderDD); qEl.addEventListener("focus",renderDD);
   qEl.addEventListener("blur",function(){setTimeout(function(){dd.className="";},150);});
+  /* ---- behavior chips: Great Oaks Legacy terms (Amnah, 9/18) -> best tools. Branch only, pending school review. ---- */
+  var BEHAVIORS=[
+    {en:"Task avoidance",es:"Evita la tarea",d:"The scholar tries to delay, escape, or avoid a task.",ds:"El alumno intenta retrasar, escapar o evitar una tarea.",t:["The Task Starter","Growth Mindset: The Word YET","The Strategy Matchmaker"]},
+    {en:"Task refusal",es:"Se niega a la tarea",d:"The scholar does not begin or continue a requested task.",ds:"El alumno no empieza o no continúa una tarea pedida.",t:["The Need Namer","The Task Starter","The Independence Spark"]},
+    {en:"Escape behavior",es:"Conducta de escape",d:"Behavior that gets the scholar out of a demand.",ds:"Conducta que saca al alumno de una exigencia.",tip:"Run the tool, then return to the same task.",tips:"Usa la herramienta y luego regresa a la misma tarea.",t:["The Volcano Plan","The Need Namer","Heavy Work Reset"]},
+    {en:"Shutdown / withdrawal",es:"Se cierra / se retrae",d:"Goes quiet, freezes, or can't engage when overwhelmed.",ds:"Se queda callado, se congela o no puede participar cuando está abrumado.",tip:"Start with no-talking tools. Ask questions later.",tips:"Empieza con herramientas sin hablar. Las preguntas, después.",t:["The Sensory Overload Reset","My Cozy Place","Body Detective"]},
+    {en:"Elopement",es:"Se sale del salón",d:"Leaves an assigned or supervised area without permission.",ds:"Sale de un área asignada o supervisada sin permiso.",tip:"Teach the safe way to ask for a break.",tips:"Enseña la forma segura de pedir un descanso.",t:["Ask Before I Go","Recess-to-Desk Reset","Heavy Work Reset","Mountain Pose","Standing Side Stretch","Chair Pose"]}
+  ];
+  var behRow=document.getElementById("behRow"), behOn=-1;
+  function showBeh(i){
+    var B=BEHAVIORS[i], es=(LANG==="es"); dd.innerHTML="";
+    var h=document.createElement("div"); h.className="bh"; h.innerHTML="<b>"+(es?B.es:B.en)+"</b><span>"+(es?B.ds:B.d)+"</span>"+(B.tip?"<em>"+(es?B.tips:B.tip)+"</em>":""); dd.appendChild(h);
+    B.t.forEach(function(nm){ var c=null; allCards.forEach(function(x){ if(x.name===nm) c=x; }); if(!c) return;
+      var d=document.createElement("div"); d.className="it";
+      d.innerHTML="<span class='nm'>"+c.el.querySelector("h3").textContent+"</span><span class='tg'>"+c.el.querySelector(".tag").textContent+"</span>";
+      d.onclick=function(){ dd.className=""; behOn=-1; renderBehRow(); c.el.click(); }; dd.appendChild(d); });
+    dd.style.top=(behRow.offsetTop+behRow.offsetHeight+8)+"px"; dd.className="open";
+  }
+  function renderBehRow(){
+    if(!behRow) return; var es=(LANG==="es"); behRow.innerHTML="<span class='bl'>"+(es?"Conductas:":"Behaviors:")+"</span>";
+    BEHAVIORS.forEach(function(B,i){ var b=document.createElement("button"); b.type="button"; b.className="chip"+(behOn===i?" on":""); b.textContent=es?B.es:B.en;
+      b.onclick=function(ev){ ev.stopPropagation(); behOn=(behOn===i)?-1:i; renderBehRow(); if(behOn<0){ dd.className=""; } else showBeh(i); }; behRow.appendChild(b); });
+  }
+  document.addEventListener("click",function(ev){ if(behOn>=0&&!dd.contains(ev.target)&&!(behRow&&behRow.contains(ev.target))){ behOn=-1; renderBehRow(); dd.className=""; } });
+  qEl.addEventListener("focus",function(){ if(behOn>=0){ behOn=-1; renderBehRow(); } });
+  renderBehRow();
   qEl.addEventListener("keydown",function(e){ if(e.key==="Enter"){ var f=dd.querySelector(".it"); if(f) f.click(); } if(e.key==="Escape"){dd.className="";qEl.blur();} });
   var capBtn=document.getElementById("capToggle"), capsOn=true;
   try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
@@ -1954,7 +2010,7 @@
   var esSoonEl=document.getElementById("esSoon"), langBtns=document.querySelectorAll("#langPill button");
   function setEsSoon(item){ if(esSoonEl) esSoonEl.hidden=!(item&&needsEsSoon(item)); }
   function applyLangUI(){
-    document.documentElement.lang=LANG;
+    document.documentElement.lang=LANG; if(typeof renderBehRow==="function") renderBehRow();
     var bn=document.getElementById("betaNote"); if(bn) bn.hidden=(LANG!=="es");
     var br=document.getElementById("brand");
     if(br) br.innerHTML=(LANG==="es"&&ESD&&ESD.ui&&ESD.ui.brand)?"HudsonSeed · <b>Hani</b> "+ESD.ui.brand.replace(/^Hani\s*·\s*/,""):"HudsonSeed · <b>Hani</b> R.I.S.E. Board";
