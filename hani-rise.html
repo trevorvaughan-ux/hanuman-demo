@@ -826,7 +826,7 @@
         {cue:"Lower down and switch to the other foot.",sub:"",say:"Lower your foot back down, and try the other side.",hold:25}
       ],
       close:"That's Tree Pose. Even the strongest trees wobble sometimes, that's how they get stronger roots." },
-{ id:"mountainpose", kind:"chair", demo:"desk", img:"assets/img/hanuman-desk-calm.jpg", name:"Mountain Pose", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
+{ id:"mountainpose", kind:"chair", noHani:true, name:"Mountain Pose", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Stand tall and strong like a mountain. The foundation pose for everything else.",
       intro:"Hi, I'm Hani. Mountain Pose looks simple, just standing, but it's about feeling strong and grounded on purpose.",
       lines:[
@@ -838,7 +838,7 @@
         {cue:"Notice how strong and calm this feels.",sub:"",say:"Notice how strong and calm just standing tall can feel.",hold:28}
       ],
       close:"That's Mountain Pose. Simple, strong, and always there when you need to feel steady." },
-{ id:"chairpose", kind:"chair", demo:"desk", img:"assets/img/hanuman-desk-calm.jpg", name:"Chair Pose", tag:"Standing yoga · 3 min", audience:"2nd-6th", src:"HudsonSeed",
+{ id:"chairpose", kind:"chair", noHani:true, name:"Chair Pose", tag:"Standing yoga · 3 min", audience:"2nd-6th", src:"HudsonSeed",
       blurb:"Bend your knees like you're sitting in an invisible chair. Builds real leg strength.",
       intro:"Hi, I'm Hani. Chair Pose is funny because you're basically pretending to sit down without an actual chair. Let's build some strong legs.",
       lines:[
@@ -862,7 +862,7 @@
         {cue:"Slowly roll back up, one bone at a time.",sub:"Head comes up last, always.",say:"Slowly roll back up, one bone at a time, with your head coming up last, always.",hold:35}
       ],
       close:"That's Standing Forward Fold. A big, satisfying stretch for the whole back of your body." },
-{ id:"standingsidestretch", kind:"chair", demo:"desk", img:"assets/img/hanuman-desk-calm.jpg", name:"Standing Side Stretch", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
+{ id:"standingsidestretch", kind:"chair", noHani:true, name:"Standing Side Stretch", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Reach one arm up and over for a full standing side stretch.",
       intro:"Hi, I'm Hani. Let's open up the whole side of your body, standing tall this time.",
       lines:[
@@ -1800,7 +1800,7 @@
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=tx(item,"intro"); sub.textContent="";
-    if(item.video){ showHaniVideo(videoFor(item)); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
+    if(item.video){ showHaniVideo(videoFor(item)); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow(); if(item.noHani) monkeyWrap.style.display="none";}
     setEsSoon(item);
     var delay=Math.min(8000,Math.max(3500,tx(item,"intro").length*55));
     medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
@@ -1992,7 +1992,8 @@
   function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?UI("captions_on","💬 captions on"):UI("captions_off","💬 captions off"); capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
   capBtn.onclick=function(){capsOn=!capsOn;setCaps();}; setCaps();
   // Standing/floor-pose cards hidden until each has a real matching Hani video (no seated still on a standing pose).
-  var HIDE_IDS={treepose:1,mountainpose:1,chairpose:1,standingfold:1,standingsidestretch:1,standingcatcow:1,airplanepose:1};
+  var HIDE_IDS={treepose:1,standingfold:1,standingcatcow:1,airplanepose:1};
+  // Mountain, Standing Side Stretch and Chair stay as guided (no video, no seated image): promised to Great Oaks 9/21 as elopement movement redirects.
   function visible(f){ return !HIDE_IDS[f.id]; }
   function buildAll(){
     cards.innerHTML=""; allCards=[];
