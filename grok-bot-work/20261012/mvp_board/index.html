@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hani R.I.S.E. Mini Board (Beta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--indigo:#171D3A;--orchid:#F598FF;--mist:#E5E9FD;--peri:#94ABF9;--violet:#805A9C}
+*{box-sizing:border-box}body{margin:0;background:var(--indigo);color:var(--mist);font-family:'DM Sans',system-ui,sans-serif}
+header{padding:32px 20px 8px;max-width:1200px;margin:auto}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,6vw,46px);margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.beta{font-family:'DM Sans';font-size:13px;font-weight:700;letter-spacing:.12em;background:var(--orchid);color:var(--indigo);padding:4px 10px;border-radius:999px}
+.sub{color:var(--peri);margin:8px 0 0}
+.chips{display:flex;gap:8px;margin:20px 0 4px}
+.chip{font:inherit;font-weight:500;border:1.5px solid var(--peri);background:transparent;color:var(--mist);padding:8px 18px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--peri);color:var(--indigo)}
+main{max-width:1200px;margin:auto;padding:12px 20px 48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;justify-content:flex-start;background:#20284d;border:1px solid #2c3566;border-radius:16px;overflow:hidden;cursor:pointer;text-align:left;color:inherit;font:inherit;padding:0;transition:transform .15s,border-color .15s}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--orchid);outline:none}
+.thumb{position:relative;width:100%;aspect-ratio:16/9;background:#000}.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.dur{position:absolute;right:8px;bottom:8px;background:rgba(23,29,58,.85);font-size:12px;padding:2px 8px;border-radius:6px}
+.play{position:absolute;inset:0;margin:auto;width:52px;height:52px;border-radius:50%;background:rgba(245,152,255,.92);display:grid;place-items:center}
+.play:after{content:"";border-left:16px solid var(--indigo);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.body{padding:14px 16px 18px}.cat{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orchid)}
+.cat.sel{color:var(--peri)}h2{font-family:'Playfair Display',serif;font-size:21px;margin:4px 0 6px}.desc{margin:0;font-size:14.5px;line-height:1.45;color:#c9cff0}
+dialog{border:none;padding:0;background:var(--indigo);color:var(--mist);border-radius:16px;width:min(960px,94vw);box-shadow:0 0 0 2px var(--violet)}
+dialog::backdrop{background:rgba(10,12,28,.85)}dialog video{width:100%;display:block;background:#000;aspect-ratio:16/9}
+.dbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;gap:12px}.dbar h3{margin:0;font-family:'Playfair Display',serif;font-size:20px}
+.close{font:inherit;background:var(--violet);color:#fff;border:0;border-radius:999px;padding:6px 16px;cursor:pointer}
+footer{text-align:center;color:var(--peri);font-size:13px;padding:0 20px 32px}
+</style></head><body>
+<header><h1>Hani R.I.S.E. Mini Board <span class="beta">BETA</span></h1>
+<p class="sub">Short guided yoga and SEL videos with Hani, ready for your classroom. Captions are built in.</p>
+<nav class="chips" aria-label="Filter"><button class="chip" data-f="all" aria-pressed="true">All</button><button class="chip" data-f="Yoga" aria-pressed="false">Yoga</button><button class="chip" data-f="SEL" aria-pressed="false">SEL</button></nav></header>
+<main id="grid"></main>
+<footer>HudsonSeed · Beta preview</footer>
+<dialog id="dlg"><video id="vid" controls playsinline preload="metadata"></video><div class="dbar"><h3 id="dt"></h3><button class="close" id="cl">Close</button></div></dialog>
+<script>
+const V=[
+["triangle","Triangle Pose","Yoga","Hani steps wide, reaches long to the side and breathes in Triangle, with a bridge fun fact."],
+["warrior2","Warrior 2","Yoga","Arms long like wings, eyes over the front hand: Hani holds Warrior 2 for three big breaths."],
+["goddess","Goddess Pose","Yoga","Wide squat with cactus arms; kids breathe into strong legs and relaxed shoulders."],
+["star","Star Pose","Yoga","Jump the feet wide, reach fingers far into a star, then jump the feet back together."],
+["crab","Crab Pose","Yoga","Hands behind, lift the hips into a tabletop crab and breathe, then gently sit back down."],
+["camel","Camel Pose","Yoga","Kneeling with hands on the lower back, Hani lifts the chest toward the sky for a big, open heart."],
+["butterfly","Butterfly Pose","Yoga","Sit tall, hold the feet and flap the knees like wings while breathing slowly."],
+["panini","Panini Pose","Yoga","Sit with legs out long, stretch up tall, then fold forward over the legs for a cozy breath."],
+["sunrise","Sunrise, Sunset, Horizon","Yoga","Stand tall, fold down, lift to a flat-back horizon and fold again, linking breath to movement."],
+["seated_fold","Seated Wide-Angle Fold","Yoga","Sit with legs wide apart and walk the hands forward into a calm fold."],
+["standing_fold","Standing Wide-Legged Fold","Yoga","Step the feet wide and fold forward with hands to the floor for calm breaths."],
+["name_it","Name It to Tame It","SEL","Seated on a chair, Hani guides a body check-in, naming the feeling and one slow breath."],
+["volcano","The Volcano Plan","SEL","A seated, step-by-step plan for big feelings: notice the rumble, step back, use your words."]];
+const D={};const g=document.getElementById('grid'),dlg=document.getElementById('dlg'),vid=document.getElementById('vid');
+const fmt=s=>Math.floor(s/60)+':'+String(Math.round(s%60)).padStart(2,'0');
+V.forEach(([k,t,c,d])=>{const b=document.createElement('button');b.className='card';b.dataset.cat=c;b.dataset.key=k;
+b.innerHTML=`<div class="thumb"><img src="posters/${k}.jpg" alt="" loading="lazy"><span class="play"></span><span class="dur" data-d="${k}"></span></div><div class="body"><div class="cat ${c==='SEL'?'sel':''}">${c}</div><h2>${t}</h2><p class="desc">${d}</p></div>`;
+b.setAttribute('aria-label',`Play ${t} (${c})`);b.onclick=()=>{vid.src=`videos/${k}.mp4`;document.getElementById('dt').textContent=t;dlg.showModal();vid.play().catch(()=>{});};g.appendChild(b);});
+fetch('durations.json').then(r=>r.json()).then(j=>{for(const k in j){const e=document.querySelector(`[data-d="${k}"]`);if(e)e.textContent=fmt(j[k]);}}).catch(()=>{});
+document.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===ch));
+const f=ch.dataset.f;document.querySelectorAll('.card').forEach(c=>c.hidden=!(f==='all'||c.dataset.cat===f));});
+const close=()=>dlg.close();document.getElementById('cl').onclick=close;dlg.addEventListener('close',()=>{vid.pause();vid.removeAttribute('src');vid.load();});
+dlg.addEventListener('click',e=>{if(e.target===dlg)close();});
+</script></body></html>
