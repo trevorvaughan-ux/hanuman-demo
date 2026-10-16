@@ -1,0 +1,1079 @@
+{
+ "version": 1,
+ "tiles": [
+  {
+   "id": "goddess",
+   "name": {
+    "en": "Goddess Pose",
+    "es": "Postura de la Diosa"
+   },
+   "audience": {
+    "en": "All ages",
+    "es": "Todas las edades"
+   },
+   "tag": {
+    "en": "Yoga · 1 min",
+    "es": "Yoga · 1 min"
+   },
+   "blurb": {
+    "en": "Wide, strong and steady, with cactus arms.",
+    "es": "Ancha, fuerte y firme, con brazos de cactus."
+   },
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. Let's try this pose together.",
+    "es": "Hola, soy Hani. Probemos esta postura juntos."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Step your feet wide.",
+      "sub": "Turn your toes out a little."
+     },
+     "es": {
+      "cue": "Separa bien los pies.",
+      "sub": "Gira un poco los dedos hacia afuera."
+     }
+    },
+    {
+     "en": {
+      "cue": "Bend your knees, like sitting on a little chair.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Dobla las rodillas, como si te sentaras en una sillita.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Make cactus arms.",
+      "sub": "Elbows bent, hands up."
+     },
+     "es": {
+      "cue": "Haz brazos de cactus.",
+      "sub": "Codos doblados, manos arriba."
+     }
+    },
+    {
+     "en": {
+      "cue": "Breathe in. Breathe out. Strong and calm.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Inhala. Exhala. Fuerte y tranquilo.",
+      "sub": ""
+     }
+    }
+   ],
+   "video": {
+    "en": "assets/video/mvp/Hani_Goddess_Pose_v1.mp4",
+    "es": "assets/video/mvp/Hani_Goddess_Pose_v1_ES.mp4"
+   },
+   "draftText": true,
+   "order": 1,
+   "poster": "hanuman-kind.jpg"
+  },
+  {
+   "id": "star",
+   "name": {
+    "en": "Star Pose",
+    "es": "Postura de la Estrella"
+   },
+   "audience": {
+    "en": "All ages",
+    "es": "Todas las edades"
+   },
+   "tag": {
+    "en": "Yoga · 1 min",
+    "es": "Yoga · 1 min"
+   },
+   "blurb": {
+    "en": "Reach out wide and shine like a star.",
+    "es": "Estira los brazos y brilla como una estrella."
+   },
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. Let's try this pose together.",
+    "es": "Hola, soy Hani. Probemos esta postura juntos."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Feet wide, arms wide.",
+      "sub": "Make a big star shape."
+     },
+     "es": {
+      "cue": "Pies separados, brazos abiertos.",
+      "sub": "Haz una estrella grande."
+     }
+    },
+    {
+     "en": {
+      "cue": "Reach all the way to your fingertips.",
+      "sub": "Spread your fingers and toes."
+     },
+     "es": {
+      "cue": "Estira hasta la punta de los dedos.",
+      "sub": "Abre los dedos de las manos y los pies."
+     }
+    },
+    {
+     "en": {
+      "cue": "Take a big breath. Shine!",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Respira hondo. ¡Brilla!",
+      "sub": ""
+     }
+    }
+   ],
+   "video": {
+    "en": "assets/video/mvp/Hani_Star_Pose_v1.mp4",
+    "es": "assets/video/mvp/Hani_Star_Pose_v1_ES.mp4"
+   },
+   "draftText": true,
+   "order": 2,
+   "poster": "hanuman-smiling.jpg"
+  },
+  {
+   "id": "warrior2",
+   "name": {
+    "en": "Warrior 2",
+    "es": "Guerrero 2"
+   },
+   "audience": {
+    "en": "All ages",
+    "es": "Todas las edades"
+   },
+   "tag": {
+    "en": "Yoga · 2 min",
+    "es": "Yoga · 2 min"
+   },
+   "blurb": {
+    "en": "Strong legs, long arms, steady eyes.",
+    "es": "Piernas fuertes, brazos largos, mirada firme."
+   },
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. Let's try this pose together.",
+    "es": "Hola, soy Hani. Probemos esta postura juntos."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Step your feet wide.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Separa bien los pies.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Bend your front knee.",
+      "sub": "Keep your back leg strong."
+     },
+     "es": {
+      "cue": "Dobla la rodilla de adelante.",
+      "sub": "Mantén fuerte la pierna de atrás."
+     }
+    },
+    {
+     "en": {
+      "cue": "Stretch your arms long, one front, one back.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Estira los brazos largos, uno adelante y otro atrás.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Look past your front fingers. Breathe.",
+      "sub": "Strong like a warrior."
+     },
+     "es": {
+      "cue": "Mira más allá de los dedos de adelante. Respira.",
+      "sub": "Fuerte como un guerrero."
+     }
+    }
+   ],
+   "video": {
+    "en": "assets/video/mvp/Hani_Warrior_2_v2_WILD.mp4",
+    "es": "assets/video/mvp/Hani_Warrior_2_v2_WILD_ES.mp4"
+   },
+   "draftText": true,
+   "order": 3,
+   "poster": "hanuman-surprised.jpg"
+  },
+  {
+   "id": "triangle",
+   "name": {
+    "en": "Triangle Pose",
+    "es": "Postura del Triángulo"
+   },
+   "audience": {
+    "en": "All ages",
+    "es": "Todas las edades"
+   },
+   "tag": {
+    "en": "Yoga · 1.5 min",
+    "es": "Yoga · 1.5 min"
+   },
+   "blurb": {
+    "en": "One hand down, one hand up, chest open.",
+    "es": "Una mano abajo, una arriba, pecho abierto."
+   },
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. Let's try this pose together.",
+    "es": "Hola, soy Hani. Probemos esta postura juntos."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Feet wide.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Pies separados.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Reach one arm down toward your leg, the other up to the sky.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Baja un brazo hacia tu pierna y sube el otro al cielo.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Keep your chest open. Breathe.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Mantén el pecho abierto. Respira.",
+      "sub": ""
+     }
+    }
+   ],
+   "video": {
+    "en": "assets/video/Hanuman_Triangle_Pose_Classroom_FINAL.mp4",
+    "es": null
+   },
+   "draftText": true,
+   "order": 4,
+   "poster": "assets/img/triangle-pose-classroom-thumb.jpg"
+  },
+  {
+   "id": "nameit",
+   "name": {
+    "en": "Name It to Tame It",
+    "es": "Nómbralo para Calmarlo"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "SEL · Self-Awareness · 2 min",
+    "es": "SEL · Autoconocimiento · 2 min"
+   },
+   "blurb": {
+    "en": "Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
+    "es": "Encuentra la sensación, dale un nombre, mira cómo se hace más pequeño. Los grandes sentimientos se encogen cuando los llamamos."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Sit tall. One slow breath.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Siéntate derecho. Una respiración lenta.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Check inside. What's there?",
+      "sub": "Like checking the weather."
+     },
+     "es": {
+      "cue": "Comprueba adentro. ¿Qué hay ahí?",
+      "sub": "Como revisar el clima."
+     }
+    },
+    {
+     "en": {
+      "cue": "Find where it lives in your body.",
+      "sub": "Belly? Chest? Shoulders? Head?"
+     },
+     "es": {
+      "cue": "Encuentra dónde vive en tu cuerpo.",
+      "sub": "¿Pancita? ¿Pecho? ¿Hombros? ¿Cabeza?"
+     }
+    },
+    {
+     "en": {
+      "cue": "Now give it a name.",
+      "sub": "Mad. Sad. Worried. Excited. Tired. Happy."
+     },
+     "es": {
+      "cue": "Ahora dale un nombre.",
+      "sub": "Enojado. Triste. Preocupado. Emocionado. Cansado. Feliz."
+     }
+    },
+    {
+     "en": {
+      "cue": "Say hi to it.",
+      "sub": "\"I see you, worried.\""
+     },
+     "es": {
+      "cue": "Salúdalo.",
+      "sub": "\"Te veo, preocupación.\""
+     }
+    },
+    {
+     "en": {
+      "cue": "Breathe in. Make room for it.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Inhala. Haz espacio para ello.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Breathe out. Let it get smaller.",
+      "sub": "Named feelings shrink."
+     },
+     "es": {
+      "cue": "Exhala. Deja que se haga más pequeño.",
+      "sub": "Los sentimientos con nombre se encogen."
+     }
+    },
+    {
+     "en": {
+      "cue": "You're the sky. Feelings are the weather.",
+      "sub": "Weather always passes."
+     },
+     "es": {
+      "cue": "Tú eres el cielo. Los sentimientos son el clima.",
+      "sub": "El clima siempre pasa."
+     }
+    },
+    {
+     "en": {
+      "cue": "One more breath. You did it.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Una respiración más. Lo hiciste.",
+      "sub": ""
+     }
+    }
+   ],
+   "character": "Hani",
+   "intro": {
+    "en": "Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
+    "es": "Hola, soy Hani. A veces una sensación se pone grande y fuerte dentro de nosotros. Un secreto: cuando le pones nombre a un sentimiento, se hace más pequeño. Probemos juntos."
+   },
+   "close": {
+    "en": "That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink.",
+    "es": "Ese fue Nómbralo para Calmarlo. Cuando un sentimiento crezca, encuéntralo, ponle nombre y mira cómo se encoge."
+   },
+   "video": {
+    "en": "assets/video/mvp/name_it_to_tame_it_v1.mp4",
+    "es": null
+   },
+   "silent": true,
+   "order": 5,
+   "poster": "hanuman-calm.jpg"
+  },
+  {
+   "id": "volcanoplan",
+   "name": {
+    "en": "The Volcano Plan",
+    "es": "El Plan del Volcán"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "SEL · Self-Management · 3 min",
+    "es": "SEL · Autorregulación · 3 min"
+   },
+   "blurb": {
+    "en": "A four-step anger plan built while calm: notice the rumble, make space, cool with out-breaths, use words.",
+    "es": "Un plan de enojo de cuatro pasos construidos mientras la calma: note el ruido, haga espacio, fresco con las salientes, use palabras."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Step 1: Notice the rumble.",
+      "sub": "Hot face? Fast heart? Tight fists?"
+     },
+     "es": {
+      "cue": "Paso 1: Observe el ruido.",
+      "sub": "¿Cara caliente? ¿Un corazón rápido? ¿Tight fists?"
+     }
+    },
+    {
+     "en": {
+      "cue": "Step 2: Make space.",
+      "sub": "Step back. Ask for a minute."
+     },
+     "es": {
+      "cue": "Paso 2: Hacer espacio.",
+      "sub": "Retrocedan. Pida un minuto."
+     }
+    },
+    {
+     "en": {
+      "cue": "Step 3: Cool it with out-breaths.",
+      "sub": "Long breath out, like a dragon."
+     },
+     "es": {
+      "cue": "Paso 3: Enfriarlo con las afueras.",
+      "sub": "Exhala larga, como un dragón."
+     }
+    },
+    {
+     "en": {
+      "cue": "Step 4: Use your words.",
+      "sub": "When you're ready, not before."
+     },
+     "es": {
+      "cue": "Paso 4: Use sus palabras.",
+      "sub": "Cuando estés listo, no antes."
+     }
+    },
+    {
+     "en": {
+      "cue": "Rumble. Space. Cool. Words.",
+      "sub": "Say it with me."
+     },
+     "es": {
+      "cue": "Rumble. Espacio. Genial. Palabras.",
+      "sub": "Dilo conmigo."
+     }
+    },
+    {
+     "en": {
+      "cue": "You get to choose before you erupt.",
+      "sub": "That's real power."
+     },
+     "es": {
+      "cue": "Puedes elegir antes de que eruptas.",
+      "sub": "Eso es poder real."
+     }
+    }
+   ],
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. Anger is like a volcano. It rumbles before it erupts, and if we notice the rumble early, we get to choose what happens next. Let's build your plan now, while you're calm.",
+    "es": "Hola, soy Hani. La ira es como un volcán. Se retuerce antes de que erupcione, y si notamos el rumor temprano, podemos elegir lo que sucede después. Construyamos tu plan ahora, mientras estás calmado."
+   },
+   "close": {
+    "en": "That's the Volcano Plan. Every volcano rumbles first. Now you know what to do in that moment.",
+    "es": "Ese es el Plan Volcán. Cada volcán se retuerce primero. Ahora sabes qué hacer en ese momento."
+   },
+   "video": {
+    "en": "assets/video/mvp/the_volcano_plan_v1.mp4",
+    "es": null
+   },
+   "silent": true,
+   "order": 6,
+   "poster": "hanuman-angry.jpg"
+  },
+  {
+   "id": "recessreset",
+   "name": {
+    "en": "Recess-to-Desk Reset",
+    "es": "Del Recreo al Pupitre"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "SEL · Self-Management · 3 min",
+    "es": "SEL · Autorregulación · 3 min"
+   },
+   "blurb": {
+    "en": "A fast down-shift from high recess energy to focused classroom energy.",
+    "es": "Un rápido retroceso de alta energía del receso a la energía del aula enfocada."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Notice your fast heart and quick breath.",
+      "sub": "That's leftover recess energy."
+     },
+     "es": {
+      "cue": "Observa su corazón rápido y respiración rápida.",
+      "sub": "Eso es energía de receso sobrante."
+     }
+    },
+    {
+     "en": {
+      "cue": "Three big breaths out, slow and long.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Tres grandes respiraciones, lentas y largas.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Shake your hands out for a second.",
+      "sub": "Let the wiggles go through your fingers."
+     },
+     "es": {
+      "cue": "Saque sus manos por un segundo.",
+      "sub": "Deja que las medias pasen por tus dedos."
+     }
+    },
+    {
+     "en": {
+      "cue": "Feel your feet on the floor.",
+      "sub": "Heavy and still."
+     },
+     "es": {
+      "cue": "Siente los pies en el suelo.",
+      "sub": "Pesado y quieto."
+     }
+    },
+    {
+     "en": {
+      "cue": "Your body is shifting from fast to focused.",
+      "sub": "Both speeds are useful, just at different times."
+     },
+     "es": {
+      "cue": "Su cuerpo está cambiando de rápido a concentrado.",
+      "sub": "Ambas velocidades son útiles, en diferentes momentos."
+     }
+    },
+    {
+     "en": {
+      "cue": "Ready for desk mode.",
+      "sub": "You just downshifted on purpose."
+     },
+     "es": {
+      "cue": "Listo para el modo de escritorio.",
+      "sub": "Acabas de bajar a propósito a propósito."
+     }
+    }
+   ],
+   "character": "Gani",
+   "close": {
+    "en": "That's the Recess-to-Desk Reset. A fast body can learn to slow down on command.",
+    "es": "Es el Recess-to-Desk Reset. Un cuerpo rápido puede aprender a frenar al mando."
+   },
+   "order": 7,
+   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+  },
+  {
+   "id": "grounding54321",
+   "name": {
+    "en": "5-4-3-2-1 Grounding",
+    "es": "Anclaje 5-4-3-2-1"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "SEL · Self-Management · 3 min",
+    "es": "SEL · Autorregulación · 3 min"
+   },
+   "blurb": {
+    "en": "Use your five senses to come back to right here, right now. The worry-brain off switch.",
+    "es": "Usa tus cinco sentidos para volver aquí, ahora mismo. El interruptor de apagado del cerebro de preocupación."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Look around. Find 5 things you can SEE.",
+      "sub": "Count them quietly. Any 5 things."
+     },
+     "es": {
+      "cue": "Mira alrededor. Encuentra 5 cosas que puedes ver.",
+      "sub": "Cuéntalas tranquilamente. Cualquier 5 cosas."
+     }
+    },
+    {
+     "en": {
+      "cue": "Find 4 things you can FEEL.",
+      "sub": "Your chair. Your shirt. The floor. The air."
+     },
+     "es": {
+      "cue": "Encuentra 4 cosas que puedes SENTIR.",
+      "sub": "Tu silla. Tu camisa. El suelo. El aire."
+     }
+    },
+    {
+     "en": {
+      "cue": "Find 3 things you can HEAR.",
+      "sub": "Close ones and far ones."
+     },
+     "es": {
+      "cue": "Encuentra 3 cosas que puedes oír.",
+      "sub": "Cercanos y lejanos."
+     }
+    },
+    {
+     "en": {
+      "cue": "Find 2 things you can SMELL.",
+      "sub": "Or 2 smells you like."
+     },
+     "es": {
+      "cue": "Encuentra dos cosas que puedas SMELL.",
+      "sub": "O 2 te huele bien."
+     }
+    },
+    {
+     "en": {
+      "cue": "Think of 1 taste you remember.",
+      "sub": "Or one you can imagine right now."
+     },
+     "es": {
+      "cue": "Piensa en 1 sabor que recuerdas.",
+      "sub": "O uno que puedas imaginar ahora mismo."
+     }
+    },
+    {
+     "en": {
+      "cue": "Notice where you are.",
+      "sub": "Right here. Right now."
+     },
+     "es": {
+      "cue": "Fíjate dónde estás.",
+      "sub": "Justo aquí. Ahora mismo."
+     }
+    },
+    {
+     "en": {
+      "cue": "One slow breath.",
+      "sub": "You brought yourself back."
+     },
+     "es": {
+      "cue": "Una respiración lenta.",
+      "sub": "Te trajiste de vuelta."
+     }
+    }
+   ],
+   "character": "Gani",
+   "close": {
+    "en": "That's five, four, three, two, one. Your senses are always with you, so this tool is always with you too.",
+    "es": "Son cinco, cuatro, tres, dos, uno. Tus sentidos siempre están contigo, así que esta herramienta siempre está contigo también."
+   },
+   "order": 8,
+   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+  },
+  {
+   "id": "cozyplace",
+   "name": {
+    "en": "My Cozy Place",
+    "es": "Mi Lugar Acogedor"
+   },
+   "audience": {
+    "en": "PreK3-2nd",
+    "es": "Preescolar (3 años) a 2.º grado"
+   },
+   "tag": {
+    "en": "SEL · Self-Management · 2 min",
+    "es": "SEL · Autorregulación · 2 min"
+   },
+   "blurb": {
+    "en": "For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
+    "es": "Para los más pequeños: construir un lugar acogedor imaginario se puede visitar cualquier momento que los sentimientos se hacen grandes."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Close your eyes. Snuggle into your seat.",
+      "sub": "Like a bird in a nest."
+     },
+     "es": {
+      "cue": "Cieren los ojos. Métete en tu asiento.",
+      "sub": "Como un pájaro en un nido."
+     }
+    },
+    {
+     "en": {
+      "cue": "Imagine the coziest place ever.",
+      "sub": "Real or made-up. Yours."
+     },
+     "es": {
+      "cue": "Imagínate el lugar más cozi.",
+      "sub": "Real o maquillado. Tuyo."
+     }
+    },
+    {
+     "en": {
+      "cue": "What do you SEE there?",
+      "sub": "Colors. Soft things. Favorite things."
+     },
+     "es": {
+      "cue": "¿Qué ves ahí?",
+      "sub": "Colores. Cosas suaves. Cosas favoritas."
+     }
+    },
+    {
+     "en": {
+      "cue": "What do you HEAR?",
+      "sub": "Quiet? Waves? A purring cat?"
+     },
+     "es": {
+      "cue": "¿Qué oyes?",
+      "sub": "¿Silencio? ¿Olas? ¿Un gato de puring?"
+     }
+    },
+    {
+     "en": {
+      "cue": "Who is with you?",
+      "sub": "A person. A pet. A stuffie. Or just you."
+     },
+     "es": {
+      "cue": "¿Quién está contigo?",
+      "sub": "Una persona. Una mascota. Un peluche. O solo tú."
+     }
+    },
+    {
+     "en": {
+      "cue": "Take three cozy breaths there.",
+      "sub": "In... and out. Three times."
+     },
+     "es": {
+      "cue": "Toma tres respira acogedores respiraciones allí.",
+      "sub": "Inhala... y fuera. Tres veces."
+     }
+    },
+    {
+     "en": {
+      "cue": "Wave goodbye. You can come back!",
+      "sub": "Any time feelings get big."
+     },
+     "es": {
+      "cue": "Despídete. ¡Puedes volver!",
+      "sub": "Cada vez que los sentimientos se hacen grandes."
+     }
+    },
+    {
+     "en": {
+      "cue": "Eyes open. Cozy comes with you.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Ojos abiertos. Cozy viene contigo.",
+      "sub": ""
+     }
+    }
+   ],
+   "character": "Gani",
+   "close": {
+    "en": "That's My Cozy Place. You built it, you own it, and no one can ever take it away. Visit often.",
+    "es": "Ese es Mi Cozy Place. Lo construiste, tu lo posees, y nadie puede quitarlo. Visitar a menudo."
+   },
+   "order": 9,
+   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+  },
+  {
+   "id": "balloon",
+   "name": {
+    "en": "Balloon Breath",
+    "es": "Respiración del Globo"
+   },
+   "audience": {
+    "en": "All ages",
+    "es": "Todas las edades"
+   },
+   "tag": {
+    "en": "Calm down · 2 min",
+    "es": "Calmarse · 2 min"
+   },
+   "blurb": {
+    "en": "Belly fills like a balloon, then empties slow. The everyday reset.",
+    "es": "La pancita se llena como un globo y luego se vacía despacio. La pausa de todos los días."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Breathe in. Fill the ball up like a balloon.",
+      "sub": "Watch it grow and turn bright."
+     },
+     "es": {
+      "cue": "Inhala. Llena la pelota como un globo.",
+      "sub": "Mira cómo crece y se pone brillante."
+     }
+    },
+    {
+     "en": {
+      "cue": "Let it go, slow. The balloon gets small.",
+      "sub": "The slow way out is what calms you down."
+     },
+     "es": {
+      "cue": "Suéltalo despacio. El globo se hace pequeño.",
+      "sub": "Sacar el aire despacio es lo que te calma."
+     }
+    },
+    {
+     "en": {
+      "cue": "Big slow breath in. Grow the ball.",
+      "sub": "My eyes are following it up with you."
+     },
+     "es": {
+      "cue": "Una inhalación grande y lenta. Haz crecer la pelota.",
+      "sub": "Mis ojos la siguen hacia arriba contigo."
+     }
+    },
+    {
+     "en": {
+      "cue": "Long breath out. Send the ball back down.",
+      "sub": "Let your shoulders sink with it."
+     },
+     "es": {
+      "cue": "Exhala largo. Baja la pelota.",
+      "sub": "Deja que tus hombros bajen con ella."
+     }
+    }
+   ],
+   "character": "Hani",
+   "intro": {
+    "en": "Hey, I'm Hani. See that ball? That is your breath. Breathe in and it grows. Breathe out and it shrinks. Let's do it together.",
+    "es": "Hola, soy Hani. ¿Ves esa pelota? Esa es tu respiración. Inhala y crece. Exhala y se encoge. Hagámoslo juntos."
+   },
+   "order": 10,
+   "poster": "assets/img/hanuman-breath-thumb.jpg"
+  },
+  {
+   "id": "beebreath",
+   "name": {
+    "en": "Bee Breath",
+    "es": "Respiración de Abeja"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "Calm down · 2 min",
+    "es": "Calmarse · 2 min"
+   },
+   "blurb": {
+    "en": "Hum your exhale like a buzzing bee. The vibration calms a busy brain fast.",
+    "es": "Zumba al exhalar, como una abeja amistosa. La vibración calma una mente inquieta."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Breathe in slow through your nose.",
+      "sub": "Fill up like the ball is filling."
+     },
+     "es": {
+      "cue": "Inhala despacio por la nariz.",
+      "sub": "Llénate como se llena la pelota."
+     }
+    },
+    {
+     "en": {
+      "cue": "Now hum it out. Mmmmmm, like a bee.",
+      "sub": "Feel the buzz in your lips."
+     },
+     "es": {
+      "cue": "Ahora zumba al sacar el aire. Mmmmm, como una abeja.",
+      "sub": "Siente el zumbido en tus labios."
+     }
+    },
+    {
+     "en": {
+      "cue": "Big quiet breath in.",
+      "sub": "Get ready to hum."
+     },
+     "es": {
+      "cue": "Una inhalación grande y silenciosa.",
+      "sub": "Prepárate para zumbar."
+     }
+    },
+    {
+     "en": {
+      "cue": "Hum your whole breath out. Mmmmm.",
+      "sub": "Long and slow, like a happy bee."
+     },
+     "es": {
+      "cue": "Zumba todo el aire. Mmmmm.",
+      "sub": "Largo y lento, como una abeja feliz."
+     }
+    }
+   ],
+   "character": "Gani",
+   "order": 11,
+   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+  },
+  {
+   "id": "bodyscanmed",
+   "name": {
+    "en": "Body Scan",
+    "es": "Escaneo del Cuerpo"
+   },
+   "audience": {
+    "en": "PreK3-6th",
+    "es": "Preescolar (3 años) a 6.º grado"
+   },
+   "tag": {
+    "en": "Guided Meditation · 3 min",
+    "es": "Meditación guiada · 3 min"
+   },
+   "blurb": {
+    "en": "A slow, calm journey through your whole body, noticing and releasing tension one part at a time.",
+    "es": "Un viaje lento y tranquilo a través de todo su cuerpo, notando y liberando tensión una parte a la vez."
+   },
+   "steps": [
+    {
+     "en": {
+      "cue": "Sit tall or settle wherever you are.",
+      "sub": "Close your eyes if that feels okay."
+     },
+     "es": {
+      "cue": "Siéntate alto o arreglese donde quiera que esté.",
+      "sub": "Cierra los ojos si eso se siente bien."
+     }
+    },
+    {
+     "en": {
+      "cue": "Start at the top of your head.",
+      "sub": "Just notice it. No need to change anything."
+     },
+     "es": {
+      "cue": "Empieza en la parte superior de tu cabeza.",
+      "sub": "Sólo notelo. No hay necesidad de cambiar nada."
+     }
+    },
+    {
+     "en": {
+      "cue": "Move down to your forehead and eyes.",
+      "sub": "Let them soften."
+     },
+     "es": {
+      "cue": "Muévete a la frente y a los ojos.",
+      "sub": "Deja que se ablanden."
+     }
+    },
+    {
+     "en": {
+      "cue": "Scrunch your face up tiny, like a lemon.",
+      "sub": "Now let it melt, lips just resting."
+     },
+     "es": {
+      "cue": "Extiende tu cara, como un limón.",
+      "sub": "Deja que se derrita, los labios descansan."
+     }
+    },
+    {
+     "en": {
+      "cue": "Move to your shoulders. Let them drop.",
+      "sub": "Away from your ears."
+     },
+     "es": {
+      "cue": "Muévete a tus hombros. Déjenlos caer.",
+      "sub": "Lejos de tus oídos."
+     }
+    },
+    {
+     "en": {
+      "cue": "Notice your arms, all the way to your fingers.",
+      "sub": "Heavy and calm."
+     },
+     "es": {
+      "cue": "Los brazos, el camino a los dedos.",
+      "sub": "Pesado y tranquilo."
+     }
+    },
+    {
+     "en": {
+      "cue": "Notice your chest rising and falling.",
+      "sub": "Just your normal breath."
+     },
+     "es": {
+      "cue": "Observa su pecho alzando y cayendo.",
+      "sub": "Sólo tu respiración normal."
+     }
+    },
+    {
+     "en": {
+      "cue": "Move down to your belly. Soft, not tight.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Muévete a tu barriga. Suave, no apretada.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Notice your legs, all the way to your feet.",
+      "sub": "Heavy and resting."
+     },
+     "es": {
+      "cue": "Observa sus piernas, todo el camino a sus pies.",
+      "sub": "Pesado y descansado."
+     }
+    },
+    {
+     "en": {
+      "cue": "Feel calm and heavy all over, like a sleepy bear.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Siéntete tranquilo y pesado, como un oso somnoliento.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Take one more slow breath here.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Respira un poco más despacio.",
+      "sub": ""
+     }
+    },
+    {
+     "en": {
+      "cue": "Slowly wiggle your fingers and toes to finish.",
+      "sub": ""
+     },
+     "es": {
+      "cue": "Revuelve lentamente los dedos y los dedos de los dedos de los dedos.",
+      "sub": ""
+     }
+    }
+   ],
+   "character": "Hani",
+   "intro": {
+    "en": "Hi, I'm Hani. We're going to travel through your whole body, slow and gentle, noticing how each part feels.",
+    "es": "Hola, soy Hani. Vamos a viajar a través de todo su cuerpo, lento y suave, notando cómo se siente cada parte."
+   },
+   "close": {
+    "en": "That's the Body Scan. You just gave every part of your body a moment of attention and calm.",
+    "es": "Ese es el Escáner del Cuerpo. Acabas de dar a cada parte de tu cuerpo un momento de atención y calma."
+   },
+   "order": 12,
+   "poster": "hanuman-calm.jpg"
+  }
+ ]
+}
