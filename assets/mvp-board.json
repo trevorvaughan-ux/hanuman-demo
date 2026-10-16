@@ -583,7 +583,7 @@
     "es": "Es el Recess-to-Desk Reset. Un cuerpo rápido puede aprender a frenar al mando."
    },
    "order": 7,
-   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+   "still": "assets/img/gani/covers/recessreset-cover.jpg"
   },
   {
    "id": "grounding54321",
@@ -681,7 +681,7 @@
     "es": "Son cinco, cuatro, tres, dos, uno. Tus sentidos siempre están contigo, así que esta herramienta siempre está contigo también."
    },
    "order": 8,
-   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+   "still": "assets/img/gani/covers/grounding54321-cover.jpg"
   },
   {
    "id": "cozyplace",
@@ -789,7 +789,7 @@
     "es": "Ese es Mi Cozy Place. Lo construiste, tu lo posees, y nadie puede quitarlo. Visitar a menudo."
    },
    "order": 9,
-   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+   "still": "assets/img/gani/covers/cozyplace-cover.jpg"
   },
   {
    "id": "balloon",
@@ -921,7 +921,7 @@
    ],
    "character": "Gani",
    "order": 11,
-   "still": "assets/img/gani/Gani-BoxBreath-sample.jpg"
+   "still": "assets/img/gani/covers/beebreath-cover.jpg"
   },
   {
    "id": "bodyscanmed",
