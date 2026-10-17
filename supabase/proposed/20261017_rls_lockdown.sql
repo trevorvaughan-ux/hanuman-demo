@@ -4,15 +4,16 @@
 -- Scope: public schema. trevor_debts and credentials_vault are deliberately excluded everywhere.
 -- ai_messages is excluded here (claude_grok_bridge edge functions use it with the anon key): see part2 file.
 -- hani_events is excluded (anon INSERT-only with column checks is already narrow and the Hani boards need it).
--- BEFORE APPLYING: replace REPLACE_WITH_TREVOR_AUTH_UID below with Trevor's auth.users id (NOT confirmed read-only;
+-- BEFORE APPLYING: replace the all-zero placeholder uuid (marked REPLACE_WITH_TREVOR_AUTH_UID) in is_trevor() with Trevor's auth.users id (NOT confirmed read-only;
 -- auth.users has 1 row and its email did not match trevorvaughan@hudsonseed.com).
 BEGIN;
 
 -- 0. Single place that decides who "Trevor" is for authenticated sessions.
 CREATE OR REPLACE FUNCTION public.is_trevor() RETURNS boolean
-LANGUAGE sql STABLE AS $f$ SELECT auth.uid()::text = 'REPLACE_WITH_TREVOR_AUTH_UID' $f$;
+LANGUAGE sql STABLE SET search_path = public, pg_temp
+AS $f$ SELECT auth.uid() = '00000000-0000-0000-0000-000000000000'::uuid /* REPLACE_WITH_TREVOR_AUTH_UID */ $f$;
 DO $$ BEGIN
-  IF position('REPLACE_WITH' in pg_get_functiondef('public.is_trevor()'::regprocedure)) > 0 THEN
+  IF position('00000000-0000-0000-0000-000000000000' in pg_get_functiondef('public.is_trevor()'::regprocedure)) > 0 THEN
     RAISE EXCEPTION 'is_trevor() still has the placeholder uid. Aborting.';
   END IF;
 END $$;
@@ -22,11 +23,11 @@ ALTER TABLE public.approval_log ENABLE ROW LEVEL SECURITY;
 CREATE POLICY service_role_all_approval_log ON public.approval_log FOR ALL TO service_role USING (true) WITH CHECK (true);
 
 -- 2. Revoke anon everything, and authenticated TRUNCATE/REFERENCES/TRIGGER, on every public relation
---    except the protected two, hani_events and ai_messages.
+--    except the protected two, hani_events, ai_messages and board_links/board_global (owned by the MVP board migration).
 DO $$ DECLARE r record; BEGIN
   FOR r IN SELECT c.relname FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
            WHERE n.nspname='public' AND c.relkind IN ('r','p','v','m')
-             AND c.relname NOT IN ('trevor_debts','credentials_vault','hani_events','ai_messages') LOOP
+             AND c.relname NOT IN ('trevor_debts','credentials_vault','hani_events','ai_messages','board_links','board_global') LOOP
     EXECUTE format('REVOKE ALL ON public.%I FROM anon', r.relname);
     EXECUTE format('REVOKE TRUNCATE, REFERENCES, TRIGGER ON public.%I FROM authenticated', r.relname);
   END LOOP;
@@ -70,10 +71,10 @@ DROP POLICY allow_anon_update ON public.jc_schools_contacts_backup_20260521;
 -- 6. Every blanket "any signed-in user" policy now requires Trevor (task_register, leads, system_config, districts,
 --    do_not_contact and all others with qual auth.role() = 'authenticated').
 DO $$ DECLARE r record; BEGIN
-  FOR r IN SELECT tablename, policyname, cmd FROM pg_policies
+  FOR r IN SELECT tablename, policyname, cmd, with_check FROM pg_policies
            WHERE schemaname='public' AND qual = '(auth.role() = ''authenticated''::text)'
              AND tablename NOT IN ('trevor_debts','credentials_vault') LOOP
-    IF r.cmd IN ('SELECT','DELETE') THEN
+    IF r.cmd IN ('SELECT','DELETE') OR r.with_check IS NULL THEN
       EXECUTE format('ALTER POLICY %I ON public.%I USING (public.is_trevor())', r.policyname, r.tablename);
     ELSE
       EXECUTE format('ALTER POLICY %I ON public.%I USING (public.is_trevor()) WITH CHECK (public.is_trevor())', r.policyname, r.tablename);
@@ -85,7 +86,7 @@ END $$;
 DO $$ DECLARE bad int; BEGIN
   SELECT count(*) INTO bad FROM information_schema.role_table_grants
    WHERE table_schema='public' AND grantee='anon'
-     AND table_name NOT IN ('trevor_debts','credentials_vault','hani_events','ai_messages','crm_contacts','waitlist','hudsonseed_website_assets','menu_cards','menu_profiles');
+     AND table_name NOT IN ('trevor_debts','credentials_vault','hani_events','ai_messages','board_links','board_global','crm_contacts','waitlist','hudsonseed_website_assets','menu_cards','menu_profiles');
   IF bad > 0 THEN RAISE EXCEPTION 'anon grants remain on % relation privileges', bad; END IF;
   SELECT count(*) INTO bad FROM pg_policies WHERE schemaname='public' AND qual = '(auth.role() = ''authenticated''::text)'
      AND tablename NOT IN ('trevor_debts','credentials_vault');

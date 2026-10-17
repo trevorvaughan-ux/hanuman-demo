@@ -24,8 +24,10 @@ CREATE POLICY anon_read_teachers ON public.teachers AS PERMISSIVE FOR SELECT TO 
 ALTER POLICY trevor_dashboard_all_agent_runs ON public.agent_runs USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_agent_specs ON public.agent_specs USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_ai_messages ON public.ai_messages USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
-ALTER POLICY authenticated_all_blockers ON public.blockers USING ((auth.role() = 'authenticated'::text));
-ALTER POLICY authenticated_all_diary ON public.diary USING ((auth.role() = 'authenticated'::text));
+DROP POLICY authenticated_all_blockers ON public.blockers;
+CREATE POLICY authenticated_all_blockers ON public.blockers AS PERMISSIVE FOR ALL TO public USING ((auth.role() = 'authenticated'::text));
+DROP POLICY authenticated_all_diary ON public.diary;
+CREATE POLICY authenticated_all_diary ON public.diary AS PERMISSIVE FOR ALL TO public USING ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_districts ON public.districts USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_dnc ON public.do_not_contact USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_email_events ON public.email_events USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
@@ -48,10 +50,12 @@ ALTER POLICY trevor_dashboard_all_school_crm ON public.school_crm USING ((auth.r
 ALTER POLICY trevor_dashboard_all_school_dm ON public.school_decision_makers USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_security ON public.security_incidents USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_session_done ON public.session_done USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
-ALTER POLICY authenticated_all_lexicon ON public.shared_lexicon USING ((auth.role() = 'authenticated'::text));
+DROP POLICY authenticated_all_lexicon ON public.shared_lexicon;
+CREATE POLICY authenticated_all_lexicon ON public.shared_lexicon AS PERMISSIVE FOR ALL TO public USING ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_system_config ON public.system_config USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_task_register ON public.task_register USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
-ALTER POLICY authenticated_all_teachers ON public.teachers USING ((auth.role() = 'authenticated'::text));
+DROP POLICY authenticated_all_teachers ON public.teachers;
+CREATE POLICY authenticated_all_teachers ON public.teachers AS PERMISSIVE FOR ALL TO public USING ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_trevor_memory ON public.trevor_memory USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 ALTER POLICY trevor_dashboard_all_vault ON public.vault_status USING ((auth.role() = 'authenticated'::text)) WITH CHECK ((auth.role() = 'authenticated'::text));
 
@@ -71,7 +75,7 @@ ALTER TABLE public.approval_log DISABLE ROW LEVEL SECURITY;
 DO $$ DECLARE r record; BEGIN
   FOR r IN SELECT c.relname FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
            WHERE n.nspname='public' AND c.relkind IN ('r','p','v','m')
-             AND c.relname NOT IN ('trevor_debts','credentials_vault','hani_events') LOOP
+             AND c.relname NOT IN ('trevor_debts','credentials_vault','hani_events','board_links','board_global') LOOP
     EXECUTE format('GRANT ALL ON public.%I TO anon, authenticated', r.relname);
   END LOOP;
 END $$;
