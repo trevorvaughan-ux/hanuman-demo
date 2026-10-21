@@ -1,0 +1,450 @@
+[
+ {
+  "lang": "en",
+  "start": 6.0,
+  "end": 11.5,
+  "phase": "in",
+  "text": "Breathe in... Stand tall. Feet together."
+ },
+ {
+  "lang": "en",
+  "start": 11.5,
+  "end": 16.0,
+  "phase": "out",
+  "text": "Breathe out... Arms by your sides."
+ },
+ {
+  "lang": "en",
+  "start": 16.0,
+  "end": 19.8,
+  "phase": "in",
+  "text": "Breathe in... Palms face forward."
+ },
+ {
+  "lang": "en",
+  "start": 19.8,
+  "end": 24.8,
+  "phase": "out",
+  "text": "Breathe out... Feel your feet on the floor."
+ },
+ {
+  "lang": "en",
+  "start": 24.8,
+  "end": 28.6,
+  "phase": "in",
+  "text": "Breathe in... Grow tall like a mountain."
+ },
+ {
+  "lang": "en",
+  "start": 28.6,
+  "end": 34.0,
+  "phase": "out",
+  "text": "Breathe out... Shoulders soft and low."
+ },
+ {
+  "lang": "en",
+  "start": 34.0,
+  "end": 37.7,
+  "phase": "in",
+  "text": "Breathe in... Fill up slowly."
+ },
+ {
+  "lang": "en",
+  "start": 37.7,
+  "end": 43.2,
+  "phase": "out",
+  "text": "Breathe out... Let it all go."
+ },
+ {
+  "lang": "en",
+  "start": 43.2,
+  "end": 48.7,
+  "phase": "in",
+  "text": "Breathe in... Feel strong and steady."
+ },
+ {
+  "lang": "en",
+  "start": 48.7,
+  "end": 52.4,
+  "phase": "out",
+  "text": "Breathe out... Feel calm inside."
+ },
+ {
+  "lang": "en",
+  "start": 52.4,
+  "end": 57.8,
+  "phase": "in",
+  "text": "Breathe in... Like a big mountain."
+ },
+ {
+  "lang": "en",
+  "start": 57.8,
+  "end": 61.6,
+  "phase": "out",
+  "text": "Breathe out... Nothing can push you over."
+ },
+ {
+  "lang": "en",
+  "start": 61.6,
+  "end": 66.6,
+  "phase": "in",
+  "text": "Breathe in... Slow and deep."
+ },
+ {
+  "lang": "en",
+  "start": 66.6,
+  "end": 70.4,
+  "phase": "out",
+  "text": "Breathe out... Nice and slow."
+ },
+ {
+  "lang": "en",
+  "start": 70.4,
+  "end": 74.9,
+  "phase": "in",
+  "text": "Breathe in... Your mountain is strong."
+ },
+ {
+  "lang": "en",
+  "start": 74.9,
+  "end": 80.4,
+  "phase": "out",
+  "text": "Breathe out... Your mountain is calm."
+ },
+ {
+  "lang": "en",
+  "start": 80.4,
+  "end": 85.9,
+  "phase": "in",
+  "text": "Breathe in... Close your eyes, or look down."
+ },
+ {
+  "lang": "en",
+  "start": 85.9,
+  "end": 90.4,
+  "phase": "out",
+  "text": "Breathe out... Soft, quiet body."
+ },
+ {
+  "lang": "en",
+  "start": 90.4,
+  "end": 94.2,
+  "phase": "in",
+  "text": "Breathe in... Feel the sun on your mountain."
+ },
+ {
+  "lang": "en",
+  "start": 94.2,
+  "end": 99.2,
+  "phase": "out",
+  "text": "Breathe out... Let the clouds float by."
+ },
+ {
+  "lang": "en",
+  "start": 99.2,
+  "end": 103.0,
+  "phase": "in",
+  "text": "Breathe in... Breathe in calm."
+ },
+ {
+  "lang": "en",
+  "start": 103.0,
+  "end": 108.4,
+  "phase": "out",
+  "text": "Breathe out... Breathe out worries."
+ },
+ {
+  "lang": "en",
+  "start": 108.4,
+  "end": 112.1,
+  "phase": "in",
+  "text": "Breathe in... Tall and proud."
+ },
+ {
+  "lang": "en",
+  "start": 112.1,
+  "end": 117.6,
+  "phase": "out",
+  "text": "Breathe out... Steady and still."
+ },
+ {
+  "lang": "en",
+  "start": 117.6,
+  "end": 123.1,
+  "phase": "in",
+  "text": "Breathe in... Almost done."
+ },
+ {
+  "lang": "en",
+  "start": 123.1,
+  "end": 126.8,
+  "phase": "out",
+  "text": "Breathe out... Slow and easy."
+ },
+ {
+  "lang": "en",
+  "start": 126.8,
+  "end": 132.2,
+  "phase": "in",
+  "text": "Breathe in... One more big breath."
+ },
+ {
+  "lang": "en",
+  "start": 132.2,
+  "end": 136.0,
+  "phase": "out",
+  "text": "Breathe out... All the way out."
+ },
+ {
+  "lang": "en",
+  "start": 136.0,
+  "end": 141.0,
+  "phase": "in",
+  "text": "Breathe in... Wiggle your fingers."
+ },
+ {
+  "lang": "en",
+  "start": 141.0,
+  "end": 144.8,
+  "phase": "out",
+  "text": "Breathe out... Open your eyes."
+ },
+ {
+  "lang": "en",
+  "start": 144.8,
+  "end": 149.3,
+  "phase": "in",
+  "text": "Breathe in... You are a mountain!"
+ },
+ {
+  "lang": "en",
+  "start": 149.3,
+  "end": 154.8,
+  "phase": "out",
+  "text": "Breathe out... Great job, friend!"
+ },
+ {
+  "lang": "es",
+  "start": 6.0,
+  "end": 11.5,
+  "phase": "in",
+  "text": "Inhala... Párate alto. Junta los pies."
+ },
+ {
+  "lang": "es",
+  "start": 11.5,
+  "end": 16.0,
+  "phase": "out",
+  "text": "Exhala... Brazos a los lados."
+ },
+ {
+  "lang": "es",
+  "start": 16.0,
+  "end": 19.8,
+  "phase": "in",
+  "text": "Inhala... Palmas hacia adelante."
+ },
+ {
+  "lang": "es",
+  "start": 19.8,
+  "end": 24.8,
+  "phase": "out",
+  "text": "Exhala... Siente tus pies en el piso."
+ },
+ {
+  "lang": "es",
+  "start": 24.8,
+  "end": 28.6,
+  "phase": "in",
+  "text": "Inhala... Crece alto como una montaña."
+ },
+ {
+  "lang": "es",
+  "start": 28.6,
+  "end": 34.0,
+  "phase": "out",
+  "text": "Exhala... Hombros suaves y relajados."
+ },
+ {
+  "lang": "es",
+  "start": 34.0,
+  "end": 37.7,
+  "phase": "in",
+  "text": "Inhala... Llénate despacito."
+ },
+ {
+  "lang": "es",
+  "start": 37.7,
+  "end": 43.2,
+  "phase": "out",
+  "text": "Exhala... Suéltalo todo."
+ },
+ {
+  "lang": "es",
+  "start": 43.2,
+  "end": 48.7,
+  "phase": "in",
+  "text": "Inhala... Siéntete fuerte y firme."
+ },
+ {
+  "lang": "es",
+  "start": 48.7,
+  "end": 52.4,
+  "phase": "out",
+  "text": "Exhala... Siente la calma por dentro."
+ },
+ {
+  "lang": "es",
+  "start": 52.4,
+  "end": 57.8,
+  "phase": "in",
+  "text": "Inhala... Como una gran montaña."
+ },
+ {
+  "lang": "es",
+  "start": 57.8,
+  "end": 61.6,
+  "phase": "out",
+  "text": "Exhala... Nada te puede mover."
+ },
+ {
+  "lang": "es",
+  "start": 61.6,
+  "end": 66.6,
+  "phase": "in",
+  "text": "Inhala... Lento y profundo."
+ },
+ {
+  "lang": "es",
+  "start": 66.6,
+  "end": 70.4,
+  "phase": "out",
+  "text": "Exhala... Bien despacito."
+ },
+ {
+  "lang": "es",
+  "start": 70.4,
+  "end": 74.9,
+  "phase": "in",
+  "text": "Inhala... Tu montaña es fuerte."
+ },
+ {
+  "lang": "es",
+  "start": 74.9,
+  "end": 80.4,
+  "phase": "out",
+  "text": "Exhala... Tu montaña está tranquila."
+ },
+ {
+  "lang": "es",
+  "start": 80.4,
+  "end": 85.9,
+  "phase": "in",
+  "text": "Inhala... Cierra los ojos, o mira hacia abajo."
+ },
+ {
+  "lang": "es",
+  "start": 85.9,
+  "end": 90.4,
+  "phase": "out",
+  "text": "Exhala... Cuerpo suave y quieto."
+ },
+ {
+  "lang": "es",
+  "start": 90.4,
+  "end": 94.2,
+  "phase": "in",
+  "text": "Inhala... Siente el sol en tu montaña."
+ },
+ {
+  "lang": "es",
+  "start": 94.2,
+  "end": 99.2,
+  "phase": "out",
+  "text": "Exhala... Deja pasar las nubes."
+ },
+ {
+  "lang": "es",
+  "start": 99.2,
+  "end": 103.0,
+  "phase": "in",
+  "text": "Inhala... Inhala calma."
+ },
+ {
+  "lang": "es",
+  "start": 103.0,
+  "end": 108.4,
+  "phase": "out",
+  "text": "Exhala... Exhala tus preocupaciones."
+ },
+ {
+  "lang": "es",
+  "start": 108.4,
+  "end": 112.1,
+  "phase": "in",
+  "text": "Inhala... Alto y orgulloso."
+ },
+ {
+  "lang": "es",
+  "start": 112.1,
+  "end": 117.6,
+  "phase": "out",
+  "text": "Exhala... Firme y quieto."
+ },
+ {
+  "lang": "es",
+  "start": 117.6,
+  "end": 123.1,
+  "phase": "in",
+  "text": "Inhala... Ya casi terminamos."
+ },
+ {
+  "lang": "es",
+  "start": 123.1,
+  "end": 126.8,
+  "phase": "out",
+  "text": "Exhala... Lento y tranquilo."
+ },
+ {
+  "lang": "es",
+  "start": 126.8,
+  "end": 132.2,
+  "phase": "in",
+  "text": "Inhala... Una respiración grande más."
+ },
+ {
+  "lang": "es",
+  "start": 132.2,
+  "end": 136.0,
+  "phase": "out",
+  "text": "Exhala... Suelta todo el aire."
+ },
+ {
+  "lang": "es",
+  "start": 136.0,
+  "end": 141.0,
+  "phase": "in",
+  "text": "Inhala... Mueve los dedos."
+ },
+ {
+  "lang": "es",
+  "start": 141.0,
+  "end": 144.8,
+  "phase": "out",
+  "text": "Exhala... Abre los ojos."
+ },
+ {
+  "lang": "es",
+  "start": 144.8,
+  "end": 149.3,
+  "phase": "in",
+  "text": "Inhala... ¡Eres una montaña!"
+ },
+ {
+  "lang": "es",
+  "start": 149.3,
+  "end": 154.8,
+  "phase": "out",
+  "text": "Exhala... ¡Muy bien, amigo!"
+ }
+]
