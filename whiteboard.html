@@ -736,7 +736,7 @@
         {cue:"Shake both hands out loose at the end.",sub:"",say:"Finish by shaking both hands out nice and loose.",hold:24}
       ],
       close:"That's Wrist & Finger Stretches. Small stretch, big relief for busy hands." },
-{ id:"treepose", kind:"chair", demo:"desk", img:"assets/img/triangle-pose-classroom-thumb.jpg", video:"assets/video/Hanuman_Triangle_Pose_Classroom_FINAL.mp4", name:"Tree Pose", tag:"Standing yoga · 3 min", audience:"1st-6th", src:"HudsonSeed",
+{ id:"treepose", kind:"chair", demo:"desk", img:"assets/img/Hani_Tree_Pose_thumb.jpg", video:"assets/video/Hani_Tree_Pose_EN.mp4", videoEs:"assets/video/Hani_Tree_Pose_ES.mp4", vtt:"assets/video/Hani_Tree_Pose_EN.vtt", vttEs:"assets/video/Hani_Tree_Pose_ES.vtt", name:"Tree Pose", tag:"Standing yoga · 3 min", audience:"1st-6th", src:"HudsonSeed",
       blurb:"Balance on one foot like a strong, steady tree. Hold your desk for balance if you need to.",
       intro:"Hi, I'm Hani. Tree Pose is all about finding your balance. If you wobble, that's normal, just use your desk if you need it.",
       lines:[
@@ -748,7 +748,7 @@
         {cue:"Lower down and switch to the other foot.",sub:"",say:"Lower your foot back down, and try the other side.",hold:25}
       ],
       close:"That's Tree Pose. Even the strongest trees wobble sometimes, that's how they get stronger roots." },
-{ id:"mountainpose", kind:"chair", demo:"desk", img:"assets/img/triangle-pose-classroom-thumb.jpg", video:"assets/video/Hanuman_Triangle_Pose_Classroom_FINAL.mp4", name:"Mountain Pose", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
+{ id:"mountainpose", kind:"chair", demo:"desk", img:"assets/img/Hani_Mountain_Pose_thumb.jpg", video:"assets/video/Hani_Mountain_Pose_EN.mp4", videoEs:"assets/video/Hani_Mountain_Pose_ES.mp4", vtt:"assets/video/Hani_Mountain_Pose_EN.vtt", vttEs:"assets/video/Hani_Mountain_Pose_ES.vtt", name:"Mountain Pose", tag:"Standing yoga · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Stand tall and strong like a mountain. The foundation pose for everything else.",
       intro:"Hi, I'm Hani. Mountain Pose looks simple, just standing, but it's about feeling strong and grounded on purpose.",
       lines:[
@@ -1647,7 +1647,7 @@
   }
   function run(item){
     stopMed(); setEmoBadge(item);
-    if(item.video){ showHaniVideo(item.video); } else { deskOn(false); }
+    if(item.video){ showHaniVideo(item.video,item); } else { deskOn(false); }
     CURRENT=item; running=true; audioUnlocked=true; if(!chosenVoice)pickVoice();
     hsT0=Date.now(); hsLog("start",item);
     TOTAL=buildSteps(item); stepIdx=-1; ci=0; lastPhase=""; startT=performance.now();
@@ -1703,7 +1703,7 @@
     hsT0=Date.now(); hsLog("start",item);
     menu.style.display="none"; player.style.display="flex"; againBtn.classList.add("hide");
     cue.textContent=""; sub.textContent="";
-    if(item.video){ showHaniVideo(item.video); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
+    if(item.video){ showHaniVideo(item.video,item); } else if(item.demo==="desk"){deskOn(true);} else {deskOn(false); startGlow();}
     var delay=Math.min(8000,Math.max(3500,item.intro.length*55));
     medRemain=item.lines.reduce(function(a,l){return a+l.hold;},0)+Math.round(delay/1000);
     timerEl.textContent=fmt(medRemain);
@@ -1712,7 +1712,8 @@
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
-  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
+  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function haniLangBar(item){ var b=document.getElementById("haniLangBar"); if(!b){ b=document.createElement("div"); b.id="haniLangBar"; b.style.cssText="text-align:center;margin:6px 0;"; hanumanVideo.parentNode.insertBefore(b,hanumanVideo.nextSibling);} if(!item||!item.videoEs){ b.style.display="none"; return;} b.style.display="block"; b.innerHTML=""; [["EN","English"],["ES","Español"]].forEach(function(l){ var x=document.createElement("button"); x.type="button"; x.textContent=l[1]; x.style.cssText="margin:0 4px;padding:6px 14px;border-radius:16px;border:1px solid #2F6B6E;cursor:pointer;background:"+((item.__lang||"EN")===l[0]?"#2F6B6E;color:#fff":"#fff;color:#2F6B6E"); x.onclick=function(ev){ ev.stopPropagation(); item.__lang=l[0]; showHaniVideo(null,item); }; b.appendChild(x); }); }
+  function showHaniVideo(src,item){ if(item&&item.videoEs){ var es=item.__lang==="ES"; src=es?item.videoEs:item.video; } while(hanumanVideo.firstChild) hanumanVideo.removeChild(hanumanVideo.firstChild); if(item&&(item.vtt||item.vttEs)){ var es2=item.__lang==="ES", t=document.createElement("track"); t.kind="captions"; t.srclang=es2?"es":"en"; t.label=es2?"Español":"English"; t.src=es2?(item.vttEs||item.vtt):item.vtt; t.default=true; hanumanVideo.appendChild(t); } haniLangBar(item); deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); var lb=document.getElementById("haniLangBar"); if(lb) lb.style.display="none"; } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+f.tag+"</span><h3>"+f.name+"</h3><p>"+f.blurb+"</p><div class='src'>"+f.audience+" · "+f.src+"</div>"+"<button class='watchBtn' type='button'>▶ Watch Hani</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }

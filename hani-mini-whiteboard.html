@@ -113,6 +113,7 @@
       </div>
       <div id="ballWrap"><div id="ball"></div></div>
       <div id="ringWrap"><div id="ring"></div></div>
+      <div id="vidWrap" style="display:none;flex-direction:column;align-items:center;width:100%;"><video id="poseVideo" controls playsinline style="width:100%;max-height:58vh;border-radius:24px;background:#000;"></video><div id="langBar" style="margin-top:8px;"></div></div>
     </div>
     <div id="cuebar"><div id="cue"></div><div id="sub"></div><div id="progress"></div></div>
     <div id="closeLine" class="hide"></div>
@@ -239,7 +240,14 @@
       close:"That's Gentle Waves of Rest. Rest isn't giving up, it's how your whole self gets stronger. You can come back to these waves anytime." }
   ];
 
+  var POSES=[
+    { id:"mountainpose", kind:"video", name:"Mountain Pose", tag:"Standing yoga · 3 min", audience:"All ages", blurb:"Stand tall and strong like a mountain. The foundation pose for everything else.", img:"assets/img/Hani_Mountain_Pose_thumb.jpg", video:"assets/video/Hani_Mountain_Pose_EN.mp4", videoEs:"assets/video/Hani_Mountain_Pose_ES.mp4", vtt:"assets/video/Hani_Mountain_Pose_EN.vtt", vttEs:"assets/video/Hani_Mountain_Pose_ES.vtt" },
+    { id:"treepose", kind:"video", name:"Tree Pose", tag:"Standing yoga · 3 min", audience:"1st-6th", blurb:"Find your balance like a tree. Wobbling is part of it.", img:"assets/img/Hani_Tree_Pose_thumb.jpg", video:"assets/video/Hani_Tree_Pose_EN.mp4", videoEs:"assets/video/Hani_Tree_Pose_ES.mp4", vtt:"assets/video/Hani_Tree_Pose_EN.vtt", vttEs:"assets/video/Hani_Tree_Pose_ES.vtt" },
+    { id:"trianglepose", kind:"video", name:"Triangle Pose", tag:"Standing yoga · 3 min", audience:"All ages", blurb:"Reach wide and make a triangle with Hani.", img:"assets/img/triangle-pose-classroom-thumb.jpg", video:"assets/video/Hanuman_Triangle_Pose_Classroom_FINAL.mp4" }
+  ];
+
   var GROUPS=[
+    {label:"Poses", items:POSES},
     {label:"Breathing", items:BREATHS},
     {label:"SEL Tools", items:SEL},
     {label:"Meditations", items:MEDS}
@@ -254,6 +262,12 @@
   var backBtn=document.getElementById("backBtn"), againBtn=document.getElementById("againBtn");
   var nextBtn=document.getElementById("nextBtn"), prevBtn=document.getElementById("prevBtn");
   var voiceToggle=document.getElementById("voiceToggle");
+  var vidWrap=document.getElementById("vidWrap"), poseVideo=document.getElementById("poseVideo"), langBar=document.getElementById("langBar");
+  function stopVideo(){ try{poseVideo.pause();}catch(e){} poseVideo.removeAttribute("src"); while(poseVideo.firstChild)poseVideo.removeChild(poseVideo.firstChild); poseVideo.load(); vidWrap.style.display="none"; }
+  function playVideo(item){ var es=item.__lang==="ES"&&item.videoEs; while(poseVideo.firstChild)poseVideo.removeChild(poseVideo.firstChild);
+    var v=es?item.vttEs:item.vtt; if(v){ var t=document.createElement("track"); t.kind="captions"; t.srclang=es?"es":"en"; t.label=es?"Español":"English"; t.src=v; t.default=true; poseVideo.appendChild(t); }
+    poseVideo.src=es?item.videoEs:item.video; if(item.img)poseVideo.poster=item.img; poseVideo.currentTime=0; var pr=poseVideo.play(); if(pr&&pr.catch)pr.catch(function(){});
+    langBar.innerHTML=""; if(item.videoEs){ [["EN","English"],["ES","Español"]].forEach(function(l){ var b=document.createElement("button"); b.className="btn "+(((item.__lang||"EN")===l[0])?"primary":"ghost"); b.style.margin="0 4px"; b.textContent=l[1]; b.onclick=function(){ item.__lang=l[0]; playVideo(item); }; langBar.appendChild(b); }); } }
 
   // ---- render menu ----
   GROUPS.forEach(function(g){
@@ -304,7 +318,11 @@
     menu.style.display="none"; player.style.display="flex";
     closeLine.classList.add("hide"); closeLine.textContent="";
     nextBtn.classList.add("hide"); prevBtn.classList.add("hide"); againBtn.classList.add("hide");
-    progress.textContent="";
+    progress.textContent=""; stopVideo();
+    if(mode==="video"){
+      ballWrap.style.display="none"; ringWrap.style.display="none"; timerEl.style.display="none";
+      cue.textContent=""; sub.textContent=""; vidWrap.style.display="flex"; playVideo(item); return;
+    }
     if(mode==="breath"){
       ballWrap.style.display="flex"; ringWrap.style.display="none";
       timerEl.style.display="block"; timerEl.textContent=fmt(item.duration);
@@ -381,7 +399,7 @@
 
   backBtn.onclick=function(){
     running=false; if(raf)cancelAnimationFrame(raf); if(lineTimer)clearTimeout(lineTimer);
-    if(window.speechSynthesis)speechSynthesis.cancel();
+    if(window.speechSynthesis)speechSynthesis.cancel(); stopVideo();
     player.style.display="none"; menu.style.display="flex";
   };
   againBtn.onclick=function(){ openItem(current); };
