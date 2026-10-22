@@ -1,0 +1,771 @@
+{
+ "video": "chairpose",
+ "fps": 25,
+ "version": "gold-standard",
+ "en": {
+  "total": 149.64,
+  "wisdom": [
+   70.32,
+   79.32
+  ],
+  "end_card": [
+   143.64,
+   149.64
+  ],
+  "cues": [
+   {
+    "type": "title",
+    "start": 0.0,
+    "end": 6.0,
+    "spoken": "Chair Pose, with Hani"
+   },
+   {
+    "type": "breath",
+    "start": 6.0,
+    "end": 9.52,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Reach your arms up high.",
+    "spoken": "Breathe in... Reach your arms up high."
+   },
+   {
+    "type": "breath",
+    "start": 9.52,
+    "end": 13.04,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Bend your knees. Sit back.",
+    "spoken": "Breathe out... Bend your knees. Sit back."
+   },
+   {
+    "type": "breath",
+    "start": 13.04,
+    "end": 17.56,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Lean forward just a little.",
+    "spoken": "Breathe in... Lean forward just a little."
+   },
+   {
+    "type": "breath",
+    "start": 17.56,
+    "end": 22.08,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Ears between your arms.",
+    "spoken": "Breathe out... Ears between your arms."
+   },
+   {
+    "type": "breath",
+    "start": 22.08,
+    "end": 26.6,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Knees and feet together.",
+    "spoken": "Breathe in... Knees and feet together."
+   },
+   {
+    "type": "breath",
+    "start": 26.6,
+    "end": 31.12,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Keep breathing slowly.",
+    "spoken": "Breathe out... Keep breathing slowly."
+   },
+   {
+    "type": "breath",
+    "start": 31.12,
+    "end": 34.64,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Stand up tall.",
+    "spoken": "Breathe in... Stand up tall."
+   },
+   {
+    "type": "breath",
+    "start": 34.64,
+    "end": 38.16,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Arms down by your sides.",
+    "spoken": "Breathe out... Arms down by your sides."
+   },
+   {
+    "type": "breath",
+    "start": 38.16,
+    "end": 41.68,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Arms up again.",
+    "spoken": "Breathe in... Arms up again."
+   },
+   {
+    "type": "breath",
+    "start": 41.68,
+    "end": 45.2,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Sit back in your chair.",
+    "spoken": "Breathe out... Sit back in your chair."
+   },
+   {
+    "type": "breath",
+    "start": 45.2,
+    "end": 49.72,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Look straight ahead.",
+    "spoken": "Breathe in... Look straight ahead."
+   },
+   {
+    "type": "breath",
+    "start": 49.72,
+    "end": 54.24,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Strong, steady legs.",
+    "spoken": "Breathe out... Strong, steady legs."
+   },
+   {
+    "type": "breath",
+    "start": 54.24,
+    "end": 58.76,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Arms in line with your back.",
+    "spoken": "Breathe in... Arms in line with your back."
+   },
+   {
+    "type": "breath",
+    "start": 58.76,
+    "end": 63.28,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "You are doing great!",
+    "spoken": "Breathe out... You are doing great!"
+   },
+   {
+    "type": "breath",
+    "start": 63.28,
+    "end": 66.8,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Push up to stand.",
+    "spoken": "Breathe in... Push up to stand."
+   },
+   {
+    "type": "breath",
+    "start": 66.8,
+    "end": 70.32,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Lower your arms.",
+    "spoken": "Breathe out... Lower your arms."
+   },
+   {
+    "type": "wisdom",
+    "start": 70.32,
+    "end": 79.32,
+    "spoken": "Fun fact! Your leg muscles are some of the strongest in your body. They help you jump and climb!"
+   },
+   {
+    "type": "breath",
+    "start": 79.32,
+    "end": 82.84,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Reach up high.",
+    "spoken": "Breathe in... Reach up high."
+   },
+   {
+    "type": "breath",
+    "start": 82.84,
+    "end": 86.36,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Bend your knees. Hips back.",
+    "spoken": "Breathe out... Bend your knees. Hips back."
+   },
+   {
+    "type": "breath",
+    "start": 86.36,
+    "end": 90.88,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Feel your legs working.",
+    "spoken": "Breathe in... Feel your legs working."
+   },
+   {
+    "type": "breath",
+    "start": 90.88,
+    "end": 95.4,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Long, straight back.",
+    "spoken": "Breathe out... Long, straight back."
+   },
+   {
+    "type": "breath",
+    "start": 95.4,
+    "end": 99.92,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Fingers reach up.",
+    "spoken": "Breathe in... Fingers reach up."
+   },
+   {
+    "type": "breath",
+    "start": 99.92,
+    "end": 104.44,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Hold. Almost there.",
+    "spoken": "Breathe out... Hold. Almost there."
+   },
+   {
+    "type": "breath",
+    "start": 104.44,
+    "end": 107.96,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Stand up slowly.",
+    "spoken": "Breathe in... Stand up slowly."
+   },
+   {
+    "type": "breath",
+    "start": 107.96,
+    "end": 111.48,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Arms down. Relax.",
+    "spoken": "Breathe out... Arms down. Relax."
+   },
+   {
+    "type": "breath",
+    "start": 111.48,
+    "end": 115.0,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "One last time. Arms up.",
+    "spoken": "Breathe in... One last time. Arms up."
+   },
+   {
+    "type": "breath",
+    "start": 115.0,
+    "end": 118.52,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Bend your knees. Sit back.",
+    "spoken": "Breathe out... Bend your knees. Sit back."
+   },
+   {
+    "type": "breath",
+    "start": 118.52,
+    "end": 123.04,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "Strong like a chair.",
+    "spoken": "Breathe in... Strong like a chair."
+   },
+   {
+    "type": "breath",
+    "start": 123.04,
+    "end": 127.56,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Breathe nice and slow.",
+    "spoken": "Breathe out... Breathe nice and slow."
+   },
+   {
+    "type": "breath",
+    "start": 127.56,
+    "end": 132.08,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "Last hold. You can do it!",
+    "spoken": "Breathe in... Last hold. You can do it!"
+   },
+   {
+    "type": "breath",
+    "start": 132.08,
+    "end": 136.6,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Proud and strong.",
+    "spoken": "Breathe out... Proud and strong."
+   },
+   {
+    "type": "breath",
+    "start": 136.6,
+    "end": 140.12,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "Stand up tall.",
+    "spoken": "Breathe in... Stand up tall."
+   },
+   {
+    "type": "breath",
+    "start": 140.12,
+    "end": 143.64,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Arms down. Great job!",
+    "spoken": "Breathe out... Arms down. Great job!"
+   },
+   {
+    "type": "end",
+    "start": 143.64,
+    "end": 149.64,
+    "spoken": "Nice work! You did Chair Pose."
+   }
+  ]
+ },
+ "es": {
+  "total": 149.64,
+  "wisdom": [
+   70.32,
+   79.32
+  ],
+  "end_card": [
+   143.64,
+   149.64
+  ],
+  "cues": [
+   {
+    "type": "title",
+    "start": 0.0,
+    "end": 6.0,
+    "spoken": "Postura de la Silla, con Hani"
+   },
+   {
+    "type": "breath",
+    "start": 6.0,
+    "end": 9.52,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Sube los brazos bien alto.",
+    "spoken": "Inhala... Sube los brazos bien alto."
+   },
+   {
+    "type": "breath",
+    "start": 9.52,
+    "end": 13.04,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Dobla las rodillas. Siéntate atrás.",
+    "spoken": "Exhala... Dobla las rodillas. Siéntate atrás."
+   },
+   {
+    "type": "breath",
+    "start": 13.04,
+    "end": 17.56,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Inclínate un poquito hacia adelante.",
+    "spoken": "Inhala... Inclínate un poquito hacia adelante."
+   },
+   {
+    "type": "breath",
+    "start": 17.56,
+    "end": 22.08,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Orejas entre los brazos.",
+    "spoken": "Exhala... Orejas entre los brazos."
+   },
+   {
+    "type": "breath",
+    "start": 22.08,
+    "end": 26.6,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Rodillas y pies juntos.",
+    "spoken": "Inhala... Rodillas y pies juntos."
+   },
+   {
+    "type": "breath",
+    "start": 26.6,
+    "end": 31.12,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Sigue respirando despacio.",
+    "spoken": "Exhala... Sigue respirando despacio."
+   },
+   {
+    "type": "breath",
+    "start": 31.12,
+    "end": 34.64,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Párate derecho.",
+    "spoken": "Inhala... Párate derecho."
+   },
+   {
+    "type": "breath",
+    "start": 34.64,
+    "end": 38.16,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Brazos abajo a los lados.",
+    "spoken": "Exhala... Brazos abajo a los lados."
+   },
+   {
+    "type": "breath",
+    "start": 38.16,
+    "end": 41.68,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Brazos arriba otra vez.",
+    "spoken": "Inhala... Brazos arriba otra vez."
+   },
+   {
+    "type": "breath",
+    "start": 41.68,
+    "end": 45.2,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Siéntate atrás en tu silla.",
+    "spoken": "Exhala... Siéntate atrás en tu silla."
+   },
+   {
+    "type": "breath",
+    "start": 45.2,
+    "end": 49.72,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Mira hacia adelante.",
+    "spoken": "Inhala... Mira hacia adelante."
+   },
+   {
+    "type": "breath",
+    "start": 49.72,
+    "end": 54.24,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Piernas fuertes y firmes.",
+    "spoken": "Exhala... Piernas fuertes y firmes."
+   },
+   {
+    "type": "breath",
+    "start": 54.24,
+    "end": 58.76,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Brazos en línea con tu espalda.",
+    "spoken": "Inhala... Brazos en línea con tu espalda."
+   },
+   {
+    "type": "breath",
+    "start": 58.76,
+    "end": 63.28,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "¡Lo estás haciendo muy bien!",
+    "spoken": "Exhala... ¡Lo estás haciendo muy bien!"
+   },
+   {
+    "type": "breath",
+    "start": 63.28,
+    "end": 66.8,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Empuja para pararte.",
+    "spoken": "Inhala... Empuja para pararte."
+   },
+   {
+    "type": "breath",
+    "start": 66.8,
+    "end": 70.32,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Baja los brazos.",
+    "spoken": "Exhala... Baja los brazos."
+   },
+   {
+    "type": "wisdom",
+    "start": 70.32,
+    "end": 79.32,
+    "spoken": "¡Dato curioso! Los músculos de tus piernas están entre los más fuertes de tu cuerpo. ¡Te ayudan a saltar y trepar!"
+   },
+   {
+    "type": "breath",
+    "start": 79.32,
+    "end": 82.84,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Estírate bien alto.",
+    "spoken": "Inhala... Estírate bien alto."
+   },
+   {
+    "type": "breath",
+    "start": 82.84,
+    "end": 86.36,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Dobla las rodillas. Cadera atrás.",
+    "spoken": "Exhala... Dobla las rodillas. Cadera atrás."
+   },
+   {
+    "type": "breath",
+    "start": 86.36,
+    "end": 90.88,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Siente cómo trabajan tus piernas.",
+    "spoken": "Inhala... Siente cómo trabajan tus piernas."
+   },
+   {
+    "type": "breath",
+    "start": 90.88,
+    "end": 95.4,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Espalda larga y recta.",
+    "spoken": "Exhala... Espalda larga y recta."
+   },
+   {
+    "type": "breath",
+    "start": 95.4,
+    "end": 99.92,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Los dedos hacia arriba.",
+    "spoken": "Inhala... Los dedos hacia arriba."
+   },
+   {
+    "type": "breath",
+    "start": 99.92,
+    "end": 104.44,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Aguanta. Ya casi.",
+    "spoken": "Exhala... Aguanta. Ya casi."
+   },
+   {
+    "type": "breath",
+    "start": 104.44,
+    "end": 107.96,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Párate despacio.",
+    "spoken": "Inhala... Párate despacio."
+   },
+   {
+    "type": "breath",
+    "start": 107.96,
+    "end": 111.48,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Brazos abajo. Relájate.",
+    "spoken": "Exhala... Brazos abajo. Relájate."
+   },
+   {
+    "type": "breath",
+    "start": 111.48,
+    "end": 115.0,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Una última vez. Brazos arriba.",
+    "spoken": "Inhala... Una última vez. Brazos arriba."
+   },
+   {
+    "type": "breath",
+    "start": 115.0,
+    "end": 118.52,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Dobla las rodillas. Siéntate atrás.",
+    "spoken": "Exhala... Dobla las rodillas. Siéntate atrás."
+   },
+   {
+    "type": "breath",
+    "start": 118.52,
+    "end": 123.04,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Fuerte como una silla.",
+    "spoken": "Inhala... Fuerte como una silla."
+   },
+   {
+    "type": "breath",
+    "start": 123.04,
+    "end": 127.56,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Respira lento y suave.",
+    "spoken": "Exhala... Respira lento y suave."
+   },
+   {
+    "type": "breath",
+    "start": 127.56,
+    "end": 132.08,
+    "dur": 4.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "¡Último aguante, tú puedes!",
+    "spoken": "Inhala... ¡Último aguante, tú puedes!"
+   },
+   {
+    "type": "breath",
+    "start": 132.08,
+    "end": 136.6,
+    "dur": 4.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Orgulloso y fuerte.",
+    "spoken": "Exhala... Orgulloso y fuerte."
+   },
+   {
+    "type": "breath",
+    "start": 136.6,
+    "end": 140.12,
+    "dur": 3.52,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Párate derecho.",
+    "spoken": "Inhala... Párate derecho."
+   },
+   {
+    "type": "breath",
+    "start": 140.12,
+    "end": 143.64,
+    "dur": 3.52,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Brazos abajo. ¡Muy bien!",
+    "spoken": "Exhala... Brazos abajo. ¡Muy bien!"
+   },
+   {
+    "type": "end",
+    "start": 143.64,
+    "end": 149.64,
+    "spoken": "¡Muy bien! Hiciste la postura de la Silla."
+   }
+  ]
+ }
+}

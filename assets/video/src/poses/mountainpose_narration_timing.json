@@ -1,450 +1,771 @@
-[
- {
-  "lang": "en",
-  "start": 6.0,
-  "end": 11.5,
-  "phase": "in",
-  "text": "Breathe in... Stand tall. Feet together."
+{
+ "video": "mountainpose",
+ "fps": 25,
+ "version": "gold-standard",
+ "en": {
+  "total": 169.8,
+  "wisdom": [
+   80.4,
+   89.4
+  ],
+  "end_card": [
+   163.8,
+   169.8
+  ],
+  "cues": [
+   {
+    "type": "title",
+    "start": 0.0,
+    "end": 6.0,
+    "spoken": "Mountain Pose, with Hani"
+   },
+   {
+    "type": "breath",
+    "start": 6.0,
+    "end": 11.5,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Stand tall. Feet together.",
+    "spoken": "Breathe in... Stand tall. Feet together."
+   },
+   {
+    "type": "breath",
+    "start": 11.5,
+    "end": 16.0,
+    "dur": 4.5,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Arms by your sides.",
+    "spoken": "Breathe out... Arms by your sides."
+   },
+   {
+    "type": "breath",
+    "start": 16.0,
+    "end": 19.8,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Palms face forward.",
+    "spoken": "Breathe in... Palms face forward."
+   },
+   {
+    "type": "breath",
+    "start": 19.8,
+    "end": 24.8,
+    "dur": 5.0,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Feel your feet on the floor.",
+    "spoken": "Breathe out... Feel your feet on the floor."
+   },
+   {
+    "type": "breath",
+    "start": 24.8,
+    "end": 28.6,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Grow tall like a mountain.",
+    "spoken": "Breathe in... Grow tall like a mountain."
+   },
+   {
+    "type": "breath",
+    "start": 28.6,
+    "end": 34.0,
+    "dur": 5.4,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Shoulders soft and low.",
+    "spoken": "Breathe out... Shoulders soft and low."
+   },
+   {
+    "type": "breath",
+    "start": 34.0,
+    "end": 37.7,
+    "dur": 3.7,
+    "phase": "in",
+    "group": 1,
+    "cue": "Breathe in...",
+    "text": "Fill up slowly.",
+    "spoken": "Breathe in... Fill up slowly."
+   },
+   {
+    "type": "breath",
+    "start": 37.7,
+    "end": 43.2,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 1,
+    "cue": "Breathe out...",
+    "text": "Let it all go.",
+    "spoken": "Breathe out... Let it all go."
+   },
+   {
+    "type": "breath",
+    "start": 43.2,
+    "end": 48.7,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Feel strong and steady.",
+    "spoken": "Breathe in... Feel strong and steady."
+   },
+   {
+    "type": "breath",
+    "start": 48.7,
+    "end": 52.4,
+    "dur": 3.7,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Feel calm inside.",
+    "spoken": "Breathe out... Feel calm inside."
+   },
+   {
+    "type": "breath",
+    "start": 52.4,
+    "end": 57.8,
+    "dur": 5.4,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Like a big mountain.",
+    "spoken": "Breathe in... Like a big mountain."
+   },
+   {
+    "type": "breath",
+    "start": 57.8,
+    "end": 61.6,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Nothing can push you over.",
+    "spoken": "Breathe out... Nothing can push you over."
+   },
+   {
+    "type": "breath",
+    "start": 61.6,
+    "end": 66.6,
+    "dur": 5.0,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Slow and deep.",
+    "spoken": "Breathe in... Slow and deep."
+   },
+   {
+    "type": "breath",
+    "start": 66.6,
+    "end": 70.4,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Nice and slow.",
+    "spoken": "Breathe out... Nice and slow."
+   },
+   {
+    "type": "breath",
+    "start": 70.4,
+    "end": 74.9,
+    "dur": 4.5,
+    "phase": "in",
+    "group": 2,
+    "cue": "Breathe in...",
+    "text": "Your mountain is strong.",
+    "spoken": "Breathe in... Your mountain is strong."
+   },
+   {
+    "type": "breath",
+    "start": 74.9,
+    "end": 80.4,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 2,
+    "cue": "Breathe out...",
+    "text": "Your mountain is calm.",
+    "spoken": "Breathe out... Your mountain is calm."
+   },
+   {
+    "type": "wisdom",
+    "start": 80.4,
+    "end": 89.4,
+    "spoken": "Fun fact! Mountains stay steady and strong, even when the wind blows!"
+   },
+   {
+    "type": "breath",
+    "start": 89.4,
+    "end": 94.9,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Close your eyes, or look down.",
+    "spoken": "Breathe in... Close your eyes, or look down."
+   },
+   {
+    "type": "breath",
+    "start": 94.9,
+    "end": 99.4,
+    "dur": 4.5,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Soft, quiet body.",
+    "spoken": "Breathe out... Soft, quiet body."
+   },
+   {
+    "type": "breath",
+    "start": 99.4,
+    "end": 103.2,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Feel the sun on your mountain.",
+    "spoken": "Breathe in... Feel the sun on your mountain."
+   },
+   {
+    "type": "breath",
+    "start": 103.2,
+    "end": 108.2,
+    "dur": 5.0,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Let the clouds float by.",
+    "spoken": "Breathe out... Let the clouds float by."
+   },
+   {
+    "type": "breath",
+    "start": 108.2,
+    "end": 112.0,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Breathe in calm.",
+    "spoken": "Breathe in... Breathe in calm."
+   },
+   {
+    "type": "breath",
+    "start": 112.0,
+    "end": 117.4,
+    "dur": 5.4,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Breathe out worries.",
+    "spoken": "Breathe out... Breathe out worries."
+   },
+   {
+    "type": "breath",
+    "start": 117.4,
+    "end": 121.1,
+    "dur": 3.7,
+    "phase": "in",
+    "group": 3,
+    "cue": "Breathe in...",
+    "text": "Tall and proud.",
+    "spoken": "Breathe in... Tall and proud."
+   },
+   {
+    "type": "breath",
+    "start": 121.1,
+    "end": 126.6,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 3,
+    "cue": "Breathe out...",
+    "text": "Steady and still.",
+    "spoken": "Breathe out... Steady and still."
+   },
+   {
+    "type": "breath",
+    "start": 126.6,
+    "end": 132.1,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "Almost done.",
+    "spoken": "Breathe in... Almost done."
+   },
+   {
+    "type": "breath",
+    "start": 132.1,
+    "end": 135.8,
+    "dur": 3.7,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Slow and easy.",
+    "spoken": "Breathe out... Slow and easy."
+   },
+   {
+    "type": "breath",
+    "start": 135.8,
+    "end": 141.2,
+    "dur": 5.4,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "One more big breath.",
+    "spoken": "Breathe in... One more big breath."
+   },
+   {
+    "type": "breath",
+    "start": 141.2,
+    "end": 145.0,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "All the way out.",
+    "spoken": "Breathe out... All the way out."
+   },
+   {
+    "type": "breath",
+    "start": 145.0,
+    "end": 150.0,
+    "dur": 5.0,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "Wiggle your fingers.",
+    "spoken": "Breathe in... Wiggle your fingers."
+   },
+   {
+    "type": "breath",
+    "start": 150.0,
+    "end": 153.8,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Open your eyes.",
+    "spoken": "Breathe out... Open your eyes."
+   },
+   {
+    "type": "breath",
+    "start": 153.8,
+    "end": 158.3,
+    "dur": 4.5,
+    "phase": "in",
+    "group": 4,
+    "cue": "Breathe in...",
+    "text": "You are a mountain!",
+    "spoken": "Breathe in... You are a mountain!"
+   },
+   {
+    "type": "breath",
+    "start": 158.3,
+    "end": 163.8,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 4,
+    "cue": "Breathe out...",
+    "text": "Great job, friend!",
+    "spoken": "Breathe out... Great job, friend!"
+   },
+   {
+    "type": "end",
+    "start": 163.8,
+    "end": 169.8,
+    "spoken": "Nice work! You did Mountain Pose."
+   }
+  ]
  },
- {
-  "lang": "en",
-  "start": 11.5,
-  "end": 16.0,
-  "phase": "out",
-  "text": "Breathe out... Arms by your sides."
- },
- {
-  "lang": "en",
-  "start": 16.0,
-  "end": 19.8,
-  "phase": "in",
-  "text": "Breathe in... Palms face forward."
- },
- {
-  "lang": "en",
-  "start": 19.8,
-  "end": 24.8,
-  "phase": "out",
-  "text": "Breathe out... Feel your feet on the floor."
- },
- {
-  "lang": "en",
-  "start": 24.8,
-  "end": 28.6,
-  "phase": "in",
-  "text": "Breathe in... Grow tall like a mountain."
- },
- {
-  "lang": "en",
-  "start": 28.6,
-  "end": 34.0,
-  "phase": "out",
-  "text": "Breathe out... Shoulders soft and low."
- },
- {
-  "lang": "en",
-  "start": 34.0,
-  "end": 37.7,
-  "phase": "in",
-  "text": "Breathe in... Fill up slowly."
- },
- {
-  "lang": "en",
-  "start": 37.7,
-  "end": 43.2,
-  "phase": "out",
-  "text": "Breathe out... Let it all go."
- },
- {
-  "lang": "en",
-  "start": 43.2,
-  "end": 48.7,
-  "phase": "in",
-  "text": "Breathe in... Feel strong and steady."
- },
- {
-  "lang": "en",
-  "start": 48.7,
-  "end": 52.4,
-  "phase": "out",
-  "text": "Breathe out... Feel calm inside."
- },
- {
-  "lang": "en",
-  "start": 52.4,
-  "end": 57.8,
-  "phase": "in",
-  "text": "Breathe in... Like a big mountain."
- },
- {
-  "lang": "en",
-  "start": 57.8,
-  "end": 61.6,
-  "phase": "out",
-  "text": "Breathe out... Nothing can push you over."
- },
- {
-  "lang": "en",
-  "start": 61.6,
-  "end": 66.6,
-  "phase": "in",
-  "text": "Breathe in... Slow and deep."
- },
- {
-  "lang": "en",
-  "start": 66.6,
-  "end": 70.4,
-  "phase": "out",
-  "text": "Breathe out... Nice and slow."
- },
- {
-  "lang": "en",
-  "start": 70.4,
-  "end": 74.9,
-  "phase": "in",
-  "text": "Breathe in... Your mountain is strong."
- },
- {
-  "lang": "en",
-  "start": 74.9,
-  "end": 80.4,
-  "phase": "out",
-  "text": "Breathe out... Your mountain is calm."
- },
- {
-  "lang": "en",
-  "start": 80.4,
-  "end": 85.9,
-  "phase": "in",
-  "text": "Breathe in... Close your eyes, or look down."
- },
- {
-  "lang": "en",
-  "start": 85.9,
-  "end": 90.4,
-  "phase": "out",
-  "text": "Breathe out... Soft, quiet body."
- },
- {
-  "lang": "en",
-  "start": 90.4,
-  "end": 94.2,
-  "phase": "in",
-  "text": "Breathe in... Feel the sun on your mountain."
- },
- {
-  "lang": "en",
-  "start": 94.2,
-  "end": 99.2,
-  "phase": "out",
-  "text": "Breathe out... Let the clouds float by."
- },
- {
-  "lang": "en",
-  "start": 99.2,
-  "end": 103.0,
-  "phase": "in",
-  "text": "Breathe in... Breathe in calm."
- },
- {
-  "lang": "en",
-  "start": 103.0,
-  "end": 108.4,
-  "phase": "out",
-  "text": "Breathe out... Breathe out worries."
- },
- {
-  "lang": "en",
-  "start": 108.4,
-  "end": 112.1,
-  "phase": "in",
-  "text": "Breathe in... Tall and proud."
- },
- {
-  "lang": "en",
-  "start": 112.1,
-  "end": 117.6,
-  "phase": "out",
-  "text": "Breathe out... Steady and still."
- },
- {
-  "lang": "en",
-  "start": 117.6,
-  "end": 123.1,
-  "phase": "in",
-  "text": "Breathe in... Almost done."
- },
- {
-  "lang": "en",
-  "start": 123.1,
-  "end": 126.8,
-  "phase": "out",
-  "text": "Breathe out... Slow and easy."
- },
- {
-  "lang": "en",
-  "start": 126.8,
-  "end": 132.2,
-  "phase": "in",
-  "text": "Breathe in... One more big breath."
- },
- {
-  "lang": "en",
-  "start": 132.2,
-  "end": 136.0,
-  "phase": "out",
-  "text": "Breathe out... All the way out."
- },
- {
-  "lang": "en",
-  "start": 136.0,
-  "end": 141.0,
-  "phase": "in",
-  "text": "Breathe in... Wiggle your fingers."
- },
- {
-  "lang": "en",
-  "start": 141.0,
-  "end": 144.8,
-  "phase": "out",
-  "text": "Breathe out... Open your eyes."
- },
- {
-  "lang": "en",
-  "start": 144.8,
-  "end": 149.3,
-  "phase": "in",
-  "text": "Breathe in... You are a mountain!"
- },
- {
-  "lang": "en",
-  "start": 149.3,
-  "end": 154.8,
-  "phase": "out",
-  "text": "Breathe out... Great job, friend!"
- },
- {
-  "lang": "es",
-  "start": 6.0,
-  "end": 11.5,
-  "phase": "in",
-  "text": "Inhala... Párate alto. Junta los pies."
- },
- {
-  "lang": "es",
-  "start": 11.5,
-  "end": 16.0,
-  "phase": "out",
-  "text": "Exhala... Brazos a los lados."
- },
- {
-  "lang": "es",
-  "start": 16.0,
-  "end": 19.8,
-  "phase": "in",
-  "text": "Inhala... Palmas hacia adelante."
- },
- {
-  "lang": "es",
-  "start": 19.8,
-  "end": 24.8,
-  "phase": "out",
-  "text": "Exhala... Siente tus pies en el piso."
- },
- {
-  "lang": "es",
-  "start": 24.8,
-  "end": 28.6,
-  "phase": "in",
-  "text": "Inhala... Crece alto como una montaña."
- },
- {
-  "lang": "es",
-  "start": 28.6,
-  "end": 34.0,
-  "phase": "out",
-  "text": "Exhala... Hombros suaves y relajados."
- },
- {
-  "lang": "es",
-  "start": 34.0,
-  "end": 37.7,
-  "phase": "in",
-  "text": "Inhala... Llénate despacito."
- },
- {
-  "lang": "es",
-  "start": 37.7,
-  "end": 43.2,
-  "phase": "out",
-  "text": "Exhala... Suéltalo todo."
- },
- {
-  "lang": "es",
-  "start": 43.2,
-  "end": 48.7,
-  "phase": "in",
-  "text": "Inhala... Siéntete fuerte y firme."
- },
- {
-  "lang": "es",
-  "start": 48.7,
-  "end": 52.4,
-  "phase": "out",
-  "text": "Exhala... Siente la calma por dentro."
- },
- {
-  "lang": "es",
-  "start": 52.4,
-  "end": 57.8,
-  "phase": "in",
-  "text": "Inhala... Como una gran montaña."
- },
- {
-  "lang": "es",
-  "start": 57.8,
-  "end": 61.6,
-  "phase": "out",
-  "text": "Exhala... Nada te puede mover."
- },
- {
-  "lang": "es",
-  "start": 61.6,
-  "end": 66.6,
-  "phase": "in",
-  "text": "Inhala... Lento y profundo."
- },
- {
-  "lang": "es",
-  "start": 66.6,
-  "end": 70.4,
-  "phase": "out",
-  "text": "Exhala... Bien despacito."
- },
- {
-  "lang": "es",
-  "start": 70.4,
-  "end": 74.9,
-  "phase": "in",
-  "text": "Inhala... Tu montaña es fuerte."
- },
- {
-  "lang": "es",
-  "start": 74.9,
-  "end": 80.4,
-  "phase": "out",
-  "text": "Exhala... Tu montaña está tranquila."
- },
- {
-  "lang": "es",
-  "start": 80.4,
-  "end": 85.9,
-  "phase": "in",
-  "text": "Inhala... Cierra los ojos, o mira hacia abajo."
- },
- {
-  "lang": "es",
-  "start": 85.9,
-  "end": 90.4,
-  "phase": "out",
-  "text": "Exhala... Cuerpo suave y quieto."
- },
- {
-  "lang": "es",
-  "start": 90.4,
-  "end": 94.2,
-  "phase": "in",
-  "text": "Inhala... Siente el sol en tu montaña."
- },
- {
-  "lang": "es",
-  "start": 94.2,
-  "end": 99.2,
-  "phase": "out",
-  "text": "Exhala... Deja pasar las nubes."
- },
- {
-  "lang": "es",
-  "start": 99.2,
-  "end": 103.0,
-  "phase": "in",
-  "text": "Inhala... Inhala calma."
- },
- {
-  "lang": "es",
-  "start": 103.0,
-  "end": 108.4,
-  "phase": "out",
-  "text": "Exhala... Exhala tus preocupaciones."
- },
- {
-  "lang": "es",
-  "start": 108.4,
-  "end": 112.1,
-  "phase": "in",
-  "text": "Inhala... Alto y orgulloso."
- },
- {
-  "lang": "es",
-  "start": 112.1,
-  "end": 117.6,
-  "phase": "out",
-  "text": "Exhala... Firme y quieto."
- },
- {
-  "lang": "es",
-  "start": 117.6,
-  "end": 123.1,
-  "phase": "in",
-  "text": "Inhala... Ya casi terminamos."
- },
- {
-  "lang": "es",
-  "start": 123.1,
-  "end": 126.8,
-  "phase": "out",
-  "text": "Exhala... Lento y tranquilo."
- },
- {
-  "lang": "es",
-  "start": 126.8,
-  "end": 132.2,
-  "phase": "in",
-  "text": "Inhala... Una respiración grande más."
- },
- {
-  "lang": "es",
-  "start": 132.2,
-  "end": 136.0,
-  "phase": "out",
-  "text": "Exhala... Suelta todo el aire."
- },
- {
-  "lang": "es",
-  "start": 136.0,
-  "end": 141.0,
-  "phase": "in",
-  "text": "Inhala... Mueve los dedos."
- },
- {
-  "lang": "es",
-  "start": 141.0,
-  "end": 144.8,
-  "phase": "out",
-  "text": "Exhala... Abre los ojos."
- },
- {
-  "lang": "es",
-  "start": 144.8,
-  "end": 149.3,
-  "phase": "in",
-  "text": "Inhala... ¡Eres una montaña!"
- },
- {
-  "lang": "es",
-  "start": 149.3,
-  "end": 154.8,
-  "phase": "out",
-  "text": "Exhala... ¡Muy bien, amigo!"
+ "es": {
+  "total": 169.8,
+  "wisdom": [
+   80.4,
+   89.4
+  ],
+  "end_card": [
+   163.8,
+   169.8
+  ],
+  "cues": [
+   {
+    "type": "title",
+    "start": 0.0,
+    "end": 6.0,
+    "spoken": "Postura de la Montaña, con Hani"
+   },
+   {
+    "type": "breath",
+    "start": 6.0,
+    "end": 11.5,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Párate alto. Junta los pies.",
+    "spoken": "Inhala... Párate alto. Junta los pies."
+   },
+   {
+    "type": "breath",
+    "start": 11.5,
+    "end": 16.0,
+    "dur": 4.5,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Brazos a los lados.",
+    "spoken": "Exhala... Brazos a los lados."
+   },
+   {
+    "type": "breath",
+    "start": 16.0,
+    "end": 19.8,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Palmas hacia adelante.",
+    "spoken": "Inhala... Palmas hacia adelante."
+   },
+   {
+    "type": "breath",
+    "start": 19.8,
+    "end": 24.8,
+    "dur": 5.0,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Siente tus pies en el piso.",
+    "spoken": "Exhala... Siente tus pies en el piso."
+   },
+   {
+    "type": "breath",
+    "start": 24.8,
+    "end": 28.6,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Crece alto como una montaña.",
+    "spoken": "Inhala... Crece alto como una montaña."
+   },
+   {
+    "type": "breath",
+    "start": 28.6,
+    "end": 34.0,
+    "dur": 5.4,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Hombros suaves y relajados.",
+    "spoken": "Exhala... Hombros suaves y relajados."
+   },
+   {
+    "type": "breath",
+    "start": 34.0,
+    "end": 37.7,
+    "dur": 3.7,
+    "phase": "in",
+    "group": 1,
+    "cue": "Inhala...",
+    "text": "Llénate despacito.",
+    "spoken": "Inhala... Llénate despacito."
+   },
+   {
+    "type": "breath",
+    "start": 37.7,
+    "end": 43.2,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 1,
+    "cue": "Exhala...",
+    "text": "Suéltalo todo.",
+    "spoken": "Exhala... Suéltalo todo."
+   },
+   {
+    "type": "breath",
+    "start": 43.2,
+    "end": 48.7,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Siéntete fuerte y firme.",
+    "spoken": "Inhala... Siéntete fuerte y firme."
+   },
+   {
+    "type": "breath",
+    "start": 48.7,
+    "end": 52.4,
+    "dur": 3.7,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Siente la calma por dentro.",
+    "spoken": "Exhala... Siente la calma por dentro."
+   },
+   {
+    "type": "breath",
+    "start": 52.4,
+    "end": 57.8,
+    "dur": 5.4,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Como una gran montaña.",
+    "spoken": "Inhala... Como una gran montaña."
+   },
+   {
+    "type": "breath",
+    "start": 57.8,
+    "end": 61.6,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Nada te puede mover.",
+    "spoken": "Exhala... Nada te puede mover."
+   },
+   {
+    "type": "breath",
+    "start": 61.6,
+    "end": 66.6,
+    "dur": 5.0,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Lento y profundo.",
+    "spoken": "Inhala... Lento y profundo."
+   },
+   {
+    "type": "breath",
+    "start": 66.6,
+    "end": 70.4,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Bien despacito.",
+    "spoken": "Exhala... Bien despacito."
+   },
+   {
+    "type": "breath",
+    "start": 70.4,
+    "end": 74.9,
+    "dur": 4.5,
+    "phase": "in",
+    "group": 2,
+    "cue": "Inhala...",
+    "text": "Tu montaña es fuerte.",
+    "spoken": "Inhala... Tu montaña es fuerte."
+   },
+   {
+    "type": "breath",
+    "start": 74.9,
+    "end": 80.4,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 2,
+    "cue": "Exhala...",
+    "text": "Tu montaña está tranquila.",
+    "spoken": "Exhala... Tu montaña está tranquila."
+   },
+   {
+    "type": "wisdom",
+    "start": 80.4,
+    "end": 89.4,
+    "spoken": "¡Dato curioso! ¡Las montañas se quedan firmes y fuertes, aunque sople el viento!"
+   },
+   {
+    "type": "breath",
+    "start": 89.4,
+    "end": 94.9,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Cierra los ojos, o mira hacia abajo.",
+    "spoken": "Inhala... Cierra los ojos, o mira hacia abajo."
+   },
+   {
+    "type": "breath",
+    "start": 94.9,
+    "end": 99.4,
+    "dur": 4.5,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Cuerpo suave y quieto.",
+    "spoken": "Exhala... Cuerpo suave y quieto."
+   },
+   {
+    "type": "breath",
+    "start": 99.4,
+    "end": 103.2,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Siente el sol en tu montaña.",
+    "spoken": "Inhala... Siente el sol en tu montaña."
+   },
+   {
+    "type": "breath",
+    "start": 103.2,
+    "end": 108.2,
+    "dur": 5.0,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Deja pasar las nubes.",
+    "spoken": "Exhala... Deja pasar las nubes."
+   },
+   {
+    "type": "breath",
+    "start": 108.2,
+    "end": 112.0,
+    "dur": 3.8,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Inhala calma.",
+    "spoken": "Inhala... Inhala calma."
+   },
+   {
+    "type": "breath",
+    "start": 112.0,
+    "end": 117.4,
+    "dur": 5.4,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Exhala tus preocupaciones.",
+    "spoken": "Exhala... Exhala tus preocupaciones."
+   },
+   {
+    "type": "breath",
+    "start": 117.4,
+    "end": 121.1,
+    "dur": 3.7,
+    "phase": "in",
+    "group": 3,
+    "cue": "Inhala...",
+    "text": "Alto y orgulloso.",
+    "spoken": "Inhala... Alto y orgulloso."
+   },
+   {
+    "type": "breath",
+    "start": 121.1,
+    "end": 126.6,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 3,
+    "cue": "Exhala...",
+    "text": "Firme y quieto.",
+    "spoken": "Exhala... Firme y quieto."
+   },
+   {
+    "type": "breath",
+    "start": 126.6,
+    "end": 132.1,
+    "dur": 5.5,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Ya casi terminamos.",
+    "spoken": "Inhala... Ya casi terminamos."
+   },
+   {
+    "type": "breath",
+    "start": 132.1,
+    "end": 135.8,
+    "dur": 3.7,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Lento y tranquilo.",
+    "spoken": "Exhala... Lento y tranquilo."
+   },
+   {
+    "type": "breath",
+    "start": 135.8,
+    "end": 141.2,
+    "dur": 5.4,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Una respiración grande más.",
+    "spoken": "Inhala... Una respiración grande más."
+   },
+   {
+    "type": "breath",
+    "start": 141.2,
+    "end": 145.0,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Suelta todo el aire.",
+    "spoken": "Exhala... Suelta todo el aire."
+   },
+   {
+    "type": "breath",
+    "start": 145.0,
+    "end": 150.0,
+    "dur": 5.0,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "Mueve los dedos.",
+    "spoken": "Inhala... Mueve los dedos."
+   },
+   {
+    "type": "breath",
+    "start": 150.0,
+    "end": 153.8,
+    "dur": 3.8,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "Abre los ojos.",
+    "spoken": "Exhala... Abre los ojos."
+   },
+   {
+    "type": "breath",
+    "start": 153.8,
+    "end": 158.3,
+    "dur": 4.5,
+    "phase": "in",
+    "group": 4,
+    "cue": "Inhala...",
+    "text": "¡Eres una montaña!",
+    "spoken": "Inhala... ¡Eres una montaña!"
+   },
+   {
+    "type": "breath",
+    "start": 158.3,
+    "end": 163.8,
+    "dur": 5.5,
+    "phase": "out",
+    "group": 4,
+    "cue": "Exhala...",
+    "text": "¡Muy bien, amigo!",
+    "spoken": "Exhala... ¡Muy bien, amigo!"
+   },
+   {
+    "type": "end",
+    "start": 163.8,
+    "end": 169.8,
+    "spoken": "¡Muy bien! Hiciste la postura de la Montaña."
+   }
+  ]
  }
-]
+}
