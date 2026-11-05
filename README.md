@@ -1,5 +1,7 @@
 # Hani Service — MVP
 
+Canonical repo for the Hani app (`hanuman-menu.html`) and the classroom whiteboard (`whiteboard.html`).
+
 AI yoga coach for K-12 classrooms. Backend proxy + embeddable chat widget.
 Brain sourced from Trevor Vaughan's curriculum (Modules 3 & 5), S.E.L.F., Class Close, trauma-informed principles.
 
