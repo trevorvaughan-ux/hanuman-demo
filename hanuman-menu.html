@@ -167,30 +167,44 @@ async function sendMagicLink(){
   document.querySelector('.card-auth button').disabled = true;
 }
 
-/* ================= AFTER SIGN-IN + MFA (TOTP, required for every account) =================
-   Magic link proves "you have access to this email" but is forwardable — anyone with
-   inbox access can request a fresh link. TOTP binds the account to one physical
-   authenticator app, which is what actually stops casual seat-sharing. Required from
-   the very first sign-in, not optional. */
+/* ================= AFTER SIGN-IN + MFA (TOTP for admin/Curate only) =================
+   Magic link is the whole door for standard teacher/parent accounts.
+   TOTP is required only for accounts that can see the Curate tab (role=admin).
+   Standard accounts may opt into authenticator 2FA from Account settings — never
+   prompted or nagged at sign-in. menu_has_active_access is unchanged. */
 async function afterSignIn(){
   const { data:{ user } } = await sb.auth.getUser();
   state.user = user;
 
-  const { data: aal } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
-  const { data: factorsData } = await sb.auth.mfa.listFactors();
-  const verifiedFactor = (factorsData?.totp || []).find(f => f.status === 'verified');
+  // Role decides the door: standard accounts go straight to the catalog.
+  // Admin/Curate accounts still require TOTP (enroll + aal2) before catalog.
+  const { data: profile } = await sb.from('menu_profiles').select('*').eq('id', user.id).maybeSingle();
+  state.profile = profile;
+  const isAdmin = profile?.role === 'admin';
 
-  if(!verifiedFactor){
-    return renderMfaEnroll();
-  }
-  if(aal.currentLevel !== 'aal2'){
-    return renderMfaChallenge(verifiedFactor.id);
+  if(isAdmin){
+    const { data: aal } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
+    const { data: factorsData } = await sb.auth.mfa.listFactors();
+    const verifiedFactor = (factorsData?.totp || []).find(f => f.status === 'verified');
+    if(!verifiedFactor){
+      return renderMfaEnroll({ required:true });
+    }
+    if(aal?.currentLevel !== 'aal2'){
+      return renderMfaChallenge(verifiedFactor.id);
+    }
   }
   await loadProfileAndRender();
 }
 
-async function renderMfaEnroll(){
-  $app.innerHTML = `<div class="card-auth"><img class="mark" src="hanuman-smiling.jpg" onerror="this.style.display='none'"/><h2>One more step</h2><p class="muted-text">Set up 2FA once per account — this is what keeps your access yours. Scan with Google Authenticator, Authy, or similar.</p><div id="mfaBody">Loading…</div></div>`;
+async function renderMfaEnroll(opts){
+  const required = !!(opts && opts.required);
+  state.mfaOptional = !required;
+  const title = required ? 'One more step' : 'Add authenticator (optional)';
+  const blurb = required
+    ? 'Admin accounts need 2FA before Curate. Scan with Google Authenticator, Authy, or similar.'
+    : 'Optional 2FA for your account. Scan with Google Authenticator, Authy, or similar. You can skip this anytime.';
+  const skipBtn = required ? '' : `<button class="btn-ghost" style="width:100%;margin-top:8px;" onclick="loadProfileAndRender()">Not now</button>`;
+  $app.innerHTML = `<div class="card-auth"><img class="mark" src="hanuman-smiling.jpg" onerror="this.style.display='none'"/><h2>${title}</h2><p class="muted-text">${blurb}</p><div id="mfaBody">Loading…</div>${skipBtn}</div>`;
   const { data, error } = await sb.auth.mfa.enroll({ factorType:'totp' });
   if(error){ document.getElementById('mfaBody').innerHTML = `<div class="err">${esc(error.message)}</div>`; return; }
   state.mfaFactorId = data.id;
@@ -253,9 +267,33 @@ function renderHeader(){
     <div style="display:flex;align-items:center;gap:10px;">
       <a class="btn-primary" style="padding:7px 12px;font-size:.8rem;text-decoration:none;display:inline-block;" href="whiteboard.html">Start Practicing</a>
       <span class="pill ${state.profile?.role==='admin'?'gold':''}">${roleLabel}</span>
+      <button class="btn-ghost" style="padding:7px 12px;font-size:.8rem;" onclick="renderAccountSettings()">Account</button>
       <button class="btn-ghost" style="padding:7px 12px;font-size:.8rem;" onclick="signOut()">Sign out</button>
     </div>`;
 }
+async function renderAccountSettings(){
+  const email = state.user?.email || '';
+  const isAdmin = state.profile?.role === 'admin';
+  let factorNote = 'No authenticator on this account.';
+  try{
+    const { data: factorsData } = await sb.auth.mfa.listFactors();
+    const verified = (factorsData?.totp || []).find(f => f.status === 'verified');
+    if(verified) factorNote = 'Authenticator 2FA is on for this account.';
+  }catch(e){ /* ignore */ }
+  const totpAction = isAdmin
+    ? `<p class="muted-text">Admin accounts use authenticator 2FA at sign-in (required for Curate).</p>`
+    : `<p class="muted-text">${factorNote}</p>
+       <button class="btn-primary" style="width:100%;margin-top:8px;" onclick="renderMfaEnroll({ required:false })">Enable authenticator (optional)</button>
+       <p class="muted-text" style="margin-top:8px;">Optional only — never required for parents or teachers.</p>`;
+  $app.innerHTML = `
+    <div class="card-auth">
+      <h2>Account</h2>
+      <p class="muted-text">${esc(email)}</p>
+      ${totpAction}
+      <button class="btn-ghost" style="width:100%;margin-top:12px;" onclick="loadProfileAndRender()">Back to menu</button>
+    </div>`;
+}
+
 async function signOut(){ await sb.auth.signOut(); location.reload(); }
 
 /* Soft status line shown above the menu when someone doesn't have full
