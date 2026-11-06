@@ -483,8 +483,8 @@
   function lineAt(item,i){var L=item.lines[i],e=esCard(item),S=e&&e.steps&&e.steps[i];
     if(!S)return L;
     return {cue:S.cue||L.cue,sub:L.sub?(S.sub||""):(S.sub||""),say:S.say||L.say,hold:L.hold,pose:L.pose};}
-  function videoFor(item){return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
-  function needsEsSoon(item){return LANG==="es"&&!!item.video&&!ES_VIDEOS.has(item.video);}
+  function videoFor(item){if(item.videoES)return LANG==="es"?item.videoES:item.video;return (LANG==="es"&&ES_VIDEOS.has(item.video))?item.video.replace(/\.mp4$/,"_ES.mp4"):item.video;}
+  function needsEsSoon(item){return LANG==="es"&&!!item.video&&!item.videoES&&!ES_VIDEOS.has(item.video);}
   function bridgeText(id,en){if(LANG!=="es")return en;var B=(ESD&&ESD.bridges)||ES_BRIDGES;return B[id]||ES_BRIDGES[id]||en;}
   function mapLbl(m,v){return (LANG==="es"&&ESD&&ESD[m]&&ESD[m][v])?ESD[m][v]:v;}
   function foldStr(t){return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
@@ -496,7 +496,7 @@
     for(var i=0;i<PREF.length;i++){var h=vs.find(function(v){return v.name===PREF[i];});if(h){chosenVoice=h;return;}}
     chosenVoice=vs.find(function(v){return /^en/i.test(v.lang)&&/(male|guy|daniel|arthur|alex|fred|david|james|ryan)/i.test(v.name);})||vs.find(function(v){return /^en/i.test(v.lang);})||vs[0];}
   if("speechSynthesis"in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
-  function say(t){if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
+  function say(t){if(typeof CURRENT!=="undefined"&&CURRENT&&CURRENT.narrated)return;if(!voiceOn||!audioUnlocked||!("speechSynthesis"in window))return;
     try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);if(chosenVoice)u.voice=chosenVoice;if(LANG==="es"&&!(chosenVoice&&/^es/i.test(chosenVoice.lang)))u.lang="es-US";u.rate=.82;u.pitch=.8;speechSynthesis.speak(u);}catch(e){}}
   voiceToggle.onclick=function(){voiceOn=!voiceOn;voiceToggle.textContent=voiceOn?UI("voice_on","🔊 voice on"):UI("voice_off","🔇 voice off");if(!voiceOn&&window.speechSynthesis)speechSynthesis.cancel();};
 
@@ -890,19 +890,19 @@
   // ===== SEL TOOLS: social-emotional learning, PreK3-6th. Narrated like meditations. =====
   // Locked 6.30.2026: SEL is an ADDITION to breaths/meditations, not a replacement.
   var SEL=[
-{ id:"nameit", img:"hanuman-calm.jpg", kind:"sel", demo:"desk", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
+{ id:"nameit", img:"hanuman-calm.jpg", video:"assets/video/hani_name_it_EN_v2.mp4", videoES:"assets/video/hani_name_it_ES_v2.mp4", vttEN:"assets/video/hani_name_it_EN_v2.vtt", vttES:"assets/video/hani_name_it_ES_v2.vtt", narrated:true, kind:"sel", demo:"desk", name:"Name It to Tame It", tag:"SEL · Self-Awareness · 2 min", audience:"PreK3-6th", src:"HudsonSeed",
       blurb:"Find the feeling, give it a name, watch it get smaller. Big feelings shrink when we name them.",
       intro:"Hey, I'm Hani. Sometimes a feeling gets big and loud inside us. Here's a secret: when you give a feeling a name, it gets smaller. Let's try it together.",
       lines:[
-        {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:9},
-        {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:11},
-        {cue:"Find where it lives in your body.",sub:"Belly? Chest? Shoulders? Head?",say:"Find where that feeling lives in your body. Is it in your belly? Your chest? Your shoulders? Your head?",hold:11},
-        {cue:"Now give it a name.",sub:"Mad. Sad. Worried. Excited. Tired. Happy.",say:"Now give it a name, quietly in your head. Maybe it's mad. Or sad. Or worried. Or excited. Or tired. Or happy. Any name is okay.",hold:12},
-        {cue:"Say hi to it.",sub:"\"I see you, worried.\"",say:"Say hi to it, like this: I see you, worried. Or, I see you, mad. You're not in trouble. Feelings are visitors.",hold:11},
-        {cue:"Breathe in. Make room for it.",sub:"",say:"Breathe in, and make a little room for that feeling.",hold:8},
-        {cue:"Breathe out. Let it get smaller.",sub:"Named feelings shrink.",say:"Breathe out, and let it get a little smaller. That's the trick. Named feelings shrink.",hold:10},
-        {cue:"You're the sky. Feelings are the weather.",sub:"Weather always passes.",say:"Remember: you're the sky, and feelings are just the weather. And weather always, always passes.",hold:11},
-        {cue:"One more breath. You did it.",sub:"",say:"One more slow breath. You just did something that some grown-ups are still learning.",hold:9}
+        {cue:"Sit tall. One slow breath.",sub:"",say:"Sit tall, and take one slow breath in... and out.",hold:14},
+        {cue:"Check inside. What's there?",sub:"Like checking the weather.",say:"Now check inside yourself, like you're checking the weather. Is it sunny in there? Stormy? Cloudy? Windy?",hold:16},
+        {cue:"Find where it lives in your body.",sub:"Belly? Chest? Shoulders? Head?",say:"Find where that feeling lives in your body. Is it in your belly? Your chest? Your shoulders? Your head?",hold:16},
+        {cue:"Now give it a name.",sub:"Mad. Sad. Worried. Excited. Tired. Happy.",say:"Now give it a name, quietly in your head. Maybe it's mad. Or sad. Or worried. Or excited. Or tired. Or happy. Any name is okay.",hold:17},
+        {cue:"Say hi to it.",sub:"\"I see you, worried.\"",say:"Say hi to it, like this: I see you, worried. Or, I see you, mad. You're not in trouble. Feelings are visitors.",hold:16},
+        {cue:"Breathe in. Make room for it.",sub:"",say:"Breathe in, and make a little room for that feeling.",hold:12},
+        {cue:"Breathe out. Let it get smaller.",sub:"Named feelings shrink.",say:"Breathe out, and let it get a little smaller. That's the trick. Named feelings shrink.",hold:15},
+        {cue:"You're the sky. Feelings are the weather.",sub:"Weather always passes.",say:"Remember: you're the sky, and feelings are just the weather. And weather always, always passes.",hold:16},
+        {cue:"One more breath. You did it.",sub:"",say:"One more slow breath. You just did something that some grown-ups are still learning.",hold:10}
       ],
       close:"That's Name It to Tame It. Any time a feeling gets big, find it, name it, and watch it shrink." },
 { id:"grounding54321", img:"hanuman-sadgrief.jpg", kind:"sel", demo:"desk", name:"5-4-3-2-1 Grounding", tag:"SEL · Self-Management · 3 min", audience:"PreK3-6th", src:"HudsonSeed",
@@ -1781,7 +1781,9 @@
     medTimeouts.push(setTimeout(function(){ if(medActive) playLine(item,0); }, delay));
   }
 
-  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; hanumanVideo.play(); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
+  var hanumanModal=document.getElementById("hanumanModal"), hanumanVideo=document.getElementById("hanumanVideo"); function showHaniVideo(src){ deskWrap.style.display="none"; ballWrap.style.display="none"; monkeyWrap.style.display=""; var img=document.getElementById("hanumanImg"); if(img) img.style.display="none"; hanumanVideo.style.display="block"; hanumanVideo.src=src; hanumanVideo.currentTime=0; haniTrack(); hanumanVideo.play(); }
+  function haniTrack(){ var old=hanumanVideo.querySelectorAll("track"); for(var i=0;i<old.length;i++) old[i].remove(); var it=CURRENT; if(!it||!it.vttEN) return; var es=(LANG==="es"&&it.vttES); var t=document.createElement("track"); t.kind="subtitles"; t.srclang=es?"es":"en"; t.label=es?"Español":"English"; t.src=es?it.vttES:it.vttEN; t.default=true; hanumanVideo.appendChild(t); var apply=function(){ if(hanumanVideo.textTracks[0]) hanumanVideo.textTracks[0].mode=capsOn?"showing":"hidden"; }; t.addEventListener("load",apply); apply(); }
+  function haniLangSwap(){ var it=CURRENT; if(!it||!it.videoES||hanumanVideo.style.display==="none"||!hanumanVideo.getAttribute("src")) return; var want=videoFor(it); if(hanumanVideo.getAttribute("src")===want) return; var pos=hanumanVideo.currentTime, wasPlaying=!hanumanVideo.paused; hanumanVideo.src=want; haniTrack(); hanumanVideo.addEventListener("loadedmetadata",function f(){ hanumanVideo.removeEventListener("loadedmetadata",f); try{hanumanVideo.currentTime=pos;}catch(e){} if(wasPlaying) hanumanVideo.play(); }); } function closeHaniModal(){ hanumanVideo.pause(); hanumanModal.className=""; hanumanVideo.removeAttribute("src"); hanumanVideo.load(); } if(hanumanModal){ hanumanModal.addEventListener("click",function(ev){ if(ev.target===hanumanModal) closeHaniModal(); }); var __cb=hanumanModal.querySelector(".closeModal"); if(__cb) __cb.onclick=closeHaniModal; } document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeHaniModal(); }); function addCard(f){
     var c=document.createElement("div");c.className="card"+(f.kind==="meditation"?" med":"")+(f.kind==="chair"?" chair":"")+(f.kind==="sel"?" sel":"")+(f.kind==="class"?" cls":"");
     c.innerHTML=(f.img?"<img class='cardArt' src='"+f.img+"' alt='' loading='lazy'>":"")+"<span class='tag'>"+tx(f,"tag")+"</span>"+(needsEsSoon(f)?"<span class='esSoon'>Español pronto</span>":"")+"<h3>"+dispName(f)+"</h3><p>"+tx(f,"blurb")+"</p><div class='src'>"+mapLbl("audience_map",f.audience)+" · "+mapLbl("src_map",f.src)+"</div>"+"<button class='watchBtn' type='button'>"+UI("watch_hani","▶ Watch Hani")+"</button>";
     function launch(){ if(f.lines) runMeditation(f); else run(f); }
@@ -1928,7 +1930,7 @@
   var capBtn=document.getElementById("capToggle"), capsOn=true;
   try{ if(localStorage.getItem("hani_caps")==="off") capsOn=false; }catch(e){}
   function setCaps(){ document.body.classList.toggle("nocaps",!capsOn); capBtn.textContent=capsOn?UI("captions_on","💬 captions on"):UI("captions_off","💬 captions off"); capBtn.setAttribute("aria-pressed",capsOn); try{localStorage.setItem("hani_caps",capsOn?"on":"off");}catch(e){} }
-  capBtn.onclick=function(){capsOn=!capsOn;setCaps();}; setCaps();
+  capBtn.onclick=function(){capsOn=!capsOn;setCaps();var tt=hanumanVideo.textTracks;for(var i=0;i<tt.length;i++)tt[i].mode=capsOn?"showing":"hidden";}; setCaps();
   function buildAll(){
     cards.innerHTML=""; allCards=[];
     FLOWS.forEach(addCard);
@@ -1957,7 +1959,7 @@
     qEl.placeholder=UI("search_placeholder","🔍 Search tools — angry, worried, focus, sleepy…"); qEl.setAttribute("aria-label",UI("search_aria","Search tools"));
     setCaps(); pickVoice();
     Array.prototype.forEach.call(langBtns,function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===LANG?"true":"false");});
-    buildAll(); applyFilter(); if(dd.className==="open") renderDD();
+    buildAll(); applyFilter(); if(dd.className==="open") renderDD(); haniLangSwap();
   }
   function setLang(l,persist){
     if(l!=="es") l="en";
