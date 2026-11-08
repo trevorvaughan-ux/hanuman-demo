@@ -1,0 +1,68 @@
+{
+  "_source": "Crew brief Nov 7 2026 (final) - price law. Draft copy for Grokbot to wire. Do not change numbers here; they mirror config.",
+  "_config": {
+    "SUBSCRIPTION_PRICE_CENTS": {
+      "annual": 5900,
+      "monthly": 699
+    },
+    "FOUNDING": 3900,
+    "FOUNDING_RENEWAL": 4900
+  },
+  "_rules": "No countdowns, timers, 'only X left', 'last chance', or 'don't miss'. State terms once, plainly. Schools/staff copy never shows parent prices.",
+  "en": {
+    "plans_heading": "Hani for families",
+    "plans_intro": "Start with the free set. It stays free. When you want the full library, here is what it costs.",
+    "trial_line": "Every plan starts with a 7-day free trial of the full library.",
+    "annual": {
+      "label": "Yearly",
+      "price": "$59 a year"
+    },
+    "monthly": {
+      "label": "Monthly",
+      "price": "$6.99 a month",
+      "note": "Stop any time."
+    },
+    "founding": {
+      "label": "Founding Family",
+      "price": "$39 for your first year",
+      "renewal": "Then $49 a year, locked for as long as you stay.",
+      "terms": "Available to families who join before January 1, 2027.",
+      "why": "Founding Families are the first homes to use Hani. This price is our thank-you for helping shape it."
+    },
+    "schools_line": "Teachers and schools use Hani free, always. Talk with us about bringing it to your school.",
+    "checkout_note": "Payments are handled securely by Stripe on hudsonseed.com.",
+    "board_line": "Try the free board at hudsonseed.com. No cost, no login.",
+    "trial_cta": "Get in line for the free Hani trial",
+    "email_placeholder": "you@email.com",
+    "email_fine": "We use your email only for Hani. No child information is ever collected.",
+    "tagline": "Teachers asked. We built."
+  },
+  "es": {
+    "plans_heading": "Hani para familias",
+    "plans_intro": "Empiece con el conjunto gratuito. Sigue siendo gratis. Cuando quiera la biblioteca completa, este es el costo.",
+    "trial_line": "Cada plan comienza con 7 días gratis de la biblioteca completa.",
+    "annual": {
+      "label": "Anual",
+      "price": "$59 al año"
+    },
+    "monthly": {
+      "label": "Mensual",
+      "price": "$6.99 al mes",
+      "note": "Cancele cuando quiera."
+    },
+    "founding": {
+      "label": "Familia Fundadora",
+      "price": "$39 por su primer año",
+      "renewal": "Después $49 al año, fijo mientras siga con nosotros.",
+      "terms": "Disponible para familias que se unan antes del 1 de enero de 2027.",
+      "why": "Las Familias Fundadoras son los primeros hogares que usan Hani. Este precio es nuestro agradecimiento por ayudarnos a darle forma."
+    },
+    "schools_line": "Maestros y escuelas usan Hani gratis, siempre. Hable con nosotros para llevarlo a su escuela.",
+    "checkout_note": "Los pagos se procesan de forma segura con Stripe en hudsonseed.com.",
+    "board_line": "Pruebe el tablero gratuito en hudsonseed.com. Sin costo, sin registrarse.",
+    "trial_cta": "Anótese para la prueba gratuita de Hani",
+    "email_placeholder": "usted@correo.com",
+    "email_fine": "Usamos su correo solo para Hani. Nunca recopilamos información de niños.",
+    "tagline": "Los maestros lo pidieron. Nosotros lo construimos."
+  }
+}
