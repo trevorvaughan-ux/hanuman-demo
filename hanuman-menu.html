@@ -128,7 +128,7 @@ async function renderGuestMenu(){
   $app.innerHTML = `
     <div class="banner">
       <h2>Free to try, always</h2>
-      <p class="muted-text">These five are open to everyone, no account needed. Sign in for the full library whenever you're ready — no rush.</p>
+      <p class="muted-text">These five are open to everyone, no account needed. Sign in to see every reset.</p>
       <a class="btn btn-primary" style="display:inline-block;text-decoration:none;margin-top:4px;margin-right:8px;" href="whiteboard.html">Start Practicing</a>
       <button id="shareBtn" class="btn-ghost" onclick="shareApp()">Share this</button>
     </div>
@@ -310,7 +310,7 @@ async function accessNoticeHtml(){
     return `<div class="banner"><h2>Exploring the free set</h2><p class="muted-text">${note} The five below are always yours to use. Ask your school admin about the rest whenever it's useful — no rush.</p></div>`;
   }
   return `<div class="banner"><h2>Exploring the free set</h2><p class="muted-text">The five below are always yours to use. Subscribe whenever you're ready for the full 102 — there's no deadline.</p>
-    <a class="btn btn-gold" style="display:inline-block;text-decoration:none;margin-top:8px;margin-right:8px;" href="${SQUARE_LINK_PARENT}" target="_blank">See full library options</a>
+    <a class="btn btn-gold" style="display:inline-block;text-decoration:none;margin-top:8px;margin-right:8px;" href="${SQUARE_LINK_PARENT}" target="_blank">See plans</a>
     <button id="shareBtn" class="btn-ghost" onclick="shareApp()">Share this</button></div>`;
 }
 
