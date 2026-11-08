@@ -599,7 +599,7 @@
       close:"That's the Listening Game. Everyone is fighting to be heard. The kid who really listens becomes everyone's favorite teammate." },
     { id:"cozyplace", kind:"sel", demo:"desk", name:"My Cozy Place", tag:"SEL · Calm · 2 min", audience:"PreK3-2nd", src:"HudsonSeed",
       blurb:"For the littlest ones: build an imaginary cozy place you can visit any time feelings get big.",
-      intro:"Hi friends, I'm Hani. Today we're going to build something amazing, and it's invisible. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
+      intro:"Hi friends, I'm Hani. Today we'll picture a quiet, safe place, just for you. It's your very own cozy place, inside your imagination. Once you build it, you can visit any time you want. Let's go.",
       lines:[
         {cue:"Close your eyes. Snuggle into your seat.",sub:"Like a bird in a nest.",say:"Close your eyes and snuggle into your seat, like a little bird in a nest.",hold:10},
         {cue:"Imagine the coziest place ever.",sub:"Real or made-up. Yours.",say:"Now imagine the coziest place ever. It can be real, like your bed, or totally made-up, like a cloud castle. It's yours.",hold:13},
@@ -607,7 +607,7 @@
         {cue:"What do you HEAR?",sub:"Quiet? Waves? A purring cat?",say:"What do you hear in your cozy place? Maybe it's quiet. Maybe there are waves, or rain on a roof, or a purring cat.",hold:12},
         {cue:"Who is with you?",sub:"A person. A pet. A stuffie. Or just you.",say:"Who is with you? Maybe someone you love, or a pet, or your favorite stuffie. Or maybe it's just you, safe and snug.",hold:12},
         {cue:"Take three cozy breaths there.",sub:"In... and out. Three times.",say:"Now take three slow, cozy breaths in your special place. In... and out. In... and out. In... and out.",hold:14},
-        {cue:"Wave goodbye. You can come back!",sub:"Any time feelings get big.",say:"Wave goodbye to your cozy place for now. But remember: it's yours forever. Any time your feelings get too big, close your eyes and come back.",hold:12},
+        {cue:"Wave goodbye. You can come back any time.",sub:"Any time feelings get big.",say:"Wave goodbye to your cozy place for now. But remember: it's yours forever. Any time your feelings get too big, close your eyes and come back.",hold:12},
         {cue:"Eyes open. Cozy comes with you.",sub:"",say:"Open your eyes. And guess what? A little bit of that cozy feeling came back with you.",hold:9}
       ],
       close:"That's My Cozy Place. You built it, you own it, and no one can ever take it away. Visit often." },
@@ -1583,7 +1583,7 @@
       intro:"Hey, I'm Hani. Sounds like it's been a big, loud, fast kind of moment. That's okay. We're going to bring all that energy back down together, in three minutes. First job: get in your seat and find the floor with your feet.",
       lines:[
         {cue:"Feet on the floor. Hands on your legs.",sub:"Everybody lands.",say:"Feet on the floor. Hands on your legs. Everybody lands.",hold:10,pose:"feet"},
-        {cue:"Shake out your hands. Fast!",sub:"Shake shake shake...",say:"First, shake out your hands, fast! Shake, shake, shake. Get the last wiggles out.",hold:8,pose:"shake"},
+        {cue:"Shake out your hands… then let them slow down… and rest.",sub:"Slow… and rest.",say:"Shake out your hands… then let them slow down… and rest.",hold:8,pose:"shake"},
         {cue:"And... freeze. Hands down.",sub:"Still as a statue.",say:"And... freeze. Hands down. Still as a statue.",hold:8,pose:"hands"},
         {cue:"Big breath in through your nose.",sub:"Fill all the way up.",say:"Now a big breath in through your nose. Fill all the way up.",hold:7,pose:"inhale"},
         {cue:"Sigh it out. Ahhh.",sub:"Loud is allowed, one time.",say:"And sigh it out. Ahhh. Loud is allowed, just this once.",hold:8,pose:"exhale"},
@@ -1599,7 +1599,7 @@
         {cue:"One last quiet breath.",sub:"Ready position.",say:"One last quiet breath, in... and out. That's ready position.",hold:10,pose:"breathe"},
         {cue:"Eyes on your teacher. You're back.",sub:"Nice work, everybody.",say:"Eyes up on your teacher. You're back. Nice work, everybody.",hold:8,pose:"tall"}
       ],
-      close:"That's The Reset. From wild to ready in three minutes. See you after the next recess." },
+      close:"That's The Reset. Bodies calm, brains ready. See you after the next recess." },
     { id:"winddown", kind:"class", demo:"desk", name:"Wind Down", tag:"Class · 3 min", audience:"All ages", src:"HudsonSeed",
       blurb:"Before a test, before dismissal, before anything big. Slow everything down and land soft.",
       intro:"Hey, I'm Hani. Something big might be coming, a test, the end of the day, or maybe it's just been a lot. Let's slow everything way down together. There is nowhere to rush to for the next three minutes.",
@@ -1654,8 +1654,8 @@
   function finish(){running=false;cancelAnimationFrame(raf);setBall(0);timerEl.textContent="00:00";
     hsLog("complete",CURRENT,(Date.now()-hsT0)/1000);
     cue.textContent="Beautiful. The room is calm and ready.";
-    sub.textContent="Say it with me: I am happy. I am safe. I am brave. I am strong. I am love.";
-    say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am happy. I am safe. I am brave. I am strong. I am love.");
+    sub.textContent="Say it with me: I am calm. I am safe. I am ready.";
+    say("Beautiful. The room is calm and ready. Say it with me if you'd like. I am calm. I am safe. I am ready.");
     againBtn.classList.remove("hide");}
 
   // ---- anonymous usage metrics: write-only insert, silent failure, no personal data ----

@@ -302,7 +302,7 @@ async function signOut(){ await sb.auth.signOut(); location.reload(); }
 async function accessNoticeHtml(){
   if(state.access) return '';
   if(state.profile.role === 'teacher'){
-    let note = "Your school's full library isn't active yet.";
+    let note = "Your school's Hani resets aren't active yet.";
     if(state.profile.school_license_id){
       const { data: school } = await sb.from('menu_school_licenses').select('*').eq('id', state.profile.school_license_id).single();
       if(school) note = `${esc(school.name)}'s full-library access is <b>${esc(school.status)}</b>.`;
@@ -387,7 +387,7 @@ function paintGrid(){
       <div class="mcard" data-card="${c.id}" style="opacity:.6;">
         <span class="pill muted" style="align-self:flex-start;">${KIND_LABEL[c.kind]||c.kind}</span>
         <h3>${esc(c.name)}</h3>
-        <div class="aud">Part of the full library</div>
+        <div class="aud">Part of the Hani app</div>
       </div>`;
     }
     return `
