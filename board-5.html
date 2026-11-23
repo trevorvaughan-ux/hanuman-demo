@@ -2865,7 +2865,11 @@
   var CRM_KEY = "sb_publishable_7wnGQX91msxCwzq7QRqF1w_MWfgWCWT";
   function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
   function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
-  function samplerUnlocked(){ return lsGet("hs5_ok") === "1"; }
+  /* State keys carry a version: bumping it gives every visitor a clean
+     slate. v2 (2026-11-22 evening): v1 state written during Trevor's first
+     test of the buggy build made his re-test open on the wall — the free
+     play was already recorded as spent. */
+  function samplerUnlocked(){ return lsGet("hs5_ok_v2") === "1"; }
   function crmSave(payload){
     return fetch(CRM_ENDPOINT, { method: "POST",
       headers: { "apikey": CRM_KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
@@ -2911,7 +2915,7 @@
       notes: "Lists: 5_board_unlock | Origin: 5_board" + (lang === "es" ? " | Lang: es" : ""),
       source: "website_5_board", status: "new" })
       .then(function(){
-        lsSet("hs5_ok", "1");
+        lsSet("hs5_ok_v2", "1");
         var t = pendingTool; closeWall();
         $("wallBtn").disabled = false;
         render();
@@ -3590,8 +3594,8 @@
   function play(tool, keepFocus){
     if (!isLive(tool) && !samplerUnlocked()) return;
     if (SAMPLER && !samplerUnlocked()){
-      var freeTool = lsGet("hs5_free");
-      if (!freeTool) lsSet("hs5_free", tool.en);
+      var freeTool = lsGet("hs5_free_v2");
+      if (!freeTool) lsSet("hs5_free_v2", tool.en);
       else if (freeTool !== tool.en){ openWall(tool); return; }
     }
     document.body.classList.remove("resources-open");
