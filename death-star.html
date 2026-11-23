@@ -3059,7 +3059,7 @@
         capUrl = URL.createObjectURL(new Blob([text], { type:"text/vtt" }));
         var tr = document.createElement("track");
         tr.kind = "captions"; tr.srclang = capLang; tr.label = capLang === "es" ? "Español" : "English";
-        tr.default = true; tr.src = capUrl;
+        tr.default = capsOn(); tr.src = capUrl;
         vid.appendChild(tr);
         tr.addEventListener("load", function(){ if (vid.textTracks[0]) vid.textTracks[0].mode = capsOn() ? "showing" : "hidden"; });
         if (vid.textTracks[0]) vid.textTracks[0].mode = capsOn() ? "showing" : "hidden";
