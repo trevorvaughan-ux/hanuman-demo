@@ -3569,7 +3569,7 @@
         capUrl = URL.createObjectURL(new Blob([vtt], { type:"text/vtt" }));
         var tr = document.createElement("track");
         tr.kind = "captions"; tr.srclang = capLang; tr.label = capLang === "es" ? "Español" : "English";
-        tr.default = true; tr.src = capUrl;
+        tr.default = capsOn(); tr.src = capUrl;
         vid.appendChild(tr);
         tr.addEventListener("load", function(){
           var track = vid.textTracks[0];
