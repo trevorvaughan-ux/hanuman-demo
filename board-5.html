@@ -292,6 +292,7 @@
     box-shadow:0 0 0 8px #FDF8F0, 0 0 0 9px rgba(253,248,240,.25), 0 24px 60px rgba(0,0,0,.5);
   }
   .frame-wrap{position:relative}
+  @media (max-width:600px) and (orientation:portrait){.frame-wrap{aspect-ratio:4/3;width:min(100%, calc((100dvh - var(--top-h) - var(--dock-h) - 2 * clamp(10px,1.6vh,20px)) * 4 / 3))}.frame-wrap video{object-fit:cover}}
   .frame-wrap iframe,.frame-wrap video{width:100%;height:100%;border:0;display:block;background:#000}
   /* captions the back row can read */
   video::cue{font-family:'DM Sans',system-ui,sans-serif;font-weight:500;font-size:clamp(13px,1.9vh,17px);line-height:1.3;color:#FDF8F0;background:transparent;text-shadow:0 1px 3px rgba(10,6,24,.95),0 0 8px rgba(10,6,24,.8),1px 0 3px rgba(10,6,24,.95),-1px 0 3px rgba(10,6,24,.95),0 -1px 3px rgba(10,6,24,.95)}
@@ -3758,14 +3759,33 @@
     } else vid.pause();
   }
   function toggleFull(){
-    var el = document.body.classList.contains("playing") ? $("stage") : document.documentElement;
     if (document.fullscreenElement){
       if (document.exitFullscreen) document.exitFullscreen();
       return;
     }
+    var playing = document.body.classList.contains("playing");
+    if (playing && vid.webkitEnterFullscreen && Math.min(screen.width, screen.height) < 768){
+      try{ vid.webkitEnterFullscreen(); return; }catch(e){}
+    }
+    var el = playing ? $("stage") : document.documentElement;
     var req = el.requestFullscreen || el.webkitRequestFullscreen;
     if (req) req.call(el);
+    else if (playing && vid.webkitEnterFullscreen){ try{ vid.webkitEnterFullscreen(); }catch(e){} }
   }
+  function autoOrientFs(){
+    if (!document.body.classList.contains("playing")) return;
+    if (vid.hidden || !vid.getAttribute("src")) return;
+    if (!(window.matchMedia && window.matchMedia("(orientation: landscape)").matches)) return;
+    if (Math.min(screen.width, screen.height) > 767) return;
+    if (document.fullscreenElement) return;
+    if (vid.webkitEnterFullscreen){ try{ vid.webkitEnterFullscreen(); }catch(e){} }
+    else if (vid.requestFullscreen){ try{ var p = vid.requestFullscreen(); if (p && p.catch) p.catch(function(){}); }catch(e){} }
+  }
+  if (window.matchMedia){
+    var orientMq = window.matchMedia("(orientation: landscape)");
+    if (orientMq.addEventListener) orientMq.addEventListener("change", function(){ setTimeout(autoOrientFs, 300); });
+  }
+  window.addEventListener("orientationchange", function(){ setTimeout(autoOrientFs, 400); });
   function toggleCaptions(){
     if (!vid.textTracks || !vid.textTracks.length) return;
     var tr = vid.textTracks[0];
