@@ -281,14 +281,15 @@
 
   /* ---------- Player: same frame, the board becomes the stage ---------- */
   .player{display:none}
-  body.playing{background:var(--night)}
+  body.playing{background:radial-gradient(120% 90% at 50% 0%, #2B1B4E 0%, #1B1138 55%, #150D2E 100%)}
   body.playing .board-view, body.playing footer, body.playing .search-wrap{display:none}
   body.playing main{max-width:none;padding:clamp(10px,1.6vh,20px) var(--pad);display:flex}
-  body.playing .player{display:flex;flex:1;align-items:center;justify-content:center}
+  body.playing .player{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:flex-start}
+  body.playing .player::after{content:"HUDSONSEED";margin-top:clamp(16px,3.5vh,36px);font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.42em;text-indent:.42em;color:rgba(205,191,239,.55)}
   .frame-wrap{
     background:#000;border-radius:18px;overflow:hidden;aspect-ratio:16/9;
     width:min(100%, calc((100dvh - var(--top-h) - var(--dock-h) - 2 * clamp(10px,1.6vh,20px)) * 16 / 9));
-    box-shadow:0 0 0 1px rgba(253,248,240,.14), 0 24px 60px rgba(0,0,0,.5);
+    box-shadow:0 0 0 8px #FDF8F0, 0 0 0 9px rgba(253,248,240,.25), 0 24px 60px rgba(0,0,0,.5);
   }
   .frame-wrap{position:relative}
   .frame-wrap iframe,.frame-wrap video{width:100%;height:100%;border:0;display:block;background:#000}
