@@ -225,6 +225,7 @@
   .door h3{margin:0 0 6px;font-size:20px}
   .door p{margin:0 0 12px;font-size:15px;line-height:1.45}
   .door-link{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;min-height:56px;border-radius:999px;background:var(--indigo);color:var(--cream);font-weight:700;font-size:17px;text-decoration:none}
+  body.playing .doors{display:none}
   .lead-pill{margin:0 0 16px}
   /* the two the board opens on, at moment-of-need size */
   @media (min-width:860px){
@@ -3592,6 +3593,7 @@
     memSet("hani-board-time", JSON.stringify({ en: currentTool.en, t: Math.floor(vid.currentTime || 0) }));
   });
   function play(tool, keepFocus){
+    if (document.body.classList.contains("playing")) return;
     if (!isLive(tool) && !samplerUnlocked()) return;
     if (SAMPLER && !samplerUnlocked()){
       var freeTool = lsGet("hs5_free_v2");
