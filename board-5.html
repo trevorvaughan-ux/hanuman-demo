@@ -226,6 +226,9 @@
   .door p{margin:0 0 12px;font-size:15px;line-height:1.45}
   .door-link{display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;min-height:56px;border-radius:999px;background:var(--indigo);color:var(--cream);font-weight:700;font-size:17px;text-decoration:none}
   body.playing .doors{display:none}
+  video::cue{font-size:clamp(13px,1.9vh,17px);font-weight:500;background:rgba(21,13,46,.5)}
+  #capBtn{font-weight:700;letter-spacing:.04em;opacity:.5}
+  #capBtn.on{opacity:1;text-decoration:underline;text-underline-offset:3px}
   .lead-pill{margin:0 0 16px}
   /* the two the board opens on, at moment-of-need size */
   @media (min-width:860px){
@@ -579,7 +582,7 @@
     .board-sub{font-size:32px}
     .tile-name{font-size:48px}
     .play-toggle{min-height:100px;font-size:32px}
-    video::cue{font-size:64px}
+    video::cue{font-size:17px}
   }
   @media (max-width:700px){
     .shelves{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:100%}
@@ -819,6 +822,7 @@
     <button type="button" class="frame-btn solid play-toggle" id="playToggle" aria-label="Play" aria-pressed="false"><span id="playToggleLabel">Play</span></button>
     <button type="button" class="frame-btn info" id="infoBtn" aria-haspopup="dialog">INFO</button>
     <button type="button" class="frame-btn" id="fullBtn" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4"/></svg><span class="open-label" id="openLabel">Full screen</span></button>
+    <button type="button" class="frame-btn" id="capBtn" aria-label="Captions" aria-pressed="false">CC</button>
   </div>
   <div class="dock-row dock-res">
     <button type="button" class="frame-btn solid" id="resourcesBackBtn">
@@ -2871,6 +2875,10 @@
      test of the buggy build made his re-test open on the wall — the free
      play was already recorded as spent. */
   function samplerUnlocked(){ return lsGet("hs5_ok_v2") === "1"; }
+  /* Captions on the app surface (Trevor, 2026-11-22): OFF by default — the
+     classroom block captions covered the picture on his phone. A CC button
+     in the player turns them on, small and light, and the choice sticks. */
+  function capsOn(){ return lsGet("hs5_caps_v2") === "on"; }
   function crmSave(payload){
     return fetch(CRM_ENDPOINT, { method: "POST",
       headers: { "apikey": CRM_KEY, "Content-Type": "application/json", "Prefer": "return=minimal" },
@@ -2945,6 +2953,16 @@
         $("appMsg").textContent = UI[lang].wallFail;
       });
   });
+  var capBtnEl = $("capBtn");
+  if (capBtnEl){
+    var syncCapBtn = function(){ var on = capsOn(); capBtnEl.classList.toggle("on", on); capBtnEl.setAttribute("aria-pressed", on ? "true" : "false"); };
+    capBtnEl.addEventListener("click", function(){
+      if (vid.textTracks && vid.textTracks.length) toggleCaptions();
+      else lsSet("hs5_caps_v2", capsOn() ? "off" : "on");
+      syncCapBtn();
+    });
+    syncCapBtn();
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintSampler);
   else setTimeout(paintSampler, 0);
 
@@ -3557,7 +3575,7 @@
         tr.addEventListener("load", function(){
           var track = vid.textTracks[0];
           if (!track) return;
-          track.mode = "showing";
+          track.mode = capsOn() ? "showing" : "hidden";
           window.setTimeout(function(){
             if (token !== playToken) return;
             var cues = track.cues;
@@ -3567,7 +3585,7 @@
             }
           }, 0);
         });
-        if (vid.textTracks[0]) vid.textTracks[0].mode = "showing";
+        if (vid.textTracks[0]) vid.textTracks[0].mode = capsOn() ? "showing" : "hidden";
       })
       .catch(function(){
         if (token !== playToken) return;
@@ -3752,6 +3770,9 @@
     if (!vid.textTracks || !vid.textTracks.length) return;
     var tr = vid.textTracks[0];
     tr.mode = (tr.mode === "showing") ? "hidden" : "showing";
+    if (typeof lsSet === "function") lsSet("hs5_caps_v2", tr.mode === "showing" ? "on" : "off");
+    var cb = $("capBtn");
+    if (cb){ cb.classList.toggle("on", tr.mode === "showing"); cb.setAttribute("aria-pressed", tr.mode === "showing" ? "true" : "false"); }
   }
   function syncNet(){
     var off = navigator.onLine === false;
