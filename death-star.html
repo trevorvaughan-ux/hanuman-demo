@@ -419,6 +419,8 @@
   .dock .audio-badge{font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;flex-shrink:0}
   .dock .frame-btn{min-height:60px;font-size:18px;padding:8px 24px}
   .dock .frame-btn.info{letter-spacing:.08em}
+  #capBtn{font-weight:700;letter-spacing:.04em;opacity:.5}
+  #capBtn.on{opacity:1;text-decoration:underline;text-underline-offset:3px}
 
   @media (max-width:1499px){
     .dock-label{display:none}
@@ -613,6 +615,7 @@
     <span class="audio-badge" id="capNote" role="status" hidden></span>
     <span class="audio-badge" id="playerAudioBadge" style="display:none">Audio: EN</span>
     <button type="button" class="frame-btn info" id="infoBtn" aria-haspopup="dialog">INFO</button>
+    <button type="button" class="frame-btn" id="capBtn" aria-label="Captions" aria-pressed="false">CC</button>
     <a class="frame-btn" id="openLink" href="#" target="_blank" rel="noopener" aria-label="Open video"><span class="open-label" id="openLabel">Open video</span><span aria-hidden="true">↗</span></a>
   </div>
   <div class="dock-row dock-res">
@@ -3058,8 +3061,8 @@
         tr.kind = "captions"; tr.srclang = capLang; tr.label = capLang === "es" ? "Español" : "English";
         tr.default = true; tr.src = capUrl;
         vid.appendChild(tr);
-        tr.addEventListener("load", function(){ if (vid.textTracks[0]) vid.textTracks[0].mode = "showing"; });
-        if (vid.textTracks[0]) vid.textTracks[0].mode = "showing";
+        tr.addEventListener("load", function(){ if (vid.textTracks[0]) vid.textTracks[0].mode = capsOn() ? "showing" : "hidden"; });
+        if (vid.textTracks[0]) vid.textTracks[0].mode = capsOn() ? "showing" : "hidden";
       })
       .catch(function(){
         if (token !== playToken) return;
@@ -3167,6 +3170,20 @@
   $("btn-en").addEventListener("click", function(){ smooth(function(){ lang = "en"; applyLang(); }); });
   $("btn-es").addEventListener("click", function(){ smooth(function(){ lang = "es"; applyLang(); }); });
   $("backBtn").addEventListener("click", function(){ smooth(function(){ back(); }); });
+  /* Captions (Trevor, 2026-11-22): OFF by default on every surface; the CC
+     button beside INFO turns them on, and the choice sticks. */
+  function capsOn(){ try { return localStorage.getItem("hsds_caps_v1") === "on"; } catch (e) { return false; } }
+  var capBtnEl = $("capBtn");
+  if (capBtnEl){
+    var syncCapBtn = function(){ var on = capsOn(); capBtnEl.classList.toggle("on", on); capBtnEl.setAttribute("aria-pressed", on ? "true" : "false"); };
+    capBtnEl.addEventListener("click", function(){
+      var on = !capsOn();
+      try { localStorage.setItem("hsds_caps_v1", on ? "on" : "off"); } catch (e) {}
+      if (vid.textTracks && vid.textTracks.length) vid.textTracks[0].mode = on ? "showing" : "hidden";
+      syncCapBtn();
+    });
+    syncCapBtn();
+  }
   $("infoBtn").addEventListener("click", function(){
     if (currentTool) openSheet(findSlot(currentTool.en));
   });
