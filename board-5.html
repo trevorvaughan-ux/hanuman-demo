@@ -6,15 +6,15 @@
 <meta name="color-scheme" content="light dark" />
 <meta name="referrer" content="no-referrer" />
 <link rel="icon" href="/favicon.svg" />
-<meta name="description" content="HaniBoard. Twelve classroom practices are ready, in English and Spanish. Free board, no cost." />
+<meta name="description" content="Five Free Resets — HudsonSeed. Five classroom practices play free, in English and Spanish. Your email unlocks the whole board." />
 <link rel="manifest" href="/manifest.webmanifest" />
 <meta name="theme-color" content="#171D3A" />
 <link rel="apple-touch-icon" href="/icon-192.png" />
 <!-- 5 BOARD — the public sampler (built 2026-11-22 from the board-pass
-     branch). Five tools play with no login; the first play is free and an
-     email unlocks the other four. Grey tiles are a visual wall only:
-     no info sheets, no media. Trevor tests this build before any link
-     goes out. -->
+     branch). Five tools are the open set, no login; ONE play is free and
+     an email unlocks the whole board. Before the unlock, grey tiles are
+     a visual wall only: no info sheets, not playable. Trevor tests this
+     build before any link goes out. -->
 <title>Five Free Resets — HudsonSeed</title>
 <!-- HaniBoard x20-dock: a branch of x20. Tool data, copy, studies and Drive IDs are x20's, unchanged.
      Fonts (DM Sans, Playfair Display; SIL OFL 1.1) are embedded: the page itself requests nothing from any server. -->
@@ -645,7 +645,7 @@
   <section class="board-view" aria-label="Tools">
     <div class="board-head" id="boardHead">
       <h1 class="board-title" id="boardTitle">HaniBoard™</h1>
-      <p class="board-sub" id="boardSub">Twelve practices are ready. The others are coming.</p>
+      <p class="board-sub" id="boardSub">Five practices are ready. Your email unlocks the whole board.</p>
       <button type="button" class="continue-btn" id="continueBtn" hidden></button>
     </div>
     <p class="net-note" id="netNote" role="status" hidden>No connection. The board is here. Videos need the network.</p>
@@ -759,18 +759,6 @@
 
 <!-- INFO SHEET -->
 <div class="scrim" id="scrim" hidden>
-  <div class="wall" id="wall" hidden>
-    <div class="wall-card" role="dialog" aria-modal="true" aria-labelledby="wallTitle">
-      <button type="button" class="wall-x" id="wallClose" aria-label="Close">&times;</button>
-      <h2 id="wallTitle"></h2>
-      <p id="wallLine"></p>
-      <form id="wallForm">
-        <input type="email" id="wallEmail" required autocomplete="email">
-        <button type="submit" class="sheet-back" id="wallBtn"></button>
-      </form>
-      <p class="wall-msg" id="wallMsg"></p>
-    </div>
-  </div>
   <aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
     <div class="sheet-top">
       <span class="sheet-cat" id="infoCat"></span>
@@ -794,6 +782,20 @@
     <div class="sheet-lock"><p id="sheetLock">No data about individual children — no child is ever identified, recorded, or measured.</p></div>
     <button type="button" class="sheet-back" id="sheetBackVideo" hidden>Back to video</button>
   </aside>
+</div>
+
+<!-- EMAIL WALL — sibling of the scrim, never inside it -->
+<div class="wall" id="wall" hidden>
+  <div class="wall-card" role="dialog" aria-modal="true" aria-labelledby="wallTitle">
+    <button type="button" class="wall-x" id="wallClose" aria-label="Close">&times;</button>
+    <h2 id="wallTitle"></h2>
+    <p id="wallLine"></p>
+    <form id="wallForm">
+      <input type="email" id="wallEmail" required autocomplete="email">
+      <button type="submit" class="sheet-back" id="wallBtn"></button>
+    </form>
+    <p class="wall-msg" id="wallMsg"></p>
+  </div>
 </div>
 
 <!-- DOCK -->
@@ -2083,7 +2085,7 @@
     en: {
       boardTitle:"HaniBoard™",
       withWord:"with",
-      boardSub:"Twelve practices are ready. The others are coming.",
+      boardSub:"Five practices are ready. Your email unlocks the whole board.",
       comingSoon:"Coming soon",
       esSoonShort:"Spanish coming soon",
       readyWord:"ready",
@@ -2118,7 +2120,7 @@
     es: {
       boardTitle:"HaniBoard™",
       withWord:"con",
-      boardSub:"Doce prácticas están listas. Las demás vienen pronto.",
+      boardSub:"Cinco prácticas están listas. Tu correo desbloquea todo el tablero.",
       comingSoon:"Próximamente",
       esSoonShort:"Español próximamente",
       readyWord:"listas",
@@ -2359,8 +2361,8 @@
          esPlaying:"This is the English version. Spanish is coming.",
          playEnglish:"Play in English",
          descSci:"Description / Science", backVideo:"Back to video",
-      freeNote: "Watch one free. Your email unlocks the other four — no cost.",
-      wallTitle: "Unlock the other four", wallLine: "Enter your email and all five are yours to play. No cost, no login after that.",
+      freeNote: "Watch one free. Your email unlocks the whole board — no cost.",
+      wallTitle: "Unlock the whole board", wallLine: "Enter your email and the whole board opens — every video on it. No cost, no login after that.",
       wallBtn: "Unlock", wallFail: "That didn't send. Try again, or email trevorvaughan@hudsonseed.com.", emailWord: "Email",
       doorsH: "Keep going", appH: "The app is coming", appLine: "Over 50 videos, in English and Spanish. Join the list and we'll email you when it opens.",
       appBtn: "Join the app list", appDone: "You're on the list.", schoolH: "For your school",
@@ -2382,8 +2384,8 @@
          esPlaying:"Esta es la versión en inglés. El español viene pronto.",
          playEnglish:"Reproducir en inglés",
          descSci:"Descripción / Ciencia", backVideo:"Volver al video",
-      freeNote: "Mira uno gratis. Tu correo desbloquea los otros cuatro — sin costo.",
-      wallTitle: "Desbloquea los otros cuatro", wallLine: "Escribe tu correo y los cinco quedan abiertos para ver. Sin costo, sin contraseña después.",
+      freeNote: "Mira uno gratis. Tu correo desbloquea todo el tablero — sin costo.",
+      wallTitle: "Desbloquea todo el tablero", wallLine: "Escribe tu correo y todo el tablero se abre — cada video. Sin costo, sin contraseña después.",
       wallBtn: "Desbloquear", wallFail: "No se envió. Inténtalo de nuevo o escribe a trevorvaughan@hudsonseed.com.", emailWord: "Correo",
       doorsH: "Sigue adelante", appH: "La app viene pronto", appLine: "Más de 50 videos, en inglés y español. Únete a la lista y te avisamos por correo cuando abra.",
       appBtn: "Únete a la lista de la app", appDone: "Ya estás en la lista.", schoolH: "Para tu escuela",
@@ -2854,9 +2856,9 @@
     "Recess-to-Desk Reset": true, "The Reset": true, "Chair Pose": true
   };
   /* ---------- 5 BOARD SAMPLER (2026-11-22) ----------
-     First play free; the email wall unlocks the other four. Captures go to
-     crm_contacts through the same public rail the homepage uses. Grey tiles
-     are a visual wall: no sheet, no media. */
+     One play free; the email wall unlocks the whole board. Captures go to
+     crm_contacts through the same public rail the homepage uses. Before the
+     unlock, grey tiles are a visual wall: no sheet, not playable. */
   var SAMPLER = true;
   var TEST_MODE = true; /* preview copy only: the CRM capture rail is being repaired (anon grant missing); in test mode a failed save still unlocks so the flow can be judged. The production build keeps the honest failure. */
   var CRM_ENDPOINT = "https://pebhikfbpgntedvbxqph.supabase.co/rest/v1/crm_contacts";
@@ -2912,6 +2914,7 @@
         lsSet("hs5_ok", "1");
         var t = pendingTool; closeWall();
         $("wallBtn").disabled = false;
+        render();
         if (t) play(t);
       })
       .catch(function(){
@@ -3004,7 +3007,7 @@
   /* ---------- tiles ---------- */
   function makeTile(slot, feature){
     var tool = slot.tool, s = STRINGS[lang], name = tname(tool);
-    var live = isLive(tool);
+    var live = isLive(tool) || (SAMPLER && samplerUnlocked());
     var b = el("div", "tile shelf-" + shelfOf(tool) + (live ? "" : " soon") + (feature ? " feature" : ""));
     var pic;
     if (live){
@@ -3403,7 +3406,7 @@
     bv.textContent = UI[lang].backVideo;
   }
   function openSheet(slot){
-    if (SAMPLER && !isLive(slot.tool)) return;
+    if (SAMPLER && !isLive(slot.tool) && !samplerUnlocked()) return;
     lastFocus = document.activeElement;
     sheetCtx = slot;
     fillSheet();
@@ -3585,7 +3588,7 @@
     memSet("hani-board-time", JSON.stringify({ en: currentTool.en, t: Math.floor(vid.currentTime || 0) }));
   });
   function play(tool, keepFocus){
-    if (!isLive(tool)) return;
+    if (!isLive(tool) && !samplerUnlocked()) return;
     if (SAMPLER && !samplerUnlocked()){
       var freeTool = lsGet("hs5_free");
       if (!freeTool) lsSet("hs5_free", tool.en);
