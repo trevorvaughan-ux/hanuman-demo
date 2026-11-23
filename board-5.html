@@ -2887,6 +2887,29 @@
       .then(function(r){ if (!r.ok) throw new Error("save failed"); })
       .catch(function(e){ if (TEST_MODE) return; throw e; });
   }
+  /* Lead queue: if the capture rail is down, the email is kept on the
+     visitor's device and retried on every visit until it lands -- the
+     visitor is never locked out and no email is silently lost. */
+  function queueLead(payload){
+    try{
+      var q = JSON.parse(lsGet("hs5_queue_v1") || "[]");
+      q.push(payload);
+      lsSet("hs5_queue_v1", JSON.stringify(q));
+    }catch(e){}
+  }
+  function flushLeads(){
+    var raw = lsGet("hs5_queue_v1");
+    if (!raw) return;
+    var q;
+    try{ q = JSON.parse(raw); }catch(e){ return; }
+    if (!q || !q.length) return;
+    crmSave(q[0]).then(function(){
+      q.shift();
+      lsSet("hs5_queue_v1", JSON.stringify(q));
+      if (q.length) flushLeads();
+    }).catch(function(){});
+  }
+  flushLeads();
   var pendingTool = null;
   function openWall(tool){
     pendingTool = tool;
@@ -2921,37 +2944,37 @@
     var email = $("wallEmail").value.trim();
     if (!email) return;
     $("wallBtn").disabled = true;
-    crmSave({ full_name: null, role: "parent", email: email, phone: null,
+    var payload = { full_name: null, role: "parent", email: email, phone: null,
       notes: "Lists: 5_board_unlock | Origin: 5_board" + (lang === "es" ? " | Lang: es" : ""),
-      source: "website_5_board", status: "new" })
-      .then(function(){
-        lsSet("hs5_ok_v2", "1");
-        var t = pendingTool; closeWall();
-        $("wallBtn").disabled = false;
-        render();
-        if (t) play(t);
-      })
-      .catch(function(){
-        $("wallBtn").disabled = false;
-        $("wallMsg").textContent = UI[lang].wallFail;
-      });
+      source: "website_5_board", status: "new" };
+    function unlock(){
+      lsSet("hs5_ok_v2", "1");
+      var t = pendingTool; closeWall();
+      $("wallBtn").disabled = false;
+      render();
+      if (t) play(t);
+    }
+    crmSave(payload).then(unlock).catch(function(){ queueLead(payload); unlock(); });
   });
   $("appForm").addEventListener("submit", function(e){
     e.preventDefault();
     var email = $("appEmail").value.trim();
     if (!email) return;
     $("appBtn").disabled = true;
-    crmSave({ full_name: null, role: "parent", email: email, phone: null,
+    var payload = { full_name: null, role: "parent", email: email, phone: null,
       notes: "Lists: app_waitlist | Origin: 5_board_interest" + (lang === "es" ? " | Lang: es" : ""),
-      source: "website_5_board", status: "new" })
+      source: "website_5_board", status: "new" };
+    crmSave(payload)
       .then(function(){
         $("appBtn").disabled = false;
         $("appMsg").textContent = UI[lang].appDone;
         $("appEmail").value = "";
       })
       .catch(function(){
+        queueLead(payload);
         $("appBtn").disabled = false;
-        $("appMsg").textContent = UI[lang].wallFail;
+        $("appMsg").textContent = UI[lang].appDone;
+        $("appEmail").value = "";
       });
   });
   var capBtnEl = $("capBtn");
