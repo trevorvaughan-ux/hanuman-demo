@@ -3036,6 +3036,11 @@
     var m = useEs ? nat.es : nat.en;
     var capLang = useEs ? "es" : "en";
     var token = playToken;
+    if (Math.min(screen.width, screen.height) < 768){
+      vid.removeAttribute("playsinline"); vid.playsInline = false;
+    } else {
+      vid.setAttribute("playsinline", ""); vid.playsInline = true;
+    }
     vid.setAttribute("aria-label", tname(tool));
     vid.hidden = false;
     $("openLink").hidden = true;
@@ -3183,6 +3188,7 @@
     if (!(window.matchMedia && window.matchMedia("(orientation: landscape)").matches)) return;
     if (Math.min(screen.width, screen.height) > 767) return;
     if (document.fullscreenElement) return;
+    if (vid.webkitDisplayingFullscreen) return;
     if (vid.webkitEnterFullscreen){ try{ vid.webkitEnterFullscreen(); }catch(e){} }
     else if (vid.requestFullscreen){ try{ var p = vid.requestFullscreen(); if (p && p.catch) p.catch(function(){}); }catch(e){} }
   }
