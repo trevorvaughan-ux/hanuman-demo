@@ -3636,7 +3636,7 @@
   });
   function play(tool, keepFocus){
     if (document.body.classList.contains("playing")) return;
-    if (!isLive(tool) && !samplerUnlocked()) return;
+    if (!isLive(tool) && !samplerUnlocked()){ if (SAMPLER){ openWall(tool); } return; }
     if (SAMPLER && !samplerUnlocked()){
       var freeTool = lsGet("hs5_free_v2");
       if (!freeTool) lsSet("hs5_free_v2", tool.en);
